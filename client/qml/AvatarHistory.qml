@@ -127,6 +127,12 @@ Page {
                     }
 
                     MenuItem {
+                        text: qsTr("Open")
+                        visible: avatarGrid.expandItem
+                        onClicked: Qt.openUrlExternally(avatarGrid.expandItem.source)
+                    }
+
+                    MenuItem {
                         text: qsTr("Save to Gallery")
                         visible: avatarGrid.expandItem && avatarGrid.expandItem.inCache
                         onClicked: {
