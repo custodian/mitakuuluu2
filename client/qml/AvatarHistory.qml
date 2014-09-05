@@ -127,12 +127,6 @@ Page {
                     }
 
                     MenuItem {
-                        text: qsTr("Open")
-                        visible: avatarGrid.expandItem
-                        onClicked: Qt.openUrlExternally(avatarGrid.expandItem.source)
-                    }
-
-                    MenuItem {
                         text: qsTr("Save to Gallery")
                         visible: avatarGrid.expandItem && avatarGrid.expandItem.inCache
                         onClicked: {
@@ -189,10 +183,15 @@ Page {
                 avatarGrid.contextMenu.show(item)
             }
             onClicked: {
-                console.log("set avatar from history: " + model.path)
-                page.setAvatar(model.path)
-                Mitakuuluu.setPicture(page.jid, model.path)
-                pageStack.pop()
+                if (owner) {
+                    console.log("set avatar from history: " + model.path)
+                    page.setAvatar(model.path)
+                    Mitakuuluu.setPicture(page.jid, model.path)
+                    pageStack.pop()
+                }
+                else {
+                    Qt.openUrlExternally(model.path)
+                }
             }
             function remove() {
                 var remorse = removalComponent.createObject(null)
