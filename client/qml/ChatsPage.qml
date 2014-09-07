@@ -45,11 +45,41 @@ Page {
         onTotalUnreadChanged: listView.recheckMuting()
     }
 
-    SilicaFlickable {
-        id: flickView
+    SilicaListView {
+        id: listView
+        model: contactsModel
+        delegate: listDelegate
         anchors.fill: parent
         clip: true
+        cacheBuffer: page.height * 2
         pressDelay: 0
+        spacing: Theme.paddingSmall
+        currentIndex: -1
+        signal recheckMuting
+        VerticalScrollDecorator {}
+
+        header: PageHeader {
+            id: header
+            title: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn ? qsTr("Chats", "Contacts page title") : ""
+
+            Label {
+                id: headerText
+                width: Math.min(implicitWidth, parent.width - Theme.paddingLarge)
+                truncationMode: TruncationMode.Fade
+                color: Theme.highlightColor
+                visible: Mitakuuluu.connectionStatus != Mitakuuluu.LoggedIn
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                    leftMargin: pageStack._pageStackIndicator.width
+                }
+                font {
+                    pixelSize: Theme.fontSizeLarge
+                    family: Theme.fontFamilyHeading
+                }
+                text: Mitakuuluu.connectionString
+            }
+        }
 
         PullDownMenu {
             MenuItem {
@@ -82,6 +112,14 @@ Page {
             }
 
             MenuItem {
+                text: qsTr("Create group", "Contacts page menu item")
+                enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("CreateGroup.qml"))
+                }
+            }
+
+            MenuItem {
                 text: qsTr("Broadcast", "Main menu action")
                 enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
                 onClicked: {
@@ -94,45 +132,6 @@ Page {
                     pageStack.push(Qt.resolvedUrl("Settings.qml"))
                 }
             }
-        }
-
-        PageHeader {
-            id: header
-            title: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn ? qsTr("Chats", "Contacts page title") : ""
-
-            Label {
-                id: headerText
-                width: Math.min(implicitWidth, parent.width - Theme.paddingLarge)
-                truncationMode: TruncationMode.Fade
-                color: Theme.highlightColor
-                visible: Mitakuuluu.connectionStatus != Mitakuuluu.LoggedIn
-                anchors {
-                    verticalCenter: parent.verticalCenter
-                    left: parent.left
-                    leftMargin: pageStack._pageStackIndicator.width
-                }
-                font {
-                    pixelSize: Theme.fontSizeLarge
-                    family: Theme.fontFamilyHeading
-                }
-                text: Mitakuuluu.connectionString
-            }
-        }
-
-        SilicaListView {
-            id: listView
-            model: contactsModel
-            delegate: listDelegate
-            anchors.top: header.bottom
-            width: parent.width
-            anchors.bottom: parent.bottom
-            clip: true
-            cacheBuffer: page.height * 2
-            pressDelay: 0
-            spacing: Theme.paddingSmall
-            currentIndex: -1
-            signal recheckMuting
-            VerticalScrollDecorator {}
         }
     }
 

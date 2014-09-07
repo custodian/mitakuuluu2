@@ -8,6 +8,13 @@ Dialog {
     objectName: "selectPhonebook"
     allowedOrientations: globalOrientation
 
+    property string searchPattern
+    onSearchPatternChanged: {
+        allContactsModel.search(searchPattern)
+    }
+
+    property bool searchEnabled: false
+
     property variant numbers: []
     property variant names: []
     property variant avatars: []
@@ -62,11 +69,34 @@ Dialog {
         Mitakuuluu.syncContacts(numbers, names, avatars)
     }
 
-    SilicaFlickable {
-        id: flick
+    SilicaListView {
+        id: listView
         anchors.fill: parent
+        currentIndex: -1
+        header: headerComponent
+        model: allContactsModel
+        delegate: contactsDelegate
         clip: true
+        cacheBuffer: page.height * 2
         pressDelay: 0
+        spacing: Theme.paddingMedium
+        section {
+            property: "sectionBucket"
+            criteria: ViewSection.FirstCharacter
+            delegate: sectionDelegate
+        }
+
+        Component.onCompleted: {
+            if (listView.hasOwnProperty("quickScroll")) {
+                listView.quickScroll = false
+            }
+        }
+
+        FastScroll {
+            id: fastScroll
+            __hasPageHeight: false
+            listView: listView
+        }
 
         PullDownMenu {
             MenuItem {
@@ -81,6 +111,16 @@ Dialog {
                 text: qsTr("Add number", "Add contacts page menu item")
                 onClicked: {
                     pageStack.replace(Qt.resolvedUrl("AddContact.qml"))
+                }
+            }
+
+            MenuItem {
+                text: searchEnabled
+                      ? qsTr("Hide search field")
+                      : qsTr("Show search field")
+                enabled: listView.count > 0
+                onClicked: {
+                    searchEnabled = !searchEnabled
                 }
             }
 
@@ -109,43 +149,6 @@ Dialog {
             }*/
         }
 
-        DialogHeader {
-            id: header
-            title: numbers.length > 0
-                   ? ((numbers.length == 1) ? qsTr("Sync contact", "Add contacts page title")
-                                            : qsTr("Sync %n contacts", "Add contacts page title", numbers.length))
-                   : qsTr("Select contacts", "Add contacts page title")
-        }
-
-        SilicaListView {
-            id: listView
-            anchors {
-                top: header.bottom
-                bottom: parent.bottom
-                left: parent.left
-                right: parent.right
-            }
-            currentIndex: -1
-            header: searchComponent
-            model: allContactsModel
-            delegate: contactsDelegate
-            clip: true
-            cacheBuffer: page.height * 2
-            pressDelay: 0
-            spacing: Theme.paddingMedium
-            section {
-                property: "sectionBucket"
-                criteria: ViewSection.FirstCharacter
-                delegate: sectionDelegate
-            }
-
-            FastScroll {
-                id: fastScroll
-                __hasPageHeight: false
-                listView: listView
-            }
-        }
-
         BusyIndicator {
             anchors.centerIn: listView
             size: BusyIndicatorSize.Large
@@ -155,13 +158,57 @@ Dialog {
     }
 
     Component {
-        id: searchComponent
-        SearchField {
+        id: headerComponent
+        Item {
+            id: componentItem
             width: parent.width
-            placeholderText: qsTr("Search contacts", "Add contacts page search text")
-            onTextChanged: {
-                if (page.status == DialogStatus.Opened) {
-                    allContactsModel.search(text)
+            height: header.height + searchPlaceholder.height
+
+            PageHeader {
+                id: header
+                title: numbers.length > 0
+                       ? ((numbers.length == 1) ? qsTr("Sync contact", "Add contacts page title")
+                                                : qsTr("Sync %n contacts", "Add contacts page title", numbers.length))
+                       : qsTr("Select contacts", "Add contacts page title")
+            }
+
+            Item {
+                id: searchPlaceholder
+                width: componentItem.width
+                height: searchEnabled ? searchField.height : 0
+                anchors.top: header.bottom
+                Behavior on height {
+                    NumberAnimation {
+                        duration: 300
+                        easing.type: Easing.InOutQuad
+                        property: "height"
+                    }
+                }
+                clip: true
+                SearchField {
+                    id: searchField
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    placeholderText: qsTr("Search contacts", "Contacts page search text")
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                    enabled: searchEnabled
+                    onEnabledChanged: {
+                        if (!enabled) {
+                            text = ''
+                        }
+                    }
+                    focus: enabled
+                    visible: opacity > 0
+                    opacity: searchEnabled ? 1 : 0
+                    Behavior on opacity {
+                        FadeAnimation {
+                            duration: 300
+                        }
+                    }
+                    onTextChanged: {
+                        searchPattern = searchField.text
+                        fastScroll.init()
+                    }
                 }
             }
         }

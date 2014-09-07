@@ -8,10 +8,17 @@ Page {
     objectName: "contactsPage"
     allowedOrientations: globalOrientation
 
+    property string searchPattern
+    onSearchPatternChanged: {
+        contactsModel.filter = searchPattern
+    }
+
+    property bool searchEnabled: false
+
     onStatusChanged: {
         if (status == PageStatus.Active) {
             page.forceActiveFocus()
-            searchField.text = ""
+            searchPattern = ""
             contactsModel.filter = ""
             fastScroll.init()
             listView.recheckMuting()
@@ -26,9 +33,6 @@ Page {
             horizontalHint.visible = firstStartContacts
             hintLabel.visible = firstStartContacts
         }
-        else if (status == PageStatus.Inactive) {
-            disco.running = false
-        }
     }
 
     Connections {
@@ -36,11 +40,41 @@ Page {
         onTotalUnreadChanged: listView.recheckMuting()
     }
 
-    SilicaFlickable {
-        id: flickView
+    SilicaListView {
+        id: listView
+        model: contactsModel
+        delegate: listDelegate
         anchors.fill: parent
         clip: true
+        cacheBuffer: page.height * 2
         pressDelay: 0
+        currentIndex: -1
+        section.property: "nickname"
+        section.criteria: ViewSection.FirstCharacter
+        section.delegate: Component {
+            SectionHeader {
+                text: section
+            }
+        }
+        header: headerComponent
+
+        Component.onCompleted: {
+            if (listView.hasOwnProperty("quickScroll")) {
+                listView.quickScroll = false
+            }
+        }
+
+        onCountChanged: {
+            fastScroll.init()
+        }
+
+        signal recheckMuting
+
+        FastScroll {
+            id: fastScroll
+            listView: listView
+            __hasPageHeight: false
+        }
 
         PullDownMenu {
             MenuItem {
@@ -48,13 +82,6 @@ Page {
                 enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("PrivacyList.qml"))
-                }
-            }
-            MenuItem {
-                text: qsTr("Create group", "Contacts page menu item")
-                enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
-                onClicked: {
-                    pageStack.push(Qt.resolvedUrl("CreateGroup.qml"))
                 }
             }
             MenuItem {
@@ -70,126 +97,68 @@ Page {
                     pageStack.push(Qt.resolvedUrl("Settings.qml"))
                 }
             }
-        }
-
-        PageHeader {
-            id: header
-            title: qsTr("Contacts", "Contacts page title")
-            _titleItem.color: disco.running ? Qt.rgba(disco.cr, disco.cg, disco.cb, disco.ca) : Theme.highlightColor
-
-            Timer {
-                id: disco
-                running: false
-                interval: 50
-                repeat: true
-
-                property real cr: 1.0
-                property real cg: 0.0
-                property real cb: 0.0
-                property real ca: 0.5
-
-                property bool cru: true
-                property bool cgu: true
-                property bool cbu: true
-                property bool cau: true
-
-                onTriggered: {
-                    if (cru) {
-                        cr += 0.11
-                    }
-                    else {
-                        cr -= 0.11
-                    }
-                    if (cr >= 1) {
-                        cru = false
-                    }
-                    else if (cr <= 0) {
-                        cru = true
-                    }
-
-                    if (cgu) {
-                        cg += 0.12
-                    }
-                    else {
-                        cg -= 0.12
-                    }
-                    if (cg >= 1) {
-                        cgu = false
-                    }
-                    else if (cg <= 0) {
-                        cgu = true
-                    }
-
-                    if (cbu) {
-                        cb += 0.13
-                    }
-                    else {
-                        cb -= 0.13
-                    }
-                    if (cb >= 1) {
-                        cbu = false
-                    }
-                    else if (cb <= 0) {
-                        cbu = true
-                    }
-
-                    if (cau) {
-                        ca += 0.05
-                    }
-                    else {
-                        ca -= 0.05
-                    }
-                    if (ca >= 1) {
-                        cau = false
-                    }
-                    else if (ca <= 0.1) {
-                        cau = true
-                    }
+            MenuItem {
+                text: searchEnabled
+                      ? qsTr("Hide search field")
+                      : qsTr("Show search field")
+                enabled: listView.count > 0
+                onClicked: {
+                    searchEnabled = !searchEnabled
                 }
             }
         }
+    }
 
-        SearchField {
-            id: searchField
-            width: parent ? parent.width : Screen.width
-            anchors {
-                top: header.bottom
-            }
-            placeholderText: qsTr("Search contacts", "Contacts page search text")
-            inputMethodHints: Qt.ImhNoPredictiveText
-            onTextChanged: {
-                contactsModel.filter = searchField.text
-                fastScroll.init()
-            }
-        }
-
-        SilicaListView {
-            id: listView
-            model: contactsModel
-            delegate: listDelegate
-            anchors.top: searchField.bottom
+    Component {
+        id: headerComponent
+        Item {
+            id: componentItem
             width: parent.width
-            anchors.bottom: parent.bottom
-            clip: true
-            cacheBuffer: page.height * 2
-            pressDelay: 0
-            currentIndex: -1
-            section.property: "nickname"
-            section.criteria: ViewSection.FirstCharacter
-            section.delegate: Component {
-                SectionHeader {
-                    text: section
-                }
-            }
-            onCountChanged: {
-                fastScroll.init()
-            }
-            signal recheckMuting
+            height: header.height + searchPlaceholder.height
 
-            FastScroll {
-                id: fastScroll
-                listView: listView
-                __hasPageHeight: false
+            PageHeader {
+                id: header
+                title: qsTr("Contacts", "Contacts page title")
+            }
+
+            Item {
+                id: searchPlaceholder
+                width: componentItem.width
+                height: searchEnabled ? searchField.height : 0
+                anchors.top: header.bottom
+                Behavior on height {
+                    NumberAnimation {
+                        duration: 300
+                        easing.type: Easing.InOutQuad
+                        property: "height"
+                    }
+                }
+                clip: true
+                SearchField {
+                    id: searchField
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    placeholderText: qsTr("Search contacts", "Contacts page search text")
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                    enabled: searchEnabled
+                    onEnabledChanged: {
+                        if (!enabled) {
+                            text = ''
+                        }
+                    }
+                    focus: enabled
+                    visible: opacity > 0
+                    opacity: searchEnabled ? 1 : 0
+                    Behavior on opacity {
+                        FadeAnimation {
+                            duration: 300
+                        }
+                    }
+                    onTextChanged: {
+                        searchPattern = searchField.text
+                        fastScroll.init()
+                    }
+                }
             }
         }
     }
@@ -207,18 +176,6 @@ Page {
         loops: Animation.Infinite
         anchors.verticalCenter: page.verticalCenter
         visible: false
-    }
-
-    MouseArea {
-        x: 0
-        y: 0
-        z: 1
-        width: parent.width
-        height: header.height
-        preventStealing: true
-        onDoubleClicked: {
-            disco.running = !disco.running
-        }
     }
 
     Component {
@@ -383,7 +340,7 @@ Page {
                     id: nickname
                     font.pixelSize: Theme.fontSizeMedium
                     width: parent.width
-                    text: Theme.highlightText(Utilities.emojify(model.nickname, emojiPath), searchField.text, Theme.highlightColor)
+                    text: Theme.highlightText(Utilities.emojify(model.nickname, emojiPath), searchPattern, Theme.highlightColor)
                     //text: Utilities.emojify(model.nickname, emojiPath)
                     wrapMode: Text.NoWrap
                     elide: Text.ElideRight
