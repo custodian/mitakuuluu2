@@ -356,7 +356,7 @@ ApplicationWindow {
     property int reconnectionLimit: 20
     onReconnectionLimitChanged: Mitakuuluu.save("settings/reconnectionLimit", reconnectionLimit)
 
-    property bool usePhonebookAvatars: true
+    property bool usePhonebookAvatars: false
     onUsePhonebookAvatarsChanged: Mitakuuluu.save("settings/usePhonebookAvatars", usePhonebookAvatars)
 
     property int notificationsDelay: 5
@@ -1026,7 +1026,7 @@ ApplicationWindow {
         useKeepalive = Mitakuuluu.load("settings/useKeepalive", true)
         reconnectionInterval = Mitakuuluu.load("settings/reconnectionInterval", 1)
         reconnectionLimit = Mitakuuluu.load("settings/reconnectionLimit", 20)
-        usePhonebookAvatars = Mitakuuluu.load("settings/usePhonebookAvatars", true)
+        usePhonebookAvatars = Mitakuuluu.load("settings/usePhonebookAvatars", false)
         notificationsDelay = Mitakuuluu.load("settings/notificationsDelay", 5)
 
         var hiddenContacts = Mitakuuluu.loadGroup("hidden")

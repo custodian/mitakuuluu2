@@ -338,7 +338,7 @@ void Client::readSettings()
     reconnectionLimit = settings.value("settings/reconnectionLimit", 20).toInt();
     disconnectStreamError = settings.value("settings/disconnectStreamError", false).toBool();
 
-    usePhonebookAvatars = settings.value("settings/usePhonebookAvatars", true).toBool();
+    usePhonebookAvatars = settings.value("settings/usePhonebookAvatars", false).toBool();
 
     showConnectionNotifications = settings.value("settings/showConnectionNotifications", false).toBool();
     notificationsDelay = settings.value("settings/notificationsDelay", 5).toInt();
