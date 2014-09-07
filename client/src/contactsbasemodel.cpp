@@ -608,6 +608,10 @@ void ContactsBaseModel::requestAvatar(const QString &jid)
 
 void ContactsBaseModel::clearChat(const QString &jid)
 {
+    _modelData[jid]["lastmessage"] = 0;
+    int row = _modelData.keys().indexOf(jid);
+    Q_EMIT dataChanged(index(row), index(row));
+
     QVariantMap query;
     query["type"] = QueryType::ContactsClearConversation;
     query["jid"] = jid;

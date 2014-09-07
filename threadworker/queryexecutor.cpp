@@ -969,6 +969,12 @@ void QueryExecutor::clearConversation(QVariantMap &query)
     QString table = jid.split("@").first().replace("-", "g");
     db.exec(QString("DELETE FROM u%1;").arg(table));
 
+    QSqlQuery sql(db);
+    sql.prepare("UPDATE contacts SET lastmessage=(:lastmessage) WHERE jid=(:jid);");
+    sql.bindValue(":lastmessage", 0);
+    sql.bindValue(":jid", query["jid"]);
+    sql.exec();
+
     Q_EMIT actionDone(query);
 }
 
