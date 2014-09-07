@@ -2048,7 +2048,7 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, const Q
 
 void Client::sendMedia(const QStringList &jids, const QString fileName)
 {
-    QString type = Utilities::guessMimeType(fileName.split(".").last().toLower()).split("/").first();
+    QString type = Utilities::guessMimeType(fileName).split("/").first();
     sendMedia(jids, fileName, type);
 }
 
