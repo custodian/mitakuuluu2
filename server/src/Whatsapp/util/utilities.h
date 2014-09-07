@@ -41,10 +41,10 @@ class Utilities
 public:
     Utilities();
 
-    static QString getTokenNokia(QString phoneNumber);
-    static QString getTokenAndroid(QString phoneNumber);
-    static QString guessMimeType(QString extension);
-    static QString getExtension(QString filename);
+    static QString getTokenNokia(const QString &phoneNumber);
+    static QString getTokenAndroid(const QString &phoneNumber);
+    static QString guessMimeType(const QString &extension);
+    static QString getExtension(const QString &filename);
     static QString getPathFor(int media_wa_type, bool gallery);
 };
 

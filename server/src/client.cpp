@@ -169,6 +169,9 @@ Client::Client(QObject *parent) : QObject(parent)
     reconnectInterval = 1;
     lastReconnect = 1;
 
+    waitingCodeConnection = false;
+    waitingRegConnection = false;
+
     _privacy = QVariantMap();
     _totalUnread = 0;
     _pendingCount = 0;
@@ -613,6 +616,16 @@ void Client::networkStatusChanged(bool isOnline)
         }
         else if (connectionStatus == RegistrationFailed) {
             getTokenScratch();
+            if (reg) {
+                if (waitingCodeConnection) {
+                    QTimer::singleShot(500, reg, SLOT(startRegRequest()));
+                    waitingCodeConnection = false;
+                }
+                else if (waitingRegConnection) {
+                    QTimer::singleShot(500, reg, SLOT(start()));
+                    waitingRegConnection = false;
+                }
+            }
         }
     }
 }
@@ -1153,9 +1166,6 @@ void Client::syncResultsAvailable(const QVariantList &results)
             item["alias"] = name;
 
             contacts[i] = item;
-            QString jid = item["jid"].toString();
-            refreshContact(jid);
-            requestPresenceSubscription(jid);
         }
         _synccontacts.clear();
         _syncavatars.clear();
@@ -1166,6 +1176,13 @@ void Client::syncResultsAvailable(const QVariantList &results)
         query["blocked"] = _blocked;
         query["uuid"] = uuid;
         dbExecutor->queueAction(query);
+
+        foreach (const QVariant &contact, contacts) {
+            QVariantMap item = contact.toMap();
+            QString jid = item["jid"].toString();
+            refreshContact(jid);
+            requestPresenceSubscription(jid);
+        }
     }
 }
 
@@ -1902,8 +1919,7 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, int waT
     file = file.replace("file://", "");
     QString fname = file;
 
-    QString ext = file.split(".").last();
-    QString mime = Utilities::guessMimeType(ext);
+    QString mime = Utilities::guessMimeType(file);
     if (mime.startsWith("image")) {
         QString tmp = QString("/var/tmp/%1").arg(file.split("/").last());
         int originalSize = QFile(file).size();
@@ -2388,18 +2404,12 @@ void Client::regRequest(const QString &cc, const QString &phone, const QString &
         delete session;
     session = new QNetworkSession(manager->defaultConfiguration(), this);
     qDebug() << "regRequest session:" << session->isOpen() << "manager:" << manager->isOnline();
-    if (manager->isOnline() && !session->isOpen()) {
-        qDebug() << "online";
-        QObject::connect(session, SIGNAL(opened()), reg, SLOT(start()));
-        session->open();
-    }
-    else if (!manager->isOnline()) {
+    if (!manager->isOnline()) {
         qDebug() << "offline";
-        QObject::connect(this, SIGNAL(networkOnline()), reg, SLOT(start()));
+        waitingRegConnection = true;
         openConnectionDialog();
     }
-    else if (session->isOpen()) {
-        qDebug() << "session open";
+    else {
         QTimer::singleShot(500, reg, SLOT(start()));
     }
 }
@@ -2427,18 +2437,12 @@ void Client::enterCode(const QString &cc, const QString &phone, const QString &s
     }
     session = new QNetworkSession(manager->defaultConfiguration(), this);
     qDebug() << "enterCode session:" << session->isOpen() << "manager:" << manager->isOnline();
-    if (manager->isOnline() && !session->isOpen()) {
-        qDebug() << "online";
-        QObject::connect(session, SIGNAL(opened()), reg, SLOT(startRegRequest()));
-        session->open();
-    }
-    else if (!manager->isOnline()) {
+    if (!manager->isOnline()) {
         qDebug() << "offline";
-        QObject::connect(this, SIGNAL(networkOnline()), reg, SLOT(startRegRequest()));
+        waitingCodeConnection = true;
         openConnectionDialog();
     }
-    else if (session->isOpen()) {
-        qDebug() << "session open";
+    else {
         QTimer::singleShot(500, reg, SLOT(startRegRequest()));
     }
 }

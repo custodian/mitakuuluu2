@@ -140,7 +140,7 @@ void MediaUpload::sendMedia(QStringList jids, FMessage message)
     descriptor.duration = message.media_duration_seconds;
     descriptor.contentType =
             message.media_mime_type.isEmpty() ?
-                Utilities::guessMimeType(descriptor.extension) :
+                Utilities::guessMimeType(message.media_name) :
                 message.media_mime_type;
     descriptor.localFileUri = message.media_name;
     descriptor.fileName = message.local_file_uri;

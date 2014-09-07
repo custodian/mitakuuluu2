@@ -471,6 +471,8 @@ private:
     QNetworkConfiguration::BearerType activeNetworkType;
     qint64 lastCountersWrite;
     PhoneReg *reg;
+    bool waitingCodeConnection;
+    bool waitingRegConnection;
 
     // Timers
     QTimer *pendingMessagesTimer;

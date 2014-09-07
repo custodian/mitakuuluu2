@@ -43,14 +43,15 @@
 
 #include <QCryptographicHash>
 
+#include <QMimeDatabase>
 
-#define MIMETYPES_FILE  "/usr/share/harbour-mitakuuluu2/data/mime-types.tab"
+//#define MIMETYPES_FILE  "/usr/share/harbour-mitakuuluu2/data/mime-types.tab"
 
 Utilities::Utilities()
 {
 }
 
-QString Utilities::getTokenAndroid(QString phoneNumber)
+QString Utilities::getTokenAndroid(const QString &phoneNumber)
 {
     QByteArray ipad = QByteArray::fromBase64(QByteArray(ANDROID_S1));
     QByteArray opad = QByteArray::fromBase64(QByteArray(ANDROID_S2));
@@ -72,7 +73,7 @@ QString Utilities::getTokenAndroid(QString phoneNumber)
     return token;
 }
 
-QString Utilities::getTokenNokia(QString phoneNumber)
+QString Utilities::getTokenNokia(const QString &phoneNumber)
 {
     QString token = Client::wanokiascratch1 + Client::wanokiascratch2 + phoneNumber;
 
@@ -86,9 +87,9 @@ QString Utilities::getTokenNokia(QString phoneNumber)
     return QString::fromLatin1(bytes.toHex().constData());
 }
 
-QString Utilities::guessMimeType(QString extension)
+QString Utilities::guessMimeType(const QString &fileName)
 {
-    QString lower = extension.toLower();
+    /*QString lower = extension.toLower();
 
     QFile file(MIMETYPES_FILE);
     if (file.open(QIODevice::ReadOnly| QIODevice::Text))
@@ -109,10 +110,13 @@ QString Utilities::guessMimeType(QString extension)
     }
 
     // if this happens then Yappari was hacked
-    return "application/unknown";
+    return "application/unknown";*/
+
+    QMimeDatabase md;
+    return md.mimeTypeForFile(fileName).name();
 }
 
-QString Utilities::getExtension(QString filename)
+QString Utilities::getExtension(const QString &filename)
 {
     QString lower = filename.toLower();
     int index = lower.lastIndexOf('.');
