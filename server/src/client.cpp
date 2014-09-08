@@ -1465,6 +1465,7 @@ void Client::getTokenScratch()
 void Client::clearNotification()
 {
     if (connectionNotification) {
+        connectionNotification->remove();
         delete connectionNotification;
         connectionNotification = 0;
     }
@@ -2902,6 +2903,7 @@ void Client::updateNotification(const QString &text)
 {
     qDebug() << "Have published:" << (connectionNotification ? "yes" : "no");
     if (connectionNotification) {
+        connectionNotification->remove();
         delete connectionNotification;
         connectionNotification = 0;
     }
