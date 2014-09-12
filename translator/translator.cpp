@@ -2,6 +2,8 @@
 
 #include <QGuiApplication>
 #include <QStringList>
+#include <QLocale>
+#include <QSettings>
 #include <QDebug>
 
 Translator::Translator(QObject *parent) :

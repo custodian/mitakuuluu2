@@ -2,9 +2,7 @@
 #define TRANSLATOR_H
 
 #include <QObject>
-#include <QLocale>
 #include <QTranslator>
-#include <QSettings>
 
 class Translator : public QObject
 {
