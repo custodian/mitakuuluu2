@@ -108,6 +108,7 @@ private slots:
     void onMediaFinished(const QString &mjid, const QString &msgId, const QString &path);
     void onMediaFailed(const QString &mjid, const QString &msgId);
     void onMediaTitleReceived(const QString &msgid, const QString &title, const QString &mjid);
+    void onMediaUploadFinished(const QString &mjid, const QString &msgid, const QString &url);
     void dbResults(const QVariant &result);
 
 signals:

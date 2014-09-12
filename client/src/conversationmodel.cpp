@@ -60,6 +60,8 @@ ConversationModel::ConversationModel(QObject *parent) :
                                           "uploadFailed", this, SLOT(onMediaFailed(QString,QString)));
     QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
                                           "mediaTitleReceived", this, SLOT(onMediaTitleReceived(QString,QString,QString)));
+    QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
+                                          "uploadFinished", this, SLOT(onMediaUploadFinished(QString,QString,QString)));
 }
 
 ConversationModel::~ConversationModel()
@@ -365,6 +367,13 @@ void ConversationModel::onMediaTitleReceived(const QString &msgid, const QString
 {
     if (mjid == jid) {
         setPropertyByMsgId(msgid.split("-cap").first(), "name", title);
+    }
+}
+
+void ConversationModel::onMediaUploadFinished(const QString &mjid, const QString &msgid, const QString &url)
+{
+    if (mjid == jid) {
+        setPropertyByMsgId(msgid, "url", url);
     }
 }
 
