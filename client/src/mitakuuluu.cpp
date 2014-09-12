@@ -65,9 +65,14 @@ Mitakuuluu::Mitakuuluu(QObject *parent): QObject(parent)
             qDebug() << "available translations:" << locales;
         }
         foreach (const QString &locale, locales) {
-            localeNames << QString("%1 (%2)")
-                                   .arg(QLocale::languageToString(QLocale(locale).language()))
-                                   .arg(QLocale::countryToString(QLocale(locale).country()));
+            if (locale.contains("-")) {
+                localeNames << QString("%1 (%2)")
+                                       .arg(QLocale::languageToString(QLocale(locale).language()))
+                                       .arg(QLocale::countryToString(QLocale(locale).country()));
+            }
+            else {
+                localeNames << QLocale::languageToString(QLocale(locale).language());
+            }
         }
         _locales =  locales.isEmpty() ? QStringList() << "en.qm" : locales;
         _localesNames = localeNames.isEmpty() ? QStringList() << "Engineering english" : localeNames;
