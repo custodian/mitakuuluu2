@@ -359,6 +359,9 @@ private slots:
     void wakeupStopped();
     void onDelayedNotificationTriggered();
 
+    void threadStarted();
+    void threadFinished();
+
 signals:
     void authFail(const QString &username, const QString &reason);
     void authSuccess(const QString &username);

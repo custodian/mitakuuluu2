@@ -806,6 +806,8 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 
     connect(connectionPtr.data(), SIGNAL(notifyOfflineMessages(int)), this, SLOT(notifyOfflineMessages(int)));
 
+    connect(connectionPtr.data(), SIGNAL(mediaTitleReceived(QString,QString,QString)), this, SLOT(onMediaTitleReceived(QString,QString,QString)));
+
     updateNotification(tr("Connected", "System connection notification"));
 
     QVariantMap query;
@@ -985,9 +987,13 @@ void Client::connectToServer()
 
     qDebug() << "Threading connection";
 
-    QThread *thread = new QThread(connectionPtr.data());
+    QThread *thread = new QThread(this);
+    thread->setObjectName(QString("connectionThread-%1").arg(QDateTime::currentMSecsSinceEpoch()));
     connectionPtr.data()->moveToThread(thread);
     QObject::connect(thread, SIGNAL(started()), connectionPtr.data(), SLOT(init()));
+    QObject::connect(connectionPtr.data(), SIGNAL(destroyed()), thread, SLOT(quit()));
+    QObject::connect(thread, SIGNAL(started()), this, SLOT(threadStarted()));
+    QObject::connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
     thread->start();
 }
 
@@ -1100,14 +1106,35 @@ void Client::onDelayedNotificationTriggered()
     }
 }
 
+void Client::threadStarted()
+{
+    QThread *thread = qobject_cast<QThread*>(sender());
+    if (thread) {
+        qDebug() << "Thread started:" << thread->objectName();
+    }
+}
+
+void Client::threadFinished()
+{
+    QThread *thread = qobject_cast<QThread*>(sender());
+    if (thread) {
+        qDebug() << "Thread finished safely:" << thread->objectName();
+        thread->deleteLater();
+    }
+}
+
 void Client::synchronizePhonebook()
 {
     // Contacts syncer
     ContactsFetch *contacts = new ContactsFetch(0);
-    QThread *thread = new QThread(contacts);
+    QThread *thread = new QThread(this);
+    thread->setObjectName(QString("contactsFetchThread-%1").arg(QDateTime::currentMSecsSinceEpoch()));
     contacts->moveToThread(thread);
     QObject::connect(thread, SIGNAL(started()), contacts, SLOT(allContacts()));
     QObject::connect(contacts, SIGNAL(contactsAvailable(QStringList,QVariantMap,QVariantMap)), this, SLOT(contactsAvailable(QStringList,QVariantMap,QVariantMap)));
+    QObject::connect(contacts, SIGNAL(destroyed()), thread, SLOT(quit()));
+    QObject::connect(thread, SIGNAL(started()), this, SLOT(threadStarted()));
+    QObject::connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
     thread->start();
 }
 
@@ -1555,9 +1582,13 @@ void Client::startDownloadMessage(const FMessage &msg)
 
     _mediaDownloadHash[msg.key.id] = mediaDownload;
 
-    QThread *thread = new QThread(mediaDownload);
+    QThread *thread = new QThread(this);
+    thread->setObjectName(QString("mediaDownloadThread-%1").arg(QDateTime::currentMSecsSinceEpoch()));
     mediaDownload->moveToThread(thread);
     QObject::connect(thread, SIGNAL(started()), mediaDownload, SLOT(backgroundTransfer()));
+    QObject::connect(mediaDownload, SIGNAL(destroyed()), thread, SLOT(quit()));
+    QObject::connect(thread, SIGNAL(started()), this, SLOT(threadStarted()));
+    QObject::connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
     thread->start();
 }
 
@@ -1653,9 +1684,13 @@ void Client::mediaUploadAccepted(const FMessage &message)
             this,SLOT(httpErrorHandler(MediaUpload*, FMessage)));
 
     qDebug() << "Starting uploader in external thread";
-    QThread *thread = new QThread(mediaUpload);
+    QThread *thread = new QThread(this);
+    thread->setObjectName(QString("mediaUploadThread-%1").arg(QDateTime::currentMSecsSinceEpoch()));
     mediaUpload->moveToThread(thread);
     QObject::connect(thread, SIGNAL(started()), mediaUpload, SLOT(upload()));
+    QObject::connect(mediaUpload, SIGNAL(destroyed()), thread, SLOT(quit()));
+    QObject::connect(thread, SIGNAL(started()), this, SLOT(threadStarted()));
+    QObject::connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
     thread->start();
 }
 
@@ -2084,9 +2119,13 @@ void Client::sendLocation(const QStringList &jids, const QString &latitude, cons
                          this, SLOT(sendLocationRequest(QByteArray,QString,QString,QStringList,MapRequest*)));
         QObject::connect(mapRequest, SIGNAL(requestError(MapRequest*)), this, SLOT(mapError(MapRequest*)));
 
-        QThread *thread = new QThread(mapRequest);
+        QThread *thread = new QThread(this);
+        thread->setObjectName(QString("mapRequestThread-%1").arg(QDateTime::currentMSecsSinceEpoch()));
         mapRequest->moveToThread(thread);
         QObject::connect(thread, SIGNAL(started()), mapRequest, SLOT(doRequest()));
+        QObject::connect(mapRequest, SIGNAL(destroyed()), thread, SLOT(quit()));
+        QObject::connect(thread, SIGNAL(started()), this, SLOT(threadStarted()));
+        QObject::connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
         thread->start();
     }
 }
