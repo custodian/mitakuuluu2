@@ -1729,6 +1729,14 @@ void Client::mediaUploadFinished(MediaUpload *mediaUpload, const FMessage &msg)
 
     queueMessage(msg);
 
+    QVariantMap query;
+    query["type"] = QueryType::ConversationUpdateUrl;
+    query["uuid"] = uuid;
+    query["jid"] = msg.key.remote_jid;
+    query["msgid"] = msg.key.id;
+    query["url"] = msg.media_url;
+    dbExecutor->queueAction(query);
+
     mediaUpload->deleteLater();
 
     _mediaProgress.remove(msg.key.id);

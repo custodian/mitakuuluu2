@@ -198,6 +198,10 @@ void QueryExecutor::processQuery(const QVariant &msg)
             setMediaTitle(query);
             break;
         }
+        case QueryType::ConversationUpdateUrl: {
+            setMessageUrl(query);
+            break;
+        }
         default: {
             break;
         }
@@ -998,6 +1002,31 @@ void QueryExecutor::setMediaTitle(QVariantMap &query)
 
         if (i.lastError().type() != QSqlError::NoError) {
             qDebug() << "Error adding title:" << i.lastError().text();
+        }
+    }
+    else {
+        qWarning() << "Media" << query["msgid"].toString() << "not exists in" << table;
+    }
+
+    Q_EMIT actionDone(query);
+}
+
+void QueryExecutor::setMessageUrl(QVariantMap &query)
+{
+    QSqlQuery e(db);
+    QString table = query["jid"].toString().split("@").first().replace("-", "g");
+    e.prepare(QString("SELECT EXISTS (SELECT 1 FROM u%1 WHERE msgid=(:msgid));").arg(table));
+    e.bindValue(":msgid", query["msgid"]);
+    e.exec();
+    if (e.next() && e.value(0).toInt() == 1) {
+        QSqlQuery i(db);
+        i.prepare(QString("UPDATE u%1 SET url=(:url) WHERE msgid=(:msgid);").arg(table));
+        i.bindValue(":msgid", query["msgid"]);
+        i.bindValue(":url", query["url"]);
+        i.exec();
+
+        if (i.lastError().type() != QSqlError::NoError) {
+            qDebug() << "Error changing url:" << i.lastError().text();
         }
     }
     else {

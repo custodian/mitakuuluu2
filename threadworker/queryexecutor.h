@@ -49,6 +49,7 @@ namespace QueryType {
         ConversationResendMessage,
         ConversationLoadFiltered,
         ConversationSetTitle,
+        ConversationUpdateUrl,
         AccountGetData = 200,
         AccountSetData,
         AccountRemoveData,
@@ -109,6 +110,7 @@ private:
     void searchMessage(QVariantMap &query);
     void clearConversation(QVariantMap &query);
     void setMediaTitle(QVariantMap &query);
+    void setMessageUrl(QVariantMap &query);
 
 private:
     ThreadWorker m_worker;
