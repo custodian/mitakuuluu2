@@ -50,24 +50,25 @@ MouseArea {
     onCanceled: item.DragFilter.end()
     onPreventStealingChanged: if (preventStealing) item.DragFilter.end()
 
+    property string mediaTitle: model.name
+    onMediaTitleChanged: {
+        if (model.name && model.url.slice(model.url.length - model.name.length) !== model.name) {
+            textLoader.active = true
+        }
+    }
+
     Component.onCompleted: {
         if (model.watype == Mitakuuluu.Text || model.watype == Mitakuuluu.System) {
             textLoader.active = true
         }
         if (model.watype == Mitakuuluu.Image) {
             imageLoader.active = true
-            if (model.name) {
-                textLoader.active = true
-            }
         }
         else if (model.watype == Mitakuuluu.Audio) {
             playerLoader.active = true
         }
         else if (model.watype == Mitakuuluu.Video) {
             videoLoader.active = true
-            if (model.name) {
-                textLoader.active = true
-            }
         }
         else if (model.watype == Mitakuuluu.Contact) {
             contactLoader.active = true
