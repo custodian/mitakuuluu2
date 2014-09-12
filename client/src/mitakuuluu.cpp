@@ -1516,3 +1516,8 @@ void Mitakuuluu::clearGroup(const QString &name)
         iface->call(QDBus::NoBlock, "settingsChanged");
     }
 }
+
+QString Mitakuuluu::generateSalt()
+{
+    return QUuid::createUuid().toString().replace("-", "");
+}

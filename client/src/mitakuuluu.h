@@ -393,6 +393,7 @@ public slots:
     Q_INVOKABLE QVariant load(const QString &key, const QVariant &defaultValue = QVariant());
     Q_INVOKABLE QVariantList loadGroup(const QString &name);
     Q_INVOKABLE void clearGroup(const QString &name);
+    Q_INVOKABLE QString generateSalt();
 };
 
 #endif // MITAKUULUU_H

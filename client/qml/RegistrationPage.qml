@@ -156,13 +156,14 @@ Page {
                 errorHighlight: text.length == 0
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: page.forceActiveFocus()
+                EnterKey.onClicked: salt.forceActiveFocus()
             }
 
             TextField {
                 id: salt
                 enabled: !busy.running
                 width: parent.width
+                errorHighlight: text.length == 0
                 label: qsTr("Protect your registration", "Registration password field label")
                 placeholderText: qsTr("Random password", "Registration password field placeolder")
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
@@ -170,6 +171,7 @@ Page {
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: page.forceActiveFocus()
+                text: Mitakuuluu.generateSalt()
             }
 
             Row {
@@ -180,7 +182,7 @@ Page {
 
                 Button {
                     text: qsTr("Voice", "Voice registration button text")
-                    enabled: phoneField.text.length > 0 && pushname.text.length > 0 && !busy.running
+                    enabled: phoneField.text.length > 0 && pushname.text.length > 0 && salt.text.length > 0 && !busy.running
                     onClicked: {
                         page.method = "voice"
                         doRegister()
@@ -189,7 +191,7 @@ Page {
 
                 Button {
                     text: qsTr("Sms", "Sms registration button text")
-                    enabled: phoneField.text.length > 0 && pushname.text.length > 0 && !busy.running
+                    enabled: phoneField.text.length > 0 && pushname.text.length > 0 && salt.text.length > 0 && !busy.running
                     onClicked: {
                         page.method = "sms"
                         doRegister()
