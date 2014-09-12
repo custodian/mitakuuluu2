@@ -753,7 +753,6 @@ void Connection::parseMessageInitialTagAlreadyChecked(ProtocolTreeNode &messageN
             if (child.getTag() == "body")
             {
                 // New message received
-
                 Key k(from, false, id);
                 message.setKey(k);
                 message.setData(child.getData());
@@ -766,6 +765,11 @@ void Connection::parseMessageInitialTagAlreadyChecked(ProtocolTreeNode &messageN
                         ? UserStatusUpdate : MessageReceived;
                 sendMessageReceived(message);
 
+                if (id.endsWith("-cap")) {
+                    // Media title received
+                    Q_EMIT mediaTitleReceived(id, child.getData(), from);
+                    return;
+                }
             }
             else if (child.getTag() == "media")
             {

@@ -1123,6 +1123,22 @@ void Client::threadFinished()
     }
 }
 
+void Client::onMediaTitleReceived(const QString &msgid, const QString &title, const QString &jid)
+{
+    QString msgId = msgid.split("-cap").first();
+    qDebug() << "Received title" << title << "for media" << msgId;
+
+    QVariantMap query;
+    query["type"] = QueryType::ConversationSetTitle;
+    query["uuid"] = uuid;
+    query["msgid"] = msgId;
+    query["title"] = title;
+    query["jid"] = jid;
+    dbExecutor->queueAction(query);
+
+    Q_EMIT mediaTitleReceived(msgid, title, jid);
+}
+
 void Client::synchronizePhonebook()
 {
     // Contacts syncer

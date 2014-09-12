@@ -48,6 +48,7 @@ namespace QueryType {
         ConversationGetCount,
         ConversationResendMessage,
         ConversationLoadFiltered,
+        ConversationSetTitle,
         AccountGetData = 200,
         AccountSetData,
         AccountRemoveData,
@@ -107,6 +108,7 @@ private:
     void getConversationCount(QVariantMap &query);
     void searchMessage(QVariantMap &query);
     void clearConversation(QVariantMap &query);
+    void setMediaTitle(QVariantMap &query);
 
 private:
     ThreadWorker m_worker;

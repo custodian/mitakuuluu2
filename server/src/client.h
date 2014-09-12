@@ -362,6 +362,8 @@ private slots:
     void threadStarted();
     void threadFinished();
 
+    void onMediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
+
 signals:
     void authFail(const QString &username, const QString &reason);
     void authSuccess(const QString &username);
@@ -460,6 +462,7 @@ signals:
     void simParameters(const QString &mcc, const QString &mnc);
     void mediaListReceived(const QString &pjid, const QVariantMapList &mediaList);
     void streamError();
+    void mediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
 
 private:
     QueryExecutor *dbExecutor;

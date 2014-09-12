@@ -483,6 +483,8 @@ signals:
     // Upload of Multimedia message accepted
     void mediaUploadAccepted(const FMessage &message);
 
+    void mediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
+
 
     /** ***********************************************************************
      ** Typing status handling

@@ -56,12 +56,18 @@ MouseArea {
         }
         if (model.watype == Mitakuuluu.Image) {
             imageLoader.active = true
+            if (model.name) {
+                textLoader.active = true
+            }
         }
         else if (model.watype == Mitakuuluu.Audio) {
             playerLoader.active = true
         }
         else if (model.watype == Mitakuuluu.Video) {
             videoLoader.active = true
+            if (model.name) {
+                textLoader.active = true
+            }
         }
         else if (model.watype == Mitakuuluu.Contact) {
             contactLoader.active = true
@@ -519,7 +525,7 @@ MouseArea {
 
         Label {
             id: messageLabel
-            text: Utilities.linkify(Utilities.emojify(model.data, emojiPath), Theme.highlightColor)
+            text: Utilities.linkify(Utilities.emojify(model.watype == Mitakuuluu.Image || model.watype == Mitakuuluu.Video ? model.name : model.data, emojiPath), Theme.highlightColor)
             textFormat: Text.RichText
             wrapMode: Text.NoWrap
             font.pixelSize: fontSize
