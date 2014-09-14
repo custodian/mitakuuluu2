@@ -52,7 +52,8 @@ MouseArea {
 
     property string mediaTitle: model.name
     onMediaTitleChanged: {
-        if (model.name && model.url.slice(model.url.length - model.name.length) !== model.name) {
+        if (model.name && model.url.slice(model.url.length - model.name.length) !== model.name
+                       && model.local.slice(model.local.length - model.name.length) !== model.name) {
             textLoader.active = true
         }
     }

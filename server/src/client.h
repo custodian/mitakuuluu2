@@ -608,9 +608,9 @@ public slots:
     bool isAccountValid();
     void recheckAccountAndConnect();
     void sendText(const QString &jid, const QString &message);
-    void sendMedia(const QStringList &jids, const QString &fileName, int waType);
-    void sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType);
-    void sendMedia(const QStringList &jids, const QString fileName);
+    void sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title);
+    void sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title);
+    void sendMedia(const QStringList &jids, const QString &fileName, const QString &title = QString());
     void sendVCard(const QStringList &jids, const QString &name, const QString &vcardData);
     void sendLocation(const QStringList &jids, const QString &latitude, const QString &longitude, int zoom, const QString &source);
     void getGroupInfo(const QString &jid);

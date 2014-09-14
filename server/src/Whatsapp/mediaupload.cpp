@@ -36,6 +36,7 @@
 #include "src/client.h"
 
 #include "util/utilities.h"
+#include "../../qexifimageheader/qexifimageheader.h"
 
 #include <QLibrary>
 
@@ -96,9 +97,19 @@ void MediaUpload::sendPicture(QStringList jids, MediaDescriptor descriptor)
     }
     reader.setClipRect(clip);
     reader.setScaledSize(QSize(100, 100));
+
     qDebug() << "creating preview";
 
     QImage picture = reader.read();
+
+    if (descriptor.localFileUri.toLower().endsWith(".jpg") || descriptor.localFileUri.toLower().endsWith(".jpeg")) {
+        QExifImageHeader exif(descriptor.localFileUri);
+        if (exif.value(QExifImageHeader::Orientation).toSignedLong() == 6) {
+            QTransform rotation;
+            rotation.rotate(90);
+            picture = picture.transformed(rotation, Qt::SmoothTransformation);
+        }
+    }
 
     descriptor.data.clear();
     QBuffer out(&descriptor.data);
@@ -136,14 +147,14 @@ void MediaUpload::sendMedia(QStringList jids, FMessage message)
         vjids << message.remote_resource;
 
     descriptor.waType = (FMessage::MediaWAType) message.media_wa_type;
-    descriptor.extension = Utilities::getExtension(message.media_name);
+    descriptor.extension = Utilities::getExtension(message.local_file_uri);
     descriptor.duration = message.media_duration_seconds;
     descriptor.contentType =
             message.media_mime_type.isEmpty() ?
-                Utilities::guessMimeType(message.media_name) :
+                Utilities::guessMimeType(message.local_file_uri) :
                 message.media_mime_type;
-    descriptor.localFileUri = message.media_name;
-    descriptor.fileName = message.local_file_uri;
+    descriptor.localFileUri = message.local_file_uri;
+    descriptor.fileName = message.media_name;
     descriptor.url = message.media_url;
     descriptor.upload = (message.status == FMessage::Uploading);
     descriptor.live = message.live;
@@ -182,8 +193,8 @@ void MediaUpload::sendMedia(QStringList jids, MediaDescriptor descriptor)
     msg.media_mime_type = descriptor.contentType;
     msg.remote_resource = jid;
     msg.key.remote_jid = jid;
-    msg.local_file_uri = descriptor.fileName;
-    msg.media_name = generateMediaFilename(descriptor.extension);
+    msg.local_file_uri = descriptor.localFileUri;
+    msg.media_name = descriptor.fileName;
     msg.media_duration_seconds = descriptor.duration;
     msg.live = descriptor.live;
     if (jids.size() > 1) {
@@ -231,7 +242,7 @@ void MediaUpload::uploadMedia()
 
     FormDataFile *file = new FormDataFile();
     file->name = "file";
-    file->fileName = msg.media_name;
+    //file->fileName = msg.local_file_uri.split("/").last();
     QString scaled = QString("/var/tmp/%1").arg(msg.local_file_uri.split("/").last());
     if (QFile(scaled).exists())
         file->uri = scaled;
@@ -239,7 +250,7 @@ void MediaUpload::uploadMedia()
         file->uri = msg.local_file_uri;
     file->contentType = msg.media_mime_type;
 
-    qDebug() << "Uploading media:" << file->fileName << file->uri;
+    qDebug() << "Uploading media:" << file->uri;
 
     formData.append(file);
 
@@ -269,7 +280,7 @@ void MediaUpload::finished(MultiPartUploader *uploader, QVariantMap dictionary)
     if (dictionary.contains("url"))
     {
         msg.media_mime_type = dictionary.value("mimetype").toString();
-        msg.media_name = dictionary.value("name").toString();
+        //msg.media_name = dictionary.value("name").toString();
         msg.media_size = dictionary.value("size").toLongLong();
         msg.media_url = dictionary.value("url").toString();
         msg.media_duration_seconds = dictionary.value("duration").toInt();

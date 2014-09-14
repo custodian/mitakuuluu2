@@ -270,8 +270,8 @@ Page {
                         icon.source: "image://theme/icon-camera-shutter-release"
                         onClicked: {
                             pushMedia.hide()
-                            pageStack.push(Qt.resolvedUrl("Capture.qml"), {"broadcastMode": false})
-                            pageStack.currentPage.accepted.connect(captureReceiver.captureAccepted)
+                            pageStack.push(Qt.resolvedUrl("Capture.qml"), {"broadcastMode": false, "jid": page.jid})
+                            pageStack.currentPage.captured.connect(captureReceiver.captureAccepted)
                         }
                     }
 
@@ -818,7 +818,7 @@ Page {
         property string imagePath: ""
 
         function captureAccepted() {
-            pageStack.currentPage.accepted.disconnect(captureReceiver.captureAccepted)
+            pageStack.currentPage.captured.disconnect(captureReceiver.captureAccepted)
             imagePath = pageStack.currentPage.imagePath
             Mitakuuluu.sendMedia([page.jid], imagePath)
         }

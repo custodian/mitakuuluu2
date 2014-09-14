@@ -27,6 +27,7 @@
  */
 
 #include <QDateTime>
+#include <QDebug>
 
 #include "src/client.h"
 #include "funstore.h"
@@ -184,6 +185,9 @@ QString FMessage::getMediaWAType()
 {
     switch(media_wa_type)
     {
+        case Text:
+            return "text";
+
         case Image:
             return "image";
 

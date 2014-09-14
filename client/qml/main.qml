@@ -413,7 +413,7 @@ ApplicationWindow {
                 return
             coverActionActive = true
             captureAndSend()
-            pageStack.currentPage.rejected.connect(coverReceiver.operationRejected)
+            //pageStack.currentPage.rejected.connect(coverReceiver.operationRejected)
             appWindow.activate()
             break
         case 4: //location
@@ -453,22 +453,35 @@ ApplicationWindow {
         id: coverReceiver
 
         function operationRejected() {
-            coverActionActive = false
+            rejectCoverOperation()
         }
     }
 
     function captureAndSend() {
         pageStack.push(Qt.resolvedUrl("Capture.qml"), {"broadcastMode": true})
-        pageStack.currentPage.accepted.connect(captureReceiver.captureAccepted)
+        //pageStack.currentPage.accepted.connect(captureReceiver.captureAccepted)
+    }
+
+    function proceedCaptureSend(path, title) {
+        captureReceiver.imagePath = path
+        captureReceiver.mediaTitle = title
+        console.log("capture proceed: " + captureReceiver.imagePath)
+        pageStack.busyChanged.connect(captureReceiver.transitionDone)
+    }
+
+    function rejectCoverOperation() {
+        coverActionActive = false
     }
 
     QtObject {
         id: captureReceiver
         property string imagePath: ""
+        property string mediaTitle: ""
 
         function captureAccepted() {
             pageStack.currentPage.accepted.disconnect(captureReceiver.captureAccepted)
             captureReceiver.imagePath = pageStack.currentPage.imagePath
+            captureReceiver.mediaTitle = pageStack.currentPage.mediaTitle
             console.log("capture accepted: " + captureReceiver.imagePath)
             pageStack.busyChanged.connect(captureReceiver.transitionDone)
         }
@@ -495,7 +508,7 @@ ApplicationWindow {
 
         function contactsSelected() {
             contactsUnbind()
-            Mitakuuluu.sendMedia(pageStack.currentPage.jids, captureReceiver.imagePath)
+            Mitakuuluu.sendMedia(pageStack.currentPage.jids, captureReceiver.imagePath, captureReceiver.mediaTitle)
         }
     }
 

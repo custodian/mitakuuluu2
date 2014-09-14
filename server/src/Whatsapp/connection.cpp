@@ -1481,7 +1481,13 @@ void Connection::sendMessageWithMedia(const FMessage& message)
     if (!message.media_name.isEmpty() && !message.media_url.isEmpty() &&
         message.media_size > 0)
     {
-        attrs.insert("file", message.media_name);
+        if (!message.local_file_uri.endsWith(message.media_name) && !message.media_url.endsWith(message.media_name)) {
+            attrs.insert("caption", message.media_name);
+            attrs.insert("file", message.media_url.split("/").last());
+        }
+        else {
+            attrs.insert("file", message.media_name.split("/").last());
+        }
         attrs.insert("size", QString::number(message.media_size));
         attrs.insert("url", message.media_url);
         if (message.live)
@@ -1504,6 +1510,10 @@ void Connection::sendMessageWithMedia(const FMessage& message)
         int bytes = out->write(messageNode);
         counters->increaseCounter(DataCounters::Messages, 0, 1);
         counters->increaseCounter(DataCounters::MessageBytes, 0, bytes);
+    }
+    else {
+        qDebug() << "can't send media";
+        Utilities::debugMessage(message);
     }
 }
 

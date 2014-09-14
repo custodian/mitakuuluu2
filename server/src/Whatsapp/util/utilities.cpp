@@ -34,7 +34,6 @@
 #include "qtmd5digest.h"
 
 #include "src/globalconstants.h"
-#include "src/Whatsapp/fmessage.h"
 
 #include <QRegExp>
 #include <QStringList>
@@ -167,4 +166,39 @@ QString Utilities::getPathFor(int media_wa_type, bool gallery)
         QDir::home().mkpath(folder);
 
     return folder;
+}
+
+void Utilities::debugMessage(FMessage message)
+{
+    qDebug() << "[Message]";
+    qDebug() << "id:" << message.key.id;
+    qDebug() << "jid:" << message.key.remote_jid;
+    qDebug() << "type:" << message.getMediaWAType();
+    if (!message.broadcastJids.isEmpty()) {
+        qDebug() << "broadcastJids:" << message.broadcastJids.join(", ");
+    }
+    if (!message.media_name.isEmpty()) {
+        qDebug() << "media_name:" << message.media_name;
+    }
+    if (!message.media_url.isEmpty()) {
+        qDebug() << "media_url:" << message.media_url;
+    }
+    if (!message.local_file_uri.isEmpty()) {
+        qDebug() << "local_file_uri:" << message.local_file_uri;
+    }
+    if (!message.media_mime_type.isEmpty()) {
+        qDebug() << "media_mime_type:" << message.media_mime_type;
+    }
+    if (!message.notify_name.isEmpty()) {
+        qDebug() << "notify_name:" << message.notify_name;
+    }
+    if (!message.remote_resource.isEmpty()) {
+        qDebug() << "remote_resource:" << message.remote_resource;
+    }
+    if (message.media_size > 0) {
+        qDebug() << "media_size:" << message.media_size;
+    }
+    if (message.media_duration_seconds > 0) {
+        qDebug() << "media_duration_seconds:" << message.media_duration_seconds;
+    }
 }

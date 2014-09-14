@@ -33,6 +33,7 @@
 
 #include <QStringList>
 #include <QChar>
+#include "src/Whatsapp/fmessage.h"
 
 #include <QDebug>
 
@@ -46,6 +47,7 @@ public:
     static QString guessMimeType(const QString &extension);
     static QString getExtension(const QString &filename);
     static QString getPathFor(int media_wa_type, bool gallery);
+    static void debugMessage(FMessage message);
 };
 
 #endif // UTILITIES_H

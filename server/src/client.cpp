@@ -1723,7 +1723,7 @@ void Client::mediaUploadStarted(MediaUpload *mediaUpload, const FMessage &msg)
 
 void Client::mediaUploadFinished(MediaUpload *mediaUpload, const FMessage &msg)
 {
-    qDebug() << "mediaUploadFinished:" << msg.media_url << "to:" << msg.local_file_uri;
+    qDebug() << "mediaUploadFinished:" << msg.media_url << "to:" << msg.local_file_uri << "name:" << msg.media_name;
 
     Q_EMIT uploadFinished(msg.key.remote_jid, msg.key.id, msg.media_url);
 
@@ -1971,7 +1971,7 @@ void Client::sendText(const QString &jid, const QString &message)
     addMessage(msg);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString &fileName, int waType)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title)
 {
     FMessage msg(JID_DOMAIN, true);
 
@@ -2061,7 +2061,7 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, int waT
     msg.type = FMessage::RequestMediaMessage;
     msg.media_size = mfile.size();
     msg.media_wa_type = waType;
-    msg.media_name = fname;
+    msg.media_name = title;
     if (jids.size() > 1) {
         msg.broadcast = true;
         msg.broadcastJids = jids;
@@ -2094,7 +2094,7 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, int waT
     queueMessage(msg);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title)
 {
     FMessage::MediaWAType waType = FMessage::Text;
     if (mediaType == "image")
@@ -2103,13 +2103,13 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, const Q
         waType = FMessage::Audio;
     else if (mediaType == "video")
         waType = FMessage::Video;
-    sendMedia(jids, fileName, waType);
+    sendMedia(jids, fileName, waType, title);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString fileName)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &title)
 {
     QString type = Utilities::guessMimeType(fileName).split("/").first();
-    sendMedia(jids, fileName, type);
+    sendMedia(jids, fileName, type, title.isEmpty() ? fileName.split("/").last() : title);
 }
 
 void Client::sendVCard(const QStringList &jids, const QString &name, const QString &vcardData)

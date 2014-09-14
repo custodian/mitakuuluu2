@@ -2,24 +2,24 @@
 import Sailfish.Silica 1.0
 import harbour.mitakuuluu2.client 1.0
 import QtMultimedia 5.0
-import Sailfish.Gallery 1.0
 import com.jolla.camera 1.0
 import org.nemomobile.time 1.0
-import org.nemomobile.thumbnailer 1.0
 import QtSensors 5.1
 
-Dialog {
+Page {
     id: page
     objectName: "capture"
 
     allowedOrientations: Orientation.Landscape
 
-    canNavigateForward: canAccept
-    canAccept: false
+    //canNavigateForward: canAccept
+    //canAccept: false
 
     property string imagePath: ""
-
     property bool broadcastMode: true
+    property string jid: ""
+
+    signal captured
 
     property alias cameraState: camera.cameraState
 
@@ -31,8 +31,13 @@ Dialog {
     property bool _unload
 
     function _captureHandler() {
+        camera.cameraState = Camera.UnloadedState
         console.log("Capture saved to", imagePath)
-        page.canAccept = true
+        //page.canAccept = true
+        pageStack.replace(Qt.resolvedUrl("MediaPreview.qml"), {"canRemove": true,
+                                                               "path": imagePath,
+                                                               "jid": page.jid,
+                                                               "mimeType": camera.captureMode == Camera.CaptureStillImage ? "image/jpeg" : "video/x-matroska"})
     }
 
     onStatusChanged: {
@@ -41,15 +46,16 @@ Dialog {
                 console.log("deactivating camera")
                 camera.cameraState = Camera.UnloadedState
             }
+            rejectCoverOperation()
         }
-        else if (status == PageStatus.Active && !canAccept) {
-        }
+        //else if (status == PageStatus.Active && !canAccept) {
+        //}
     }
 
-    onRejected: {
-        console.log("capture rejected")
-        Mitakuuluu.rejectMediaCapture(imagePath)
-    }
+    //onRejected: {
+    //    console.log("capture rejected")
+    //    Mitakuuluu.rejectMediaCapture(imagePath)
+    //}
 
     Component.onCompleted: {
         Mitakuuluu.setCamera(camera)
@@ -88,7 +94,7 @@ Dialog {
         anchors.fill: parent
         fillMode: VideoOutput.PreserveAspectCrop
         orientation: page.orientation == Orientation.Portrait ? 0 : 90
-        visible: !page.canAccept
+        //visible: !page.canAccept
         source: camera
         property bool mirror: extensions.device == "secondary"
     }
@@ -184,41 +190,16 @@ Dialog {
         rotation: sensor.rotationAngle
     }
 
-    Loader {
-        id: previewLoader
-        anchors.fill: parent
-        active: page.canAccept
-        sourceComponent: camera.captureMode == Camera.CaptureStillImage ? imagePreviewComponent : videoPreviewComponent
-    }
 
-    Component {
-        id: imagePreviewComponent
-        ImageViewer {
-            id: prev
-            source: imagePath
-        }
-    }
-
-    Component {
-        id: videoPreviewComponent
-        Thumbnail {
-            fillMode: Image.PreserveAspectFit
-            source: imagePath
-            sourceSize.width: width
-            sourceSize.height: height
-            clip: true
-            smooth: true
-            mimeType: "video/x-matroska"
-        }
-    }
 
     CircleButton {
         id: cameraModeButton
 
         anchors.left: parent.left
-        anchors.top: header.bottom
+        anchors.top: page.top
+        anchors.topMargin: Theme.itemSizeMedium
         anchors.margins: Theme.paddingSmall
-        visible: !page.canAccept
+        //visible: !page.canAccept
         rotation: sensor.rotationAngle - 90
 
         iconSource: camera.captureMode == Camera.CaptureStillImage ? "image://theme/icon-camera-camera-mode"
@@ -240,7 +221,7 @@ Dialog {
         anchors.left: parent.left
         anchors.top: cameraModeButton.bottom
         anchors.margins: Theme.paddingSmall
-        visible: !page.canAccept
+        //visible: !page.canAccept
         rotation: sensor.rotationAngle - 90
 
         iconSource: "image://theme/icon-camera-front-camera"
@@ -263,7 +244,7 @@ Dialog {
         anchors.left: parent.left
         anchors.top: cameraSourceButton.bottom
         anchors.margins: Theme.paddingSmall
-        visible: !page.canAccept && camera.captureMode == Camera.CaptureVideo
+        visible: camera.captureMode == Camera.CaptureVideo
         rotation: sensor.rotationAngle - 90
 
         Label {
@@ -285,7 +266,8 @@ Dialog {
 
     Item {
         anchors.right: parent.right
-        anchors.top: header.bottom
+        anchors.top: page.top
+        anchors.topMargin: Theme.itemSizeMedium
         anchors.margins: Theme.paddingSmall
         width: timerLabel.implicitWidth + (2 * Theme.paddingMedium)
         height: timerLabel.implicitWidth + (2 * Theme.paddingMedium)
@@ -338,10 +320,11 @@ Dialog {
     CircleButton {
         id: flashButton
 
-        anchors.top: header.bottom
+        anchors.top: page.top
+        anchors.topMargin: Theme.itemSizeMedium
         anchors.right: parent.right
         anchors.margins: Theme.paddingSmall
-        visible: camera.captureMode == Camera.CaptureStillImage && !page.canAccept
+        visible: camera.captureMode == Camera.CaptureStillImage
         rotation: sensor.rotationAngle - 90
 
         iconSource: flashModeIcon(camera.flash.mode)
@@ -380,7 +363,7 @@ Dialog {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.margins: Theme.paddingSmall
-        visible: !page.canAccept
+        //visible: !page.canAccept
         rotation: sensor.rotationAngle - 90
 
         iconSource: camera.captureMode == Camera.CaptureStillImage ? "image://theme/icon-camera-shutter-release"
@@ -499,15 +482,15 @@ Dialog {
         }
     }
 
-    Rectangle {
+    /*Rectangle {
         anchors.fill: header
         z: 1
         color: Theme.rgba(Theme.highlightColor, 0.2)
-    }
+    }*/
 
-    DialogHeader {
+    /*DialogHeader {
         id: header
         title: page.canAccept ? qsTr("Send", "Capture page send title")
                               : qsTr("Camera", "Capture page default title")
-    }
+    }*/
 }

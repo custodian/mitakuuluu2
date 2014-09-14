@@ -839,10 +839,10 @@ void Mitakuuluu::notificationCallback(const QString &jid)
     Q_EMIT notificationOpenJid(jid);
 }
 
-void Mitakuuluu::sendMedia(const QStringList &jids, const QString &path)
+void Mitakuuluu::sendMedia(const QStringList &jids, const QString &path, const QString &title)
 {
     if (iface) {
-        iface->call(QDBus::NoBlock, "sendMedia", jids, path);
+        iface->call(QDBus::NoBlock, "sendMedia", jids, path, title.isEmpty() ? path.split("/").last() : title);
     }
 }
 

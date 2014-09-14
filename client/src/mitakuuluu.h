@@ -343,7 +343,7 @@ public slots:
     void isCrashed();
     void requestLastOnline(const QString &jid);
     void addPhoneNumber(const QString &name, const QString &phone);
-    void sendMedia(const QStringList &jids, const QString &path);
+    void sendMedia(const QStringList &jids, const QString &path, const QString &title = QString());
     void sendVCard(const QStringList &jids, const QString &name, const QString& data);
     QString rotateImage(const QString &path, int rotation);
     QString saveVoice(const QString &path);

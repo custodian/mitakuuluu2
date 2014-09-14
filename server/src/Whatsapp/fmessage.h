@@ -30,7 +30,7 @@
 #define FMESSAGE_H
 
 #include <QObject>
-#include <QString>
+#include <QStringList>
 #include <QMutex>
 
 #include "key.h"
@@ -100,7 +100,7 @@ public:
     bool live;
     bool broadcast;
     bool offline;
-    QList<QString> broadcastJids;
+    QStringList broadcastJids;
 
     qint32 media_duration_seconds;
     int media_width;
