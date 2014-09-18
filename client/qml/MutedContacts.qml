@@ -12,7 +12,7 @@ Page {
 
 	onStatusChanged: {
 		if (status == PageStatus.Active) {
-			var mutedList = Mitakuuluu.loadGroup("muting")
+            var mutedList = loadGroup("muting")
 			listModel.clear()
 			for (var i = 0; i < mutedList.length; i++) {
 				if (parseInt(mutedList[i].value) > new Date().getTime())
@@ -71,14 +71,14 @@ Page {
         id: delegateComponent
         BackgroundItem {
             id: item
-            property variant contactModel: ContactsBaseModel.getModel(model.jid)
+            property variant contactModel: ContactsBaseModel.getModel(model.key)
 
             AvatarHolder {
                 id: ava
-                source: usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+                source: usePhonebookAvatars || (model.key.indexOf("-") > 0)
                         ? (contactModel.avatar == "undefined" ? "" : (contactModel.avatar))
                         : (contactModel.owner == "undefined" ? "" : (contactModel.owner))
-                emptySource: "../images/avatar-empty" + (model.jid.indexOf("-") > 0 ? "-group" : "") + ".png"
+                emptySource: "../images/avatar-empty" + (model.key.indexOf("-") > 0 ? "-group" : "") + ".png"
                 anchors {
                 	left: parent.left
                 	leftMargin: Theme.paddingLarge
@@ -100,7 +100,7 @@ Page {
 	            Label {
 	            	width: parent.width
 	                color: item.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    text: Utilities.emojify(getNicknameByJid(model.jid), emojiPath)
+                    text: Utilities.emojify(getNicknameByJid(model.key), emojiPath)
 	                elide: Text.ElideRight
 	                truncationMode: TruncationMode.Fade
 	            }
@@ -123,7 +123,7 @@ Page {
                 }
                 icon.source: "image://theme/icon-m-clear"
                 onClicked: {
-                    Mitakuuluu.save("muting/" + model.jid, 0)
+                    setMuting(model.key, 0)
                     listModel.remove(index)
                 }
             }
@@ -135,5 +135,13 @@ Page {
 	            target: item
 	        }
         }
+    }
+
+    function setMuting(jid, value) {
+        mutingConfig.key = "/apps/harbour-mitakuuluu2/muting/" + jid
+        mutingConfig.value = value
+    }
+    DConfValue {
+        id: mutingConfig
     }
 } 

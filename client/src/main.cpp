@@ -50,6 +50,7 @@
 #include "conversationfiltermodel.h"
 #include "mitakuuluu.h"
 #include "audiorecorder.h"
+#include "../dconf/dconfvalue.h"
 
 #include <QDebug>
 
@@ -61,6 +62,8 @@
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
+
+#include <mlite5/MGConfItem>
 
 #include "../logging/logging.h"
 
@@ -94,11 +97,21 @@ int main(int argc, char *argv[])
     setuid(getpwnam("nemo")->pw_uid);
     setgid(getgrnam("privileged")->gr_gid);
 
-    QSettings settings("coderus", "mitakuuluu2");
-    if (settings.value("settings/keepLogs", true).toBool())
-        qInstallMessageHandler(fileHandler);
-    else
-        qInstallMessageHandler(stdoutHandler);
+    MDConfItem ready("/apps/harbour-mitakuuluu2/migrationIsDone");
+    if (!ready.value(false).toBool()) {
+        QSettings settings("coderus", "mitakuuluu2");
+        if (settings.value("settings/keepLogs", true).toBool())
+            qInstallMessageHandler(fileHandler);
+        else
+            qInstallMessageHandler(stdoutHandler);
+    }
+    else {
+        MDConfItem keepLogs("/apps/harbour-mitakuuluu2/settings/keepLogs");
+        if (keepLogs.value(true).toBool())
+            qInstallMessageHandler(fileHandler);
+        else
+            qInstallMessageHandler(stdoutHandler);
+    }
 
     qDebug() << "Init gst presets";
     gst_init(0, 0);
@@ -227,6 +240,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType<ContactsBaseModel>("harbour.mitakuuluu2.client", 1, 0, "ContactsBaseModel", contactsmodel_singleton_provider);
     qmlRegisterSingletonType<Mitakuuluu>("harbour.mitakuuluu2.client", 1, 0, "Mitakuuluu", mitakuuluu_singleton_provider);
+
+    qmlRegisterType<DConfValue>("harbour.mitakuuluu2.client", 1, 0, "DConfValue");
 
     qDebug() << "Showing main widow";
     view->setSource(SailfishApp::pathTo("qml/main.qml"));

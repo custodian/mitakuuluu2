@@ -40,19 +40,19 @@ Page {
     }
 
     Connections {
-        target: appWindow
+        target: settings
         onFollowPresenceChanged: updatePresence()
         onAlwaysOfflineChanged: updatePresence()
         onConnectionServerChanged: {
-            connServer.currentIndex = (connectionServer == "c.whatsapp.net" ? 0
-                                    : (connectionServer == "c1.whatsapp.net" ? 1
-                                    : (connectionServer == "c2.whatsapp.net" ? 2
-                                                                             : 3)))
+            connServer.currentIndex = (settings.connectionServer == "c.whatsapp.net" ? 0
+                                    : (settings.connectionServer == "c1.whatsapp.net" ? 1
+                                    : (settings.connectionServer == "c2.whatsapp.net" ? 2
+                                                                                      : 3)))
         }
     }
 
     function updatePresence() {
-        presenceStatus.currentIndex = followPresence ? 0 : (alwaysOffline ? 2 : 1)
+        presenceStatus.currentIndex = settings.followPresence ? 0 : (settings.alwaysOffline ? 2 : 1)
     }
 
     SilicaFlickable {
@@ -88,7 +88,7 @@ Page {
             }
             MenuItem {
                 text: qsTr("Send logfile to author", "Settings page menu item")
-                visible: keepLogs && Mitakuuluu.checkLogfile()
+                visible: settings.keepLogs && Mitakuuluu.checkLogfile()
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("SendLogs.qml"))
                 }
@@ -153,49 +153,46 @@ Page {
             }*/
 
             TextSwitch {
-                checked: sentLeft
+                checked: settings.sentLeft
                 text: qsTr("Show sent messages at left side", "Settings option name")
-                onClicked: sentLeft = checked
+                onClicked: settings.sentLeft = checked
             }
 
             TextSwitch {
-                checked: notifyActive
+                checked: settings.notifyActive
                 text: qsTr("Vibrate in active conversation", "Settings option name")
-                onClicked: notifyActive = checked
+                onClicked: settings.notifyActive = checked
             }
 
             TextSwitch {
-                id: timestamp
-                checked: showTimestamp
+                checked: settings.showTimestamp
                 text: qsTr("Show messages timestamp", "Settings option name")
-                onClicked: showTimestamp = checked
+                onClicked: settings.showTimestamp = checked
             }
 
             TextSwitch {
-                id: seconds
-                checked: showSeconds
+                checked: settings.showSeconds
                 text: qsTr("Show seconds in messages timestamp", "Settings option name")
-                enabled: showTimestamp
-                onClicked: showSeconds = checked
+                enabled: settings.showTimestamp
+                onClicked: settings.showSeconds = checked
             }
 
             TextSwitch {
-                id: enter
-                checked: sendByEnter
+                checked: settings.sendByEnter
                 text: qsTr("Send messages by Enter", "Settings option name")
-                onClicked: sendByEnter = checked
+                onClicked: settings.sendByEnter = checked
             }
 
             TextSwitch {
-                checked: showKeyboard
+                checked: settings.showKeyboard
                 text: qsTr("Automatically show keyboard when opening conversation", "Settings option name")
-                onClicked: showKeyboard = checked
+                onClicked:settings. showKeyboard = checked
             }
 
             TextSwitch {
-                checked: hideKeyboard
+                checked: settings.hideKeyboard
                 text: qsTr("Hide keyboard after sending message", "Settings option name")
-                onClicked: hideKeyboard = checked
+                onClicked: settings.hideKeyboard = checked
             }
 
             /*TextSwitch {
@@ -216,13 +213,13 @@ Page {
                 }
                 onCurrentItemChanged: {
                     if (pageStack.currentPage.objectName === "settings" || pageStack.currentPage.objectName === "") {
-                        mapSource = mapSourceModel.get(currentIndex).value
+                        settings.mapSource = mapSourceModel.get(currentIndex).value
                     }
                 }
                 Component.onCompleted: {
                     _updating = false
                     for (var i = 0; i < mapSourceModel.count; i++) {
-                        if (mapSourceModel.get(i).value == mapSource) {
+                        if (mapSourceModel.get(i).value == settings.mapSource) {
                             currentIndex = i
                             break
                         }
@@ -231,21 +228,21 @@ Page {
             }
 
             TextSwitch {
-                checked: lockPortrait
+                checked: settings.lockPortrait
                 text: qsTr("Lock conversation orientation in portrait", "Settings option name")
-                onClicked: lockPortrait = checked
+                onClicked: settings.lockPortrait = checked
             }
 
             TextSwitch {
-                checked: lockPortraitPages
+                checked: settings.lockPortraitPages
                 text: qsTr("Lock other pages orientation in portrait", "Settings option name")
-                onClicked: lockPortraitPages = checked
+                onClicked: settings.lockPortraitPages = checked
             }
 
             TextSwitch {
-                checked: allowLandscapeInverted
+                checked: settings.allowLandscapeInverted
                 text: qsTr("Allow rotating UI to landscape-inverted position")
-                onClicked: allowLandscapeInverted = checked
+                onClicked: settings.allowLandscapeInverted = checked
             }
 
             ListModel {
@@ -269,10 +266,10 @@ Page {
                 maximumValue: 60
                 minimumValue: 8
                 label: qsTr("Chat font size", "Settings option name")
-                value: fontSize
+                value: settings.fontSize
                 valueText: qsTr("%1 px", "Settings option value label").arg(parseInt(value))
                 onReleased: {
-                    fontSize = parseInt(value)
+                    settings.fontSize = parseInt(value)
                 }
             }
 
@@ -283,41 +280,41 @@ Page {
             Binding {
                 target: muteSwitch
                 property: "checked"
-                value: !notificationsMuted
+                value: !settings.notificationsMuted
             }
 
             TextSwitch {
                 id: muteSwitch
-                checked: !notificationsMuted
+                checked: !settings.notificationsMuted
                 text: qsTr("Show new messages notifications", "Settings option name")
-                onClicked: notificationsMuted = !checked
+                onClicked: settings.notificationsMuted = !checked
             }
 
             Binding {
                 target: notifySwitch
                 property: "checked"
-                value: notifyMessages
+                value: settings.notifyMessages
             }
 
             TextSwitch {
                 id: notifySwitch
-                checked: notifyMessages
-                enabled: !notificationsMuted
+                checked: settings.notifyMessages
+                enabled: !settings.notificationsMuted
                 text: qsTr("Display messages text in notifications", "Settings option name")
-                onClicked: notifyMessages = checked
+                onClicked: settings.notifyMessages = checked
             }
 
             TextSwitch {
                 width: parent.width
-                enabled: !notificationsMuted
+                enabled: !settings.notificationsMuted
                 text: qsTr("Use system Chat notifier", "Settings option name")
-                checked: systemNotifier
-                onClicked: systemNotifier = checked
+                checked: settings.systemNotifier
+                onClicked: settings.systemNotifier = checked
             }
 
             ValueButton {
                 label: qsTr("Private message", "Settings page Private message tone selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 value: Mitakuuluu.privateToneEnabled ? metadataReader.getTitle(Mitakuuluu.privateTone) : qsTr("no sound", "Private message tone not set")
                 onClicked: {
                     var dialog = pageStack.push(dialogComponent, {
@@ -341,7 +338,7 @@ Page {
 
             ComboBox {
                 label: qsTr("Private message color", "Settings page Private message color selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 menu: ContextMenu {
                     id: privatePatterns
                     Repeater {
@@ -371,7 +368,7 @@ Page {
 
             ValueButton {
                 label: qsTr("Group message", "Settings page Group message tone selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 value: Mitakuuluu.groupToneEnabled ? metadataReader.getTitle(Mitakuuluu.groupTone) : qsTr("no sound", "Group message tone not set")
                 onClicked: {
                     var dialog = pageStack.push(dialogComponent, {
@@ -393,7 +390,7 @@ Page {
 
             ComboBox {
                 label: qsTr("Group message color", "Settings page Group message color selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 menu: ContextMenu {
                     Repeater {
                         width: parent.width
@@ -420,7 +417,7 @@ Page {
 
             ValueButton {
                 label: qsTr("Media message", "Settings page Media message tone selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 value: Mitakuuluu.mediaToneEnabled ? metadataReader.getTitle(Mitakuuluu.mediaTone) : qsTr("no sound", "Medi message tone not set")
                 onClicked: {
                     var dialog = pageStack.push(dialogComponent, {
@@ -442,7 +439,7 @@ Page {
 
             ComboBox {
                 label: qsTr("Media message color", "Settings page Media message color selection")
-                enabled: !systemNotifier && !notificationsMuted
+                enabled: !settings.systemNotifier && !settings.notificationsMuted
                 menu: ContextMenu {
                     Repeater {
                         width: parent.width
@@ -468,9 +465,9 @@ Page {
             }
 
             TextSwitch {
-                checked: showConnectionNotifications
+                checked: settings.showConnectionNotifications
                 text: qsTr("Show notifications when connection changing", "Settings option name")
-                onClicked: showConnectionNotifications = checked
+                onClicked: settings.showConnectionNotifications = checked
             }
 
             Slider {
@@ -478,10 +475,10 @@ Page {
                 maximumValue: 360
                 minimumValue: 1
                 label: qsTr("Notifications delay", "Settings option name")
-                value: notificationsDelay
+                value: settings.notificationsDelay
                 valueText: qsTr("%n seconds", "Settings option value label", parseInt(value))
                 onReleased: {
-                    notificationsDelay = parseInt(value)
+                    settings.notificationsDelay = parseInt(value)
                 }
             }
 
@@ -519,40 +516,40 @@ Page {
                     MenuItem {
                         text: "c.whatsapp.net"
                         onClicked: {
-                            connectionServer = "c.whatsapp.net"
+                            settings.connectionServer = "c.whatsapp.net"
                         }
                     }
                     MenuItem {
                         text: "c1.whatsapp.net"
                         onClicked: {
-                            connectionServer = "c1.whatsapp.net"
+                            settings.connectionServer = "c1.whatsapp.net"
                         }
                     }
                     MenuItem {
                         text: "c2.whatsapp.net"
                         onClicked: {
-                            connectionServer = "c2.whatsapp.net"
+                            settings.connectionServer = "c2.whatsapp.net"
                         }
                     }
                     MenuItem {
                         text: "c3.whatsapp.net"
                         onClicked: {
-                            connectionServer = "c3.whatsapp.net"
+                            settings.connectionServer = "c3.whatsapp.net"
                         }
                     }
                 }
                 Component.onCompleted: {
-                    currentIndex = (connectionServer == "c.whatsapp.net" ? 0
-                                : (connectionServer == "c1.whatsapp.net" ? 1
-                                : (connectionServer == "c2.whatsapp.net" ? 2
-                                                                         : 3)))
+                    currentIndex = (settings.connectionServer == "c.whatsapp.net" ? 0
+                                : (settings.connectionServer == "c1.whatsapp.net" ? 1
+                                : (settings.connectionServer == "c2.whatsapp.net" ? 2
+                                                                                  : 3)))
                 }
             }
 
             TextSwitch {
-                checked: useKeepalive
+                checked: settings.useKeepalive
                 text: qsTr("Use connection keepalive (*)", "Settings option name")
-                onClicked: useKeepalive = checked
+                onClicked: settings.useKeepalive = checked
             }
 
             Slider {
@@ -560,10 +557,10 @@ Page {
                 maximumValue: 60
                 minimumValue: 1
                 label: qsTr("Reconnection interval (*)", "Settings option name")
-                value: reconnectionInterval
+                value: settings.reconnectionInterval
                 valueText: qsTr("%n minutes", "Settings option value label", parseInt(value))
                 onReleased: {
-                    reconnectionInterval = parseInt(value)
+                    settings.reconnectionInterval = parseInt(value)
                 }
             }
 
@@ -572,15 +569,14 @@ Page {
                 maximumValue: 30
                 minimumValue: 1
                 label: qsTr("Reconnection limit (*)", "Settings option name")
-                value: reconnectionLimit
+                value: settings.reconnectionLimit
                 valueText: qsTr("%n reconnections", "Settings option value label", parseInt(value))
                 onReleased: {
-                    reconnectionLimit = parseInt(value)
+                    settings.reconnectionLimit = parseInt(value)
                 }
             }
 
             TextSwitch {
-                id: autostart
                 checked: Mitakuuluu.checkAutostart()
                 text: qsTr("Autostart", "Settings option name")
                 onClicked: {
@@ -589,10 +585,10 @@ Page {
             }
 
             TextSwitch {
-                checked: keepLogs
+                checked: settings.keepLogs
                 text: qsTr("Allow saving application logs", "Settings option name")
                 onClicked: {
-                    keepLogs = checked
+                    settings.keepLogs = checked
                     if (checked) {
                         banner.notify(qsTr("You need to full quit application to start writing logs. Send logfile to author appear in settings menu.", "Allow application logs option description"))
                     }
@@ -600,29 +596,28 @@ Page {
             }
 
             TextSwitch {
-                checked: importToGallery
+                checked: settings.importToGallery
                 text: qsTr("Download media to Gallery", "Settings option name")
                 description: qsTr("If checked downloaded files will be shown in Gallery", "Settings option description")
-                onClicked: importToGallery = checked
+                onClicked: settings.importToGallery = checked
             }
 
             TextSwitch {
-                id: showMyself
-                checked: showMyJid
+                checked: settings.showMyJid
                 text: qsTr("Show yourself in contact list, if present", "Settings option name")
-                onClicked: showMyJid = checked
+                onClicked: settings.showMyJid = checked
             }
 
             TextSwitch {
-                checked: acceptUnknown
+                checked: settings.acceptUnknown
                 text: qsTr("Accept messages from unknown contacts", "Settings option name")
-                onClicked: acceptUnknown = checked
+                onClicked: settings.acceptUnknown = checked
             }
 
             TextSwitch {
-                checked: usePhonebookAvatars
+                checked: settings.usePhonebookAvatars
                 text: qsTr("Show phonebok avatars", "Settings option name")
-                onClicked: usePhonebookAvatars = checked
+                onClicked: settings.usePhonebookAvatars = checked
             }
 
             SectionHeader {
@@ -636,27 +631,27 @@ Page {
                     MenuItem {
                         text: qsTr("Display online when app is open", "Settings option value text")
                         onClicked: {
-                            followPresence = true
-                            alwaysOffline = false
+                            settings.followPresence = true
+                            settings.alwaysOffline = false
                         }
                     }
                     MenuItem {
                         text: qsTr("Always display online", "Settings option value text")
                         onClicked: {
-                            alwaysOffline = false
-                            followPresence = false
+                            settings.alwaysOffline = false
+                            settings.followPresence = false
                         }
                     }
                     MenuItem {
                         text: qsTr("Always display offline", "Settings option value text")
                         onClicked: {
-                            alwaysOffline = true
-                            followPresence = false
+                            settings.alwaysOffline = true
+                            settings.followPresence = false
                         }
                     }
                 }
                 Component.onCompleted: {
-                    currentIndex = followPresence ? 0 : (alwaysOffline ? 2 : 1)
+                    currentIndex = settings.followPresence ? 0 : (settings.alwaysOffline ? 2 : 1)
                 }
             }
 
@@ -667,7 +662,7 @@ Page {
             Binding {
                 target: leftCoverAction
                 property: "currentIndex"
-                value: coverLeftAction
+                value: settings.coverLeftAction
             }
 
             ComboBox {
@@ -684,14 +679,14 @@ Page {
                     }
                 }
                 onCurrentItemChanged: {
-                    coverLeftAction = currentIndex
+                    settings.coverLeftAction = currentIndex
                 }
             }
 
             Binding {
                 target: rightCoverAction
                 property: "currentIndex"
-                value: coverRightAction
+                value: settings.coverRightAction
             }
 
             ComboBox {
@@ -708,7 +703,7 @@ Page {
                     }
                 }
                 onCurrentItemChanged: {
-                    coverRightAction = currentIndex
+                    settings.coverRightAction = currentIndex
                 }
             }
 
@@ -724,9 +719,9 @@ Page {
                     id: autoDownload
                     text: ""
                     width: Theme.itemSizeSmall
-                    checked: automaticDownload
+                    checked: settings.automaticDownload
                     onClicked: {
-                        automaticDownload = checked
+                        settings.automaticDownload = checked
                     }
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
@@ -734,16 +729,16 @@ Page {
 
                 Slider {
                     id: downloadSlider
-                    enabled: automaticDownload
+                    enabled: settings.automaticDownload
                     anchors.left: autoDownload.right
                     anchors.right: parent.right
                     maximumValue: 10485760
                     minimumValue: 204800
                     label: qsTr("Automatic download bytes", "Settings option name")
-                    value: automaticDownloadBytes
+                    value: settings.automaticDownloadBytes
                     valueText: Format.formatFileSize(parseInt(value))
                     onReleased: {
-                        automaticDownloadBytes = parseInt(value)
+                        settings.automaticDownloadBytes = parseInt(value)
                     }
                 }
             }
@@ -751,16 +746,16 @@ Page {
             TextSwitch {
                 text: qsTr("Auto download on WLAN only", "Settings option name")
                 width: parent.width
-                checked: autoDownloadWlan
-                enabled: automaticDownload
-                onClicked: autoDownloadWlan = checked
+                checked: settings.autoDownloadWlan
+                enabled: settings.automaticDownload
+                onClicked: settings.autoDownloadWlan = checked
             }
 
             TextSwitch {
-                checked: resizeImages
+                checked: settings.resizeImages
                 text: qsTr("Resize sending images", "Settings option name")
                 onClicked: {
-                    resizeImages = checked
+                    settings.resizeImages = checked
                     if (!checked) {
                         sizeResize.checked = false
                         pixResize.checked = false
@@ -771,9 +766,9 @@ Page {
             TextSwitch {
                 text: qsTr("Don't resize on WLAN", "Settings option name")
                 width: parent.width
-                checked: !resizeWlan
-                enabled: resizeImages
-                onClicked: resizeWlan = !checked
+                checked: !settings.resizeWlan
+                enabled: settings.resizeImages
+                onClicked: settings.resizeWlan = !checked
             }
 
             Item {
@@ -784,10 +779,10 @@ Page {
                     id: sizeResize
                     text: ""
                     width: Theme.itemSizeSmall
-                    enabled: resizeImages
-                    checked: resizeImages && resizeBySize
+                    enabled: settings.resizeImages
+                    checked: settings.resizeImages && settings.resizeBySize
                     onClicked: {
-                        resizeBySize = checked
+                        settings.resizeBySize = checked
                         pixResize.checked = !checked
                     }
                     anchors.left: parent.left
@@ -797,16 +792,16 @@ Page {
 
                 Slider {
                     id: sizeSlider
-                    enabled: resizeImages && sizeResize.checked
+                    enabled: settings.resizeImages && sizeResize.checked
                     anchors.left: sizeResize.right
                     anchors.right: parent.right
                     maximumValue: 5242880
                     minimumValue: 204800
                     label: qsTr("Maximum image size by file size", "Settings option name")
-                    value: resizeImagesTo
+                    value: settings.resizeImagesTo
                     valueText: Format.formatFileSize(parseInt(value))
                     onReleased: {
-                        resizeImagesTo = parseInt(value)
+                        settings.resizeImagesTo = parseInt(value)
                     }
                 }
             }
@@ -819,10 +814,10 @@ Page {
                     id: pixResize
                     text: ""
                     width: Theme.itemSizeSmall
-                    enabled: resizeImages
-                    checked: resizeImages && !resizeBySize
+                    enabled: settings.resizeImages
+                    checked: settings.resizeImages && !settings.resizeBySize
                     onClicked: {
-                        resizeBySize = !checked
+                        settings.resizeBySize = !checked
                         sizeResize.checked = !checked
                     }
                     anchors.left: parent.left
@@ -831,16 +826,16 @@ Page {
 
                 Slider {
                     id: pixSlider
-                    enabled: resizeImages && pixResize.checked
+                    enabled: settings.resizeImages && pixResize.checked
                     anchors.left: pixResize.right
                     anchors.right: parent.right
                     maximumValue: 9.0
                     minimumValue: 0.2
                     label: qsTr("Maximum image size by resolution", "Settings option name")
-                    value: resizeImagesToMPix
+                    value: settings.resizeImagesToMPix
                     valueText: qsTr("%1 MPx", "Settings option value text").arg(parseFloat(value.toPrecision(2)))
                     onReleased: {
-                        resizeImagesToMPix = parseFloat(value.toPrecision(2))
+                        settings.resizeImagesToMPix = parseFloat(value.toPrecision(2))
                     }
                 }
             }

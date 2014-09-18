@@ -10,11 +10,17 @@ ApplicationWindow {
     id: appWindow
     objectName: "appWindow"
     cover: Qt.resolvedUrl("CoverPage.qml")
-    initialPage: (Mitakuuluu.load("account/phoneNumber", "unregistered") === "unregistered") ?
+    initialPage: (phoneNumber.value === "unregistered") ?
                      Qt.resolvedUrl("RegistrationPage.qml") : Qt.resolvedUrl("ChatsPage.qml")
 
-    property int globalOrientation: lockPortraitPages ? Orientation.Portrait : (Orientation.Portrait | (allowLandscapeInverted ? (Orientation.Landscape | Orientation.LandscapeInverted) : Orientation.Landscape))
-    property int conversationOrientation: lockPortrait ? Orientation.Portrait : (Orientation.Portrait | (allowLandscapeInverted ? (Orientation.Landscape | Orientation.LandscapeInverted) : Orientation.Landscape))
+    DConfValue {
+        id: phoneNumber
+        key: "/apps/harbour-mitakuuluu2/account/phoneNumber"
+        defaultValue: "unregistered"
+    }
+
+    property int globalOrientation: settings.lockPortraitPages ? Orientation.Portrait : (Orientation.Portrait | (settings.allowLandscapeInverted ? (Orientation.Landscape | Orientation.LandscapeInverted) : Orientation.Landscape))
+    property int conversationOrientation: settings.lockPortrait ? Orientation.Portrait : (Orientation.Portrait | (settings.allowLandscapeInverted ? (Orientation.Landscape | Orientation.LandscapeInverted) : Orientation.Landscape))
 
     property bool hidden: true
     onHiddenChanged: {
@@ -38,7 +44,12 @@ ApplicationWindow {
             toHide.splice(0, 0, hjid)
         }
         hiddenList = toHide
-        Mitakuuluu.save("hidden/" + hjid, !secure)
+
+        hiddenConfig.key = "/apps/harbour-mitakuuluu2/hidden/" + hjid
+        hiddenConfig.value = !secure
+    }
+    DConfValue {
+        id: hiddenConfig
     }
 
     //dont ask me how it working, i dont know, but it still better than !==
@@ -165,7 +176,7 @@ ApplicationWindow {
 
     function timestampToTime(stamp) {
         var d = new Date(stamp*1000)
-        if (showSeconds) {
+        if (settings.showSeconds) {
             if (timeFormat24) {
                 return Qt.formatDateTime(d, "hh:mm:ss")
             }
@@ -226,141 +237,84 @@ ApplicationWindow {
         }
     }
 
-    property bool sendByEnter: false
-    onSendByEnterChanged: Mitakuuluu.save("settings/sendByEnter", sendByEnter)
-
-    property bool showTimestamp: true
-    onShowTimestampChanged: Mitakuuluu.save("settings/showTimestamp", showTimestamp)
-
-    property int fontSize: 32
-    onFontSizeChanged: Mitakuuluu.save("settings/fontSize", fontSize)
-
-    property bool followPresence: false
-    onFollowPresenceChanged: {
-        Mitakuuluu.save("settings/followPresence", followPresence)
-        updateCoverActions()
-    }
-
     function checkLocationEnabled() {
         return Mitakuuluu.locationEnabled()
     }
 
-    property bool showSeconds: true
-    onShowSecondsChanged: Mitakuuluu.save("settings/showSeconds", showSeconds)
+    property alias settings: configuration
+    ConfigurationGroup {
+        id: configuration
+        path: "/apps/harbour-mitakuuluu2/settings"
 
-    property bool showMyJid: false
-    onShowMyJidChanged: Mitakuuluu.save("settings/showMyJid", showMyJid)
+        property bool sendByEnter: false
+        property bool showTimestamp: true
+        property int fontSize: 32
+        property bool followPresence: false
+        onFollowPresenceChanged: {
+            updateCoverActions()
+        }
 
-    property bool showKeyboard: false
-    onShowKeyboardChanged: Mitakuuluu.save("settings/showKeyboard", showKeyboard)
+        property bool showSeconds: true
+        property bool showMyJid: false
+        property bool showKeyboard: false
+        property bool acceptUnknown: true
+        property bool notifyActive: true
+        property bool resizeImages: false
+        property bool resizeBySize: true
+        property int resizeImagesTo: 1048546
+        property double resizeImagesToMPix: 5.01
+        property string conversationTheme: "/usr/share/harbour-mitakuuluu2/qml/ModernDelegate.qml"
+        property int conversationIndex: 0
+        property bool alwaysOffline: false
+        onAlwaysOfflineChanged: {
+            if (alwaysOffline)
+                Mitakuuluu.setPresenceUnavailable()
+            else
+                Mitakuuluu.setPresenceAvailable()
+            updateCoverActions()
+        }
+        property bool deleteMediaFiles: false
+        property bool importToGallery: true
+        property bool showConnectionNotifications: false
+        property bool lockPortrait: false
+        property bool lockPortraitPages: false
+        property bool allowLandscapeInverted: false
+        property string connectionServer: "c3.whatsapp.net"
+        property bool notificationsMuted: false
+        onNotificationsMutedChanged: {
+            updateCoverActions()
+        }
 
-    property bool acceptUnknown: true
-    onAcceptUnknownChanged: Mitakuuluu.save("settings/acceptUnknown", acceptUnknown)
+        property bool threading: true
+        property bool hideKeyboard: false
+        property bool notifyMessages: false
+        property bool keepLogs: true
+        property string mapSource: "here"
+        property bool automaticDownload: false
+        property int automaticDownloadBytes: 524288
+        property bool sentLeft: false
+        property bool autoDownloadWlan: false
+        property bool resizeWlan: false
+        property bool systemNotifier: false
+        property bool useKeepalive: true
+        property int reconnectionInterval: 1
+        property int reconnectionLimit: 20
+        property bool usePhonebookAvatars: false
+        property int notificationsDelay: 5
 
-    property bool notifyActive: true
-    onNotifyActiveChanged: Mitakuuluu.save("settings/notifyActive", notifyActive)
+        property int coverLeftAction: 4
+        onCoverLeftActionChanged: {
+            updateCoverActions()
+        }
+        property int coverRightAction: 3
+        onCoverRightActionChanged: {
+            updateCoverActions()
+        }
 
-    property bool resizeImages: false
-    onResizeImagesChanged: Mitakuuluu.save("settings/resizeImages", resizeImages)
-
-    property bool resizeBySize: true
-    onResizeBySizeChanged: Mitakuuluu.save("settings/resizeBySize", resizeBySize)
-
-    property int resizeImagesTo: 1048546
-    onResizeImagesToChanged: Mitakuuluu.save("settings/resizeImagesTo", resizeImagesTo)
-
-    property double resizeImagesToMPix: 5.01
-    onResizeImagesToMPixChanged: Mitakuuluu.save("settings/resizeImagesToMPix", resizeImagesToMPix)
-
-    property string conversationTheme: "/usr/share/harbour-mitakuuluu2/qml/ModernDelegate.qml"
-    onConversationThemeChanged: Mitakuuluu.save("settings/conversationTheme", conversationTheme)
-
-    property int conversationIndex: 0
-    onConversationIndexChanged: Mitakuuluu.save("settings/conversationIndex", conversationIndex)
-
-    property bool alwaysOffline: false
-    onAlwaysOfflineChanged: {
-        Mitakuuluu.save("settings/alwaysOffline", alwaysOffline)
-        if (alwaysOffline)
-            Mitakuuluu.setPresenceUnavailable()
-        else
-            Mitakuuluu.setPresenceAvailable()
-        updateCoverActions()
+        property bool firstStartConversation: true
+        property bool firstStartContacts: true
+        property bool firstStartChats: true
     }
-    property bool deleteMediaFiles: false
-    onDeleteMediaFilesChanged: Mitakuuluu.save("settings/deleteMediaFiles", deleteMediaFiles)
-
-    property bool importToGallery: true
-    onImportToGalleryChanged: Mitakuuluu.save("settings/importmediatogallery", importToGallery)
-
-    property bool showConnectionNotifications: false
-    onShowConnectionNotificationsChanged: Mitakuuluu.save("settings/showConnectionNotifications", showConnectionNotifications)
-
-    property bool lockPortrait: false
-    onLockPortraitChanged: Mitakuuluu.save("settings/lockPortrait", lockPortrait)
-
-    property bool lockPortraitPages: false
-    onLockPortraitPagesChanged: Mitakuuluu.save("settings/lockPortraitPages", lockPortraitPages)
-
-    property bool allowLandscapeInverted: false
-    onAllowLandscapeInvertedChanged: Mitakuuluu.save("settings/allowLandscapeInverted", allowLandscapeInverted)
-
-    property string connectionServer: "c3.whatsapp.net"
-    onConnectionServerChanged: Mitakuuluu.save("connection/server", connectionServer)
-
-    property bool notificationsMuted: false
-    onNotificationsMutedChanged: {
-        Mitakuuluu.save("settings/notificationsMuted", notificationsMuted)
-        updateCoverActions()
-    }
-
-    property bool threading: true
-    onThreadingChanged: Mitakuuluu.save("connection/threading", threading)
-
-    property bool hideKeyboard: false
-    onHideKeyboardChanged: Mitakuuluu.save("settings/hideKeyboard", hideKeyboard)
-
-    property bool notifyMessages: false
-    onNotifyMessagesChanged: Mitakuuluu.save("settings/notifyMessages", notifyMessages)
-
-    property bool keepLogs: true
-    onKeepLogsChanged: Mitakuuluu.save("settings/keepLogs", keepLogs)
-
-    property string mapSource: "here"
-    onMapSourceChanged: Mitakuuluu.save("settings/mapSource", mapSource)
-
-    property bool automaticDownload: false
-    onAutomaticDownloadChanged: Mitakuuluu.save("settings/autodownload", automaticDownload)
-
-    property int automaticDownloadBytes: 524288
-    onAutomaticDownloadBytesChanged: Mitakuuluu.save("settings/automaticdownload", automaticDownloadBytes)
-
-    property bool sentLeft: false
-    onSentLeftChanged: Mitakuuluu.save("settings/sentLeft", sentLeft)
-
-    property bool autoDownloadWlan: false
-    onAutoDownloadWlanChanged: Mitakuuluu.save("settings/autoDownloadWlan", autoDownloadWlan)
-
-    property bool resizeWlan: false
-    onResizeWlanChanged: Mitakuuluu.save("settings/resizeWlan", resizeWlan)
-
-    property bool systemNotifier: false
-    onSystemNotifierChanged: Mitakuuluu.save("settings/systemNotifier", systemNotifier)
-
-    property bool useKeepalive: true
-    onUseKeepaliveChanged: Mitakuuluu.save("settings/useKeepalive", useKeepalive)
-
-    property int reconnectionInterval: 1
-    onReconnectionIntervalChanged: Mitakuuluu.save("settings/reconnectionInterval", reconnectionInterval)
-
-    property int reconnectionLimit: 20
-    onReconnectionLimitChanged: Mitakuuluu.save("settings/reconnectionLimit", reconnectionLimit)
-
-    property bool usePhonebookAvatars: false
-    onUsePhonebookAvatarsChanged: Mitakuuluu.save("settings/usePhonebookAvatars", usePhonebookAvatars)
-
-    property int notificationsDelay: 5
-    onNotificationsDelayChanged: Mitakuuluu.save("settings/notificationsDelay", notificationsDelay)
 
     property bool updateAvailable: false
 
@@ -377,11 +331,11 @@ ApplicationWindow {
     }
 
     function coverLeftClicked() {
-        coverAction(coverLeftAction)
+        coverAction(settings.coverLeftAction)
     }
 
     function coverRightClicked() {
-        coverAction(coverRightAction)
+        coverAction(settings.coverRightAction)
     }
 
     function coverAction(index) {
@@ -390,23 +344,23 @@ ApplicationWindow {
             shutdownEngine()
             break
         case 1: //presence
-            if (followPresence) {
-                followPresence = false
-                alwaysOffline = false
+            if (settings.followPresence) {
+                settings.followPresence = false
+                settings.alwaysOffline = false
             }
             else {
-                if (alwaysOffline) {
-                    followPresence = true
-                    alwaysOffline = false
+                if (settings.alwaysOffline) {
+                    settings.followPresence = true
+                    settings.alwaysOffline = false
                 }
                 else {
-                    followPresence = false
-                    alwaysOffline = true
+                    settings.followPresence = false
+                    settings.alwaysOffline = true
                 }
             }
             break
         case 2: //global muting
-            notificationsMuted = !notificationsMuted
+            settings.notificationsMuted = !settings.notificationsMuted
             break
         case 3: //camera
             if (Mitakuuluu.connectionStatus !== Mitakuuluu.LoggedIn)
@@ -690,20 +644,9 @@ ApplicationWindow {
             pageStack.replace(Qt.resolvedUrl("RegistrationPage.qml"))
     }
 
-    property int coverLeftAction: 4
-    onCoverLeftActionChanged: {
-        Mitakuuluu.save("settings/coverLeftAction", coverLeftAction)
-        updateCoverActions()
-    }
-    property int coverRightAction: 3
-    onCoverRightActionChanged: {
-        Mitakuuluu.save("settings/coverRightAction", coverRightAction)
-        updateCoverActions()
-    }
-
     function updateCoverActions() {
-        coverIconLeft = getCoverActionIcon(coverLeftAction, true)
-        coverIconRight = getCoverActionIcon(coverRightAction, false)
+        coverIconLeft = getCoverActionIcon(settings.coverLeftAction, true)
+        coverIconRight = getCoverActionIcon(settings.coverRightAction, false)
     }
 
     function getCoverActionIcon(index, left) {
@@ -711,7 +654,7 @@ ApplicationWindow {
         case 0: //quit
             return "../images/icon-cover-quit-" + (left ? "left" : "right") + ".png"
         case 1: //presence
-            if (followPresence)
+            if (settings.followPresence)
                 return "../images/icon-cover-autoavailable-" + (left ? "left" : "right") + ".png"
             else {
                 if (alwaysOffline)
@@ -874,7 +817,7 @@ ApplicationWindow {
                 Mitakuuluu.setActiveJid("")
             }
         }
-        if (followPresence && Mitakuuluu.connectionStatus === Mitakuuluu.LoggedIn) {
+        if (settings.followPresence && Mitakuuluu.connectionStatus === Mitakuuluu.LoggedIn) {
             console.log("follow presence")
             if (applicationActive) {
                 Mitakuuluu.setPresenceAvailable()
@@ -1000,59 +943,24 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        sendByEnter = Mitakuuluu.load("settings/sendByEnter", false)
-        showTimestamp = Mitakuuluu.load("settings/showTimestamp", true)
-        fontSize = Mitakuuluu.load("settings/fontSize", 32)
-        followPresence = Mitakuuluu.load("settings/followPresence", false)
-        showSeconds = Mitakuuluu.load("settings/showSeconds", true)
-        showMyJid = Mitakuuluu.load("settings/showMyJid", false)
-        showKeyboard = Mitakuuluu.load("settings/showKeyboard", false)
-        acceptUnknown = Mitakuuluu.load("settings/acceptUnknown", true)
-        notifyActive = Mitakuuluu.load("settings/notifyActive", true)
-        resizeImages = Mitakuuluu.load("settings/resizeImages", false);
-        resizeBySize = Mitakuuluu.load("settings/resizeBySize", true)
-        resizeImagesTo = Mitakuuluu.load("settings/resizeImagesTo", parseInt(1048546))
-        resizeImagesToMPix = Mitakuuluu.load("settings/resizeImagesToMPix", parseFloat(5.01))
-        conversationTheme = Mitakuuluu.load("settings/conversationTheme", "/usr/share/harbour-mitakuuluu2/qml/ModernDelegate.qml")
-        alwaysOffline = Mitakuuluu.load("settings/alwaysOffline", false)
-        deleteMediaFiles = Mitakuuluu.load("settings/deleteMediaFiles", false)
-        importToGallery = Mitakuuluu.load("settings/importmediatogallery", true)
-        showConnectionNotifications = Mitakuuluu.load("settings/showConnectionNotifications", false)
-        lockPortrait = Mitakuuluu.load("settings/lockPortrait", false)
-        lockPortraitPages = Mitakuuluu.load("settings/lockPortraitPages", false)
-        allowLandscapeInverted = Mitakuuluu.load("settings/allowLandscapeInverted", false)
-        connectionServer = Mitakuuluu.load("connection/server", "c3.whatsapp.net")
-        threading = Mitakuuluu.load("connection/threading", true)
-        hideKeyboard = Mitakuuluu.load("settings/hideKeyboard", false)
-        notifyMessages = Mitakuuluu.load("settings/notifyMessages", false)
-        keepLogs = Mitakuuluu.load("settings/keepLogs", true)
-        mapSource = Mitakuuluu.load("settings/mapSource", "here")
-        notificationsMuted = Mitakuuluu.load("settings/notificationsMuted", false)
-        coverLeftAction = Mitakuuluu.load("settings/coverLeftAction", 4)
-        coverRightAction = Mitakuuluu.load("settings/coverRightAction", 3)
-        automaticDownload = Mitakuuluu.load("settings/autodownload", false)
-        automaticDownloadBytes = Mitakuuluu.load("settings/automaticdownload", 524288)
-        sentLeft = Mitakuuluu.load("settings/sentLeft", false)
-        autoDownloadWlan = Mitakuuluu.load("settings/autoDownloadWlan", false)
-        resizeWlan = Mitakuuluu.load("settings/resizeWlan", false)
-        systemNotifier = Mitakuuluu.load("settings/systemNotifier", false)
-        useKeepalive = Mitakuuluu.load("settings/useKeepalive", true)
-        reconnectionInterval = Mitakuuluu.load("settings/reconnectionInterval", 1)
-        reconnectionLimit = Mitakuuluu.load("settings/reconnectionLimit", 20)
-        usePhonebookAvatars = Mitakuuluu.load("settings/usePhonebookAvatars", false)
-        notificationsDelay = Mitakuuluu.load("settings/notificationsDelay", 5)
-
-        var hiddenContacts = Mitakuuluu.loadGroup("hidden")
+        var hiddenContacts = loadGroup("hidden")
         var toHide = []
         for (var i = 0; i < hiddenContacts.length; i++) {
             var val = hiddenContacts[i].value == "true"
             if (val)
-                toHide.splice(0, 0, hiddenContacts[i].jid)
+                toHide.splice(0, 0, hiddenContacts[i].key)
         }
         hiddenList = toHide
         hidden = true
 
         updateCoverActions()
+    }
+
+    function loadGroup(groupName) {
+        return dconfObject.listValues("/apps/harbour-mitakuuluu2/" + groupName)
+    }
+    DConfValue {
+        id: dconfObject
     }
 
     Popup {

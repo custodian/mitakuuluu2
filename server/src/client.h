@@ -92,6 +92,8 @@
 
 #include "keepalive/backgroundactivity.h"
 
+#include "mdconfagent.h"
+
 #include "../threadworker/queryexecutor.h"
 
 typedef QList<QVariantMap> QVariantMapList;
@@ -231,12 +233,6 @@ public:
     // Import media into gallery
     static bool importMediaToGallery;
 
-    // Sync frequency (see SyncFrequencies enum above)
-    static int syncFreq;
-
-    // Last time address book synchronizarion was performed
-    static qint64 lastSync;
-
     // Protocol constants
     static QString wauseragent;
     static QString waresource;
@@ -250,11 +246,9 @@ public:
 
     static bool whatsappevil;
 
-    static bool acceptUnknown;
+    static MDConfAgent *dconf;
 
-    //static bool softbankReplacer;
-
-    static QNetworkAccessManager* nam;
+    QNetworkAccessManager* nam;
 
     /** ***********************************************************************
      ** Constructors and destructors
@@ -552,6 +546,15 @@ private:
      ** Settings
      **/
 
+    // Sync frequency (see SyncFrequencies enum above)
+    int syncFreq;
+
+    // Last time address book synchronizarion was performed
+    qint64 lastSync;
+
+    bool acceptUnknown;
+
+    //static bool softbankReplacer;
     bool alwaysOffline;
     bool resizeImages;
     bool resizeWlan;

@@ -14,6 +14,8 @@
 #include <QFileInfo>
 #include <QFileInfoList>
 
+#include <mlite5/MGConfItem>
+
 #include "profile_dbus.h"
 
 #include "../qexifimageheader/qexifimageheader.h"
@@ -389,8 +391,6 @@ public slots:
 //Settings
 
 public slots:
-    Q_INVOKABLE void save(const QString &key, const QVariant &value);
-    Q_INVOKABLE QVariant load(const QString &key, const QVariant &defaultValue = QVariant());
     Q_INVOKABLE QVariantList loadGroup(const QString &name);
     Q_INVOKABLE void clearGroup(const QString &name);
     Q_INVOKABLE QString generateSalt();

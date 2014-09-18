@@ -16,7 +16,7 @@ Page {
         pushname = model.nickname || model.name
         presence = model.message
         timestamp = model.subtimestamp
-        picture = usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+        picture = settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                 ? (model.avatar == "undefined" ? "" : (model.avatar))
                 : (model.owner == "undefined" ? "" : (model.owner))
         blocked = model.blocked
@@ -48,7 +48,7 @@ Page {
     Connections {
         target: Mitakuuluu
         onPictureUpdated: {
-            if (pjid == page.jid && !usePhonebookAvatars) {
+            if (pjid == page.jid && !settings.usePhonebookAvatars) {
                 picture = ""
                 picture = path
             }
@@ -77,6 +77,12 @@ Page {
         return Qt.formatDateTime(d, "dd MMM yyyy")
     }
 
+    DConfValue {
+        id: wallpaperConfig
+        key: "/apps/harbour-mitakuuluu2/wallpaper/" + page.jid
+        defaultValue: "unset"
+    }
+
     SilicaFlickable {
         id: flick
         anchors.fill: parent
@@ -103,7 +109,7 @@ Page {
             MenuItem {
                 text: qsTr("Clear background")
                 onClicked: {
-                    Mitakuuluu.save("wallpaper/" + page.jid, "unset")
+                    wallpaperConfig.value = "unset"
                     Theme.clearBackgroundImage()
                 }
             }
@@ -316,7 +322,7 @@ Page {
             onAvatarSourceChanged: {
                 console.log("background from: " + avatarSource)
                 var wallpaper = Mitakuuluu.saveWallpaper(avatarSource, page.jid)
-                Mitakuuluu.save("wallpaper/" + page.jid, wallpaper)
+                wallpaperConfig.value = wallpaper
                 Theme.setBackgroundImage(Qt.resolvedUrl(wallpaper), Screen.width, Screen.height)
                 avatarPicker.destroy()
             }

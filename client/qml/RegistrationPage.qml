@@ -16,6 +16,12 @@ Page {
         Mitakuuluu.checkAndroid()
     }
 
+    onStatusChanged: {
+        if (page.status == PageStatus.Inactive && remorse.visible) {
+            remorse.cancel()
+        }
+    }
+
     Connections {
         target: Mitakuuluu
         onAndroidReady: {

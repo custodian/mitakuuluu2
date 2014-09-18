@@ -3,14 +3,14 @@
 #include <QGuiApplication>
 #include <QStringList>
 #include <QLocale>
-#include <QSettings>
 #include <QDebug>
+#include <mlite5/MGConfItem>
 
 Translator::Translator(QObject *parent) :
     QObject(parent)
 {
-    QSettings settings("coderus", "mitakuuluu2");
-    QString currentLocale = settings.value("settings/locale", QString("%1.qm").arg(QLocale::system().name().split(".").first())).toString();
+    MGConfItem dconf("/apps/harbour-mitakuuluu2/settings/locale");
+    QString currentLocale = dconf.value(QString("%1.qm").arg(QLocale::system().name().split(".").first())).toString();
 
     translator = new QTranslator(this);
     qDebug() << "loading translation" << currentLocale;

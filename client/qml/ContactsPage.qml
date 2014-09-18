@@ -23,12 +23,12 @@ Page {
             fastScroll.init()
             listView.recheckMuting()
 
-            var firstStartContacts = Mitakuuluu.load("settings/firstStartContacts", true)
+            var firstStartContacts = settings.firstStartContacts
             if (firstStartContacts) {
                 horizontalHint.stop()
                 horizontalHint.direction = TouchInteraction.Right
                 horizontalHint.start()
-                Mitakuuluu.save("settings/firstStartContacts", false)
+                settings.firstStartContacts = false
             }
             horizontalHint.visible = firstStartContacts
             hintLabel.visible = firstStartContacts
@@ -178,6 +178,15 @@ Page {
         visible: false
     }
 
+    function getMuting(jid, def) {
+        mutingConfig.key = "/apps/harbour-mitakuuluu2/muting/" + jid
+        mutingConfig.defaultValue = def
+        return mutingConfig.value
+    }
+    DConfValue {
+        id: mutingConfig
+    }
+
     Component {
         id: listDelegate
         ListItem {
@@ -225,7 +234,7 @@ Page {
 
             function checkMuting() {
                 var timeNow = new Date().getTime()
-                var mutingInterval = Mitakuuluu.load("muting/" + model.jid, timeNow)
+                var mutingInterval = getMuting(model.jid, timeNow)
                 if (parseInt(mutingInterval) > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
@@ -273,7 +282,7 @@ Page {
 
             AvatarHolder {
                 id: ava
-                source: usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+                source: settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                         ? (model.avatar == "undefined" ? "" : (model.avatar))
                         : (model.owner == "undefined" ? "" : (model.owner))
                 emptySource: "../images/avatar-empty" + (model.jid.indexOf("-") > 0 ? "-group" : "") + ".png"
@@ -450,9 +459,9 @@ Page {
         id: contactsModel
         contactsModel: ContactsBaseModel
         showActive: false
-        showUnknown: acceptUnknown
+        showUnknown: settings.acceptUnknown
         hideGroups: true
-        filterContacts: showMyJid ? (hidden ? hiddenList : []) : (hidden ? hiddenList.splice(0, 0, Mitakuuluu.MyJid) : [Mitakuuluu.MyJid])
+        filterContacts: settings.showMyJid ? (hidden ? hiddenList : []) : (hidden ? hiddenList.splice(0, 0, Mitakuuluu.MyJid) : [Mitakuuluu.MyJid])
         onContactsModelChanged: {
             fastScroll.init()
         }

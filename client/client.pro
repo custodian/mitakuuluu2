@@ -4,7 +4,9 @@ target.path = /usr/bin
 QT += sql dbus core multimedia sensors
 CONFIG += sailfishapp link_pkgconfig
 #CONFIG += qml_debug
-PKGCONFIG += sailfishapp gstreamer-0.10 Qt5Sensors
+PKGCONFIG += sailfishapp gstreamer-0.10 Qt5Sensors mlite5 dconf
+
+INCLUDEPATH += /usr/include/mlite5
 
 images.files = images/
 images.path = /usr/share/harbour-mitakuuluu2
@@ -39,7 +41,10 @@ SOURCES += \
     src/contactsfiltermodel.cpp \
     src/contactsbasemodel.cpp \
     src/main.cpp \
-    src/conversationfiltermodel.cpp
+    src/conversationfiltermodel.cpp \
+    ../dconf/dconfvalue.cpp \
+    ../dconf/mdconf.cpp \
+    ../dconf/mdconfitem.cpp
 
 HEADERS += \
     ../threadworker/threadworker.h \
@@ -53,4 +58,10 @@ HEADERS += \
     ../logging/logging.h \
     src/contactsfiltermodel.h \
     src/contactsbasemodel.h \
-    src/conversationfiltermodel.h
+    src/conversationfiltermodel.h \
+    ../dconf/dconfvalue.h \
+    ../dconf/mdconf_p.h \
+    ../dconf/mdconfitem.h
+
+OTHER_FILES += \
+    qml/MediaPreview.qml

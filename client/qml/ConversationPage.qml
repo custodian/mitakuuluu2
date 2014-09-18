@@ -31,21 +31,27 @@ Page {
                     pageStack.pushAttached(Qt.resolvedUrl("UserProfile.qml"), {"conversationModel": conversationModel, "jid": jid})
                 }
             }
-            var wallpaper = Mitakuuluu.load("wallpaper/" + page.jid, "unset")
+            var wallpaper = wallpaperConfig.value
             if (wallpaper !== "unset") {
                 Theme.setBackgroundImage(Qt.resolvedUrl(wallpaper), Screen.width, Screen.height)
             }
 
-            var firstStartConversation = Mitakuuluu.load("settings/firstStartConversation", true)
+            var firstStartConversation = settings.firstStartConversation
             if (firstStartConversation) {
                 horizontalHint.stop()
                 horizontalHint.direction = TouchInteraction.Left
                 horizontalHint.start()
-                Mitakuuluu.save("settings/firstStartConversation", false)
+                settings.firstStartConversation = false
             }
             horizontalHint.visible = firstStartConversation
             hintLabel.visible = firstStartConversation
         }
+    }
+
+    DConfValue {
+        id: wallpaperConfig
+        key: "/apps/harbour-mitakuuluu2/wallpaper/" + page.jid
+        defaultValue: "unset"
     }
 
     property variant initialModel
@@ -63,19 +69,19 @@ Page {
             //console.log("muted: " + initialModel.muted)
             //muted = initialModel.muted
             //console.log("avatar: " + initialModel.avatar)
-            avatar = usePhonebookAvatars || (jid.indexOf("-") > 0)
+            avatar = settings.usePhonebookAvatars || (jid.indexOf("-") > 0)
                     ? (initialModel.avatar == "undefined" ? "" : (initialModel.avatar))
                     : (initialModel.owner == "undefined" ? "" : (initialModel.owner))
             typing = initialModel.typing
             lastseconds = parseInt(initialModel.timestamp)
 
-            loadText()
             conversationModel.jid = jid
 
             Mitakuuluu.setActiveJid(jid)
             if (!available) {
                 Mitakuuluu.requestLastOnline(jid)
             }
+            loadText()
         }
     }
 
@@ -93,12 +99,16 @@ Page {
     property int lastseconds: 0
     property bool typing: false
 
-    function loadText() {
-        sendBox.text = Mitakuuluu.load("typing/" + jid, "")
-    }
-
     function saveText() {
-        Mitakuuluu.save("typing/" + jid, sendBox.text.trim())
+        typingConfig.value = sendBox.text.trim()
+    }
+    DConfValue {
+        id: typingConfig
+        key: "/apps/harbour-mitakuuluu2/typing/" + page.jid
+        defaultValue: ""
+        onValueChanged: {
+            sendBox.text = typingConfig.value
+        }
     }
 
     function getMediaPreview(model) {
@@ -464,7 +474,7 @@ Page {
                 Loader {
                     width: parent.width
                     asynchronous: false
-                    source: Qt.resolvedUrl(conversationTheme)
+                    source: Qt.resolvedUrl(settings.conversationTheme)
                 }
             }
             MouseArea {
@@ -558,9 +568,9 @@ Page {
             anchors.right: parent.right
             anchors.rightMargin: - Theme.paddingMedium
             placeholderText: qsTr("Tap here to enter message", "Message composing tet area placeholder")
-            focusOutBehavior: hideKeyboard ? FocusBehavior.ClearItemFocus : FocusBehavior.KeepFocus
-            textRightMargin: sendByEnter ? 0 : 64
-            property bool buttonVisible: sendByEnter
+            focusOutBehavior: settings.hideKeyboard ? FocusBehavior.ClearItemFocus : FocusBehavior.KeepFocus
+            textRightMargin: settings.sendByEnter ? 0 : 64
+            property bool buttonVisible: settings.sendByEnter
             maxHeight: page.isPortrait ? 200 : 140
             background: Component {
                 Item {
@@ -582,11 +592,11 @@ Page {
                     }
                 }
             }
-            EnterKey.enabled: sendByEnter ? (Mitakuuluu.connectionStatus == 4 && text.trim().length > 0) : true
+            EnterKey.enabled: settings.sendByEnter ? (Mitakuuluu.connectionStatus == 4 && text.trim().length > 0) : true
             EnterKey.highlighted: text.trim().length > 0
-            EnterKey.iconSource: sendByEnter ? "image://theme/icon-m-message" : "image://theme/icon-m-enter"
+            EnterKey.iconSource: settings.sendByEnter ? "image://theme/icon-m-message" : "image://theme/icon-m-enter"
             EnterKey.onClicked: {
-                if (sendByEnter) {
+                if (settings.sendByEnter) {
                     send()
                 }
             }
@@ -603,7 +613,7 @@ Page {
                 console.log("send: " + sendBox.text.trim())
                 Mitakuuluu.sendText(page.jid, sendBox.text.trim())
                 sendBox.text = ""
-                if (hideKeyboard)
+                if (settings.hideKeyboard)
                     focus = false
                 saveText()
             }

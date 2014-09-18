@@ -36,10 +36,18 @@ Page {
                 truncationMode: TruncationMode.Fade
             }
             onClicked: {
-                Mitakuuluu.save("muting/" + jid, new Date().getTime() + model.value)
+                setMuting(jid, new Date().getTime() + model.value)
                 pageStack.pop()
             }
         }
+    }
+
+    function setMuting(jid, value) {
+        mutingConfig.key = "/apps/harbour-mitakuuluu2/muting/" + jid
+        mutingConfig.value = value
+    }
+    DConfValue {
+        id: mutingConfig
     }
 
     ListModel {

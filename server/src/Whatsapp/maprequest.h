@@ -17,6 +17,7 @@ public:
                         int zoom, int width, int height, const QStringList &jids, QObject *parent = 0);
 
 private:
+    QNetworkAccessManager *nam;
     QNetworkRequest _query;
     QStringList _jids;
     QString _latitude;

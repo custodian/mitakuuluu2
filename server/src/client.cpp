@@ -115,14 +115,7 @@ QString Client::accountstatus;
 // User status
 QString Client::myStatus;
 
-// Import media into gallery
 bool Client::importMediaToGallery;
-
-// Sync frequency
-int Client::syncFreq;
-
-// Last time address book synchronizarion was performed
-qint64 Client::lastSync;
 
 QString Client::wauseragent;
 QString Client::waresource;
@@ -136,9 +129,7 @@ QString Client::wandroidscratch4;
 
 bool Client::whatsappevil;
 
-bool Client::acceptUnknown;
-
-QNetworkAccessManager* Client::nam;
+MDConfAgent *Client::dconf;
 
 /**
     Constructs a Client object.
@@ -176,13 +167,13 @@ Client::Client(QObject *parent) : QObject(parent)
     _totalUnread = 0;
     _pendingCount = 0;
 
+    dconf = new MDConfAgent("/apps/harbour-mitakuuluu2/", this);
+
     readSettings();
 
     connectionNotification = NULL;
 
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.sync();
-    QString localeName = settings.value("settings/locale", QLocale::system().name()).toString();
+    QString localeName = dconf->value("settings/locale", QLocale::system().name()).toString();
     setLocale(localeName);
 
     qDBusRegisterMetaType<QVariantMapList>();
@@ -288,66 +279,62 @@ void Client::doCheckNetworkStatus()
 */
 void Client::readSettings()
 {
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.sync();
+    this->wanokiascratch1 = dconf->value(SETTINGS_SCRATCH1, BUILD_KEY).toString();
+    this->wanokiascratch2 = dconf->value(SETTINGS_SCRATCH2, BUILD_HASH).toString();
+    this->wandroidscratch1 = dconf->value(SETTINGS_SCRATCH3, ANDROID_TT).toString();
 
-    this->wanokiascratch1 = settings.value(SETTINGS_SCRATCH1, BUILD_KEY).toString();
-    this->wanokiascratch2 = settings.value(SETTINGS_SCRATCH2, BUILD_HASH).toString();
-    this->wandroidscratch1 = settings.value(SETTINGS_SCRATCH3, ANDROID_TT).toString();
+    this->whatsappevil = dconf->value(SETTINGS_EVIL, false).toBool();
 
-    this->whatsappevil = settings.value(SETTINGS_EVIL, false).toBool();
-
-    this->waversion = settings.value(SETTINGS_WAVERSION, USER_AGENT_VERSION).toString();
+    this->waversion = dconf->value(SETTINGS_WAVERSION, USER_AGENT_VERSION).toString();
     this->waresource = QString("Android-%1-443").arg(this->waversion);
     this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
     //qDebug() << "UA:" << this->wauseragent;
 
-    this->acceptUnknown = settings.value(SETTINGS_UNKNOWN, true).toBool();
+    this->acceptUnknown = dconf->value(SETTINGS_UNKNOWN, true).toBool();
 
     // Account
-    this->myStatus = settings.value(SETTINGS_PRESENCE, "I'm using Mitakuuluu!").toString();
+    this->myStatus = dconf->value(SETTINGS_PRESENCE, "I'm using Mitakuuluu!").toString();
 
-    this->creation = settings.value(SETTINGS_CREATION).toString();
-    this->kind = settings.value(SETTINGS_KIND).toString();
-    this->expiration = settings.value(SETTINGS_EXPIRATION).toString();
-    this->accountstatus = settings.value(SETTINGS_ACCOUNTSTATUS).toString();
+    this->creation = dconf->value(SETTINGS_CREATION).toString();
+    this->kind = dconf->value(SETTINGS_KIND).toString();
+    this->expiration = dconf->value(SETTINGS_EXPIRATION).toString();
+    this->accountstatus = dconf->value(SETTINGS_ACCOUNTSTATUS).toString();
 
     // Last Synchronization
-    this->lastSync = settings.value(SETTINGS_LAST_SYNC).toLongLong();
+    this->lastSync = dconf->value(SETTINGS_LAST_SYNC).toLongLong();
 
-    alwaysOffline = settings.value("settings/alwaysOffline", false).toBool();
+    alwaysOffline = dconf->value("settings/alwaysOffline", false).toBool();
 
-    this->importMediaToGallery = settings.value("settings/importmediatogallery", true).toBool();
+    importMediaToGallery = dconf->value("settings/importmediatogallery", true).toBool();
 
-    resizeImages = settings.value("settings/resizeImages", false).toBool();
-    resizeWlan = settings.value("settings/resizeWlan").toBool();
-    resizeBySize = settings.value("settings/resizeBySize", true).toBool();
-    resizeImagesTo = settings.value("settings/resizeImagesTo", 1024*1024).toInt();
-    resizeImagesToMPix = settings.value("settings/resizeImagesToMPix", 5.01).toFloat();
+    resizeImages = dconf->value("settings/resizeImages", false).toBool();
+    resizeWlan = dconf->value("settings/resizeWlan").toBool();
+    resizeBySize = dconf->value("settings/resizeBySize", true).toBool();
+    resizeImagesTo = dconf->value("settings/resizeImagesTo", 1024*1024).toInt();
+    resizeImagesToMPix = dconf->value("settings/resizeImagesToMPix", 5.01).toFloat();
 
-    autoDownloadMedia = settings.value(SETTINGS_AUTOMATIC_DOWNLOAD).toBool();
-    autoBytes = settings.value(SETTINGS_AUTOMATIC_DOWNLOAD_BYTES, QVariant(DEFAULT_AUTOMATIC_DOWNLOAD)).toInt();
-    autoDownloadWlan = settings.value("settings/autoDownloadWlan").toBool();
+    autoDownloadMedia = dconf->value(SETTINGS_AUTOMATIC_DOWNLOAD).toBool();
+    autoBytes = dconf->value(SETTINGS_AUTOMATIC_DOWNLOAD_BYTES, QVariant(DEFAULT_AUTOMATIC_DOWNLOAD)).toInt();
+    autoDownloadWlan = dconf->value("settings/autoDownloadWlan").toBool();
 
-    notificationsMuted = settings.value("settings/notificationsMuted", false).toBool();
-    notifyMessages = settings.value("settings/notifyMessages", false).toBool();
-    systemNotifier = settings.value("settings/systemNotifier", false).toBool();
+    notificationsMuted = dconf->value("settings/notificationsMuted", false).toBool();
+    notifyMessages = dconf->value("settings/notifyMessages", false).toBool();
+    systemNotifier = dconf->value("settings/systemNotifier", false).toBool();
 
-    useKeepalive = settings.value("settings/useKeepalive", true).toBool();
-    reconnectionInterval = settings.value("settings/reconnectionInterval", 1).toInt();
-    reconnectionLimit = settings.value("settings/reconnectionLimit", 20).toInt();
-    disconnectStreamError = settings.value("settings/disconnectStreamError", false).toBool();
+    useKeepalive = dconf->value("settings/useKeepalive", true).toBool();
+    reconnectionInterval = dconf->value("settings/reconnectionInterval", 1).toInt();
+    reconnectionLimit = dconf->value("settings/reconnectionLimit", 20).toInt();
+    disconnectStreamError = dconf->value("settings/disconnectStreamError", false).toBool();
 
-    usePhonebookAvatars = settings.value("settings/usePhonebookAvatars", false).toBool();
+    usePhonebookAvatars = dconf->value("settings/usePhonebookAvatars", false).toBool();
 
-    showConnectionNotifications = settings.value("settings/showConnectionNotifications", false).toBool();
-    notificationsDelay = settings.value("settings/notificationsDelay", 5).toInt();
+    showConnectionNotifications = dconf->value("settings/showConnectionNotifications", false).toBool();
+    notificationsDelay = dconf->value("settings/notificationsDelay", 5).toInt();
 
-    settings.beginGroup("muting");
-    foreach (const QString &key, settings.childKeys()) {
-        mutingList[key] = settings.value(key, 0).toULongLong();
+    QVariantMap mutingKeys = dconf->listItems("muting");
+    foreach (const QString &key, mutingKeys.keys()) {
+        mutingList[key] = mutingKeys.value(key, 0).toULongLong();
     }
-    settings.endGroup();
 
     // Read counters
     dataCounters.readCounters();
@@ -357,10 +344,9 @@ void Client::readSettings()
 void Client::saveAccountData()
 {
     qDebug() << "saveAccountData" << phoneNumber << password;
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.setValue(SETTINGS_PHONENUMBER, this->phoneNumber);
-    settings.setValue(SETTINGS_PASSWORD, this->password);
-    settings.setValue(SETTINGS_MYJID, this->myJid);
+    dconf->setValue(SETTINGS_PHONENUMBER, this->phoneNumber);
+    dconf->setValue(SETTINGS_PASSWORD, this->password);
+    dconf->setValue(SETTINGS_MYJID, this->myJid);
 }
 
 QStringList Client::getPhoneInfo(const QString &phone)
@@ -716,12 +702,11 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 {
     Q_EMIT authSuccess(this->userName);
 
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.setValue(SETTINGS_NEXTCHALLENGE, QString::fromUtf8(nextChallenge.toBase64()));
-    settings.setValue(SETTINGS_CREATION, creation);
-    settings.setValue(SETTINGS_EXPIRATION, expiration);
-    settings.setValue(SETTINGS_KIND, kind);
-    settings.setValue(SETTINGS_ACCOUNTSTATUS, status);
+    dconf->setValue(SETTINGS_NEXTCHALLENGE, QString::fromUtf8(nextChallenge.toBase64()));
+    dconf->setValue(SETTINGS_CREATION, creation);
+    dconf->setValue(SETTINGS_EXPIRATION, expiration);
+    dconf->setValue(SETTINGS_KIND, kind);
+    dconf->setValue(SETTINGS_ACCOUNTSTATUS, status);
 
     connectionStatus = LoggedIn;
     Q_EMIT connectionStatusChanged(connectionStatus);
@@ -822,7 +807,7 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
     Q_EMIT connectionSendGetPrivacyList();
     Q_EMIT connectionSendGetPrivacySettings();
 
-    this->userName = settings.value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
+    this->userName = dconf->value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
     changeUserName(this->userName);
 
     getPicture(this->myJid);
@@ -917,14 +902,12 @@ void Client::connectToServer()
 
     // There's a connection available, now connect
 
-    QSettings settings("coderus", "mitakuuluu2", this);
-    QByteArray nextChallenge = QByteArray::fromBase64(settings.value(SETTINGS_NEXTCHALLENGE).toByteArray());
-    settings.remove(SETTINGS_NEXTCHALLENGE);
+    QByteArray nextChallenge = QByteArray::fromBase64(dconf->value(SETTINGS_NEXTCHALLENGE).toByteArray());
+    dconf->unsetValue(SETTINGS_NEXTCHALLENGE);
 
     QByteArray password = QByteArray::fromBase64(this->password.toUtf8());
 
-    settings.sync();
-    QString server = settings.value(SETTINGS_SERVER, SERVER_DOMAIN).toString();
+    QString server = dconf->value(SETTINGS_SERVER, SERVER_DOMAIN).toString();
 
     qDebug() << "creating connection";
 
@@ -1048,11 +1031,6 @@ void Client::synchronizeContacts()
         query["type"] = QueryType::ContactsSyncContacts;
         query["uuid"] = uuid;
         dbExecutor->queueAction(query);
-
-        qint64 now = QDateTime::currentMSecsSinceEpoch();
-        lastSync = now;
-        QSettings settings("coderus", "mitakuuluu2", this);
-        settings.setValue(SETTINGS_LAST_SYNC, lastSync);
     }
 }
 
@@ -1064,12 +1042,11 @@ void Client::contactsAvailable(const QStringList &contacts, const QVariantMap &l
 
     if (contacts.length() > 0) {
         Q_EMIT connectionSendSyncContacts(contacts);
-    }
 
-    qint64 now = QDateTime::currentMSecsSinceEpoch();
-    lastSync = now;
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.setValue(SETTINGS_LAST_SYNC, lastSync);
+        qint64 now = QDateTime::currentMSecsSinceEpoch();
+        lastSync = now;
+        dconf->setValue(SETTINGS_LAST_SYNC, lastSync);
+    }
 }
 
 void Client::checkActivity()
@@ -1246,8 +1223,7 @@ void Client::syncContactsAvailable(const QVariantList &results)
 
             if (jid == myJid) {
                 myStatus = message;
-                QSettings settings("coderus", "mitakuuluu2", this);
-                settings.setValue(SETTINGS_STATUS,myStatus);
+                dconf->setValue(SETTINGS_STATUS,myStatus);
             }
             Q_EMIT contactStatus(jid, message, contact["timestamp"].toInt());
 
@@ -1268,8 +1244,7 @@ void Client::changeStatus(const QString &newStatus)
 {
     if (connectionStatus == LoggedIn) {
         myStatus = newStatus;
-        QSettings settings("coderus", "mitakuuluu2", this);
-        settings.setValue(SETTINGS_PRESENCE, myStatus);
+        dconf->setValue(SETTINGS_PRESENCE, myStatus);
         Q_EMIT connectionSetNewStatus(newStatus);
     }
 }
@@ -1857,11 +1832,9 @@ int Client::currentStatus()
 
 void Client::recheckAccountAndConnect()
 {
-    QSettings settings("coderus", "mitakuuluu2", this);
-    settings.sync();
-    this->phoneNumber = settings.value(SETTINGS_PHONENUMBER, QString()).toString();
-    this->myJid = settings.value(SETTINGS_MYJID, QString("%1@s.whatsapp.net").arg(this->phoneNumber)).toString();
-    this->password = settings.value(SETTINGS_PASSWORD, QString()).toString();
+    this->phoneNumber = dconf->value(SETTINGS_PHONENUMBER, QString()).toString();
+    this->myJid = dconf->value(SETTINGS_MYJID, QString("%1@s.whatsapp.net").arg(this->phoneNumber)).toString();
+    this->password = dconf->value(SETTINGS_PASSWORD, QString()).toString();
 
     if (this->phoneNumber.isEmpty() || this->password.isEmpty())
         connectionStatus = RegistrationFailed;
@@ -2184,8 +2157,7 @@ void Client::userStatusUpdated(const QString &jid, const QString &message, int t
     }
     if (jid == myJid) {
         myStatus = message;
-        QSettings settings("coderus", "mitakuuluu2", this);
-        settings.setValue(SETTINGS_STATUS,myStatus);
+        dconf->setValue(SETTINGS_STATUS,myStatus);
     }
 }
 
@@ -3229,7 +3201,7 @@ void Client::dbResults(const QVariant &result)
             if (jid.contains("-")) {
                 getGroupInfo(jid);
             }
-            else {
+            else if (acceptUnknown) {
                 newContactAdd(pushName, jid);
             }
         }
@@ -3267,6 +3239,10 @@ void Client::dbResults(const QVariant &result)
             if (connectionStatus == LoggedIn)
             {
                 Q_EMIT connectionSendSyncContacts(jids);
+
+                qint64 now = QDateTime::currentMSecsSinceEpoch();
+                lastSync = now;
+                dconf->setValue(SETTINGS_LAST_SYNC, lastSync);
             }
         }
         break;
@@ -3375,8 +3351,7 @@ void Client::waversionRequestFinished()
         this->waresource = QString("Android-%1-443").arg(this->waversion);
         this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
 
-        QSettings settings("coderus", "mitakuuluu2", this);
-        settings.setValue(SETTINGS_WAVERSION, this->waversion);
+        dconf->setValue(SETTINGS_WAVERSION, this->waversion);
     }
 }
 
@@ -3396,11 +3371,10 @@ void Client::scratchRequestFinished()
             this->waversion = mapResult["d"].toString();
             this->waresource = QString("Android-%1-443").arg(this->waversion);
             this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
-            QSettings settings("coderus", "mitakuuluu2", this);
-            settings.setValue(SETTINGS_SCRATCH1, this->wanokiascratch1);
-            settings.setValue(SETTINGS_SCRATCH2, this->wanokiascratch2);
-            settings.setValue(SETTINGS_SCRATCH3, this->wandroidscratch1);
-            settings.setValue(SETTINGS_WAVERSION, this->waversion);
+            dconf->setValue(SETTINGS_SCRATCH1, this->wanokiascratch1);
+            dconf->setValue(SETTINGS_SCRATCH2, this->wanokiascratch2);
+            dconf->setValue(SETTINGS_SCRATCH3, this->wandroidscratch1);
+            dconf->setValue(SETTINGS_WAVERSION, this->waversion);
             qDebug() << this->wandroidscratch1;
             qDebug() << this->wauseragent;
         }

@@ -15,12 +15,12 @@ Page {
             }
             listView.recheckMuting()
 
-            var firstStartChats = Mitakuuluu.load("settings/firstStartChats", true)
+            var firstStartChats = settings.firstStartChats
             if (firstStartChats) {
                 horizontalHint.stop()
                 horizontalHint.direction = TouchInteraction.Left
                 horizontalHint.start()
-                Mitakuuluu.save("settings/firstStartChats", false)
+                settings.firstStartChats = false
             }
             horizontalHint.visible = firstStartChats
             hintLabel.visible = firstStartChats
@@ -150,6 +150,15 @@ Page {
         visible: false
     }
 
+    function getMuting(jid, def) {
+        mutingConfig.key = "/apps/harbour-mitakuuluu2/muting/" + jid
+        mutingConfig.defaultValue = def
+        return mutingConfig.value
+    }
+    DConfValue {
+        id: mutingConfig
+    }
+
     Component {
         id: listDelegate
         ListItem {
@@ -205,7 +214,7 @@ Page {
 
             function checkMuting() {
                 var timeNow = new Date().getTime()
-                var mutingInterval = Mitakuuluu.load("muting/" + model.jid, timeNow)
+                var mutingInterval = getMuting(model.jid, timeNow)
                 if (parseInt(mutingInterval) > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
@@ -253,7 +262,7 @@ Page {
 
             AvatarHolder {
                 id: ava
-                source: usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+                source: settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                         ? (model.avatar == "undefined" ? "" : (model.avatar))
                         : (model.owner == "undefined" ? "" : (model.owner))
                 emptySource: "../images/avatar-empty" + (model.jid.indexOf("-") > 0 ? "-group" : "") + ".png"

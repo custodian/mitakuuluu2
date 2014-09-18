@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.mitakuuluu2.client 1.0
+import org.nemomobile.configuration 1.0
 
 Dialog {
     id: page
@@ -81,30 +82,44 @@ Dialog {
 
     onStatusChanged: {
         if (status == DialogStatus.Opened) {
-            pushname = Mitakuuluu.load("account/pushname", "WhatsApp user")
+            pushname = accountConfiguration.pushname
             pushnameArea.text = pushname
-            presence = Mitakuuluu.load("account/presence", "I'm using Mitakuuluu!")
+            presence = accountConfiguration.presence
             presenceArea.text = presence
-            creation = Mitakuuluu.load("account/creation", 0)
-            expiration = Mitakuuluu.load("account/expiration", 0)
-            kind = Mitakuuluu.load("account/kind", "free")
-            active = Mitakuuluu.load("account/accountstatus", "active") == "active"
+            creation = accountConfiguration.creation
+            expiration = accountConfiguration.expiration
+            kind = accountConfiguration.kind
+            active = accountConfiguration.accountstatus
         }
     }
 
     onAccepted: {
         page.pushname = pushnameArea.text
-        Mitakuuluu.save("account/pushname", pushnameArea.text.trim())
+        accountConfiguration.pushname = pushnameArea.text.trim();
         Mitakuuluu.setMyPushname(pushnameArea.text)
         ContactsBaseModel.renameContact(Mitakuuluu.myJid, pushnameArea.text.trim())
         pushnameArea.focus = false
         page.forceActiveFocus()
 
         page.presence = presenceArea.text
-        Mitakuuluu.save("account/presence", presenceArea.text.trim())
+        accountConfiguration.presence = presenceArea.text.trim();
         Mitakuuluu.setMyPresence(presenceArea.text)
         presenceArea.focus = false
         page.forceActiveFocus()
+    }
+
+    ConfigurationGroup {
+        id: accountConfiguration
+        path: "/apps/harbour-mitakuuluu2/settings"
+
+        property string pushname: "Mitakuuluu user"
+        property string presence: "I love Mitakuuluu!"
+
+        property int creation: 0
+        property int expiration: 0
+        property string kind: "free"
+
+        property string accountstatus: "active"
     }
 
     function timestampToFullDate(stamp) {
@@ -167,17 +182,8 @@ Dialog {
             anchors.right: parent.right
             text: page.pushname
             errorHighlight: text.length == 0
-            EnterKey.enabled: false//text.trim().length > 0
+            EnterKey.enabled: false
             EnterKey.highlighted: EnterKey.enabled
-            //EnterKey.iconSource: "image://theme/icon-m-enter-next"
-            //EnterKey.text: "save"
-            /*EnterKey.onClicked: {
-                page.pushname = text
-                Mitakuuluu.save("account/pushname", text.trim())
-                Mitakuuluu.setMyPushname(text.trim())
-                pushnameArea.focus = false
-                page.forceActiveFocus()
-            }*/
             onActiveFocusChanged: {
                 if (activeFocus)
                     selectAll()
@@ -200,17 +206,8 @@ Dialog {
             anchors.right: parent.right
             text: page.presence
             errorHighlight: text.length == 0
-            EnterKey.enabled: false//text.trim().length > 0
+            EnterKey.enabled: false
             EnterKey.highlighted: EnterKey.enabled
-            //EnterKey.iconSource: "image://theme/icon-m-enter-next"
-            //EnterKey.text: "save"
-            /*EnterKey.onClicked: {
-                page.presence = text
-                Mitakuuluu.save("account/status", text.trim())
-                Mitakuuluu.setMyPresence(text.trim())
-                presenceArea.focus = false
-                page.forceActiveFocus()
-            }*/
             onActiveFocusChanged: {
                 if (activeFocus)
                     selectAll()

@@ -77,8 +77,16 @@ Mitakuuluu::Mitakuuluu(QObject *parent): QObject(parent)
         _locales =  locales.isEmpty() ? QStringList() << "en.qm" : locales;
         _localesNames = localeNames.isEmpty() ? QStringList() << "Engineering english" : localeNames;
 
-        QSettings settings("coderus", "mitakuuluu2");
-        _currentLocale = settings.value("settings/locale", QString("%1.qm").arg(QLocale::system().name().split(".").first())).toString();
+        MGConfItem ready("/apps/harbour-mitakuuluu2/migrationIsDone");
+        if (!ready.value(false).toBool()) {
+            QSettings settings("coderus", "mitakuuluu2");
+            _currentLocale = settings.value("settings/locale", QString("%1.qm").arg(QLocale::system().name().split(".").first())).toString();
+        }
+        else {
+            MGConfItem locale("/apps/harbour-mitakuuluu2/settings/locale");
+            _currentLocale = locale.value(QString("%1.qm").arg(QLocale::system().name().split(".").first())).toString();
+        }
+
         setLocale(_currentLocale);
 
         qDBusRegisterMetaType<QVariantMapList>();
@@ -1091,8 +1099,8 @@ void Mitakuuluu::setLocale(const QString &localeName)
 void Mitakuuluu::setLocale(int index)
 {
     QString locale = _locales[index];
-    QSettings settings("coderus", "mitakuuluu2");
-    settings.setValue("settings/locale", locale);
+    MGConfItem localeSetting("/apps/harbour-mitakuuluu2/settings/locale");
+    localeSetting.set(locale);
     setLocale(locale);
 }
 
@@ -1454,67 +1462,61 @@ void Mitakuuluu::checkWebVersion()
 
 // Settings
 
-void Mitakuuluu::save(const QString &key, const QVariant &value)
-{
-    QSettings settings("coderus", "mitakuuluu2");
-    settings.setValue(key, value);
-    settings.sync();
-
-    if (iface) {
-        iface->call(QDBus::NoBlock, "settingsChanged");
-    }
-}
-
-QVariant Mitakuuluu::load(const QString &key, const QVariant &defaultValue)
-{
-    QSettings settings("coderus", "mitakuuluu2");
-    QVariant value = settings.value(key, defaultValue);
-    switch (defaultValue.type()) {
-    case QVariant::Bool:
-        return value.toBool();
-    case QVariant::Double:
-        return value.toDouble();
-    case QVariant::Int:
-        return value.toInt();
-    case QVariant::String:
-        return value.toString();
-    case QVariant::StringList:
-        return value.toStringList();
-    case QVariant::List:
-        return value.toList();
-    default:
-        return value;
-    }
-    return QVariant();
-}
-
 QVariantList Mitakuuluu::loadGroup(const QString &name)
 {
-    QSettings settings("coderus", "mitakuuluu2");
-    settings.beginGroup(name);
     QVariantList result;
-    foreach (const QString &key, settings.childKeys()) {
-        QVariantMap item;
-        item["jid"] = key;
-        item["value"] = settings.value(key, 0);
-        result.append(item);
+
+    /*gint length = 0;
+    QByteArray k = QString("/apps/harbour-mitakuuluu2/%1").arg(name).toUtf8();
+    qDebug() << "MDConfItem::listItems" << k;
+
+    gchar **items = dconf_client_list(client, k.data(), &length);
+    GError *error = NULL;
+
+    for (gint x = 0; x < length; x++) {
+      const gchar *item = g_strdup_printf ("%s%s", k.data(), items[x]);
+      if (dconf_is_key(item, &error)) {
+        // We have to mimic how gconf was behaving.
+        // so we need to chop off trailing slashes.
+        // dconf will also barf if it gets a "path" with 2 slashes.
+        QString k = QString::fromUtf8(item);
+        QVariant val;
+        GVariant *v = dconf_client_read(client, item);
+        if (!v) {
+            qWarning() << "MGConfItem Failed to read";
+        }
+
+        val = convertDConfValue(v);
+        QVariantMap v_item;
+        v_item["jid"] = k;
+        v_item["value"] = val;
+        result.append(v_item);
+        //qDebug() << "have item:" << k;
+
+        if (v)
+            g_variant_unref(v);
+        g_free ((gpointer)item);
+      }
+
+      // If we have error set then dconf_is_key() has returned false so we should be safe here
+      if (error) {
+        qDebug() << "have not an item:" << QString::fromUtf8(item);
+        g_free ((gpointer)item);
+        qWarning() << "MGConfItem::listItems()" << error->message;
+        g_error_free(error);
+        error = NULL;
+      }
     }
-    settings.endGroup();
+
+    g_strfreev(items);*/
+
     return result;
 }
 
 void Mitakuuluu::clearGroup(const QString &name)
 {
-    QSettings settings("coderus", "mitakuuluu2");
-    //settings.beginGroup(name);
-    //settings.remove("");
-    //settings.endGroup();
-    settings.remove(name);
-    settings.sync();
-
-    if (iface) {
-        iface->call(QDBus::NoBlock, "settingsChanged");
-    }
+    QByteArray k = QString("/apps/harbour-mitakuuluu2/%1").arg(name).toUtf8();
+    //dconf_client_write_fast(client, k, 0, 0);
 }
 
 QString Mitakuuluu::generateSalt()

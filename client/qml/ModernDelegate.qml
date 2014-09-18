@@ -289,13 +289,13 @@ MouseArea {
         width: size / 2
         Component.onCompleted: {
             if (model.author === Mitakuuluu.myJid) {
-                if (sentLeft)
+                if (settings.sentLeft)
                     anchors.right = mainBg.left
                 else
                     anchors.left = mainBg.right
             }
             else {
-                if (sentLeft)
+                if (settings.sentLeft)
                     anchors.left = mainBg.right
                 else
                     anchors.right = mainBg.left
@@ -312,13 +312,13 @@ MouseArea {
             y: (arrowBg.size - width) / 2
             Component.onCompleted: {
                 if (model.author === Mitakuuluu.myJid) {
-                    if (sentLeft)
+                    if (settings.sentLeft)
                         x = (arrowBg.size - width) / 2
                     else
                         x = 0 - (arrowBg.size - width) - 1
                 }
                 else {
-                    if (sentLeft)
+                    if (settings.sentLeft)
                         x = 0 - (arrowBg.size - width) - 1
                     else
                         x = (arrowBg.size - width) / 2
@@ -363,13 +363,13 @@ MouseArea {
                 anchors.horizontalCenter = parent.horizontalCenter
             }
             else if (model.author === Mitakuuluu.myJid) {
-                if (sentLeft)
+                if (settings.sentLeft)
                     anchors.left = parent.left
                 else
                     anchors.right = parent.right
             }
             else {
-                if (sentLeft)
+                if (settings.sentLeft)
                     anchors.right = parent.right
                 else
                     anchors.left = parent.left
@@ -454,7 +454,7 @@ MouseArea {
                 color: down ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 elide: Text.ElideRight
                 truncationMode: TruncationMode.Fade
-                font.pixelSize: fontSize - 4
+                font.pixelSize: settings.fontSize - 4
                 visible: isGroup
 
                 onWidthChanged: {
@@ -473,10 +473,10 @@ MouseArea {
                 Label {
                     id: time
                     text: timestampToTime(model.timestamp)
-                    font.pixelSize: fontSize - 4
+                    font.pixelSize: settings.fontSize - 4
                     color: down ? Theme.secondaryHighlightColor : Theme.secondaryColor
                     width: visible ? paintedWidth : 0
-                    visible: showTimestamp
+                    visible: settings.showTimestamp
                 }
 
                 Loader {
@@ -530,7 +530,7 @@ MouseArea {
             text: Utilities.linkify(Utilities.emojify(model.watype == Mitakuuluu.Image || model.watype == Mitakuuluu.Video ? model.name : model.data, emojiPath), Theme.highlightColor)
             textFormat: Text.RichText
             wrapMode: Text.NoWrap
-            font.pixelSize: fontSize
+            font.pixelSize: settings.fontSize
             color: down ? Theme.highlightColor : Theme.primaryColor
             property int fullWidth: 0
             Component.onCompleted: {
@@ -687,7 +687,7 @@ MouseArea {
                 width: paintedWidth + Theme.paddingLarge
                 wrapMode: Text.NoWrap
                 text: model.name
-                font.pixelSize: fontSize
+                font.pixelSize: settings.fontSize
             }
         }
     }

@@ -44,11 +44,11 @@ WARequest::WARequest(QObject *parent, const QString &method) : QObject(parent), 
 {
     urlQuery.clear();
     reply = 0;
+    nam = new QNetworkAccessManager(this);
 }
 
 void WARequest::getRequest()
 {
-    QNetworkAccessManager *nam = Client::nam;
     if (nam) {
         QUrl reqUrl(QUrl(URL_REGISTRATION_V2 + _method));
         reqUrl.setQuery(urlQuery);

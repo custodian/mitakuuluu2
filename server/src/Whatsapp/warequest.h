@@ -61,6 +61,7 @@ protected:
 private:
     QUrlQuery urlQuery;
     QNetworkReply *reply;
+    QNetworkAccessManager *nam;
 };
 
 #endif // WAREQUEST_H

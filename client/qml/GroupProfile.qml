@@ -177,7 +177,7 @@ Page {
             MenuItem {
                 text: qsTr("Clear background")
                 onClicked: {
-                    Mitakuuluu.save("wallpaper/" + page.jid, "unset")
+                    wallpaperConfig.value = "unset"
                     Theme.clearBackgroundImage()
                 }
             }
@@ -456,7 +456,7 @@ Page {
                 id: contactava
                 height: Theme.iconSizeLarge
                 width: Theme.iconSizeLarge
-                source: usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+                source: settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                         ? (model.avatar == "undefined" ? "" : (model.avatar))
                         : (model.owner == "undefined" ? "" : (model.owner))
                 emptySource: "../images/avatar-empty.png"
@@ -559,6 +559,12 @@ Page {
         }
     }
 
+    DConfValue {
+        id: wallpaperConfig
+        key: "/apps/harbour-mitakuuluu2/wallpaper/" + page.jid
+        defaultValue: "unset"
+    }
+
     Component {
         id: backgroundPickerPage
 
@@ -570,7 +576,7 @@ Page {
             onAvatarSourceChanged: {
                 console.log("background from: " + avatarSource)
                 var wallpaper = Mitakuuluu.saveWallpaper(avatarSource, page.jid)
-                Mitakuuluu.save("wallpaper/" + page.jid, wallpaper)
+                wallpaperConfig.value = wallpaper
                 Theme.setBackgroundImage(Qt.resolvedUrl(wallpaper), Screen.width, Screen.height)
 
                 avatarPicker.destroy()

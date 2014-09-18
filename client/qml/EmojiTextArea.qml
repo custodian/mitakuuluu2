@@ -94,7 +94,7 @@ EmojiTextBase {
         }
 
         Keys.onReturnPressed: {
-            if (!sendByEnter)
+            if (!settings.sendByEnter)
                 event.accepted = false
         }
     }

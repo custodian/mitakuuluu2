@@ -8,6 +8,7 @@ MapRequest::MapRequest(const QString &source, const QString &latitude, const QSt
     _latitude(latitude),
     _longitude(longitude)
 {
+    nam = new QNetworkAccessManager(this);
     if (source == "google") {
         QUrlQuery path;
         path.addQueryItem("maptype", "roadmap");
@@ -108,7 +109,9 @@ MapRequest::MapRequest(const QString &source, const QString &latitude, const QSt
 
 void MapRequest::doRequest()
 {
-    connect(Client::nam->get(_query), SIGNAL(finished()), this, SLOT(requestComplete()));
+    if (nam) {
+        QObject::connect(nam->get(_query), SIGNAL(finished()), this, SLOT(requestComplete()));
+    }
 }
 
 void MapRequest::requestComplete()

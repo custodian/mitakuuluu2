@@ -3,7 +3,7 @@ target.path = /usr/bin
 
 QT += dbus sql quick qml multimedia
 CONFIG += Qt5Contacts link_pkgconfig
-PKGCONFIG += Qt5Contacts sailfishapp contactcache-qt5 qtcontacts-sqlite-qt5-extensions keepalive
+PKGCONFIG += Qt5Contacts sailfishapp contactcache-qt5 qtcontacts-sqlite-qt5-extensions keepalive dconf mlite5 gobject-2.0
 LIBS += -lmlite5
 
 INCLUDEPATH += /usr/include/sailfishapp
@@ -50,7 +50,6 @@ dbus.path = /usr/share/dbus-1/services
 INSTALLS = target data notification patterns events profiled icons dbus systemd
 
 SOURCES += src/whatsapp-server.cpp \
-#    src/heartbeat.cpp \
     ../threadworker/threadworker.cpp \
     ../threadworker/queryexecutor.cpp \
     ../qexifimageheader/qexifimageheader.cpp \
@@ -88,10 +87,12 @@ SOURCES += src/whatsapp-server.cpp \
     src/Whatsapp/mediadownload.cpp \
     src/Whatsapp/util/datacounters.cpp \
     src/Whatsapp/maprequest.cpp \
-    src/contactsfetch.cpp
+    src/contactsfetch.cpp \
+    ../dconf/mdconf.cpp \
+    ../dconf/mdconfitem.cpp \
+    ../dconf/mdconfagent.cpp
 
 HEADERS += \
-#    src/heartbeat.h \
     ../threadworker/threadworker.h \
     ../threadworker/queryexecutor.h \
     ../qexifimageheader/qexifimageheader.h \
@@ -132,7 +133,10 @@ HEADERS += \
     src/Whatsapp/util/datacounters.h \
     ../logging/logging.h \
     src/Whatsapp/maprequest.h \
-    src/contactsfetch.h
+    src/contactsfetch.h \
+    ../dconf/mdconf_p.h \
+    ../dconf/mdconfitem.h \
+    ../dconf/mdconfagent.h
 
 OTHER_FILES += $$files(rpm/*) \
     rpm/server.spec \
