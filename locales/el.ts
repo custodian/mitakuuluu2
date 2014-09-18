@@ -217,32 +217,32 @@
         <translation>Ιστορικό</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="120"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="130"/>
         <source>Save to Gallery</source>
         <translation>Αποθήκευση στη Συλλογή</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="124"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="134"/>
         <source>Avatar saved to; %1</source>
         <translation>Αποθήκευση avatar στο; %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="131"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="141"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="138"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="148"/>
         <source>Avatar history is empty</source>
         <translation>Το ιστορικό του avatar είναι άδειο</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="188"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="203"/>
         <source>Deleting avatar file</source>
         <translation>Διαγραφή αρχείου avatar</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="212"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="227"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -296,21 +296,6 @@
     </message>
 </context>
 <context>
-    <name>Capture</name>
-    <message>
-        <location filename="../client/qml/Capture.qml" line="510"/>
-        <source>Send</source>
-        <comment>Capture page send title</comment>
-        <translation>Αποστολή</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/Capture.qml" line="511"/>
-        <source>Camera</source>
-        <comment>Capture page default title</comment>
-        <translation>Φωτογραφική μηχανή</translation>
-    </message>
-</context>
-<context>
     <name>ChatsPage</name>
     <message>
         <location filename="../client/qml/ChatsPage.qml" line="31"/>
@@ -352,309 +337,325 @@
         <translation>Καμία ενέργεια</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="57"/>
+        <location filename="../client/qml/ChatsPage.qml" line="87"/>
         <source>Full quit</source>
         <comment>Main menu action</comment>
         <translation>Πλήρης τερματισμός</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="60"/>
+        <location filename="../client/qml/ChatsPage.qml" line="90"/>
         <source>Quit and shutdown engine</source>
         <comment>Full quit remorse popup</comment>
         <translation>Τερματισμός και κλείσιμο μηχανής</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="77"/>
+        <location filename="../client/qml/ChatsPage.qml" line="107"/>
         <source>Muted contacts</source>
         <comment>Main menu action</comment>
         <translation>Επαφές σε σίγαση</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="85"/>
-        <source>Broadcast</source>
-        <comment>Main menu action</comment>
-        <translation>Μετάδοση</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="92"/>
-        <source>Settings</source>
-        <comment>Main menu item</comment>
-        <translation>Ρυθμίσεις</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="101"/>
-        <source>Chats</source>
-        <comment>Contacts page title</comment>
-        <translation>Συζητήσεις</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="143"/>
-        <source>Flick left to access Contacts page</source>
-        <translation>Μετακινήστε την οθόνη αριστερά για πρόσβαση στην σελίδα επαφών</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="174"/>
-        <source>Leave group %1</source>
-        <comment>Group leave remorse action text</comment>
-        <translation>Αφήστε την ομάδα %1</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="167"/>
-        <source>Delete</source>
-        <comment>Delete contact remorse action text</comment>
-        <translation>Διαγραφή</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="182"/>
-        <source>Delete group %1</source>
-        <comment>Group delete remorse action text</comment>
-        <translation>Διαγραφή ομάδας %1</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="348"/>
-        <source>Typing...</source>
-        <comment>Contact status typing text</comment>
-        <translation>Πληκτρολογώντας...</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="349"/>
-        <source>Group chat</source>
-        <comment>Contacts group page text in status message line</comment>
-        <translation>Ομάδα συζήτησης</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="368"/>
-        <source>Profile</source>
-        <comment>Contact context menu profile item</comment>
-        <translation>Προφίλ</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="385"/>
-        <source>Muting</source>
-        <comment>Contacts context menu muting item</comment>
-        <translation>Σίγαση</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="391"/>
-        <source>Un-hide contact</source>
-        <translation>Εμφάνιση επαφής</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="391"/>
-        <source>Hide contact</source>
-        <translation>Απόκρυψη επαφής</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="398"/>
-        <source>Delete group</source>
-        <comment>Contact context menu delete group item</comment>
-        <translation>Διαγραφή ομάδας</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="408"/>
-        <source>Leave group</source>
-        <comment>Contact context menu leave group item</comment>
-        <translation>Αφήστε την ομάδα</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="409"/>
-        <source>Delete</source>
-        <comment>Contact context menu delete contact item</comment>
-        <translation>Διαγραφή</translation>
-    </message>
-</context>
-<context>
-    <name>Client</name>
-    <message>
-        <location filename="../server/src/client.cpp" line="471"/>
-        <source>Image</source>
-        <comment>Notification media name text</comment>
-        <translation>Εικόνα</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="472"/>
-        <source>Audio</source>
-        <comment>Notification media name text</comment>
-        <translation>Ήχος</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="473"/>
-        <source>Video</source>
-        <comment>Notification media name text</comment>
-        <translation>Εικονοσκόπηση </translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="474"/>
-        <source>Contact</source>
-        <comment>Notification media name text</comment>
-        <translation>Επαφή</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="475"/>
-        <source>Location</source>
-        <comment>Notification media name text</comment>
-        <translation>Τοποθεσία</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="476"/>
-        <source>Voice</source>
-        <comment>Notification media name text</comment>
-        <translation>Φωνή</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="477"/>
-        <source>System</source>
-        <comment>Notification media name text</comment>
-        <translation>Σύστημα</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="784"/>
-        <source>Connected</source>
-        <comment>System connection notification</comment>
-        <translation>Συνδεμένος</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="1144"/>
-        <source>Hidden</source>
-        <comment>User hidden own status for privacy</comment>
-        <translation>Κρυφό</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="1423"/>
-        <source>Joined the group</source>
-        <comment>Notification group event text</comment>
-        <translation>Ένταξη στην ομάδα</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="1426"/>
-        <source>Left the group</source>
-        <comment>Notification group event text</comment>
-        <translation>Αποχώρηση από την ομάδα</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="1429"/>
-        <source>Subject: %1</source>
-        <comment>Notification group event text</comment>
-        <translation>Θέμα: %1</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="1432"/>
-        <source>Picture changed</source>
-        <comment>Notification group event text</comment>
-        <translation>Η εικόνα άλλαξε</translation>
-    </message>
-    <message>
-        <location filename="../server/src/client.cpp" line="985"/>
-        <source>Disconnected</source>
-        <comment>System connection notification</comment>
-        <translation>Αποσυνδεμένο</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../server/src/client.cpp" line="3004"/>
-        <source>%n messages unread</source>
-        <comment>Message notification with unread messages count</comment>
-        <translation><numerusform>%n μήνυμα δεν έχει διαβαστεί</numerusform><numerusform>%n μηνύματα δεν έχουν διαβαστεί</numerusform></translation>
-    </message>
-</context>
-<context>
-    <name>ContactsPage</name>
-    <message>
-        <location filename="../client/qml/ContactsPage.qml" line="54"/>
+        <location filename="../client/qml/ChatsPage.qml" line="115"/>
         <source>Create group</source>
         <comment>Contacts page menu item</comment>
         <translation>Δημιουργία ομάδας</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="61"/>
-        <source>Add contact</source>
-        <comment>Contacts page menu item</comment>
-        <translation>Προσθήκη επαφής</translation>
+        <location filename="../client/qml/ChatsPage.qml" line="123"/>
+        <source>Broadcast</source>
+        <comment>Main menu action</comment>
+        <translation>Μετάδοση</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="68"/>
+        <location filename="../client/qml/ChatsPage.qml" line="130"/>
         <source>Settings</source>
-        <comment>Contacts page menu item</comment>
+        <comment>Main menu item</comment>
         <translation>Ρυθμίσεις</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="77"/>
-        <source>Contacts</source>
+        <location filename="../client/qml/ChatsPage.qml" line="63"/>
+        <source>Chats</source>
         <comment>Contacts page title</comment>
-        <translation>Επαφές</translation>
+        <translation>Συζητήσεις</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="158"/>
-        <source>Search contacts</source>
-        <comment>Contacts page search text</comment>
-        <translation>Αναζήτηση επαφών</translation>
+        <location filename="../client/qml/ChatsPage.qml" line="142"/>
+        <source>Flick left to access Contacts page</source>
+        <translation>Μετακινήστε την οθόνη αριστερά για πρόσβαση στην σελίδα επαφών</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="243"/>
+        <location filename="../client/qml/ChatsPage.qml" line="173"/>
+        <source>Clear chat history</source>
+        <comment>Delete contact remorse action text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="180"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation>Αφήστε την ομάδα %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="236"/>
+        <location filename="../client/qml/ChatsPage.qml" line="422"/>
+        <source>Clear chat history</source>
+        <comment>Contact context menu delete contact item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="166"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="47"/>
-        <source>Blacklist</source>
-        <comment>Contacts page menu item</comment>
-        <translation>Μαύρη λίστα</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ContactsPage.qml" line="201"/>
-        <source>Flick right to return to Chats page</source>
-        <translation>Μετακινήστε την οθόνη προς τα δεξιά για επιστροφή στην σελίδα συνομιλιών</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ContactsPage.qml" line="251"/>
+        <location filename="../client/qml/ChatsPage.qml" line="188"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation>Διαγραφή ομάδας %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="397"/>
-        <source>Group chat</source>
-        <comment>Contacts group page text in status message line</comment>
-        <translation>Oμάδα συζήτησης</translation>
+        <location filename="../client/qml/ChatsPage.qml" line="354"/>
+        <source>Typing...</source>
+        <comment>Contact status typing text</comment>
+        <translation>Πληκτρολογώντας...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="414"/>
+        <location filename="../client/qml/ChatsPage.qml" line="355"/>
+        <source>Group chat</source>
+        <comment>Contacts group page text in status message line</comment>
+        <translation>Ομάδα συζήτησης</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="374"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation>Προφίλ</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="432"/>
-        <source>Refresh</source>
-        <comment>Contact context menu refresh item</comment>
-        <translation>Ανανέωση</translation>
+        <location filename="../client/qml/ChatsPage.qml" line="391"/>
+        <source>Muting</source>
+        <comment>Contacts context menu muting item</comment>
+        <translation>Σίγαση</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="440"/>
-        <source>Rename</source>
-        <comment>Contact context menu profile item</comment>
-        <translation>Μετονομάζω</translation>
+        <location filename="../client/qml/ChatsPage.qml" line="397"/>
+        <source>Un-hide contact</source>
+        <translation>Εμφάνιση επαφής</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="448"/>
+        <location filename="../client/qml/ChatsPage.qml" line="397"/>
+        <source>Hide contact</source>
+        <translation>Απόκρυψη επαφής</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="404"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation>Διαγραφή ομάδας</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="458"/>
+        <location filename="../client/qml/ChatsPage.qml" line="413"/>
+        <source>Leave group</source>
+        <comment>Contact context menu leave group item</comment>
+        <translation>Αφήστε την ομάδα</translation>
+    </message>
+</context>
+<context>
+    <name>Client</name>
+    <message>
+        <location filename="../server/src/client.cpp" line="480"/>
+        <source>Image</source>
+        <comment>Notification media name text</comment>
+        <translation>Εικόνα</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="481"/>
+        <source>Audio</source>
+        <comment>Notification media name text</comment>
+        <translation>Ήχος</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="482"/>
+        <source>Video</source>
+        <comment>Notification media name text</comment>
+        <translation>Εικονοσκόπηση </translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="483"/>
+        <source>Contact</source>
+        <comment>Notification media name text</comment>
+        <translation>Επαφή</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="484"/>
+        <source>Location</source>
+        <comment>Notification media name text</comment>
+        <translation>Τοποθεσία</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="485"/>
+        <source>Voice</source>
+        <comment>Notification media name text</comment>
+        <translation>Φωνή</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="486"/>
+        <source>System</source>
+        <comment>Notification media name text</comment>
+        <translation>Σύστημα</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="811"/>
+        <source>Connected</source>
+        <comment>System connection notification</comment>
+        <translation>Συνδεμένος</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1243"/>
+        <source>Hidden</source>
+        <comment>User hidden own status for privacy</comment>
+        <translation>Κρυφό</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1523"/>
+        <source>Joined the group</source>
+        <comment>Notification group event text</comment>
+        <translation>Ένταξη στην ομάδα</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1526"/>
+        <source>Left the group</source>
+        <comment>Notification group event text</comment>
+        <translation>Αποχώρηση από την ομάδα</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1529"/>
+        <source>Subject: %1</source>
+        <comment>Notification group event text</comment>
+        <translation>Θέμα: %1</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1532"/>
+        <source>Picture changed</source>
+        <comment>Notification group event text</comment>
+        <translation>Η εικόνα άλλαξε</translation>
+    </message>
+    <message>
+        <location filename="../server/src/client.cpp" line="1009"/>
+        <source>Disconnected</source>
+        <comment>System connection notification</comment>
+        <translation>Αποσυνδεμένο</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../server/src/client.cpp" line="3116"/>
+        <source>%n messages unread</source>
+        <comment>Message notification with unread messages count</comment>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+</context>
+<context>
+    <name>ContactsPage</name>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="88"/>
+        <source>Add contact</source>
+        <comment>Contacts page menu item</comment>
+        <translation>Προσθήκη επαφής</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="95"/>
+        <source>Settings</source>
+        <comment>Contacts page menu item</comment>
+        <translation>Ρυθμίσεις</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="121"/>
+        <source>Contacts</source>
+        <comment>Contacts page title</comment>
+        <translation>Επαφές</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="141"/>
+        <source>Search contacts</source>
+        <comment>Contacts page search text</comment>
+        <translation>Αναζήτηση επαφών</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="200"/>
+        <source>Leave group %1</source>
+        <comment>Group leave remorse action text</comment>
+        <translation>Αφήστε την ομάδα %1</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="193"/>
+        <source>Delete</source>
+        <comment>Delete contact remorse action text</comment>
+        <translation>Διαγραφή</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="81"/>
+        <source>Blacklist</source>
+        <comment>Contacts page menu item</comment>
+        <translation>Μαύρη λίστα</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="102"/>
+        <source>Hide search field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="103"/>
+        <source>Show search field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="170"/>
+        <source>Flick right to return to Chats page</source>
+        <translation>Μετακινήστε την οθόνη προς τα δεξιά για επιστροφή στην σελίδα συνομιλιών</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="208"/>
+        <source>Delete group %1</source>
+        <comment>Group delete remorse action text</comment>
+        <translation>Διαγραφή ομάδας %1</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="354"/>
+        <source>Group chat</source>
+        <comment>Contacts group page text in status message line</comment>
+        <translation>Oμάδα συζήτησης</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="371"/>
+        <source>Profile</source>
+        <comment>Contact context menu profile item</comment>
+        <translation>Προφίλ</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="389"/>
+        <source>Refresh</source>
+        <comment>Contact context menu refresh item</comment>
+        <translation>Ανανέωση</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="397"/>
+        <source>Rename</source>
+        <comment>Contact context menu profile item</comment>
+        <translation>Μετονομάζω</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="405"/>
+        <source>Delete group</source>
+        <comment>Contact context menu delete group item</comment>
+        <translation>Διαγραφή ομάδας</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="415"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation>Αφήστε την ομάδα</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="459"/>
+        <location filename="../client/qml/ContactsPage.qml" line="416"/>
         <source>Delete</source>
         <comment>Contact context menu delete contact item</comment>
         <translation>Διαγραφή</translation>
@@ -663,43 +664,31 @@
 <context>
     <name>ConversationPage</name>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="209"/>
-        <source>Clear all messages</source>
-        <comment>Conversation menu item</comment>
-        <translation>Καταργήστε όλα τα μηνύματα</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ConversationPage.qml" line="211"/>
-        <source>Clear all messages</source>
-        <comment>Conversation delete all messages remorse popup</comment>
-        <translation>Καταργήστε όλα τα μηνύματα</translation>
-    </message>
-    <message>
         <location filename="../client/qml/ConversationPage.qml" line="221"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation>Σίγαση</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="227"/>
+        <location filename="../client/qml/ConversationPage.qml" line="235"/>
         <source>Load old conversation</source>
         <comment>Conversation menu item</comment>
         <translation>Φόρτωση παλαιότερης συνομιλίας</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="277"/>
+        <location filename="../client/qml/ConversationPage.qml" line="285"/>
         <source>Enable location in settings!</source>
         <comment>Banner text if GPS disabled in settings</comment>
         <translation>Ενεργοποίηση τοποθεσίας στις ρυθμίσεις</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="309"/>
+        <location filename="../client/qml/ConversationPage.qml" line="317"/>
         <source>Hold button for recording, release to send</source>
         <comment>Conversation voice recorder description label</comment>
         <translation>Κρατήστε το κουμπί για εγγραφή, αφήστε το για αποστολή</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="432"/>
+        <location filename="../client/qml/ConversationPage.qml" line="440"/>
         <source>Typing...</source>
         <comment>Contact typing converstation text</comment>
         <translation>Πληκτρολογώντας...</translation>
@@ -721,36 +710,41 @@
         <translation>Τελευταία σύνδεση: κρυμμένη</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="366"/>
+        <location filename="../client/qml/ConversationPage.qml" line="228"/>
+        <source>Search message</source>
+        <translation>Αναζήτηση μηνύματος</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ConversationPage.qml" line="374"/>
         <source>Release to delete</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Απελευθερώστε να διαγράψτε</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="367"/>
+        <location filename="../client/qml/ConversationPage.qml" line="375"/>
         <source>Release to send</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Απελευθερώστε να στείλετε</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="496"/>
+        <location filename="../client/qml/ConversationPage.qml" line="504"/>
         <source>New message</source>
         <comment>Conversation new message indicator</comment>
         <translation>Νέο μήνυμα</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="552"/>
+        <location filename="../client/qml/ConversationPage.qml" line="560"/>
         <source>Tap here to enter message</source>
         <comment>Message composing tet area placeholder</comment>
         <translation>Πατήστε εδώ για να εισάγετε το μήνυμα</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="657"/>
+        <location filename="../client/qml/ConversationPage.qml" line="665"/>
         <source>Flick left to access Contact details</source>
         <translation>Μετακινήστε την οθόνη προς τα αριστερά για πρόσβαση στις λεπτομέριες της επαφής</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="794"/>
+        <location filename="../client/qml/ConversationPage.qml" line="802"/>
         <source>Waiting for coordinates...</source>
         <comment>Conversation location sending banner text</comment>
         <translation>Περιμένοντας για τις συντεταγμένες...</translation>
@@ -767,7 +761,7 @@
     <message numerus="yes">
         <location filename="../client/qml/CoverPage.qml" line="33"/>
         <source>Unread messages: %n</source>
-        <translation><numerusform>Μη διαβασμένο μήνυμα: %n</numerusform><numerusform>Μη διαβασμένα μηνύματα: %n</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/CoverPage.qml" line="35"/>
@@ -861,13 +855,13 @@
         <translation>Εσείς</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="186"/>
+        <location filename="../client/qml/GroupProfile.qml" line="193"/>
         <source>Save chat history</source>
         <comment>Group profile page menu item</comment>
         <translation>Αποθήκευση ιστορικού συνομιλίας </translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="189"/>
+        <location filename="../client/qml/GroupProfile.qml" line="196"/>
         <source>History saved to Documents</source>
         <comment>Banner notification text</comment>
         <translation>Το ιστορικό αποθηκεύτηκε στα Documents</translation>
@@ -889,60 +883,66 @@
         <translation>Καθαρισμός φόντου</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="196"/>
+        <location filename="../client/qml/GroupProfile.qml" line="186"/>
+        <source>Clear chat history</source>
+        <comment>User profile page menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/GroupProfile.qml" line="203"/>
         <source>Group profile</source>
         <comment>Group profile page title</comment>
         <translation>Προφίλ ομάδας</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="207"/>
+        <location filename="../client/qml/GroupProfile.qml" line="214"/>
         <source>Subject: </source>
         <comment>Group profile subject label</comment>
         <translation>Θέμα:</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="266"/>
+        <location filename="../client/qml/GroupProfile.qml" line="273"/>
         <source>Owner: %1</source>
         <comment>Group profile owner label</comment>
         <translation>Ιδιοκτήτης: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="280"/>
+        <location filename="../client/qml/GroupProfile.qml" line="287"/>
         <source>Creation: %1</source>
         <comment>Group profile creation label</comment>
         <translation>Δημιουργία: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="294"/>
+        <location filename="../client/qml/GroupProfile.qml" line="301"/>
         <source>Subject by: %1</source>
         <comment>Group profile subject owner label</comment>
         <translation>Θέμα από: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="308"/>
+        <location filename="../client/qml/GroupProfile.qml" line="315"/>
         <source>Subject set: %1</source>
         <comment>Group profile subject timestamp label</comment>
         <translation>Θέμα: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="335"/>
+        <location filename="../client/qml/GroupProfile.qml" line="342"/>
         <source>Media</source>
         <translation>Πολυμέσα</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="391"/>
+        <location filename="../client/qml/GroupProfile.qml" line="398"/>
         <source>Max group participants count reached</source>
         <comment>Group profile maximum participants banner</comment>
         <translation>Φτάσατε τον μεγαλύτερο αριθμό συμμετεχόντων στην ομάδα</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="423"/>
+        <location filename="../client/qml/GroupProfile.qml" line="430"/>
         <source>Fetching participants...</source>
         <comment>Group profile loading text</comment>
         <translation>Φέρνοντας τους συμμετέχοντες...</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="601"/>
+        <location filename="../client/qml/GroupProfile.qml" line="608"/>
         <source>Group media</source>
         <translation>Ομάδα πολυμέσων</translation>
     </message>
@@ -984,6 +984,24 @@
     </message>
 </context>
 <context>
+    <name>MediaPreview</name>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="48"/>
+        <source>Send capture</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="48"/>
+        <source>Send media</source>
+        <translation>Αποστολή πολυμέσων</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="61"/>
+        <source>Add a caption</source>
+        <translation>Πρόσθεση λεζάντας</translation>
+    </message>
+</context>
+<context>
     <name>MediaSelector</name>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="34"/>
@@ -1007,7 +1025,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
         <source>Audio selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Επιλεγμένο ηχητικό: %n</numerusform><numerusform>Επιλεγμένα ηχητικά: %n</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
@@ -1019,7 +1037,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
         <source>Video selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Επιλεγμένο βίντεο: %n</numerusform><numerusform>Επιλεγμένα βίντεο: %n</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
@@ -1058,61 +1076,61 @@
 <context>
     <name>Mitakuuluu</name>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="304"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="309"/>
         <source>Unknown</source>
         <comment>Unknown connection status</comment>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="307"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="312"/>
         <source>Waiting for connection</source>
         <comment>Waiting for connection connection status</comment>
         <translation>Αναμονή για σύνδεση</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="310"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="315"/>
         <source>Connecting...</source>
         <comment>Connecting connection status</comment>
         <translation>Συνδέοντας...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="313"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="318"/>
         <source>Authentication...</source>
         <comment>Authentication connection status</comment>
         <translation>Πιστοποίηση...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="316"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="321"/>
         <source>Logged in</source>
         <comment>Logged in connection status</comment>
         <translation>Είσοδος</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="319"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="324"/>
         <source>Login failed!</source>
         <comment>Login failed connection status</comment>
         <translation>Η είσοδος απέτυχε</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="322"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="327"/>
         <source>Disconnected</source>
         <comment>Disconnected connection status</comment>
         <translation>Αποσυνδεμένο</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="325"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="330"/>
         <source>Registering...</source>
         <comment>Registering connection status</comment>
         <translation>Καταχώριση...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="328"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="333"/>
         <source>Registration failed!</source>
         <comment>Registration failed connection status</comment>
         <translation>Η καταχώρηση απέτυχε!</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="331"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="336"/>
         <source>Account expired!</source>
         <comment>Account expired connection status</comment>
         <translation>Ο λογαριασμός έληξε!</translation>
@@ -1121,67 +1139,67 @@
 <context>
     <name>ModernDelegate</name>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="150"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="158"/>
         <source>Remove message</source>
         <comment>Conversation message remorse text</comment>
         <translation>Απομάκρυνση μηνύματος</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="236"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="244"/>
         <source>Media download started...</source>
         <comment>Conversation message download started banner text</comment>
         <translation>Η λήψη μέσων ξεκίνησε ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="241"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="249"/>
         <source>Media download canceled.</source>
         <comment>Conversation message download canceled banner text</comment>
         <translation>Η λήψη μέσων ακυρώθηκε.</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="750"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="758"/>
         <source>Uploading...</source>
         <comment>Uploading voice record text</comment>
         <translation>Μεταφόρτωση...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="810"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="818"/>
         <source>Resend message</source>
         <comment>Conversation message context menu item</comment>
         <translation>Επανάληψη αποστολής μηνύματος</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="819"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="827"/>
         <source>Copy</source>
         <comment>Conversation message context menu item</comment>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="828"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="836"/>
         <source>Forward</source>
         <comment>Conversation message context menu item</comment>
         <translation>Εμπρός</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="837"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="845"/>
         <source>Save to Gallery</source>
         <comment>Conversation message context menu item</comment>
         <translation>Αποθήκευση στην Gallery</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="840"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="848"/>
         <source>Media saved as %1</source>
         <comment>Banner text message</comment>
         <translation>Αποθήκευση πολυμέσου ως %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="846"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="854"/>
         <source>Delete</source>
         <comment>Conversation message context menu item</comment>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="866"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="874"/>
         <source>Message copied to clipboard</source>
         <comment>Banner item text</comment>
         <translation>Το μήνυμα αντιγράφηκε στο πρόχειρο </translation>
@@ -1316,7 +1334,7 @@
     <message>
         <location filename="../client/qml/NewVersion.qml" line="52"/>
         <source>Size: %1</source>
-        <translation type="unfinished"/>
+        <translation>Μέγεθος: %1</translation>
     </message>
     <message>
         <location filename="../client/qml/NewVersion.qml" line="62"/>
@@ -1491,12 +1509,12 @@
 <context>
     <name>RegistrationPage</name>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="20"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="22"/>
         <source>Importing Android account</source>
         <translation>Εισαγωγή λογαριασμού Android</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="29"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="31"/>
         <source>Registration failed
 
 </source>
@@ -1506,7 +1524,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="34"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="37"/>
         <source>Account expired
 
 </source>
@@ -1516,7 +1534,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="39"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="42"/>
         <source>Code request failed
 
 </source>
@@ -1526,48 +1544,53 @@
 </translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="43"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="47"/>
         <source>Activation code requested. Wait for %1 soon</source>
         <comment>Activation code requested text</comment>
         <translation>Έχει ζητηθεί κωδικός ενεργοποίησης. Περιμένετε για %1 σύντομα</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="45"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="49"/>
         <source>sms message</source>
         <comment>Activation code requested text information</comment>
         <translation>μήνυμα sms</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="46"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="50"/>
         <source>voice call</source>
         <comment>Activation code requested text information</comment>
         <translation>φωνητική κλήση</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="52"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="56"/>
         <source>Successfully registered!</source>
         <comment>Registered successfully banner</comment>
         <translation>Επιτυχή εγγραφή!</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="59"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="63"/>
         <source>Cannot detect your country code. You should use international number format for registration.</source>
         <comment>Red wrong number entered screen text</comment>
         <translation>Δεν μπορεί να εντοπιστεί ο κωδικός της χώρας σας. Θα πρέπει να χρησιμοποιείτε τη διεθνή μορφή αριθμού καταχώρισης.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="70"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="74"/>
+        <source>Send logfile to author</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/RegistrationPage.qml" line="82"/>
         <source>I have code</source>
         <translation>Έχω κώδικα</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="88"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="100"/>
         <source>Registration</source>
         <comment>Registration page title</comment>
         <translation>Εγγραφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="94"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="106"/>
         <source>Welcome to Mitakuuluu v%1!
 
 Native WhatsApp-compatible clent for Sailfish OS.
@@ -1579,181 +1602,181 @@ WhatsApp-συμβατή εφαρμογή για Sailfish OS.
 Πριν από τη μετάβαση στο Mitakuuluu από επίσημη εφαρμογή παρακαλούμε χρησιμοποιήστε &lt;Remove account&gt; στην τρέχουσα εφαρμογή σας, ή να κάνετε το μέσα από το Mitakuuluu μετά την εγγραφή.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="100"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="112"/>
         <source>Country</source>
         <comment>Registration country selector label</comment>
         <translation>Χώρα</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="116"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="128"/>
         <source>In international format</source>
         <comment>Registration phone number text field label</comment>
         <translation>Σε διεθνή μορφή</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="142"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="154"/>
         <source>Profile nickname</source>
         <comment>Registration nickname text field label</comment>
         <translation>Παρατσούκλι προφίλ</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="143"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="155"/>
         <source>Enter your nickname</source>
         <comment>Registration nickname text field placeholder</comment>
         <translation>Εισαγωγή παρατσούκλι</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="154"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="167"/>
         <source>Protect your registration</source>
         <comment>Registration password field label</comment>
         <translation>Προστασία της εγγραφής σας</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="155"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="168"/>
         <source>Random password</source>
         <comment>Registration password field placeolder</comment>
         <translation>Τυχαίος κωδικός</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="170"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="184"/>
         <source>Voice</source>
         <comment>Voice registration button text</comment>
         <translation>Φωνή</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="179"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="193"/>
         <source>Sms</source>
         <comment>Sms registration button text</comment>
         <translation>Sms</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="196"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="210"/>
         <source>Sms code</source>
         <comment>Registration registration code label</comment>
         <translation>Κώδικας sms</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="200"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="214"/>
         <source>Registering account...</source>
         <comment>Registering account text</comment>
         <translation>Εγγραφή λογαριασμού...</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="301"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="315"/>
         <source>Checking account...</source>
         <comment>Registration checking account text</comment>
         <translation>Έλεγχος λογαριασμού...</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="304"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="318"/>
         <source>You should select country first!</source>
         <comment>Registration banner text</comment>
         <translation>Επιλέξετε την χώρα πρώτα!</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="322"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="336"/>
         <source>Code successfully requested.</source>
         <comment>Registration information constructor</comment>
         <translation>Επιτυχής ζήτηση κωδικού</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="328"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="342"/>
         <source>phone number</source>
         <comment>Registration information constructor</comment>
         <translation>αριθμός τηλεφώνου</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="330"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="344"/>
         <source>secure token</source>
         <comment>Registration information constructor</comment>
         <translation>ασφαλές διακριτικό</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="333"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="347"/>
         <source>Too frequent attempts to request the code.</source>
         <comment>Registration information constructor</comment>
         <translation>Πάρα πολύ συχνές προσπάθειες να ζήτησης κωδικού.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="335"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="349"/>
         <source>Too many wrong code guesses.</source>
         <comment>Registration information constructor</comment>
         <translation>Πάρα πολλές λανθασμένες εικασίες κωδικού.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="337"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="351"/>
         <source>Too many attempts. Try again tomorrow.</source>
         <comment>Registration information constructor</comment>
         <translation>Πάρα πολλές προσπάθειες. Δοκιμάστε ξανά αύριο.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="339"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="353"/>
         <source>Protocol version outdated, sorry. Please contact me at coderusinbox@gmail.com or via twitter: @icoderus</source>
         <comment>Registration information constructor</comment>
         <translation>Συγνώμη, η έκδοση πρωτοκόλλου είναι ξεπερασμένη. Παρακαλώ επικοινωνήστε μαζί μου στο coderusinbox@gmail.com ή μέσω twitter: @icoderus</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="341"/>
-        <location filename="../client/qml/RegistrationPage.qml" line="344"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="358"/>
         <source>Registration code expired. You need to request a new one.</source>
         <comment>Registration information constructor</comment>
         <translation>Ο κωδικός εγγραφής έχει λήξη. Θα πρέπει να ζητήσετε ένα νέο.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="346"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="360"/>
         <source>Missing request param: %1</source>
         <comment>Registration information constructor</comment>
         <translation>Λείπει το αίτημα παραμέτρων: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="349"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="363"/>
         <source>Invalid registration code entered. Please try again.</source>
         <comment>Registration information constructor</comment>
         <translation>Εισαγωγή άκυρου κωδικού εγγραφής. Παρακαλώ δοκιμάστε ξανά.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="352"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="366"/>
         <source>Bad parameters passed to code request: %1</source>
         <comment>Registration information constructor</comment>
         <translation>Λανθασμένοι παράμετροι πέρασαν στο αίτημα κωδικού: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="369"/>
         <source>No cell routes for %1 caused by your operator. Please try other method [sms/voice]</source>
         <comment>Registration information constructor</comment>
         <translation>Δεν υπάρχουν δρομολογήσεις για 1% που προκαλούνται από το χειριστή σας. Παρακαλώ δοκιμάστε άλλη μέθοδο [sms / φωνή]</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="357"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="371"/>
         <source>making call</source>
         <comment>Registration information constructor</comment>
         <translation>πραγματοποίηση κλήσης</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="358"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="372"/>
         <source>sending sms</source>
         <comment>Registration information constructor</comment>
         <translation>αποστέλλοντας sms</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="359"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="373"/>
         <source>Reason: %1</source>
         <translation>Ο λόγος: %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="367"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="381"/>
         <source>%n hours</source>
         <comment>Registration information constructor</comment>
-        <translation><numerusform>%n ώρα</numerusform><numerusform>%n ώρες</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="370"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="384"/>
         <source>%n minutes</source>
         <comment>Registration information constructor</comment>
-        <translation><numerusform>%n λεπτό</numerusform><numerusform>%n λεπτά</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="372"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="386"/>
         <source>You can retry requesting code after %1</source>
         <comment>Registration information constructor</comment>
         <translation>Ξαναπροσπαθήστε ζητώντας κωδικό μετά %1</translation>
@@ -1805,7 +1828,12 @@ Click Renew to purchase one year of WhatsApp service.</source>
     <message>
         <location filename="../client/qml/SearchConversation.qml" line="21"/>
         <source>Search message</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση μηνύματος</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/SearchConversation.qml" line="28"/>
+        <source>message text</source>
+        <translation>Κείμενο μηνύματος </translation>
     </message>
 </context>
 <context>
@@ -1826,7 +1854,7 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/SelectContact.qml" line="70"/>
         <source>Selected %n contacts</source>
         <comment>Select contact page title</comment>
-        <translation><numerusform>Επιλογή %n επαφής</numerusform><numerusform>Επιλογή %n επαφών</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/SelectContact.qml" line="77"/>
@@ -1844,49 +1872,59 @@ Click Renew to purchase one year of WhatsApp service.</source>
 <context>
     <name>SelectPhonebook</name>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="58"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="65"/>
         <source>You should select contacts!</source>
         <comment>Select phonebook page cant accept feedback</comment>
         <translation>Θα πρέπει να επιλέξτε επαφές!</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="73"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="103"/>
         <source>Sync all phonebook</source>
         <comment>Add contacts page menu item</comment>
         <translation>Συγχρονίστε όλο τον τηλεφωνικό κατάλογο</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="81"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="111"/>
         <source>Add number</source>
         <comment>Add contacts page menu item</comment>
         <translation>Προσθήκη αριθμού</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="115"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="119"/>
+        <source>Hide search field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/SelectPhonebook.qml" line="120"/>
+        <source>Show search field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/SelectPhonebook.qml" line="170"/>
         <source>Sync contact</source>
         <comment>Add contacts page title</comment>
         <translation>Συγχρονισμός επαφής </translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/SelectPhonebook.qml" line="116"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="171"/>
         <source>Sync %n contacts</source>
         <comment>Add contacts page title</comment>
-        <translation><numerusform>Συγχρονισμός %n επαφής</numerusform><numerusform>Συγχρονισμός %n επαφών</numerusform></translation>
+        <translation><numerusform>Συγχρονισμός %n επαφών</numerusform><numerusform>Συγχρονισμός %n επαφών</numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="117"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="172"/>
         <source>Select contacts</source>
         <comment>Add contacts page title</comment>
         <translation>Επιλογή επαφών</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="161"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="192"/>
         <source>Search contacts</source>
-        <comment>Add contacts page search text</comment>
+        <comment>Contacts page search text</comment>
         <translation>Αναζήτηση επαφών</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="260"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="307"/>
         <source>Unnamed contact</source>
         <translation>Ανώνυμος επαφή </translation>
     </message>
@@ -2050,7 +2088,7 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/Settings.qml" line="241"/>
         <source>Lock other pages orientation in portrait</source>
         <comment>Settings option name</comment>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα άλλων σελίδων σε προσανατολισμό πορτραίτου</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="247"/>
@@ -2117,20 +2155,32 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <comment>Settings option name</comment>
         <translation>Χρησιμοποιήστε την κοινοποίηση συνομιλιών του συστήματος</translation>
     </message>
+    <message>
+        <location filename="../client/qml/Settings.qml" line="480"/>
+        <source>Notifications delay</source>
+        <comment>Settings option name</comment>
+        <translation type="unfinished"/>
+    </message>
     <message numerus="yes">
-        <location filename="../client/qml/Settings.qml" line="552"/>
+        <location filename="../client/qml/Settings.qml" line="482"/>
+        <source>%n seconds</source>
+        <comment>Settings option value label</comment>
+        <translation><numerusform>%n δευτερόλεπτο</numerusform><numerusform>%n δευτερόλεπτα</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../client/qml/Settings.qml" line="564"/>
         <source>%n minutes</source>
         <comment>Settings option value label</comment>
-        <translation><numerusform>%n λεπτό</numerusform><numerusform>%n λεπτά</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="592"/>
+        <location filename="../client/qml/Settings.qml" line="604"/>
         <source>Download media to Gallery</source>
         <comment>Settings option name</comment>
         <translation>Λήψη μέσων στην Έκθεση</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="593"/>
+        <location filename="../client/qml/Settings.qml" line="605"/>
         <source>If checked downloaded files will be shown in Gallery</source>
         <comment>Settings option description</comment>
         <translation>Αν είναι επιλεγμένο αρχεία που λαμβάνονται θα εμφανίζονται στην Έκθεση</translation>
@@ -2160,85 +2210,85 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Ειδοποιήσεις</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="477"/>
+        <location filename="../client/qml/Settings.qml" line="489"/>
         <source>Common</source>
         <comment>Settings page section name</comment>
         <translation>Κοινά</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="542"/>
+        <location filename="../client/qml/Settings.qml" line="554"/>
         <source>Use connection keepalive (*)</source>
         <comment>Settings option name</comment>
         <translation>%n επανασυνδέσεις</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="550"/>
+        <location filename="../client/qml/Settings.qml" line="562"/>
         <source>Reconnection interval (*)</source>
         <comment>Settings option name</comment>
         <translation>Διάστημα επανασύνδεσης (*)</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="562"/>
+        <location filename="../client/qml/Settings.qml" line="574"/>
         <source>Reconnection limit (*)</source>
         <comment>Settings option name</comment>
         <translation>Όριο επανασύνδεσης (*) </translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/Settings.qml" line="564"/>
+        <location filename="../client/qml/Settings.qml" line="576"/>
         <source>%n reconnections</source>
         <comment>Settings option value label</comment>
-        <translation><numerusform>%n επανασυνδέσεις</numerusform><numerusform>%n επανασυνδέσεις</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="612"/>
+        <location filename="../client/qml/Settings.qml" line="624"/>
         <source>Show phonebok avatars</source>
         <comment>Settings option name</comment>
         <translation>Εμφάνιση avatar επαφών καταλόγου</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="760"/>
+        <location filename="../client/qml/Settings.qml" line="772"/>
         <source>Don&apos;t resize on WLAN</source>
         <comment>Settings option name</comment>
         <translation>Μην αλλάξετε το μέγεθος σε WLAN</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="855"/>
+        <location filename="../client/qml/Settings.qml" line="867"/>
         <source>red</source>
         <comment>Pattern led color</comment>
         <translation>κόκκινο</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="856"/>
+        <location filename="../client/qml/Settings.qml" line="868"/>
         <source>green</source>
         <comment>Pattern led color</comment>
         <translation>πράσινο</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="857"/>
+        <location filename="../client/qml/Settings.qml" line="869"/>
         <source>blue</source>
         <comment>Pattern led color</comment>
         <translation>μπλέ</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="858"/>
+        <location filename="../client/qml/Settings.qml" line="870"/>
         <source>white</source>
         <comment>Pattern led color</comment>
         <translation>λευκό</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="859"/>
+        <location filename="../client/qml/Settings.qml" line="871"/>
         <source>yellow</source>
         <comment>Pattern led color</comment>
         <translation>κίτρινο</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="860"/>
+        <location filename="../client/qml/Settings.qml" line="872"/>
         <source>cyan</source>
         <comment>Pattern led color</comment>
         <translation>κυανό </translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="861"/>
+        <location filename="../client/qml/Settings.qml" line="873"/>
         <source>pink</source>
         <comment>Pattern led color</comment>
         <translation>ρόζ</translation>
@@ -2280,36 +2330,36 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Χρώμα μηνύματος πολυμέσων</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="481"/>
+        <location filename="../client/qml/Settings.qml" line="493"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="494"/>
+        <location filename="../client/qml/Settings.qml" line="506"/>
         <source>Restart application to change language</source>
         <comment>Language changing banner text</comment>
         <translation>Επανεκκινήστε την εφαρμογή για να γίνει αλλαγή της γλώσσας </translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="505"/>
+        <location filename="../client/qml/Settings.qml" line="517"/>
         <source>Connection server</source>
         <comment>Settings option name</comment>
         <translation>Διακομιστής σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="573"/>
+        <location filename="../client/qml/Settings.qml" line="585"/>
         <source>Autostart</source>
         <comment>Settings option name</comment>
         <translation>Αυτόματη εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="581"/>
+        <location filename="../client/qml/Settings.qml" line="593"/>
         <source>Allow saving application logs</source>
         <comment>Settings option name</comment>
         <translation>Επιτρέψτε αποθήκευση καταγραφών της εφαρμογής</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="585"/>
+        <location filename="../client/qml/Settings.qml" line="597"/>
         <source>You need to full quit application to start writing logs. Send logfile to author appear in settings menu.</source>
         <comment>Allow application logs option description</comment>
         <translation>Θα πρέπει να σταματήστε πλήρως την εφαρμογή να αρχίσει να γράφει στα αρχεία καταγραφής. Η αποστολή αρχείων καταγραφής στον συντάκτη εμφανίζονται στο μενού ρυθμίσεων.</translation>
@@ -2321,13 +2371,13 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Κλείδωμα προσανατολισμού στο πορτρέτο στην συνομιλία</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="600"/>
+        <location filename="../client/qml/Settings.qml" line="612"/>
         <source>Show yourself in contact list, if present</source>
         <comment>Settings option name</comment>
         <translation>Εμφανίστε τον εαυτό σας στη λίστα επαφών, εάν είστε παρών</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="606"/>
+        <location filename="../client/qml/Settings.qml" line="618"/>
         <source>Accept messages from unknown contacts</source>
         <comment>Settings option name</comment>
         <translation>Αποδοχή μηνύματα από άγνωστες επαφές</translation>
@@ -2387,97 +2437,97 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Μήνυμα πολυμέσων</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="617"/>
+        <location filename="../client/qml/Settings.qml" line="629"/>
         <source>Presence</source>
         <comment>Settings page section name</comment>
         <translation>Παρουσία</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="622"/>
+        <location filename="../client/qml/Settings.qml" line="634"/>
         <source>Display presence</source>
         <comment>Settings option name</comment>
         <translation>Ένδειξη παρουσίας</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="625"/>
+        <location filename="../client/qml/Settings.qml" line="637"/>
         <source>Display online when app is open</source>
         <comment>Settings option value text</comment>
         <translation>Εμφανιση σε απευθείας σύνδεση, όταν η εφαρμογή είναι ανοιχτή</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="632"/>
+        <location filename="../client/qml/Settings.qml" line="644"/>
         <source>Always display online</source>
         <comment>Settings option value text</comment>
         <translation>Εμφάνιση πάντα σε απευθείας σύνδεση</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="639"/>
+        <location filename="../client/qml/Settings.qml" line="651"/>
         <source>Always display offline</source>
         <comment>Settings option value text</comment>
         <translation>Εμφάνιση πάντα εκτός σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="652"/>
+        <location filename="../client/qml/Settings.qml" line="664"/>
         <source>Cover</source>
         <comment>Settings page section name</comment>
         <translation>Εξώφυλλο</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="663"/>
+        <location filename="../client/qml/Settings.qml" line="675"/>
         <source>Left cover action</source>
         <comment>Settings option name</comment>
         <translation>Αριστερή δράση εξωφύλλου</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="687"/>
+        <location filename="../client/qml/Settings.qml" line="699"/>
         <source>Right cover action</source>
         <comment>Settings option name</comment>
         <translation>Δεξιά δράση εξωφύλλου</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="704"/>
+        <location filename="../client/qml/Settings.qml" line="716"/>
         <source>Media</source>
         <comment>Settings page section name</comment>
         <translation>Μέσα</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="740"/>
+        <location filename="../client/qml/Settings.qml" line="752"/>
         <source>Auto download on WLAN only</source>
         <comment>Settings option name</comment>
         <translation>Αυτόματη λήψη μόνο σε WLAN</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="730"/>
+        <location filename="../client/qml/Settings.qml" line="742"/>
         <source>Automatic download bytes</source>
         <comment>Settings option name</comment>
         <translation>Αυτόματη λήψη bytes</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="749"/>
+        <location filename="../client/qml/Settings.qml" line="761"/>
         <source>Resize sending images</source>
         <comment>Settings option name</comment>
         <translation>Αλλαγή μεγέθους στην αποστολή εικόνων</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="793"/>
+        <location filename="../client/qml/Settings.qml" line="805"/>
         <source>Maximum image size by file size</source>
         <comment>Settings option name</comment>
         <translation>Μέγιστο μέγεθος εικόνας από το μέγεθος του αρχείου</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="827"/>
+        <location filename="../client/qml/Settings.qml" line="839"/>
         <source>Maximum image size by resolution</source>
         <comment>Settings option name</comment>
         <translation>Μέγιστο μέγεθος εικόνας από την ανάλυση</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="829"/>
+        <location filename="../client/qml/Settings.qml" line="841"/>
         <source>%1 MPx</source>
         <comment>Settings option value text</comment>
         <translation>%1 MPx</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="843"/>
+        <location filename="../client/qml/Settings.qml" line="855"/>
         <source>Options marked with (*) will take effect after reconnection</source>
         <comment>Settings (*) options description</comment>
         <translation>Οι επιλογές με αστερίσκο (*) θα τεθούν σε ισχύ μετά την επανασύνδεση</translation>
@@ -2499,7 +2549,7 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/ShareUI.qml" line="66"/>
         <source>Selected: %n</source>
         <comment>Sharing menu title text</comment>
-        <translation><numerusform>Επιλεγμένο: %n</numerusform><numerusform>Επιλεγμένα: %n</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/ShareUI.qml" line="166"/>
@@ -2739,36 +2789,42 @@ Click Renew to purchase one year of WhatsApp service.</source>
     </message>
     <message>
         <location filename="../client/qml/UserProfile.qml" line="112"/>
+        <source>Clear chat history</source>
+        <comment>User profile page menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../client/qml/UserProfile.qml" line="119"/>
         <source>Save chat history</source>
         <comment>User profile page menu item</comment>
         <translation>Αποθήκευση ιστορικού συνομιλίας </translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="115"/>
+        <location filename="../client/qml/UserProfile.qml" line="122"/>
         <source>History saved to Documents</source>
         <comment>User profile page history saved banner</comment>
         <translation>Το ιστορικό αποθηκεύτηκε στα Documents</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="155"/>
+        <location filename="../client/qml/UserProfile.qml" line="162"/>
         <source>Nickname: %1</source>
         <comment>User profile page nickname label</comment>
         <translation>Παρατσούκλι: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="166"/>
+        <location filename="../client/qml/UserProfile.qml" line="173"/>
         <source>Status: %1</source>
         <comment>User profile page status label</comment>
         <translation>Κατάσταση: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="178"/>
+        <location filename="../client/qml/UserProfile.qml" line="185"/>
         <source>Status set: %1</source>
         <comment>User profile page status timestamp</comment>
         <translation>Κατάσταση: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="189"/>
+        <location filename="../client/qml/UserProfile.qml" line="196"/>
         <source>Contact blocked</source>
         <comment>User profile page contact blocked label</comment>
         <translation>Η επαφή είναι μπλοκαρισμένη</translation>
@@ -2784,17 +2840,17 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Καθαρισμός φόντου</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="198"/>
+        <location filename="../client/qml/UserProfile.qml" line="205"/>
         <source>Call +%1</source>
         <translation>Κλήση +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="209"/>
+        <location filename="../client/qml/UserProfile.qml" line="216"/>
         <source>Save +%1</source>
         <translation>Αποθήκευση +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="216"/>
+        <location filename="../client/qml/UserProfile.qml" line="223"/>
         <source>Media</source>
         <comment>User profile page media section name</comment>
         <translation>Μέσα</translation>
@@ -2806,16 +2862,16 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/main.qml" line="188"/>
         <source>You</source>
         <comment>Display You instead of your own nickname</comment>
-        <translation type="unfinished"/>
+        <translation>Εσύ</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="664"/>
+        <location filename="../client/qml/main.qml" line="680"/>
         <source>Disconnecting</source>
         <comment>Disconnect remorse popup</comment>
         <translation>Αποσύνδεση</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="971"/>
+        <location filename="../client/qml/main.qml" line="987"/>
         <source>Server experiencing problems with following feature(s): %1</source>
         <translation>Ο διακομιστής αντιμετωπίζει προβλήματα με τα ακόλουθα χαρακτηριστικά (α): 1%</translation>
     </message>

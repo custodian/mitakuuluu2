@@ -217,32 +217,32 @@
         <translation>Zgodovina</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="120"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="130"/>
         <source>Save to Gallery</source>
         <translation>Shrani v Galerijo</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="124"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="134"/>
         <source>Avatar saved to; %1</source>
         <translation>Avatar shranjen v; %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="131"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="141"/>
         <source>Delete</source>
         <translation>Izbriši</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="138"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="148"/>
         <source>Avatar history is empty</source>
         <translation>Zgodovina avatarjev je prazna</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="188"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="203"/>
         <source>Deleting avatar file</source>
         <translation>Breišem datoteko z avatarjem</translation>
     </message>
     <message>
-        <location filename="../client/qml/AvatarHistory.qml" line="212"/>
+        <location filename="../client/qml/AvatarHistory.qml" line="227"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
@@ -296,21 +296,6 @@
     </message>
 </context>
 <context>
-    <name>Capture</name>
-    <message>
-        <location filename="../client/qml/Capture.qml" line="510"/>
-        <source>Send</source>
-        <comment>Capture page send title</comment>
-        <translation>Pošlji</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/Capture.qml" line="511"/>
-        <source>Camera</source>
-        <comment>Capture page default title</comment>
-        <translation>Kamera</translation>
-    </message>
-</context>
-<context>
     <name>ChatsPage</name>
     <message>
         <location filename="../client/qml/ChatsPage.qml" line="31"/>
@@ -352,205 +337,217 @@
         <translation>Ni dejanja</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="57"/>
+        <location filename="../client/qml/ChatsPage.qml" line="87"/>
         <source>Full quit</source>
         <comment>Main menu action</comment>
         <translation>Popolni izhod</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="60"/>
+        <location filename="../client/qml/ChatsPage.qml" line="90"/>
         <source>Quit and shutdown engine</source>
         <comment>Full quit remorse popup</comment>
         <translation>Popoln izhod iz programa</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="77"/>
+        <location filename="../client/qml/ChatsPage.qml" line="107"/>
         <source>Muted contacts</source>
         <comment>Main menu action</comment>
         <translation>Utišani stiki</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="85"/>
+        <location filename="../client/qml/ChatsPage.qml" line="115"/>
+        <source>Create group</source>
+        <comment>Contacts page menu item</comment>
+        <translation>Ustvari skupino</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="123"/>
         <source>Broadcast</source>
         <comment>Main menu action</comment>
         <translation>Skupinsko oddajanje</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="92"/>
+        <location filename="../client/qml/ChatsPage.qml" line="130"/>
         <source>Settings</source>
         <comment>Main menu item</comment>
         <translation>Nastavitve</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="101"/>
+        <location filename="../client/qml/ChatsPage.qml" line="63"/>
         <source>Chats</source>
         <comment>Contacts page title</comment>
         <translation>Pogovori</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="143"/>
+        <location filename="../client/qml/ChatsPage.qml" line="142"/>
         <source>Flick left to access Contacts page</source>
         <translation>Za dostop do stikov podrsaj v levo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="174"/>
+        <location filename="../client/qml/ChatsPage.qml" line="173"/>
+        <source>Clear chat history</source>
+        <comment>Delete contact remorse action text</comment>
+        <translation>Izbriši zgodovino pogovora</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="180"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation>Zapusti skupino %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="167"/>
+        <location filename="../client/qml/ChatsPage.qml" line="422"/>
+        <source>Clear chat history</source>
+        <comment>Contact context menu delete contact item</comment>
+        <translation>Izbriši zgodovino pogovora</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ChatsPage.qml" line="166"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Izbriši</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="182"/>
+        <location filename="../client/qml/ChatsPage.qml" line="188"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation>Izbriši skupino %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="348"/>
+        <location filename="../client/qml/ChatsPage.qml" line="354"/>
         <source>Typing...</source>
         <comment>Contact status typing text</comment>
         <translation>Pisanje ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="349"/>
+        <location filename="../client/qml/ChatsPage.qml" line="355"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation>Skupinski pogovor</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="368"/>
+        <location filename="../client/qml/ChatsPage.qml" line="374"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation>Pofil</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="385"/>
+        <location filename="../client/qml/ChatsPage.qml" line="391"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation>Utišanje</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="391"/>
+        <location filename="../client/qml/ChatsPage.qml" line="397"/>
         <source>Un-hide contact</source>
         <translation>Razkrij stik</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="391"/>
+        <location filename="../client/qml/ChatsPage.qml" line="397"/>
         <source>Hide contact</source>
         <translation>Skrij stik</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="398"/>
+        <location filename="../client/qml/ChatsPage.qml" line="404"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation>Izbriši skupino</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="408"/>
+        <location filename="../client/qml/ChatsPage.qml" line="413"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation>Zapusti skupino</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ChatsPage.qml" line="409"/>
-        <source>Delete</source>
-        <comment>Contact context menu delete contact item</comment>
-        <translation>Izbriši</translation>
     </message>
 </context>
 <context>
     <name>Client</name>
     <message>
-        <location filename="../server/src/client.cpp" line="471"/>
+        <location filename="../server/src/client.cpp" line="480"/>
         <source>Image</source>
         <comment>Notification media name text</comment>
         <translation>Slika</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="472"/>
+        <location filename="../server/src/client.cpp" line="481"/>
         <source>Audio</source>
         <comment>Notification media name text</comment>
         <translation>Zvok</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="473"/>
+        <location filename="../server/src/client.cpp" line="482"/>
         <source>Video</source>
         <comment>Notification media name text</comment>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="474"/>
+        <location filename="../server/src/client.cpp" line="483"/>
         <source>Contact</source>
         <comment>Notification media name text</comment>
         <translation>Stik</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="475"/>
+        <location filename="../server/src/client.cpp" line="484"/>
         <source>Location</source>
         <comment>Notification media name text</comment>
         <translation>položaj</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="476"/>
+        <location filename="../server/src/client.cpp" line="485"/>
         <source>Voice</source>
         <comment>Notification media name text</comment>
         <translation>Glas</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="477"/>
+        <location filename="../server/src/client.cpp" line="486"/>
         <source>System</source>
         <comment>Notification media name text</comment>
         <translation>Sistem</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="784"/>
+        <location filename="../server/src/client.cpp" line="811"/>
         <source>Connected</source>
         <comment>System connection notification</comment>
         <translation>Povezano</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1144"/>
+        <location filename="../server/src/client.cpp" line="1243"/>
         <source>Hidden</source>
         <comment>User hidden own status for privacy</comment>
         <translation>Skrito</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1423"/>
+        <location filename="../server/src/client.cpp" line="1523"/>
         <source>Joined the group</source>
         <comment>Notification group event text</comment>
         <translation>Pridruženi skupini</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1426"/>
+        <location filename="../server/src/client.cpp" line="1526"/>
         <source>Left the group</source>
         <comment>Notification group event text</comment>
         <translation>Zapustil skupino</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1429"/>
+        <location filename="../server/src/client.cpp" line="1529"/>
         <source>Subject: %1</source>
         <comment>Notification group event text</comment>
         <translation>Zadeva: %1</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1432"/>
+        <location filename="../server/src/client.cpp" line="1532"/>
         <source>Picture changed</source>
         <comment>Notification group event text</comment>
         <translation>Slika je spremenjena</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="985"/>
+        <location filename="../server/src/client.cpp" line="1009"/>
         <source>Disconnected</source>
         <comment>System connection notification</comment>
         <translation>Brez povezave</translation>
     </message>
     <message numerus="yes">
-        <location filename="../server/src/client.cpp" line="3004"/>
+        <location filename="../server/src/client.cpp" line="3116"/>
         <source>%n messages unread</source>
         <comment>Message notification with unread messages count</comment>
         <translation><numerusform>%n neprebrano sporočilo</numerusform><numerusform>%n neprebrani sporočili</numerusform><numerusform>%n neprebrana sporočila</numerusform><numerusform>%n neprebranih sporočil</numerusform></translation>
@@ -559,102 +556,106 @@
 <context>
     <name>ContactsPage</name>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="54"/>
-        <source>Create group</source>
-        <comment>Contacts page menu item</comment>
-        <translation>Ustvari skupino</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ContactsPage.qml" line="61"/>
+        <location filename="../client/qml/ContactsPage.qml" line="88"/>
         <source>Add contact</source>
         <comment>Contacts page menu item</comment>
         <translation>Dodaj stik</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="68"/>
+        <location filename="../client/qml/ContactsPage.qml" line="95"/>
         <source>Settings</source>
         <comment>Contacts page menu item</comment>
         <translation>Nastavitve</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="77"/>
+        <location filename="../client/qml/ContactsPage.qml" line="121"/>
         <source>Contacts</source>
         <comment>Contacts page title</comment>
         <translation>Stiki</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="158"/>
+        <location filename="../client/qml/ContactsPage.qml" line="141"/>
         <source>Search contacts</source>
         <comment>Contacts page search text</comment>
         <translation>Išči med stiki</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="243"/>
+        <location filename="../client/qml/ContactsPage.qml" line="200"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation>Zapusti skupino %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="236"/>
+        <location filename="../client/qml/ContactsPage.qml" line="193"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Izbriši</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="47"/>
+        <location filename="../client/qml/ContactsPage.qml" line="81"/>
         <source>Blacklist</source>
         <comment>Contacts page menu item</comment>
         <translation>Blacklist</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="201"/>
+        <location filename="../client/qml/ContactsPage.qml" line="102"/>
+        <source>Hide search field</source>
+        <translation>Skrij vrstico za iskanje</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="103"/>
+        <source>Show search field</source>
+        <translation>Prikaži vrstico za iskanje</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="170"/>
         <source>Flick right to return to Chats page</source>
         <translation>Za vrnitev na stran s pogovori podrsaj v desno</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="251"/>
+        <location filename="../client/qml/ContactsPage.qml" line="208"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation>Izbriši skupino %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="397"/>
+        <location filename="../client/qml/ContactsPage.qml" line="354"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation>Skupinski pogovor</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="414"/>
+        <location filename="../client/qml/ContactsPage.qml" line="371"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation>Pofil</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="432"/>
+        <location filename="../client/qml/ContactsPage.qml" line="389"/>
         <source>Refresh</source>
         <comment>Contact context menu refresh item</comment>
         <translation>Osveži</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="440"/>
+        <location filename="../client/qml/ContactsPage.qml" line="397"/>
         <source>Rename</source>
         <comment>Contact context menu profile item</comment>
         <translation>Preimenuj</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="448"/>
+        <location filename="../client/qml/ContactsPage.qml" line="405"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation>Izbriši skupino</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="458"/>
+        <location filename="../client/qml/ContactsPage.qml" line="415"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation>Zapusti skupino</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="459"/>
+        <location filename="../client/qml/ContactsPage.qml" line="416"/>
         <source>Delete</source>
         <comment>Contact context menu delete contact item</comment>
         <translation>Izbriši</translation>
@@ -663,43 +664,31 @@
 <context>
     <name>ConversationPage</name>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="209"/>
-        <source>Clear all messages</source>
-        <comment>Conversation menu item</comment>
-        <translation>Počisti vsa sporočila</translation>
-    </message>
-    <message>
-        <location filename="../client/qml/ConversationPage.qml" line="211"/>
-        <source>Clear all messages</source>
-        <comment>Conversation delete all messages remorse popup</comment>
-        <translation>Počisti vsa sporočila</translation>
-    </message>
-    <message>
         <location filename="../client/qml/ConversationPage.qml" line="221"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation>Utišaj</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="227"/>
+        <location filename="../client/qml/ConversationPage.qml" line="235"/>
         <source>Load old conversation</source>
         <comment>Conversation menu item</comment>
         <translation>Preberi stare pogovore</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="277"/>
+        <location filename="../client/qml/ConversationPage.qml" line="285"/>
         <source>Enable location in settings!</source>
         <comment>Banner text if GPS disabled in settings</comment>
         <translation>V nastavitvah vključi določanje položaja!</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="309"/>
+        <location filename="../client/qml/ConversationPage.qml" line="317"/>
         <source>Hold button for recording, release to send</source>
         <comment>Conversation voice recorder description label</comment>
         <translation>Za snemanje pritisnite in držite gumb, za pošiljanje ga sprostite</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="432"/>
+        <location filename="../client/qml/ConversationPage.qml" line="440"/>
         <source>Typing...</source>
         <comment>Contact typing converstation text</comment>
         <translation>Pisanje ...</translation>
@@ -721,36 +710,41 @@
         <translation>Zadnjič viden: skrito</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="366"/>
+        <location filename="../client/qml/ConversationPage.qml" line="228"/>
+        <source>Search message</source>
+        <translation>Išči v sporočilu</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ConversationPage.qml" line="374"/>
         <source>Release to delete</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Sprostite za brisanje</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="367"/>
+        <location filename="../client/qml/ConversationPage.qml" line="375"/>
         <source>Release to send</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Sprostite za pošiljanje</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="496"/>
+        <location filename="../client/qml/ConversationPage.qml" line="504"/>
         <source>New message</source>
         <comment>Conversation new message indicator</comment>
         <translation>Novo sporočilo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="552"/>
+        <location filename="../client/qml/ConversationPage.qml" line="560"/>
         <source>Tap here to enter message</source>
         <comment>Message composing tet area placeholder</comment>
         <translation>Tapnite za vnos novega sporočila</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="657"/>
+        <location filename="../client/qml/ConversationPage.qml" line="665"/>
         <source>Flick left to access Contact details</source>
         <translation>Za ogled podrobnosti stika podrsaj v levo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="794"/>
+        <location filename="../client/qml/ConversationPage.qml" line="802"/>
         <source>Waiting for coordinates...</source>
         <comment>Conversation location sending banner text</comment>
         <translation>Čakam na koordinate ...</translation>
@@ -861,13 +855,13 @@
         <translation>Ti</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="186"/>
+        <location filename="../client/qml/GroupProfile.qml" line="193"/>
         <source>Save chat history</source>
         <comment>Group profile page menu item</comment>
         <translation>Shrani zgodovino pogovora</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="189"/>
+        <location filename="../client/qml/GroupProfile.qml" line="196"/>
         <source>History saved to Documents</source>
         <comment>Banner notification text</comment>
         <translation>Zgodovina shranjena v Dokumenti</translation>
@@ -889,60 +883,66 @@
         <translation>Počisti ozadje</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="196"/>
+        <location filename="../client/qml/GroupProfile.qml" line="186"/>
+        <source>Clear chat history</source>
+        <comment>User profile page menu item</comment>
+        <translation>Izbriši zgodovino pogovora</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/GroupProfile.qml" line="203"/>
         <source>Group profile</source>
         <comment>Group profile page title</comment>
         <translation>Skupinski profil</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="207"/>
+        <location filename="../client/qml/GroupProfile.qml" line="214"/>
         <source>Subject: </source>
         <comment>Group profile subject label</comment>
         <translation>Tema pogovora:</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="266"/>
+        <location filename="../client/qml/GroupProfile.qml" line="273"/>
         <source>Owner: %1</source>
         <comment>Group profile owner label</comment>
         <translation>Lastnik: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="280"/>
+        <location filename="../client/qml/GroupProfile.qml" line="287"/>
         <source>Creation: %1</source>
         <comment>Group profile creation label</comment>
         <translation>Ustvarjeno: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="294"/>
+        <location filename="../client/qml/GroupProfile.qml" line="301"/>
         <source>Subject by: %1</source>
         <comment>Group profile subject owner label</comment>
         <translation>Temo pogovora je določil: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="308"/>
+        <location filename="../client/qml/GroupProfile.qml" line="315"/>
         <source>Subject set: %1</source>
         <comment>Group profile subject timestamp label</comment>
         <translation>Temo pogovora je nastavil: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="335"/>
+        <location filename="../client/qml/GroupProfile.qml" line="342"/>
         <source>Media</source>
         <translation>Datoteke</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="391"/>
+        <location filename="../client/qml/GroupProfile.qml" line="398"/>
         <source>Max group participants count reached</source>
         <comment>Group profile maximum participants banner</comment>
         <translation>Doseženo največje dovoljeno število sodelujočih v skupini</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="423"/>
+        <location filename="../client/qml/GroupProfile.qml" line="430"/>
         <source>Fetching participants...</source>
         <comment>Group profile loading text</comment>
         <translation>Prodobivam seznam udeležencev ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="601"/>
+        <location filename="../client/qml/GroupProfile.qml" line="608"/>
         <source>Group media</source>
         <translation>Skupinsko multimedijsko sporočilo</translation>
     </message>
@@ -984,6 +984,24 @@
     </message>
 </context>
 <context>
+    <name>MediaPreview</name>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="48"/>
+        <source>Send capture</source>
+        <translation>Pošlji posnetek</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="48"/>
+        <source>Send media</source>
+        <translation>Pošlji </translation>
+    </message>
+    <message>
+        <location filename="../client/qml/MediaPreview.qml" line="61"/>
+        <source>Add a caption</source>
+        <translation>Dodaj naslov</translation>
+    </message>
+</context>
+<context>
     <name>MediaSelector</name>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="34"/>
@@ -995,7 +1013,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
         <source>Images selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Število izbranih slik: %n</numerusform><numerusform>Število izbranih slik: %n</numerusform><numerusform>Število izbranih slik: %n</numerusform><numerusform>Število izbranih slik: %n</numerusform></translation>
+        <translation><numerusform>%n izbrana slika</numerusform><numerusform>%n izbrani sliki</numerusform><numerusform>%n izbrane slike</numerusform><numerusform>%n izbranih slik</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
@@ -1007,7 +1025,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
         <source>Audio selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Število izbranih avdio datotek: %n</numerusform><numerusform>Število izbranih avdio datotek: %n</numerusform><numerusform>Število izbranih avdio datotek: %n</numerusform><numerusform>Število izbranih avdio datotek: %n</numerusform></translation>
+        <translation><numerusform>Izbrana % avdio datoteka</numerusform><numerusform>Izbrani % avdio datoteki</numerusform><numerusform>Izbrane % avdio datoteke</numerusform><numerusform>Izbranih % avdio datotek</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
@@ -1019,7 +1037,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
         <source>Video selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Število izbranih video datotek: %n</numerusform><numerusform>Število izbranih video datotek: %n</numerusform><numerusform>Število izbranih video datotek: %n</numerusform><numerusform>Število izbranih video datotek: %n</numerusform></translation>
+        <translation><numerusform>Izbrana %n video datoteka</numerusform><numerusform>Izbrani %n video datoteki</numerusform><numerusform>Izbrane %n video datoteke</numerusform><numerusform>Izbranaih %n video datotek</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
@@ -1058,61 +1076,61 @@
 <context>
     <name>Mitakuuluu</name>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="304"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="309"/>
         <source>Unknown</source>
         <comment>Unknown connection status</comment>
         <translation>Neznano</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="307"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="312"/>
         <source>Waiting for connection</source>
         <comment>Waiting for connection connection status</comment>
         <translation>Čakam na povezavo ...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="310"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="315"/>
         <source>Connecting...</source>
         <comment>Connecting connection status</comment>
         <translation>Povezujem ...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="313"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="318"/>
         <source>Authentication...</source>
         <comment>Authentication connection status</comment>
         <translation>Avtentikacija ...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="316"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="321"/>
         <source>Logged in</source>
         <comment>Logged in connection status</comment>
         <translation>Prijavljen</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="319"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="324"/>
         <source>Login failed!</source>
         <comment>Login failed connection status</comment>
         <translation>Neuspešna prijava!</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="322"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="327"/>
         <source>Disconnected</source>
         <comment>Disconnected connection status</comment>
         <translation>Povezave prekinjena</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="325"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="330"/>
         <source>Registering...</source>
         <comment>Registering connection status</comment>
         <translation>Registriram ...</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="328"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="333"/>
         <source>Registration failed!</source>
         <comment>Registration failed connection status</comment>
         <translation>Neuspešna registracija!</translation>
     </message>
     <message>
-        <location filename="../client/src/mitakuuluu.cpp" line="331"/>
+        <location filename="../client/src/mitakuuluu.cpp" line="336"/>
         <source>Account expired!</source>
         <comment>Account expired connection status</comment>
         <translation>Račun je potekel!</translation>
@@ -1121,67 +1139,67 @@
 <context>
     <name>ModernDelegate</name>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="150"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="158"/>
         <source>Remove message</source>
         <comment>Conversation message remorse text</comment>
         <translation>Odstrani sporočilo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="236"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="244"/>
         <source>Media download started...</source>
         <comment>Conversation message download started banner text</comment>
         <translation>Začel se je prenos datotek ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="241"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="249"/>
         <source>Media download canceled.</source>
         <comment>Conversation message download canceled banner text</comment>
         <translation>Prenos datotek je bil preklican.</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="750"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="758"/>
         <source>Uploading...</source>
         <comment>Uploading voice record text</comment>
         <translation>Nalagam ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="810"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="818"/>
         <source>Resend message</source>
         <comment>Conversation message context menu item</comment>
         <translation>Ponovno pošlji sporočilo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="819"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="827"/>
         <source>Copy</source>
         <comment>Conversation message context menu item</comment>
         <translation>Kopiraj</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="828"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="836"/>
         <source>Forward</source>
         <comment>Conversation message context menu item</comment>
         <translation>Posreduj</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="837"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="845"/>
         <source>Save to Gallery</source>
         <comment>Conversation message context menu item</comment>
         <translation>Shrani v Galerijo</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="840"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="848"/>
         <source>Media saved as %1</source>
         <comment>Banner text message</comment>
         <translation>Datoteka shranjena kot %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="846"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="854"/>
         <source>Delete</source>
         <comment>Conversation message context menu item</comment>
         <translation>Izbriši</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="866"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="874"/>
         <source>Message copied to clipboard</source>
         <comment>Banner item text</comment>
         <translation>Sporočilo kopirano v odložišče</translation>
@@ -1316,7 +1334,7 @@
     <message>
         <location filename="../client/qml/NewVersion.qml" line="52"/>
         <source>Size: %1</source>
-        <translation type="unfinished"/>
+        <translation>Velikost: %1</translation>
     </message>
     <message>
         <location filename="../client/qml/NewVersion.qml" line="62"/>
@@ -1491,12 +1509,12 @@
 <context>
     <name>RegistrationPage</name>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="20"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="22"/>
         <source>Importing Android account</source>
         <translation>Uvoz Android računa</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="29"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="31"/>
         <source>Registration failed
 
 </source>
@@ -1506,7 +1524,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="34"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="37"/>
         <source>Account expired
 
 </source>
@@ -1514,7 +1532,7 @@
         <translation>Račun je potekel</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="39"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="42"/>
         <source>Code request failed
 
 </source>
@@ -1522,48 +1540,53 @@
         <translation>Neuspešen zahtevek za kodo</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="43"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="47"/>
         <source>Activation code requested. Wait for %1 soon</source>
         <comment>Activation code requested text</comment>
         <translation>Zahtevek za kodo poslan. Počakajte na %1.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="45"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="49"/>
         <source>sms message</source>
         <comment>Activation code requested text information</comment>
         <translation>SMS sporočilo</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="46"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="50"/>
         <source>voice call</source>
         <comment>Activation code requested text information</comment>
         <translation>glasovni klic</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="52"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="56"/>
         <source>Successfully registered!</source>
         <comment>Registered successfully banner</comment>
         <translation>Registracija uspela!</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="59"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="63"/>
         <source>Cannot detect your country code. You should use international number format for registration.</source>
         <comment>Red wrong number entered screen text</comment>
         <translation>Ne moremo ugotoviti vaše države. Za registracijo uporabite mednarodni zapis številke.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="70"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="74"/>
+        <source>Send logfile to author</source>
+        <translation>Pošlji log datoteko avtorju</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/RegistrationPage.qml" line="82"/>
         <source>I have code</source>
         <translation>Imam kodo</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="88"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="100"/>
         <source>Registration</source>
         <comment>Registration page title</comment>
         <translation>Registracija</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="94"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="106"/>
         <source>Welcome to Mitakuuluu v%1!
 
 Native WhatsApp-compatible clent for Sailfish OS.
@@ -1575,181 +1598,181 @@ WhatsApp-združljiv odjemalec za Sailfish OS.
 Če ste pred tem uporabljali originalno aplikacijo pred zamenjavo odstranite račun. V trenutnem programu uprabite možnost &lt;Remove account&gt; ali pa to uredite po registraciji znotraj programa Mitakuuluu.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="100"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="112"/>
         <source>Country</source>
         <comment>Registration country selector label</comment>
         <translation>Država</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="116"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="128"/>
         <source>In international format</source>
         <comment>Registration phone number text field label</comment>
         <translation>v mednarodni obliki</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="142"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="154"/>
         <source>Profile nickname</source>
         <comment>Registration nickname text field label</comment>
         <translation>Profil vzdevka</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="143"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="155"/>
         <source>Enter your nickname</source>
         <comment>Registration nickname text field placeholder</comment>
         <translation>Vnesite vzdevek</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="154"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="167"/>
         <source>Protect your registration</source>
         <comment>Registration password field label</comment>
         <translation>Zaščitite svojo registracijo</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="155"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="168"/>
         <source>Random password</source>
         <comment>Registration password field placeolder</comment>
         <translation>Naključno geslo</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="170"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="184"/>
         <source>Voice</source>
         <comment>Voice registration button text</comment>
         <translation>Glas</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="179"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="193"/>
         <source>Sms</source>
         <comment>Sms registration button text</comment>
         <translation>SMS</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="196"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="210"/>
         <source>Sms code</source>
         <comment>Registration registration code label</comment>
         <translation>SMS koda</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="200"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="214"/>
         <source>Registering account...</source>
         <comment>Registering account text</comment>
         <translation>Registriram račun ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="301"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="315"/>
         <source>Checking account...</source>
         <comment>Registration checking account text</comment>
         <translation>Preverjem račun ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="304"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="318"/>
         <source>You should select country first!</source>
         <comment>Registration banner text</comment>
         <translation>Najprej izberite državo!</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="322"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="336"/>
         <source>Code successfully requested.</source>
         <comment>Registration information constructor</comment>
         <translation>Zahtevek za kodo sprejet.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="328"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="342"/>
         <source>phone number</source>
         <comment>Registration information constructor</comment>
         <translation>telefonska številka</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="330"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="344"/>
         <source>secure token</source>
         <comment>Registration information constructor</comment>
         <translation>varnostni žeton</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="333"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="347"/>
         <source>Too frequent attempts to request the code.</source>
         <comment>Registration information constructor</comment>
         <translation>Preveč pogosti zahtevki za kodo.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="335"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="349"/>
         <source>Too many wrong code guesses.</source>
         <comment>Registration information constructor</comment>
         <translation>Preveč vnosov napačne kode.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="337"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="351"/>
         <source>Too many attempts. Try again tomorrow.</source>
         <comment>Registration information constructor</comment>
         <translation>Preveč poskusov. Poskusite jutri.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="339"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="353"/>
         <source>Protocol version outdated, sorry. Please contact me at coderusinbox@gmail.com or via twitter: @icoderus</source>
         <comment>Registration information constructor</comment>
         <translation>Različica protokola je zastarela. Prosim, kontaktirajte me na email coderusinbox@gmail.com ali preko twitter: @icoderus</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="341"/>
-        <location filename="../client/qml/RegistrationPage.qml" line="344"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="358"/>
         <source>Registration code expired. You need to request a new one.</source>
         <comment>Registration information constructor</comment>
         <translation>Koda za registracijo je potekla. Zaprosite za novo.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="346"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="360"/>
         <source>Missing request param: %1</source>
         <comment>Registration information constructor</comment>
         <translation>Manjka parameter zahtevka: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="349"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="363"/>
         <source>Invalid registration code entered. Please try again.</source>
         <comment>Registration information constructor</comment>
         <translation>Neveljavna registracijska koda. Prosimo, poskusite znova.</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="352"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="366"/>
         <source>Bad parameters passed to code request: %1</source>
         <comment>Registration information constructor</comment>
         <translation>Napačen parameter za zahtevek kode: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="369"/>
         <source>No cell routes for %1 caused by your operator. Please try other method [sms/voice]</source>
         <comment>Registration information constructor</comment>
         <translation>Prosimo, poskusite na drug način [SMS/klic].</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="357"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="371"/>
         <source>making call</source>
         <comment>Registration information constructor</comment>
         <translation>naredi klic</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="358"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="372"/>
         <source>sending sms</source>
         <comment>Registration information constructor</comment>
         <translation>pošiljam SMS</translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="359"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="373"/>
         <source>Reason: %1</source>
         <translation>Razlog: %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="367"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="381"/>
         <source>%n hours</source>
         <comment>Registration information constructor</comment>
         <translation><numerusform>%n ura</numerusform><numerusform>%n uri</numerusform><numerusform>%n ure</numerusform><numerusform>%n ur</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="370"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="384"/>
         <source>%n minutes</source>
         <comment>Registration information constructor</comment>
         <translation><numerusform>%n minuta</numerusform><numerusform>%n minuti</numerusform><numerusform>%n minute</numerusform><numerusform>%n minut</numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="372"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="386"/>
         <source>You can retry requesting code after %1</source>
         <comment>Registration information constructor</comment>
         <translation>Za kodo lahko ponovno zaprosite po %1</translation>
@@ -1801,7 +1824,12 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
     <message>
         <location filename="../client/qml/SearchConversation.qml" line="21"/>
         <source>Search message</source>
-        <translation type="unfinished"/>
+        <translation>Išči v sporočilu</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/SearchConversation.qml" line="28"/>
+        <source>message text</source>
+        <translation>Besedilo sporočila</translation>
     </message>
 </context>
 <context>
@@ -1822,7 +1850,7 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <location filename="../client/qml/SelectContact.qml" line="70"/>
         <source>Selected %n contacts</source>
         <comment>Select contact page title</comment>
-        <translation><numerusform>Izbran %n stik</numerusform><numerusform>Izbrana %n stika</numerusform><numerusform>Izbrani %n stiki</numerusform><numerusform>Izbrano %n stikov</numerusform></translation>
+        <translation><numerusform>Izbran %n stik</numerusform><numerusform>Izbrana %n stika</numerusform><numerusform>Izbrani %n stiki</numerusform><numerusform>Izbranih %n stikov</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/SelectContact.qml" line="77"/>
@@ -1840,49 +1868,59 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
 <context>
     <name>SelectPhonebook</name>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="58"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="65"/>
         <source>You should select contacts!</source>
         <comment>Select phonebook page cant accept feedback</comment>
         <translation>Najprej izberite stike!</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="73"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="103"/>
         <source>Sync all phonebook</source>
         <comment>Add contacts page menu item</comment>
         <translation>Sinhroniziraj celoten imenik</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="81"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="111"/>
         <source>Add number</source>
         <comment>Add contacts page menu item</comment>
         <translation>Dodaj številko</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="115"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="119"/>
+        <source>Hide search field</source>
+        <translation>Skrij vrstico za iskanje</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/SelectPhonebook.qml" line="120"/>
+        <source>Show search field</source>
+        <translation>Prikaži vrstico za iskanje</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/SelectPhonebook.qml" line="170"/>
         <source>Sync contact</source>
         <comment>Add contacts page title</comment>
         <translation>Sinhroniziraj stik</translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/SelectPhonebook.qml" line="116"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="171"/>
         <source>Sync %n contacts</source>
         <comment>Add contacts page title</comment>
-        <translation><numerusform>Sinhroniziran %n stik</numerusform><numerusform>Sinhronizirana %n stika</numerusform><numerusform>Sinhronizirani %n stiki</numerusform><numerusform>Sinhronizirano %n stikov</numerusform></translation>
+        <translation><numerusform>Sinhroniziraj %n stik</numerusform><numerusform>Sinhroniziraj %n stika</numerusform><numerusform>Sinhroniziraj %n stike</numerusform><numerusform>Sinhroniziraj %n stikov</numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="117"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="172"/>
         <source>Select contacts</source>
         <comment>Add contacts page title</comment>
         <translation>Izberi stike</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="161"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="192"/>
         <source>Search contacts</source>
-        <comment>Add contacts page search text</comment>
+        <comment>Contacts page search text</comment>
         <translation>Išči med stiki</translation>
     </message>
     <message>
-        <location filename="../client/qml/SelectPhonebook.qml" line="260"/>
+        <location filename="../client/qml/SelectPhonebook.qml" line="307"/>
         <source>Unnamed contact</source>
         <translation>Neimenovan stik</translation>
     </message>
@@ -2046,7 +2084,7 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <location filename="../client/qml/Settings.qml" line="241"/>
         <source>Lock other pages orientation in portrait</source>
         <comment>Settings option name</comment>
-        <translation type="unfinished"/>
+        <translation>Zakleni orientacijo ostalih strani v pokončnem pogledu</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="247"/>
@@ -2113,20 +2151,32 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <comment>Settings option name</comment>
         <translation>Za obvestila o pogovorih uporabi sistemski opomnik</translation>
     </message>
+    <message>
+        <location filename="../client/qml/Settings.qml" line="480"/>
+        <source>Notifications delay</source>
+        <comment>Settings option name</comment>
+        <translation>Zamik obvestil</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../client/qml/Settings.qml" line="552"/>
+        <location filename="../client/qml/Settings.qml" line="482"/>
+        <source>%n seconds</source>
+        <comment>Settings option value label</comment>
+        <translation><numerusform>%n sekunda</numerusform><numerusform>%n sekundi</numerusform><numerusform>%n sekunde</numerusform><numerusform>%n sekund</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../client/qml/Settings.qml" line="564"/>
         <source>%n minutes</source>
         <comment>Settings option value label</comment>
         <translation><numerusform>%n minuta</numerusform><numerusform>%n minuti</numerusform><numerusform>%n minute</numerusform><numerusform>%n minut</numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="592"/>
+        <location filename="../client/qml/Settings.qml" line="604"/>
         <source>Download media to Gallery</source>
         <comment>Settings option name</comment>
         <translation>Shrani medijske datoteke v galerijo</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="593"/>
+        <location filename="../client/qml/Settings.qml" line="605"/>
         <source>If checked downloaded files will be shown in Gallery</source>
         <comment>Settings option description</comment>
         <translation>Potrdite če želite, da so shranjene datoteke vidne v galeriji</translation>
@@ -2156,85 +2206,85 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <translation>Obvestila</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="477"/>
+        <location filename="../client/qml/Settings.qml" line="489"/>
         <source>Common</source>
         <comment>Settings page section name</comment>
         <translation>Splošno</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="542"/>
+        <location filename="../client/qml/Settings.qml" line="554"/>
         <source>Use connection keepalive (*)</source>
         <comment>Settings option name</comment>
         <translation>Uporabi ohranjanje povezave (*)</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="550"/>
+        <location filename="../client/qml/Settings.qml" line="562"/>
         <source>Reconnection interval (*)</source>
         <comment>Settings option name</comment>
         <translation>Interval ponovne povezave (*)</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="562"/>
+        <location filename="../client/qml/Settings.qml" line="574"/>
         <source>Reconnection limit (*)</source>
         <comment>Settings option name</comment>
         <translation>Omejitev ponovne povezave (*)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/Settings.qml" line="564"/>
+        <location filename="../client/qml/Settings.qml" line="576"/>
         <source>%n reconnections</source>
         <comment>Settings option value label</comment>
         <translation><numerusform>%n ponovna povezava</numerusform><numerusform>%n ponovni povezavi</numerusform><numerusform>%n ponovne povezave</numerusform><numerusform>%n ponovnih povezav</numerusform></translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="612"/>
+        <location filename="../client/qml/Settings.qml" line="624"/>
         <source>Show phonebok avatars</source>
         <comment>Settings option name</comment>
         <translation>Prikaži avatarje iz adresarja</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="760"/>
+        <location filename="../client/qml/Settings.qml" line="772"/>
         <source>Don&apos;t resize on WLAN</source>
         <comment>Settings option name</comment>
         <translation>Ne spreminjaj velikosti pri brezžični povezavi</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="855"/>
+        <location filename="../client/qml/Settings.qml" line="867"/>
         <source>red</source>
         <comment>Pattern led color</comment>
         <translation>rdeča</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="856"/>
+        <location filename="../client/qml/Settings.qml" line="868"/>
         <source>green</source>
         <comment>Pattern led color</comment>
         <translation>zelena</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="857"/>
+        <location filename="../client/qml/Settings.qml" line="869"/>
         <source>blue</source>
         <comment>Pattern led color</comment>
         <translation>modra</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="858"/>
+        <location filename="../client/qml/Settings.qml" line="870"/>
         <source>white</source>
         <comment>Pattern led color</comment>
         <translation>bela</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="859"/>
+        <location filename="../client/qml/Settings.qml" line="871"/>
         <source>yellow</source>
         <comment>Pattern led color</comment>
         <translation>rumena</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="860"/>
+        <location filename="../client/qml/Settings.qml" line="872"/>
         <source>cyan</source>
         <comment>Pattern led color</comment>
         <translation>cyan</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="861"/>
+        <location filename="../client/qml/Settings.qml" line="873"/>
         <source>pink</source>
         <comment>Pattern led color</comment>
         <translation>pink</translation>
@@ -2276,36 +2326,36 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <translation>Barva multimedijskega sporočila</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="481"/>
+        <location filename="../client/qml/Settings.qml" line="493"/>
         <source>Language</source>
         <translation>Jezik</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="494"/>
+        <location filename="../client/qml/Settings.qml" line="506"/>
         <source>Restart application to change language</source>
         <comment>Language changing banner text</comment>
         <translation>Za spremembo jezika ponovno zaženite aplikacijo</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="505"/>
+        <location filename="../client/qml/Settings.qml" line="517"/>
         <source>Connection server</source>
         <comment>Settings option name</comment>
         <translation>Server za povezavo</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="573"/>
+        <location filename="../client/qml/Settings.qml" line="585"/>
         <source>Autostart</source>
         <comment>Settings option name</comment>
         <translation>Samodejni zagon</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="581"/>
+        <location filename="../client/qml/Settings.qml" line="593"/>
         <source>Allow saving application logs</source>
         <comment>Settings option name</comment>
         <translation>Dovoli shranjevanje log datotek</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="585"/>
+        <location filename="../client/qml/Settings.qml" line="597"/>
         <source>You need to full quit application to start writing logs. Send logfile to author appear in settings menu.</source>
         <comment>Allow application logs option description</comment>
         <translation>Za vklop log datotek naredtei popoln izhod iz programa. Ukaz za pošiljanje log datotek avtorju se nahaja v meniju Nastavitve</translation>
@@ -2317,13 +2367,13 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <translation>Zakleni orientacijo pogovora v pokončnem pogledu</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="600"/>
+        <location filename="../client/qml/Settings.qml" line="612"/>
         <source>Show yourself in contact list, if present</source>
         <comment>Settings option name</comment>
         <translation>Če je status &quot;dosegljiv&quot; se prikaži med stiki</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="606"/>
+        <location filename="../client/qml/Settings.qml" line="618"/>
         <source>Accept messages from unknown contacts</source>
         <comment>Settings option name</comment>
         <translation>Sprejmi sporočila od neznanih stikov</translation>
@@ -2383,97 +2433,97 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <translation>Multimedijsko sporočilo</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="617"/>
+        <location filename="../client/qml/Settings.qml" line="629"/>
         <source>Presence</source>
         <comment>Settings page section name</comment>
         <translation>Prisotnost</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="622"/>
+        <location filename="../client/qml/Settings.qml" line="634"/>
         <source>Display presence</source>
         <comment>Settings option name</comment>
         <translation>Prikaži prisotnost</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="625"/>
+        <location filename="../client/qml/Settings.qml" line="637"/>
         <source>Display online when app is open</source>
         <comment>Settings option value text</comment>
         <translation>Prikaži povezano ko je program zagnan</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="632"/>
+        <location filename="../client/qml/Settings.qml" line="644"/>
         <source>Always display online</source>
         <comment>Settings option value text</comment>
         <translation>Vedno prikaži povezano</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="639"/>
+        <location filename="../client/qml/Settings.qml" line="651"/>
         <source>Always display offline</source>
         <comment>Settings option value text</comment>
         <translation>Vedno prikaži brez povezave</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="652"/>
+        <location filename="../client/qml/Settings.qml" line="664"/>
         <source>Cover</source>
         <comment>Settings page section name</comment>
         <translation>Naslovnica</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="663"/>
+        <location filename="../client/qml/Settings.qml" line="675"/>
         <source>Left cover action</source>
         <comment>Settings option name</comment>
         <translation>Levo dejanje na naslovnici</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="687"/>
+        <location filename="../client/qml/Settings.qml" line="699"/>
         <source>Right cover action</source>
         <comment>Settings option name</comment>
         <translation>Desno dejanje na naslovnici</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="704"/>
+        <location filename="../client/qml/Settings.qml" line="716"/>
         <source>Media</source>
         <comment>Settings page section name</comment>
         <translation>Datoteke</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="740"/>
+        <location filename="../client/qml/Settings.qml" line="752"/>
         <source>Auto download on WLAN only</source>
         <comment>Settings option name</comment>
         <translation>Samodejni prenos le pri brezžični povezavi</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="730"/>
+        <location filename="../client/qml/Settings.qml" line="742"/>
         <source>Automatic download bytes</source>
         <comment>Settings option name</comment>
         <translation>Največja velikost za samodejni prenos</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="749"/>
+        <location filename="../client/qml/Settings.qml" line="761"/>
         <source>Resize sending images</source>
         <comment>Settings option name</comment>
         <translation>Spremeni velikost poslanih slik</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="793"/>
+        <location filename="../client/qml/Settings.qml" line="805"/>
         <source>Maximum image size by file size</source>
         <comment>Settings option name</comment>
         <translation>Največja velikost slike po velikosti datoteke</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="827"/>
+        <location filename="../client/qml/Settings.qml" line="839"/>
         <source>Maximum image size by resolution</source>
         <comment>Settings option name</comment>
         <translation>Največja velikost slike po ločljivosti slike</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="829"/>
+        <location filename="../client/qml/Settings.qml" line="841"/>
         <source>%1 MPx</source>
         <comment>Settings option value text</comment>
         <translation>%1 MPx</translation>
     </message>
     <message>
-        <location filename="../client/qml/Settings.qml" line="843"/>
+        <location filename="../client/qml/Settings.qml" line="855"/>
         <source>Options marked with (*) will take effect after reconnection</source>
         <comment>Settings (*) options description</comment>
         <translation>Možnosti, označene z (*) bodo veljavne po ponovni vzpostavitvi povezave</translation>
@@ -2495,7 +2545,7 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <location filename="../client/qml/ShareUI.qml" line="66"/>
         <source>Selected: %n</source>
         <comment>Sharing menu title text</comment>
-        <translation><numerusform>Izbran: %n</numerusform><numerusform>Izbrana:  %n</numerusform><numerusform>Izbranih:  %n</numerusform><numerusform>Izbranih:  %n</numerusform></translation>
+        <translation><numerusform>Število izbranih: %n</numerusform><numerusform>Število izbranih: %n</numerusform><numerusform>Število izbranih: %n</numerusform><numerusform>Število izbranih: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/ShareUI.qml" line="166"/>
@@ -2735,36 +2785,42 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
     </message>
     <message>
         <location filename="../client/qml/UserProfile.qml" line="112"/>
+        <source>Clear chat history</source>
+        <comment>User profile page menu item</comment>
+        <translation>Izbriši zgodovino pogovora</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/UserProfile.qml" line="119"/>
         <source>Save chat history</source>
         <comment>User profile page menu item</comment>
         <translation>Shrani zgodovino pogovora v datoteko</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="115"/>
+        <location filename="../client/qml/UserProfile.qml" line="122"/>
         <source>History saved to Documents</source>
         <comment>User profile page history saved banner</comment>
         <translation>Zgodovina shranjena v mapo &quot;Documents&quot;</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="155"/>
+        <location filename="../client/qml/UserProfile.qml" line="162"/>
         <source>Nickname: %1</source>
         <comment>User profile page nickname label</comment>
         <translation>Vzdevek: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="166"/>
+        <location filename="../client/qml/UserProfile.qml" line="173"/>
         <source>Status: %1</source>
         <comment>User profile page status label</comment>
         <translation>Stanje: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="178"/>
+        <location filename="../client/qml/UserProfile.qml" line="185"/>
         <source>Status set: %1</source>
         <comment>User profile page status timestamp</comment>
         <translation>Trenutni status: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="189"/>
+        <location filename="../client/qml/UserProfile.qml" line="196"/>
         <source>Contact blocked</source>
         <comment>User profile page contact blocked label</comment>
         <translation>Stik je blokiran</translation>
@@ -2780,17 +2836,17 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <translation>Počisti ozadje</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="198"/>
+        <location filename="../client/qml/UserProfile.qml" line="205"/>
         <source>Call +%1</source>
         <translation>Pokliči +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="209"/>
+        <location filename="../client/qml/UserProfile.qml" line="216"/>
         <source>Save +%1</source>
         <translation>Shrani +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="216"/>
+        <location filename="../client/qml/UserProfile.qml" line="223"/>
         <source>Media</source>
         <comment>User profile page media section name</comment>
         <translation>Datoteke</translation>
@@ -2802,16 +2858,16 @@ Kliknite Obnovi za nakup 1-letne naročnine na WhatsApp servis.</translation>
         <location filename="../client/qml/main.qml" line="188"/>
         <source>You</source>
         <comment>Display You instead of your own nickname</comment>
-        <translation type="unfinished"/>
+        <translation>Ti</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="664"/>
+        <location filename="../client/qml/main.qml" line="680"/>
         <source>Disconnecting</source>
         <comment>Disconnect remorse popup</comment>
         <translation>Prekinjam povezavo ...</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="971"/>
+        <location filename="../client/qml/main.qml" line="987"/>
         <source>Server experiencing problems with following feature(s): %1</source>
         <translation>Server ima težave z naslednjimi možnostmi: %1</translation>
     </message>
