@@ -169,7 +169,7 @@ Client::Client(QObject *parent) : QObject(parent)
     dconf->watchKey(SETTINGS_ACCOUNTSTATUS);
     dconf->watchKey(SETTINGS_LAST_SYNC);
     dconf->watchKey("settings/alwaysOffline", false);
-    dconf->watchKey("settings/importmediatogallery", true);
+    dconf->watchKey("settings/importToGallery", true);
     dconf->watchKey("settings/resizeImages", false);
     dconf->watchKey("settings/resizeWlan");
     dconf->watchKey("settings/resizeBySize", true);
@@ -325,7 +325,7 @@ void Client::readSettings()
 
     alwaysOffline = dconf->value("settings/alwaysOffline", false).toBool();
 
-    importMediaToGallery = dconf->value("settings/importmediatogallery", true).toBool();
+    importMediaToGallery = dconf->value("settings/importToGallery", true).toBool();
 
     resizeImages = dconf->value("settings/resizeImages", false).toBool();
     resizeWlan = dconf->value("settings/resizeWlan").toBool();
@@ -1179,7 +1179,7 @@ void Client::onSettingsChanged(const QString &key)
     else if (key == "settings/alwaysOffline") {
         this->alwaysOffline = dconf->value(key).toBool();
     }
-    else if (key == "settings/importmediatogallery") {
+    else if (key == "settings/importToGallery") {
         this->importMediaToGallery = dconf->value(key).toBool();
     }
     else if (key == "settings/resizeImages") {
