@@ -228,13 +228,18 @@ Page {
                 }
             }
 
-            Component.onCompleted: {
-                checkMuting()
+            DConfValue {
+                id: mutingConfig
+                key: "/apps/harbour-mitakuuluu2/muting/" + model.jid
+                defaultValue: 0
+                onValueChanged: {
+                    checkMuting()
+                }
             }
 
             function checkMuting() {
                 var timeNow = new Date().getTime()
-                var mutingInterval = getMuting(model.jid, timeNow)
+                var mutingInterval = parseInt(mutingConfig.value)
                 if (parseInt(mutingInterval) > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
@@ -256,6 +261,7 @@ Page {
                 if (item.mutingTimer)
                     item.mutingTimer.destroy()
                 muted = false
+                mutingConfig.value = 0
             }
 
             Component {

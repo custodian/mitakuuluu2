@@ -150,15 +150,6 @@ Page {
         visible: false
     }
 
-    function getMuting(jid, def) {
-        mutingConfig.key = "/apps/harbour-mitakuuluu2/muting/" + jid
-        mutingConfig.defaultValue = def
-        return mutingConfig.value
-    }
-    DConfValue {
-        id: mutingConfig
-    }
-
     Component {
         id: listDelegate
         ListItem {
@@ -212,10 +203,19 @@ Page {
                 checkMuting()
             }
 
+            DConfValue {
+                id: mutingConfig
+                key: "/apps/harbour-mitakuuluu2/muting/" + model.jid
+                defaultValue: 0
+                onValueChanged: {
+                    checkMuting()
+                }
+            }
+
             function checkMuting() {
                 var timeNow = new Date().getTime()
-                var mutingInterval = getMuting(model.jid, timeNow)
-                if (parseInt(mutingInterval) > timeNow) {
+                var mutingInterval = parseInt(mutingConfig.value)
+                if (mutingInterval > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
                         muted = true
@@ -236,6 +236,7 @@ Page {
                 if (item.mutingTimer)
                     item.mutingTimer.destroy()
                 muted = false
+                mutingConfig.value = 0
             }
 
             Component {
