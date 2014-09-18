@@ -502,7 +502,7 @@ ApplicationWindow {
 
         function contactsSelected() {
             contactsRejected()
-            Mitakuuluu.sendLocation(pageStack.currentPage.jids, latitude, longitude, zoom, mapSource)
+            Mitakuuluu.sendLocation(pageStack.currentPage.jids, latitude, longitude, zoom, settings.mapSource)
         }
     }
 
@@ -657,13 +657,13 @@ ApplicationWindow {
             if (settings.followPresence)
                 return "../images/icon-cover-autoavailable-" + (left ? "left" : "right") + ".png"
             else {
-                if (alwaysOffline)
+                if (settings.alwaysOffline)
                     return "../images/icon-cover-unavailable-" + (left ? "left" : "right") + ".png"
                 else
                     return "../images/icon-cover-available-" + (left ? "left" : "right") + ".png"
             }
         case 2: //global muting
-            if (notificationsMuted)
+            if (settings.notificationsMuted)
                 return "../images/icon-cover-muted-" + (left ? "left" : "right") + ".png"
             else
                 return "../images/icon-cover-unmuted-" + (left ? "left" : "right") + ".png"

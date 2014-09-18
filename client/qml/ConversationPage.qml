@@ -81,7 +81,6 @@ Page {
             if (!available) {
                 Mitakuuluu.requestLastOnline(jid)
             }
-            loadText()
         }
     }
 
@@ -802,7 +801,7 @@ Page {
                                             positionSource.position.coordinate.latitude,
                                             positionSource.position.coordinate.longitude,
                                             16,
-                                            mapSource)
+                                            settings.mapSource)
                     positionSource.active = false
                     positionSource.destroy()
                 }

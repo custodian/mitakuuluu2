@@ -52,7 +52,7 @@ MouseArea {
 
     property string mediaTitle: model.name
     onMediaTitleChanged: {
-        if (model.name && model.url.slice(model.url.length - model.name.length) !== model.name
+        if ((model.watype == Mitakuuluu.Image || model.watype == Mitakuuluu.Video) && model.name && model.url.slice(model.url.length - model.name.length) !== model.name
                        && model.local.slice(model.local.length - model.name.length) !== model.name) {
             textLoader.active = true
         }
@@ -767,7 +767,7 @@ MouseArea {
         Image {
             id: locprev
             anchors.verticalCenter: parent.verticalCenter
-            source: locationPreview(width, height, model.latitude, model.longitude, 14, mapSource)
+            source: locationPreview(width, height, model.latitude, model.longitude, 14, settings.mapSource)
             asynchronous: true
             cache: true
             smooth: true

@@ -288,35 +288,35 @@ Dialog {
         anchors.top: bt3.bottom
         anchors.right: parent.right
         anchors.margins: Theme.paddingMedium
-        icon.source: "../images/mapicon-" + mapSource + ".png"
+        icon.source: "../images/mapicon-" + settings.mapSource + ".png"
         highlighted: pressed
         onClicked: {
-            if (mapSource == "google") {
-                mapSource = "nokia"
+            if (settings.mapSource == "google") {
+                settings.mapSource = "nokia"
             }
-            else if (mapSource == "nokia") {
-                mapSource = "here"
+            else if (settings.mapSource == "nokia") {
+                settings.mapSource = "here"
             }
-            else if (mapSource == "here") {
-                mapSource = "osm"
+            else if (settings.mapSource == "here") {
+                settings.mapSource = "osm"
             }
-            else if (mapSource == "osm"){
-                mapSource = "google"
+            else if (settings.mapSource == "osm"){
+                settings.mapSource = "google"
             }
-            else if (mapSource == "google"){
-                mapSource = "bing"
+            else if (settings.mapSource == "google"){
+                settings.mapSource = "bing"
             }
-            else if (mapSource == "bing"){
-                mapSource = "mapquest"
+            else if (settings.mapSource == "bing"){
+                settings.mapSource = "mapquest"
             }
-            else if (mapSource == "mapquest"){
-                mapSource = "yandex"
+            else if (settings.mapSource == "mapquest"){
+                settings.mapSource = "yandex"
             }
-            else if (mapSource == "yandex"){
-                mapSource = "yandexuser"
+            else if (settings.mapSource == "yandex"){
+                settings.mapSource = "yandexuser"
             }
             else {
-                mapSource = "2gis"
+                settings.mapSource = "2gis"
             }
 
             locationImg.loadImage()
