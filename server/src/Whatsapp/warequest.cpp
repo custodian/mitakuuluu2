@@ -53,9 +53,11 @@ void WARequest::getRequest()
         QUrl reqUrl(QUrl(URL_REGISTRATION_V2 + _method));
         reqUrl.setQuery(urlQuery);
         QNetworkRequest request(reqUrl);
-        request.setRawHeader("User-Agent", Client::wauseragent.toLatin1());
+        QString waversion = Client::dconf->value(SETTINGS_WAVERSION, USER_AGENT_VERSION).toString();
+        QString wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(waversion);
+        request.setRawHeader("User-Agent", wauseragent.toLatin1());
         request.setRawHeader("Connection", "closed");
-        qDebug() << "User-Agent" << Client::wauseragent;
+        qDebug() << "User-Agent" << wauseragent;
         qDebug() << "WARequest" << _method << "request:" << request.url().toString();
 
         reply = nam->get(request);

@@ -115,20 +115,6 @@ QString Client::accountstatus;
 // User status
 QString Client::myStatus;
 
-bool Client::importMediaToGallery;
-
-QString Client::wauseragent;
-QString Client::waresource;
-
-QString Client::wanokiascratch1;
-QString Client::wanokiascratch2;
-QString Client::wandroidscratch1;
-QString Client::wandroidscratch2;
-QString Client::wandroidscratch3;
-QString Client::wandroidscratch4;
-
-bool Client::whatsappevil;
-
 MDConfAgent *Client::dconf;
 
 /**
@@ -168,8 +154,42 @@ Client::Client(QObject *parent) : QObject(parent)
     _pendingCount = 0;
 
     dconf = new MDConfAgent("/apps/harbour-mitakuuluu2/", this);
+    QObject::connect(dconf, SIGNAL(valueChanged(QString)), this, SLOT(onSettingsChanged(QString)));
 
-    readSettings();
+    dconf->watchKey(SETTINGS_SCRATCH1, BUILD_KEY);
+    dconf->watchKey(SETTINGS_SCRATCH2, BUILD_HASH);
+    dconf->watchKey(SETTINGS_SCRATCH3, ANDROID_TT);
+    dconf->watchKey(SETTINGS_EVIL, false);
+    dconf->watchKey(SETTINGS_WAVERSION, USER_AGENT_VERSION);
+    dconf->watchKey(SETTINGS_UNKNOWN, true);
+    dconf->watchKey(SETTINGS_PRESENCE, "I'm using Mitakuuluu!");
+    dconf->watchKey(SETTINGS_CREATION);
+    dconf->watchKey(SETTINGS_KIND);
+    dconf->watchKey(SETTINGS_EXPIRATION);
+    dconf->watchKey(SETTINGS_ACCOUNTSTATUS);
+    dconf->watchKey(SETTINGS_LAST_SYNC);
+    dconf->watchKey("settings/alwaysOffline", false);
+    dconf->watchKey("settings/importmediatogallery", true);
+    dconf->watchKey("settings/resizeImages", false);
+    dconf->watchKey("settings/resizeWlan");
+    dconf->watchKey("settings/resizeBySize", true);
+    dconf->watchKey("settings/resizeImagesTo", 1024*1024);
+    dconf->watchKey("settings/resizeImagesToMPix", 5.01);
+    dconf->watchKey(SETTINGS_AUTOMATIC_DOWNLOAD);
+    dconf->watchKey(SETTINGS_AUTOMATIC_DOWNLOAD_BYTES, QVariant(DEFAULT_AUTOMATIC_DOWNLOAD));
+    dconf->watchKey("settings/autoDownloadWlan");
+    dconf->watchKey("settings/notificationsMuted", false);
+    dconf->watchKey("settings/notifyMessages", false);
+    dconf->watchKey("settings/systemNotifier", false);
+    dconf->watchKey("settings/useKeepalive", true);
+    dconf->watchKey("settings/reconnectionInterval", 1);
+    dconf->watchKey("settings/reconnectionLimit", 20);
+    dconf->watchKey("settings/disconnectStreamError", false);
+    dconf->watchKey("settings/usePhonebookAvatars", false);
+    dconf->watchKey("settings/showConnectionNotifications", false);
+    dconf->watchKey("settings/notificationsDelay", 5);
+
+    //readSettings();
 
     connectionNotification = NULL;
 
@@ -1116,6 +1136,108 @@ void Client::onMediaTitleReceived(const QString &msgid, const QString &title, co
     Q_EMIT mediaTitleReceived(msgid, title, jid);
 }
 
+void Client::onSettingsChanged(const QString &key)
+{
+    if (key == SETTINGS_SCRATCH1) {
+        this->wanokiascratch1 = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_SCRATCH2) {
+        this->wanokiascratch2 = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_SCRATCH3) {
+        this->wandroidscratch1 = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_EVIL) {
+        this->whatsappevil = dconf->value(key).toBool();
+    }
+    else if (key == SETTINGS_WAVERSION) {
+        this->waversion = dconf->value(key).toString();
+        this->waresource = QString("Android-%1-443").arg(this->waversion);
+        this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
+    }
+    else if (key == SETTINGS_UNKNOWN) {
+        this->acceptUnknown = dconf->value(key).toBool();
+    }
+    else if (key == SETTINGS_PRESENCE) {
+        this->myStatus = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_CREATION) {
+        this->creation = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_KIND) {
+        this->kind = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_EXPIRATION) {
+        this->expiration = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_ACCOUNTSTATUS) {
+        this->accountstatus = dconf->value(key).toString();
+    }
+    else if (key == SETTINGS_LAST_SYNC) {
+        this->lastSync = dconf->value(key).toLongLong();
+    }
+    else if (key == "settings/alwaysOffline") {
+        this->alwaysOffline = dconf->value(key).toBool();
+    }
+    else if (key == "settings/importmediatogallery") {
+        this->importMediaToGallery = dconf->value(key).toBool();
+    }
+    else if (key == "settings/resizeImages") {
+        this->resizeImages = dconf->value(key).toBool();
+    }
+    else if (key == "settings/resizeWlan") {
+        this->resizeWlan = dconf->value(key).toBool();
+    }
+    else if (key == "settings/resizeBySize") {
+        this->resizeBySize = dconf->value(key).toBool();
+    }
+    else if (key == "settings/resizeImagesTo") {
+        this->resizeImagesTo = dconf->value(key).toInt();
+    }
+    else if (key == "settings/resizeImagesToMPix") {
+        this->resizeImagesToMPix = dconf->value(key).toFloat();
+    }
+    else if (key == SETTINGS_AUTOMATIC_DOWNLOAD) {
+        this->autoDownloadMedia = dconf->value(key).toBool();
+    }
+    else if (key == SETTINGS_AUTOMATIC_DOWNLOAD_BYTES) {
+        this->autoBytes = dconf->value(key).toInt();
+    }
+    else if (key == "settings/autoDownloadWlan") {
+        this->autoDownloadWlan = dconf->value(key).toBool();
+    }
+    else if (key == "settings/notificationsMuted") {
+        this->notificationsMuted = dconf->value(key).toBool();
+    }
+    else if (key == "settings/notifyMessages") {
+        this->notifyMessages = dconf->value(key).toBool();
+    }
+    else if (key == "settings/systemNotifier") {
+        this->systemNotifier = dconf->value(key).toBool();
+    }
+    else if (key == "settings/useKeepalive") {
+        this->useKeepalive = dconf->value(key).toBool();
+    }
+    else if (key == "settings/reconnectionInterval") {
+        this->reconnectionInterval = dconf->value(key).toInt();
+    }
+    else if (key == "settings/reconnectionLimit") {
+        this->reconnectionLimit = dconf->value(key).toInt();
+    }
+    else if (key == "settings/disconnectStreamError") {
+        this->disconnectStreamError = dconf->value(key).toBool();
+    }
+    else if (key == "settings/usePhonebookAvatars") {
+        this->usePhonebookAvatars = dconf->value(key).toBool();
+    }
+    else if (key == "settings/showConnectionNotifications") {
+        this->showConnectionNotifications = dconf->value(key).toBool();
+    }
+    else if (key == "settings/notificationsDelay") {
+        this->notificationsDelay = dconf->value(key).toInt();
+    }
+}
+
 void Client::synchronizePhonebook()
 {
     // Contacts syncer
@@ -1242,9 +1364,9 @@ void Client::syncContactsAvailable(const QVariantList &results)
 
 void Client::changeStatus(const QString &newStatus)
 {
+    myStatus = newStatus;
+    dconf->setValue(SETTINGS_PRESENCE, myStatus);
     if (connectionStatus == LoggedIn) {
-        myStatus = newStatus;
-        dconf->setValue(SETTINGS_PRESENCE, myStatus);
         Q_EMIT connectionSetNewStatus(newStatus);
     }
 }
@@ -1252,23 +1374,9 @@ void Client::changeStatus(const QString &newStatus)
 void Client::changeUserName(const QString &newUserName)
 {
     userName = newUserName;
+    dconf->setValue(SETTINGS_USERNAME, userName);
     if (connectionStatus == LoggedIn) {
         Q_EMIT connectionSetNewUserName(userName, alwaysOffline);
-    }
-}
-
-void Client::sendRecentLogs()
-{
-    compressOldLogs();
-    //QDesktopServices::openUrl(QString("mailto:coderusinbox@gmail.com?subject=Mitakuuluu log&body=Hello! I found bug in Mitakuuluu: <bug description>&attach=/home/nemo/.whatsapp/logs/whatsapp_log1.tar.gz"));
-    QFile log("/home/nemo/.whatsapp/logs/whatsapp_log1.tar.gz");
-    if (log.exists() && log.open(QFile::ReadOnly)) {
-        QByteArray data = log.readAll().toBase64();
-        Q_EMIT logfileReady(data, true);
-        log.close();
-    }
-    else {
-        Q_EMIT logfileReady(QByteArray(), false);
     }
 }
 
@@ -3342,19 +3450,6 @@ void Client::dbResults(const QVariant &result)
     }
 }
 
-void Client::waversionRequestFinished()
-{
-    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray serverReply = reply->readAll();
-        this->waversion = QString(serverReply);
-        this->waresource = QString("Android-%1-443").arg(this->waversion);
-        this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
-
-        dconf->setValue(SETTINGS_WAVERSION, this->waversion);
-    }
-}
-
 void Client::scratchRequestFinished()
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
@@ -3363,51 +3458,20 @@ void Client::scratchRequestFinished()
         QJsonParseError error;
         QJsonDocument doc = QJsonDocument::fromJson(json, &error);
         if (error.error == QJsonParseError::NoError) {
+            qDebug() << "wa/scratch/reply";
             QVariantMap mapResult = doc.toVariant().toMap();
             this->wandroidscratch1 = mapResult["a"].toString();
-            qDebug() << "wa/scratch/reply";
             this->wanokiascratch1 = mapResult["b"].toString();
             this->wanokiascratch2 = mapResult["c"].toString();
             this->waversion = mapResult["d"].toString();
             this->waresource = QString("Android-%1-443").arg(this->waversion);
             this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
-            dconf->setValue(SETTINGS_SCRATCH1, this->wanokiascratch1);
-            dconf->setValue(SETTINGS_SCRATCH2, this->wanokiascratch2);
-            dconf->setValue(SETTINGS_SCRATCH3, this->wandroidscratch1);
-            dconf->setValue(SETTINGS_WAVERSION, this->waversion);
-            qDebug() << this->wandroidscratch1;
+            dconf->setValue(SETTINGS_SCRATCH1, wanokiascratch1);
+            dconf->setValue(SETTINGS_SCRATCH2, wanokiascratch2);
+            dconf->setValue(SETTINGS_SCRATCH3, wandroidscratch1);
+            dconf->setValue(SETTINGS_WAVERSION, waversion);
+            qDebug() << wandroidscratch1;
             qDebug() << this->wauseragent;
         }
     }
-}
-
-void Client::compressOldLogs()
-{
-    /*qDebug() << "Compressing old logs...";
-    QFile lastLog("/home/nemo/.whatsapp/whatsapp.log");
-    if (lastLog.exists()) {
-        QFile log3("/home/nemo/.whatsapp/logs/whatsapp_log3.tar.gz");
-        QFile log2("/home/nemo/.whatsapp/logs/whatsapp_log2.tar.gz");
-        QFile log1("/home/nemo/.whatsapp/logs/whatsapp_log1.tar.gz");
-        if (log3.exists()) {
-            log3.remove();
-            QFile::copy(log2.fileName(), log3.fileName());
-            QFile::copy(log1.fileName(), log2.fileName());
-            log1.remove();
-        }
-        else if (log2.exists()) {
-            QFile::copy(log2.fileName(), log3.fileName());
-            QFile::copy(log1.fileName(), log2.fileName());
-            log1.remove();
-        }
-        else if (log1.exists()) {
-            QFile::copy(log1.fileName(), log2.fileName());
-            log1.remove();
-        }
-    }
-    QProcess tar;
-    tar.start("tar", QStringList() << "czfv" << "/home/nemo/.whatsapp/logs/whatsapp_log1.tar.gz" << "/home/nemo/.whatsapp/whatsapp.log");
-    tar.waitForFinished(-1);
-    lastLog.remove();
-    qDebug() << "Compressing done!";*/
 }

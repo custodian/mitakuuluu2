@@ -109,7 +109,7 @@ public:
      */
     void unsetValue(const QString &key);
 
-    void watchKey(const QString &key);
+    void watchKey(const QString &key, const QVariant &def = QVariant());
 
     void unwatchKey(const QString &key);
 

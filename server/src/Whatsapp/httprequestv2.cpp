@@ -45,7 +45,9 @@ HttpRequestv2::HttpRequestv2(QObject *parent) :
     QObject(parent)
 {
     // Add default headers
-    setHeader("User-Agent", QString(Client::wauseragent).toUtf8());
+    QString waversion = Client::dconf->value(SETTINGS_WAVERSION, USER_AGENT_VERSION).toString();
+    QString wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(waversion);
+    setHeader("User-Agent", wauseragent.toUtf8());
     setHeader("Connection", "closed");
 
 }

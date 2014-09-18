@@ -229,20 +229,20 @@ public:
     static QString myStatus;
 
     // Import media into gallery
-    static bool importMediaToGallery;
+    bool importMediaToGallery;
 
     // Protocol constants
-    static QString wauseragent;
-    static QString waresource;
+    QString wauseragent;
+    QString waresource;
 
-    static QString wanokiascratch1;
-    static QString wanokiascratch2;
-    static QString wandroidscratch1;
-    static QString wandroidscratch2;
-    static QString wandroidscratch3;
-    static QString wandroidscratch4;
+    QString wanokiascratch1;
+    QString wanokiascratch2;
+    QString wandroidscratch1;
+    QString wandroidscratch2;
+    QString wandroidscratch3;
+    QString wandroidscratch4;
 
-    static bool whatsappevil;
+    bool whatsappevil;
 
     static MDConfAgent *dconf;
 
@@ -335,9 +335,7 @@ private slots:
     void registrationFinished(const QVariantMap &reply);
     void expired(const QVariantMap &result);
     void dbResults(const QVariant &result);
-    void waversionRequestFinished();
     void scratchRequestFinished();
-    void compressOldLogs();
 
     void updateContactPushname(const QString &jid, const QString &pushName);
 
@@ -355,6 +353,8 @@ private slots:
     void threadFinished();
 
     void onMediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
+
+    void onSettingsChanged(const QString &key);
 
 signals:
     void authFail(const QString &username, const QString &reason);
@@ -661,7 +661,6 @@ public slots:
     void resendMessage(const QString &jid, const QVariantMap &model);
     void changeStatus(const QString &newStatus);
     void changeUserName(const QString &newUserName);
-    void sendRecentLogs();
     void newContactAdded(QString jid);
     void newContactAdd(const QString &name, const QString &number);
     void removeAccount();

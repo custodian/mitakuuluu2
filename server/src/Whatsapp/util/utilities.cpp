@@ -55,7 +55,7 @@ QString Utilities::getTokenAndroid(const QString &phoneNumber)
     QByteArray ipad = QByteArray::fromBase64(QByteArray(ANDROID_S1));
     QByteArray opad = QByteArray::fromBase64(QByteArray(ANDROID_S2));
     QByteArray data = QByteArray::fromBase64(QByteArray(ANDROID_S3));
-    data.append(QByteArray::fromBase64(Client::wandroidscratch1.toLatin1()));
+    data.append(QByteArray::fromBase64(Client::dconf->value(SETTINGS_SCRATCH3, BUILD_KEY).toString().toLatin1()));
     data.append(phoneNumber.toLatin1());
     ipad.append(data);
 
@@ -74,7 +74,9 @@ QString Utilities::getTokenAndroid(const QString &phoneNumber)
 
 QString Utilities::getTokenNokia(const QString &phoneNumber)
 {
-    QString token = Client::wanokiascratch1 + Client::wanokiascratch2 + phoneNumber;
+    QString wanokiascratch1 = Client::dconf->value(SETTINGS_SCRATCH1, BUILD_KEY).toString();
+    QString wanokiascratch2 = Client::dconf->value(SETTINGS_SCRATCH2, BUILD_HASH).toString();
+    QString token = wanokiascratch1 + wanokiascratch2 + phoneNumber;
 
     QtMD5Digest digest;
     digest.reset();

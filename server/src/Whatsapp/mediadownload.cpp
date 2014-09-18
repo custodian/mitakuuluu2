@@ -97,7 +97,8 @@ void MediaDownload::writeToFile()
 
 QString MediaDownload::getFileNameForMessage(FMessage message)
 {
-    QString path = Utilities::getPathFor(message.media_wa_type, Client::importMediaToGallery);
+    bool importMediaToGallery = Client::dconf->value("settings/importmediatogallery").toBool();
+    QString path = Utilities::getPathFor(message.media_wa_type, importMediaToGallery);
 
     QDir home = QDir::home();
     if (!home.exists(path))

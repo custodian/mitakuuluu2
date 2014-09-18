@@ -104,11 +104,15 @@ void MDConfAgent::unsetValue(const QString &key)
     MDConf::clear(priv->client, convertKey(priv->prefix + key));
 }
 
-void MDConfAgent::watchKey(const QString &key)
+void MDConfAgent::watchKey(const QString &key, const QVariant &def)
 {
     if (!priv->values.contains(key)) {
         priv->values[key] = MDConf::read(priv->client, convertKey(priv->prefix + key));
+        if (priv->values[key].isNull() && !def.isNull()) {
+            priv->values[key] = def;
+        }
         MDConf::watch(priv->client, convertKey(priv->prefix + key));
+        Q_EMIT valueChanged(key);
     }
 }
 
