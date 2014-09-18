@@ -110,7 +110,7 @@ Dialog {
 
     ConfigurationGroup {
         id: accountConfiguration
-        path: "/apps/harbour-mitakuuluu2/settings"
+        path: "/apps/harbour-mitakuuluu2/account"
 
         property string pushname: "Mitakuuluu user"
         property string presence: "I love Mitakuuluu!"
