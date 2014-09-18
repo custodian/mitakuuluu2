@@ -70,17 +70,7 @@ void MDConfItemPrivate::notify_trampoline(DConfClient *, gchar *, GStrv, gchar *
 
 void MDConfItem::update_value(bool emit_signal)
 {
-    QVariant new_value;
-    QByteArray k = convertKey(priv->key);
-    GVariant *v = dconf_client_read(priv->client, k.data());
-    if (!v) {
-        //qWarning() << "MDConfItem Failed to read" << priv->key;
-        new_value = priv->value;
-    }
-
-    new_value = MDConf::convertValue(v);
-    if (v)
-        g_variant_unref(v);
+    QVariant new_value = MDConf::read(priv->client, convertKey(priv->key));
 
     if (new_value != priv->value || new_value.userType() != priv->value.userType()) {
         priv->value = new_value;
@@ -109,26 +99,13 @@ QVariant MDConfItem::value(const QVariant &def) const
 
 void MDConfItem::set(const QVariant &val)
 {
-    QByteArray k = convertKey(priv->key);
-    GVariant *v = NULL;
-    GError *error = NULL;
 
-    if (MDConf::convertValue(val, &v)) {
-	dconf_client_write_fast(priv->client, k.data(), v, &error);
-
-	if (error) {
-	    qWarning() << error->message;
-	    g_error_free(error);
-	}
-
-	// We will not emit any signals because dconf should take care of that for us.
-    } else
-        qWarning() << "Can't store a" << val.typeName();
+    MDConf::write(priv->client, convertKey(priv->key), val);
 }
 
 void MDConfItem::unset()
 {
-    set(QVariant());
+    MDConf::clear(priv->client, convertKey(priv->key));
 }
 
 QStringList MDConfItem::listDirs(const QString &key) const
@@ -232,7 +209,7 @@ QVariantList MDConfItem::listItems(const QString &key) const
 
 bool MDConfItem::sync()
 {
-    dconf_client_sync(priv->client);
+    MDConf::sync(priv->client);
     return true;
 }
 
@@ -244,16 +221,14 @@ MDConfItem::MDConfItem(const QString &key, QObject *parent)
     priv->handler =
       g_signal_connect(priv->client, "changed", G_CALLBACK(MDConfItemPrivate::notify_trampoline), this);
 
-    QByteArray k = convertKey(priv->key);
-    dconf_client_watch_fast(priv->client, k.data());
+    MDConf::watch(priv->client, convertKey(priv->key));
     update_value(false);
 }
 
 MDConfItem::~MDConfItem()
 {
     g_signal_handler_disconnect(priv->client, priv->handler);
-    QByteArray k = convertKey(priv->key);
-    dconf_client_unwatch_fast(priv->client, k.data());
+    MDConf::unwatch(priv->client, convertKey(priv->key));
     g_object_unref(priv->client);
     delete priv;
 }

@@ -33,11 +33,16 @@ Dialog {
     }
 
     function resetAccount() {
-        Mitakuuluu.clearGroup("account")
+        accountGroup.unset()
         if (Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn) {
             Mitakuuluu.disconnect()
         }
         pageStack.pop()
+    }
+
+    DConfValue {
+        id: accountGroup
+        key: "/apps/harbour-mitakuuluu2/account/"
     }
 
     property bool cantAcceptReally: pageStack._forwardFlickDifference > 0 && pageStack._preventForwardNavigation
@@ -140,7 +145,7 @@ Dialog {
                         deleteDialog.open()
                     }
                     else {
-                        Mitakuuluu.clearGroup("account")
+                        resetAccount()
                     }
                 }
             }
@@ -325,8 +330,6 @@ Dialog {
             }
         }
         onAccepted: {
-            //pageStack.pop(roster, PageStackAction.Immediate)
-            //pageStack.replace(removePage)
             Mitakuuluu.removeAccountFromServer()
             resetAccount()
         }

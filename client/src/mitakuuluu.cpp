@@ -1064,7 +1064,6 @@ void Mitakuuluu::removeAccountFromServer()
     if (iface) {
         iface->call(QDBus::NoBlock, "removeAccountFromServer");
     }
-    clearGroup("account");
 }
 
 void Mitakuuluu::forceConnection()
@@ -1458,65 +1457,6 @@ void Mitakuuluu::checkWebVersion()
 {
     connect(nam->get(QNetworkRequest(QUrl("https://coderus.openrepos.net/mitakuuluu.json"))),
             SIGNAL(finished()), this, SLOT(onVersionReceived()));
-}
-
-// Settings
-
-QVariantList Mitakuuluu::loadGroup(const QString &name)
-{
-    QVariantList result;
-
-    /*gint length = 0;
-    QByteArray k = QString("/apps/harbour-mitakuuluu2/%1").arg(name).toUtf8();
-    qDebug() << "MDConfItem::listItems" << k;
-
-    gchar **items = dconf_client_list(client, k.data(), &length);
-    GError *error = NULL;
-
-    for (gint x = 0; x < length; x++) {
-      const gchar *item = g_strdup_printf ("%s%s", k.data(), items[x]);
-      if (dconf_is_key(item, &error)) {
-        // We have to mimic how gconf was behaving.
-        // so we need to chop off trailing slashes.
-        // dconf will also barf if it gets a "path" with 2 slashes.
-        QString k = QString::fromUtf8(item);
-        QVariant val;
-        GVariant *v = dconf_client_read(client, item);
-        if (!v) {
-            qWarning() << "MGConfItem Failed to read";
-        }
-
-        val = convertDConfValue(v);
-        QVariantMap v_item;
-        v_item["jid"] = k;
-        v_item["value"] = val;
-        result.append(v_item);
-        //qDebug() << "have item:" << k;
-
-        if (v)
-            g_variant_unref(v);
-        g_free ((gpointer)item);
-      }
-
-      // If we have error set then dconf_is_key() has returned false so we should be safe here
-      if (error) {
-        qDebug() << "have not an item:" << QString::fromUtf8(item);
-        g_free ((gpointer)item);
-        qWarning() << "MGConfItem::listItems()" << error->message;
-        g_error_free(error);
-        error = NULL;
-      }
-    }
-
-    g_strfreev(items);*/
-
-    return result;
-}
-
-void Mitakuuluu::clearGroup(const QString &name)
-{
-    QByteArray k = QString("/apps/harbour-mitakuuluu2/%1").arg(name).toUtf8();
-    //dconf_client_write_fast(client, k, 0, 0);
 }
 
 QString Mitakuuluu::generateSalt()

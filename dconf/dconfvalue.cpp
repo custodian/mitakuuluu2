@@ -123,3 +123,10 @@ QVariantList DConfValue::listValues(const QString &key)
     }
     return QVariantList();
 }
+
+void DConfValue::unset()
+{
+    if (mItem) {
+        mItem->unset();
+    }
+}

@@ -61,6 +61,7 @@ public slots:
     void sync();
     QStringList listDirs(const QString &key);
     QVariantList listValues(const QString &key);
+    void unset();
 
 signals:
     void keyChanged();

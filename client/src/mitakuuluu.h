@@ -391,8 +391,6 @@ public slots:
 //Settings
 
 public slots:
-    Q_INVOKABLE QVariantList loadGroup(const QString &name);
-    Q_INVOKABLE void clearGroup(const QString &name);
     Q_INVOKABLE QString generateSalt();
 };
 
