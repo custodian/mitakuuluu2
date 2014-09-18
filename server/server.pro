@@ -136,7 +136,8 @@ HEADERS += \
     src/contactsfetch.h \
     ../dconf/mdconf_p.h \
     ../dconf/mdconfitem.h \
-    ../dconf/mdconfagent.h
+    ../dconf/mdconfagent.h \
+    ../dconf/dconfmigration.h
 
 OTHER_FILES += $$files(rpm/*) \
     rpm/server.spec \

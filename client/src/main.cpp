@@ -65,6 +65,7 @@
 
 #include <mlite5/MGConfItem>
 
+#include "../dconf/dconfmigration.h"
 #include "../logging/logging.h"
 
 static QObject *mitakuuluu_singleton_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
@@ -97,21 +98,19 @@ int main(int argc, char *argv[])
     setuid(getpwnam("nemo")->pw_uid);
     setgid(getgrnam("privileged")->gr_gid);
 
+    migrate_dconf();
+
     MDConfItem ready("/apps/harbour-mitakuuluu2/migrationIsDone");
     if (!ready.value(false).toBool()) {
-        QSettings settings("coderus", "mitakuuluu2");
-        if (settings.value("settings/keepLogs", true).toBool())
-            qInstallMessageHandler(fileHandler);
-        else
-            qInstallMessageHandler(stdoutHandler);
+        qDebug() << "QSettings was migrated to dconf!";
+        ready.set(true);
     }
-    else {
-        MDConfItem keepLogs("/apps/harbour-mitakuuluu2/settings/keepLogs");
-        if (keepLogs.value(true).toBool())
-            qInstallMessageHandler(fileHandler);
-        else
-            qInstallMessageHandler(stdoutHandler);
-    }
+
+    MDConfItem keepLogs("/apps/harbour-mitakuuluu2/settings/keepLogs");
+    if (keepLogs.value(true).toBool())
+        qInstallMessageHandler(fileHandler);
+    else
+        qInstallMessageHandler(stdoutHandler);
 
     qDebug() << "Init gst presets";
     gst_init(0, 0);

@@ -61,7 +61,8 @@ HEADERS += \
     src/conversationfiltermodel.h \
     ../dconf/dconfvalue.h \
     ../dconf/mdconf_p.h \
-    ../dconf/mdconfitem.h
+    ../dconf/mdconfitem.h \
+    ../dconf/dconfmigration.h
 
 OTHER_FILES += \
     qml/MediaPreview.qml

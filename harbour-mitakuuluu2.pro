@@ -7,7 +7,7 @@ SUBDIRS = \
     shareui \
     sharecontacts \
     translator \
-#    andriodhelper \
+    androidhelper \
     $${NULL}
 
 OTHER_FILES = \

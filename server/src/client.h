@@ -91,10 +91,8 @@
 #include <mlite5/MRemoteAction>
 
 #include "keepalive/backgroundactivity.h"
-
-#include "mdconfagent.h"
-
 #include "../threadworker/queryexecutor.h"
+#include "../dconf/mdconfagent.h"
 
 typedef QList<QVariantMap> QVariantMapList;
 Q_DECLARE_METATYPE(QVariantMapList)

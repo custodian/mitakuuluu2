@@ -15,10 +15,10 @@
 #include <QLocale>
 #include <QTranslator>
 
-#include <mlite5/MGConfItem>
-
 #include "client.h"
 
+#include "../dconf/dconfmigration.h"
+#include "../dconf/mdconfitem.h"
 #include "../logging/logging.h"
 
 Q_DECL_EXPORT
@@ -27,31 +27,19 @@ int main(int argc, char *argv[])
     setuid(getpwnam("nemo")->pw_uid);
     setgid(getgrnam("privileged")->gr_gid);
 
-    MGConfItem ready("/apps/harbour-mitakuuluu2/migrationIsDone");
-    if (!ready.value(false).toBool()) {
-        QSettings settings("coderus", "mitakuuluu2");
-        QStringList groups = settings.childGroups();
-        foreach (const QString &group, groups) {
-            //printf("[%s]\n", group.toUtf8().constData());
-            settings.beginGroup(group);
-            QStringList keys = settings.allKeys();
-            foreach (const QString &key, keys) {
-                //printf("%s\n", key.toUtf8().constData());
-                MGConfItem dconf(QString("/apps/harbour-mitakuuluu2/%1/%2").arg(group).arg(key));
-                dconf.set(settings.value(key));
-            }
-            settings.endGroup();
-        }
-    }
-    MGConfItem keepLogs("/apps/harbour-mitakuuluu2/settings/keepLogs");
-    if (keepLogs.value(true).toBool())
-        qInstallMessageHandler(fileHandler);
-    else
-        qInstallMessageHandler(stdoutHandler);
+    migrate_dconf();
+
+    MDConfItem ready("/apps/harbour-mitakuuluu2/migrationIsDone");
     if (!ready.value(false).toBool()) {
         qDebug() << "QSettings was migrated to dconf!";
         ready.set(true);
     }
+
+    MDConfItem keepLogs("/apps/harbour-mitakuuluu2/settings/keepLogs");
+    if (keepLogs.value(true).toBool())
+        qInstallMessageHandler(fileHandler);
+    else
+        qInstallMessageHandler(stdoutHandler);
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     app->setOrganizationName("harbour-mitakuuluu2");
