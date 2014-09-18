@@ -18,7 +18,7 @@ Page {
         timestamp = model.subtimestamp
         picture = settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                 ? (model.avatar == "undefined" ? "" : (model.avatar))
-                : (model.owner == "undefined" ? "" : (model.owner))
+                : (model.owner == "undefined" ? "" : (model.owner.length > 0 ? model.owner : model.avatar))
         blocked = model.blocked
     }
     property string pushname: ""

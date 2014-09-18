@@ -284,7 +284,7 @@ Page {
                 id: ava
                 source: settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                         ? (model.avatar == "undefined" ? "" : (model.avatar))
-                        : (model.owner == "undefined" ? "" : (model.owner))
+                        : (model.owner == "undefined" ? "" : (model.owner.length > 0 ? model.owner : model.avatar))
                 emptySource: "../images/avatar-empty" + (model.jid.indexOf("-") > 0 ? "-group" : "") + ".png"
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.paddingLarge
