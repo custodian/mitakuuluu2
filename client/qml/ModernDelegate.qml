@@ -157,7 +157,7 @@ MouseArea {
     function remove() {
         remorseAction(qsTr("Remove message", "Conversation message remorse text"),
                       function() {
-                          conversationModel.deleteMessage(model.msgid, deleteMediaFiles)
+                          conversationModel.deleteMessage(model.msgid, settings.deleteMediaFiles)
                       })
     }
 

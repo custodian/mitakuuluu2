@@ -75,9 +75,9 @@ Page {
 
             AvatarHolder {
                 id: ava
-                source: usePhonebookAvatars || (model.key.indexOf("-") > 0)
+                source: settings.usePhonebookAvatars || (model.key.indexOf("-") > 0)
                         ? (contactModel.avatar == "undefined" ? "" : (contactModel.avatar))
-                        : (contactModel.owner == "undefined" ? "" : (contactModel.owner))
+                        : (contactModel.owner == "undefined" ? "" : (contactModel.owner.length > 0 ? contactModel.owner : contactModel.avatar))
                 emptySource: "../images/avatar-empty" + (model.key.indexOf("-") > 0 ? "-group" : "") + ".png"
                 anchors {
                 	left: parent.left

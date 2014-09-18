@@ -48,7 +48,7 @@ Page {
     Connections {
         target: Mitakuuluu
         onPictureUpdated: {
-            if (pjid == page.jid && !settings.usePhonebookAvatars) {
+            if (pjid == page.jid && (!settings.usePhonebookAvatars || picture.length == 0)) {
                 picture = ""
                 picture = path
             }

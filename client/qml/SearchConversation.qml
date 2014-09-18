@@ -52,7 +52,7 @@ Page {
             Loader {
                 width: parent.width
                 asynchronous: false
-                source: Qt.resolvedUrl(conversationTheme)
+                source: Qt.resolvedUrl(settings.conversationTheme)
             }
         }
     }

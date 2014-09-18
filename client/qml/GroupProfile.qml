@@ -605,7 +605,7 @@ Page {
         Page {
             id: mediaPage
             objectName: "allMediaPage"
-            allowedOrientations: Orientation.Portrait | (allowLandscapeInverted ? (Orientation.Landscape | Orientation.LandscapeInverted) : Orientation.Landscape)
+            allowedOrientations: globalOrientation
 
             SilicaGridView {
                 id: mediaGrid

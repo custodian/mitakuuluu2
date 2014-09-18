@@ -115,7 +115,7 @@ Dialog {
         contactsModel: ContactsBaseModel
         hideGroups: noGroups
         showActive: false
-        showUnknown: acceptUnknown
+        showUnknown: settings.acceptUnknown
         filterContacts: showMyself ? [] : [Mitakuuluu.myJid]
         Component.onCompleted: {
             init()
@@ -136,9 +136,9 @@ Dialog {
                 id: ava
                 width: Theme.iconSizeLarge
                 height: Theme.iconSizeLarge
-                source: usePhonebookAvatars || (model.jid.indexOf("-") > 0)
+                source: settings.usePhonebookAvatars || (model.jid.indexOf("-") > 0)
                         ? (model.avatar == "undefined" ? "" : (model.avatar))
-                        : (model.owner == "undefined" ? "" : (model.owner))
+                        : (model.owner == "undefined" ? "" : (model.owner.length > 0 ? model.owner : model.avatar))
                 emptySource: "../images/avatar-empty" + (model.jid.indexOf("-") > 0 ? "-group" : "") + ".png"
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.paddingLarge

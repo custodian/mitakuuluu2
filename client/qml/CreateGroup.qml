@@ -193,9 +193,9 @@ Dialog {
         id: contactsModel
         contactsModel: ContactsBaseModel
         hideGroups: true
-        showUnknown: acceptUnknown
+        showUnknown: settings.acceptUnknown
         showActive: false
-        filterContacts: showMyJid ? [] : [Mitakuuluu.myJid]
+        filterContacts: settings.showMyJid ? [] : [Mitakuuluu.myJid]
         Component.onCompleted: {
             init()
         }

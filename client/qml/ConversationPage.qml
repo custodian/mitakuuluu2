@@ -45,6 +45,9 @@ Page {
             }
             horizontalHint.visible = firstStartConversation
             hintLabel.visible = firstStartConversation
+            if (settings.showKeyboard) {
+                sendBox.forceActiveFocus()
+            }
         }
     }
 
@@ -71,7 +74,7 @@ Page {
             //console.log("avatar: " + initialModel.avatar)
             avatar = settings.usePhonebookAvatars || (jid.indexOf("-") > 0)
                     ? (initialModel.avatar == "undefined" ? "" : (initialModel.avatar))
-                    : (initialModel.owner == "undefined" ? "" : (initialModel.owner))
+                    : (initialModel.owner == "undefined" ? "" : (initialModel.owner.length > 0 ? initialModel.owner : initialModel.avatar))
             typing = initialModel.typing
             lastseconds = parseInt(initialModel.timestamp)
 
@@ -170,7 +173,7 @@ Page {
         onMessageReceived: {
             typing = false
             if (applicationActive && !blocked && (data.jid === jid) && (data.author != Mitakuuluu.myJid)) {
-                if (notifyActive)
+                if (settings.notifyActive)
                     vibration.start()
                 if (!conversationView.atYEnd)
                     newMessageItem.opacity = 1.0

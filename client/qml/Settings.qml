@@ -196,10 +196,10 @@ Page {
             }
 
             /*TextSwitch {
-                checked: deleteMediaFiles
+                checked: settingsdeleteMediaFiles
                 text: qsTr("Delete media files")
                 description: qsTr("Delete received media files when deleting message")
-                onClicked: deleteMediaFiles = checked
+                onClicked: settings.deleteMediaFiles = checked
             }*/
 
             ComboBox {
