@@ -227,7 +227,7 @@ bool MDConfAgent::sync()
 
 void MDConfAgent::update_value(const QString &key)
 {
-    priv->values[key] = MDConf::read(priv->client, convertKey(priv->prefix + key));
+    priv->values[key] = MDConf::read(priv->client, convertKey(key));
     Q_EMIT valueChanged(key);
 }
 
