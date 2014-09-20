@@ -171,23 +171,29 @@ Client::Client(QObject *parent) : QObject(parent)
     dconf->watchKey("settings/alwaysOffline", false);
     dconf->watchKey("settings/importToGallery", true);
     dconf->watchKey("settings/resizeImages", false);
-    dconf->watchKey("settings/resizeWlan");
+    dconf->watchKey("settings/resizeWlan", false);
     dconf->watchKey("settings/resizeBySize", true);
     dconf->watchKey("settings/resizeImagesTo", 1024*1024);
     dconf->watchKey("settings/resizeImagesToMPix", 5.01);
-    dconf->watchKey(SETTINGS_AUTOMATIC_DOWNLOAD);
+    dconf->watchKey(SETTINGS_AUTOMATIC_DOWNLOAD, false);
     dconf->watchKey(SETTINGS_AUTOMATIC_DOWNLOAD_BYTES, QVariant(DEFAULT_AUTOMATIC_DOWNLOAD));
-    dconf->watchKey("settings/autoDownloadWlan");
+    dconf->watchKey("settings/autoDownloadWlan", true);
     dconf->watchKey("settings/notificationsMuted", false);
     dconf->watchKey("settings/notifyMessages", false);
     dconf->watchKey("settings/systemNotifier", false);
     dconf->watchKey("settings/useKeepalive", true);
-    dconf->watchKey("settings/reconnectionInterval", 1);
+    dconf->watchKey("settings/reconnectioFnInterval", 1);
     dconf->watchKey("settings/reconnectionLimit", 20);
     dconf->watchKey("settings/disconnectStreamError", false);
     dconf->watchKey("settings/usePhonebookAvatars", false);
     dconf->watchKey("settings/showConnectionNotifications", false);
     dconf->watchKey("settings/notificationsDelay", 5);
+    dconf->watchKey("muting/");
+
+    QVariantMap mutingKeys = dconf->listItems("muting");
+    foreach (const QString &key, mutingKeys.keys()) {
+        mutingList[key] = mutingKeys.value(key, 0).toULongLong();
+    }
 
     //readSettings();
 
@@ -350,11 +356,6 @@ void Client::readSettings()
 
     showConnectionNotifications = dconf->value("settings/showConnectionNotifications", false).toBool();
     notificationsDelay = dconf->value("settings/notificationsDelay", 5).toInt();
-
-    QVariantMap mutingKeys = dconf->listItems("muting");
-    foreach (const QString &key, mutingKeys.keys()) {
-        mutingList[key] = mutingKeys.value(key, 0).toULongLong();
-    }
 
     // Read counters
     dataCounters.readCounters();
@@ -1138,6 +1139,11 @@ void Client::onMediaTitleReceived(const QString &msgid, const QString &title, co
 
 void Client::onSettingsChanged(const QString &key)
 {
+    if (key.startsWith("muting/")) {
+        QString jid = key;
+        jid = jid.remove(0, 7);
+        mutingList[jid] = dconf->value(key).toULongLong();
+    }
     if (key == SETTINGS_SCRATCH1) {
         this->wanokiascratch1 = dconf->value(key).toString();
     }

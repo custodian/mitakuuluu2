@@ -107,12 +107,14 @@ void MDConfAgent::unsetValue(const QString &key)
 void MDConfAgent::watchKey(const QString &key, const QVariant &def)
 {
     if (!priv->values.contains(key)) {
-        priv->values[key] = MDConf::read(priv->client, convertKey(priv->prefix + key));
-        if (priv->values[key].isNull() && !def.isNull()) {
-            priv->values[key] = def;
+        if (!key.endsWith("/")) {
+            priv->values[key] = MDConf::read(priv->client, convertKey(priv->prefix + key));
+            if (priv->values[key].isNull() && !def.isNull()) {
+                priv->values[key] = def;
+            }
+            Q_EMIT valueChanged(key);
         }
         MDConf::watch(priv->client, convertKey(priv->prefix + key));
-        Q_EMIT valueChanged(key);
     }
 }
 
@@ -227,8 +229,10 @@ bool MDConfAgent::sync()
 
 void MDConfAgent::update_value(const QString &key)
 {
-    priv->values[key] = MDConf::read(priv->client, convertKey(key));
-    Q_EMIT valueChanged(key);
+    QString privKey = key;
+    privKey = privKey.remove(0, priv->prefix.length());
+    priv->values[privKey] = MDConf::read(priv->client, convertKey(key));
+    Q_EMIT valueChanged(privKey);
 }
 
 MDConfAgent::MDConfAgent(const QString &prefix, QObject *parent)
