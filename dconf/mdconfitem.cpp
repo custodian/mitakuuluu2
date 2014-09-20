@@ -116,7 +116,7 @@ QStringList MDConfItem::listDirs(const QString &key) const
     if (!k.endsWith("/")) {
         k = k.left(k.lastIndexOf("/") + 1);
     }
-    qDebug() << "MDConfItem::listDirs" << k;
+    //qDebug() << "MDConfItem::listDirs" << k;
 
     gchar **dirs = dconf_client_list(priv->client, k.data(), &length);
     GError *error = NULL;
@@ -129,7 +129,7 @@ QStringList MDConfItem::listDirs(const QString &key) const
         // dconf will also barf if it gets a "path" with 2 slashes.
         QString d = convertKey(dir);
         g_free ((gpointer)dir);
-        qDebug() << "have dir:" << d;
+        //qDebug() << "have dir:" << d;
         if (d.endsWith("/")) {
           d.chop(1);
         }
@@ -160,7 +160,7 @@ QVariantList MDConfItem::listItems(const QString &key) const
     if (!k.endsWith("/")) {
         k = k.left(k.lastIndexOf("/") + 1);
     }
-    qDebug() << "MDConfItem::listItems" << k;
+    //qDebug() << "MDConfItem::listItems" << k;
 
     gchar **items = dconf_client_list(priv->client, k.data(), &length);
     GError *error = NULL;
@@ -171,20 +171,19 @@ QVariantList MDConfItem::listItems(const QString &key) const
         // We have to mimic how gconf was behaving.
         // so we need to chop off trailing slashes.
         // dconf will also barf if it gets a "path" with 2 slashes.
-        QString k = convertKey(item);
+        QString child = convertKey(item);
         QVariant val;
         GVariant *v = dconf_client_read(priv->client, item);
         if (!v) {
-            //qWarning() << "MGConfItem Failed to read" << key;
+            qWarning() << "MGConfItem Failed to read" << child;
         }
         else {
             val = MDConf::convertValue(v);
 
             QVariantMap value;
-            value["key"] = k;
+            value["key"] = child;
             value["value"] = val;
             children.append(value);
-            //qDebug() << "have item:" << k;
         }
 
         if (v)

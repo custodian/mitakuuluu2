@@ -943,7 +943,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var hiddenContacts = loadGroup("hidden")
+        var hiddenContacts = dconfObject.listValues("/apps/harbour-mitakuuluu2/hidden")
         var toHide = []
         for (var i = 0; i < hiddenContacts.length; i++) {
             var val = hiddenContacts[i].value == "true"
@@ -956,9 +956,6 @@ ApplicationWindow {
         updateCoverActions()
     }
 
-    function loadGroup(groupName) {
-        return dconfObject.listValues("/apps/harbour-mitakuuluu2/" + groupName)
-    }
     DConfValue {
         id: dconfObject
     }

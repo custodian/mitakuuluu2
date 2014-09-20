@@ -110,18 +110,18 @@ void DConfValue::sync()
 
 QStringList DConfValue::listDirs(const QString &key)
 {
-    if (mItem) {
-        return mItem->listDirs(key);
-    }
-    return QStringList();
+    MDConfItem *test = new MDConfItem("/apps/harbour-mitakuuluu2", 0);
+    QStringList values = test->listDirs(key);
+    delete test;
+    return values;
 }
 
 QVariantList DConfValue::listValues(const QString &key)
 {
-    if (mItem) {
-        return mItem->listItems(key);
-    }
-    return QVariantList();
+    MDConfItem *test = new MDConfItem("/apps/harbour-mitakuuluu2", 0);
+    QVariantList values = test->listItems(key);
+    delete test;
+    return values;
 }
 
 void DConfValue::unset()

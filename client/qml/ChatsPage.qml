@@ -105,7 +105,6 @@ Page {
 
             MenuItem {
                 text: qsTr("Muted contacts", "Main menu action")
-                enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("MutedContacts.qml"))
                 }
@@ -236,7 +235,6 @@ Page {
                 if (item.mutingTimer)
                     item.mutingTimer.destroy()
                 muted = false
-                mutingConfig.value = 0
             }
 
             Component {
