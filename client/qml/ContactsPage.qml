@@ -243,8 +243,8 @@ Page {
                 if (parseInt(mutingInterval) > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
-                        muted = true
                     }
+                    muted = true
                 }
                 else {
                     if (mutingTimer) {

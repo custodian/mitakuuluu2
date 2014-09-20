@@ -190,9 +190,11 @@ Client::Client(QObject *parent) : QObject(parent)
     dconf->watchKey("settings/notificationsDelay", 5);
     dconf->watchKey("muting/");
 
-    QVariantMap mutingKeys = dconf->listItems("muting");
+    QVariantMap mutingKeys = dconf->listItems("muting/");
     foreach (const QString &key, mutingKeys.keys()) {
-        mutingList[key] = mutingKeys.value(key, 0).toULongLong();
+        QString jid = key;
+        jid = jid.split("/").last();
+        mutingList[jid] = mutingKeys.value(key, 0).toULongLong();
     }
 
     //readSettings();

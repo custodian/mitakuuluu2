@@ -131,10 +131,7 @@ QStringList MDConfAgent::listDirs(const QString &key) const
     QStringList children;
     gint length = 0;
     QByteArray k = convertKey(priv->prefix + key);
-    if (!k.endsWith("/")) {
-        k = k.left(k.lastIndexOf("/") + 1);
-    }
-    qDebug() << "MDConfItem::listDirs" << k;
+    //qDebug() << "MDConfItem::listDirs" << k;
 
     gchar **dirs = dconf_client_list(priv->client, k.data(), &length);
     GError *error = NULL;
@@ -147,20 +144,11 @@ QStringList MDConfAgent::listDirs(const QString &key) const
         // dconf will also barf if it gets a "path" with 2 slashes.
         QString d = convertKey(dir);
         g_free ((gpointer)dir);
-        qDebug() << "have dir:" << d;
+        //qDebug() << "have dir:" << d;
         if (d.endsWith("/")) {
           d.chop(1);
         }
         children.append(d);
-      }
-
-      // If we have error set then dconf_is_dir() has returned false so we should be safe here
-      if (error) {
-        qDebug() << "have not a dir:" << convertKey(dir);
-        g_free ((gpointer)dir);
-        qWarning() << "MGConfItem::listDirs()" << error->message;
-        g_error_free(error);
-        error = NULL;
       }
     }
 
@@ -175,10 +163,7 @@ QVariantMap MDConfAgent::listItems(const QString &key) const
     QVariantMap children;
     gint length = 0;
     QByteArray k = convertKey(priv->prefix + key);
-    if (!k.endsWith("/")) {
-        k = k.left(k.lastIndexOf("/") + 1);
-    }
-    qDebug() << "MDConfItem::listItems" << k;
+    //qDebug() << "MDConfItem::listItems" << k;
 
     gchar **items = dconf_client_list(priv->client, k.data(), &length);
     GError *error = NULL;
@@ -189,30 +174,21 @@ QVariantMap MDConfAgent::listItems(const QString &key) const
         // We have to mimic how gconf was behaving.
         // so we need to chop off trailing slashes.
         // dconf will also barf if it gets a "path" with 2 slashes.
-        QString k = convertKey(item);
+        QString child = convertKey(item);
         QVariant val;
         GVariant *v = dconf_client_read(priv->client, item);
         if (!v) {
-            qWarning() << "MGConfItem Failed to read" << key;
+            qWarning() << "MGConfItem Failed to read" << child;
         }
         else {
             val = MDConf::convertValue(v);
-            children[k] = val;
+            children[child] = val;
 
-            qDebug() << "have item:" << k;
+            //qDebug() << "have item:" << child;
 
             g_variant_unref(v);
         }
         g_free ((gpointer)item);
-      }
-
-      // If we have error set then dconf_is_key() has returned false so we should be safe here
-      if (error) {
-        qDebug() << "have not an item:" << convertKey(item);
-        g_free ((gpointer)item);
-        qWarning() << "MGConfItem::listItems()" << error->message;
-        g_error_free(error);
-        error = NULL;
       }
     }
 

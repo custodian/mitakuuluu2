@@ -198,10 +198,6 @@ Page {
                 }
             }
 
-            Component.onCompleted: {
-                checkMuting()
-            }
-
             DConfValue {
                 id: mutingConfig
                 key: "/apps/harbour-mitakuuluu2/muting/" + model.jid
@@ -217,8 +213,8 @@ Page {
                 if (mutingInterval > timeNow) {
                     if (!mutingTimer) {
                         mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
-                        muted = true
                     }
+                    muted = true
                 }
                 else {
                     if (mutingTimer) {

@@ -135,15 +135,6 @@ QStringList MDConfItem::listDirs(const QString &key) const
         }
         children.append(d);
       }
-
-      // If we have error set then dconf_is_dir() has returned false so we should be safe here
-      if (error) {
-        qDebug() << "have not a dir:" << convertKey(dir);
-        g_free ((gpointer)dir);
-        qWarning() << "MGConfItem::listDirs()" << error->message;
-        g_error_free(error);
-        error = NULL;
-      }
     }
 
     g_strfreev(dirs);
@@ -189,15 +180,6 @@ QVariantList MDConfItem::listItems(const QString &key) const
         if (v)
             g_variant_unref(v);
         g_free ((gpointer)item);
-      }
-
-      // If we have error set then dconf_is_key() has returned false so we should be safe here
-      if (error) {
-        qDebug() << "have not an item:" << convertKey(item);
-        g_free ((gpointer)item);
-        qWarning() << "MGConfItem::listItems()" << error->message;
-        g_error_free(error);
-        error = NULL;
       }
     }
 
