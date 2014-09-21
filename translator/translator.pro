@@ -1,6 +1,6 @@
 TEMPLATE = lib
 QT += quick sql core dbus
-CONFIG += qt plugin link_ppkgconfig
+CONFIG += qt plugin link_pkgconfig
 PKGCONFIG += mlite5
 INCLUDEPATH += /usr/include/mlite5
 
