@@ -269,7 +269,7 @@ function makeEmoji(path) {
 }
 
 function emojify(inputText, emojiPath) {
-    var replacedText = inputText.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\n/g, "<br />").replace(/\ufe0f/g, "")//.replace('\ud83c', '')
+    var replacedText = inputText.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\n/g, "<br />").replace(/\ufe0f/g, "").replace(/\ufffc/g, "<br />")//.replace('\ud83c', '')
     //var replacedText = inputText.replace(/\ufe0f/g, "")
     prevCode = 0
     var regb = /([\ue001-\ue537])/g
