@@ -74,6 +74,7 @@ Item {
             drag.axis: Drag.YAxis
             drag.minimumY: 0
             drag.maximumY: dragArea.height - magnifier.height
+            propagateComposedEvents: true
 
             onPressed: {
                 magnifier.positionAtY(dragArea.mouseY);
