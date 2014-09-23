@@ -51,6 +51,7 @@ public:
     // Writer methods
     int write(ProtocolTreeNode& node, bool needsFlush = true);
     int streamStart(QString& domain, QString& resource);
+    int streamEnd();
 
     void setOutputKey(KeyStream *outputKey);
     void setCrypto(bool crypto);

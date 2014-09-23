@@ -77,6 +77,24 @@ int BinTreeNodeWriter::streamStart(QString& domain, QString& resource)
     return bytes;
 }
 
+int BinTreeNodeWriter::streamEnd()
+{
+    writeMutex.lock();
+    startBuffer();
+    QDataStream out(&writeBuffer,QIODevice::WriteOnly);
+
+    writeDummyHeader(out);
+    writeListStart(1, out);
+    writeInt8(2, out);
+
+    int bytes = writeBuffer.size();
+
+    flushBuffer(true);
+    writeMutex.unlock();
+
+    return bytes;
+}
+
 void BinTreeNodeWriter::writeDummyHeader(QDataStream& out)
 {
     dataBegin = writeBuffer.size();

@@ -121,6 +121,11 @@ void Connection::init()
 void Connection::disconnectAndDelete()
 {
     qDebug() << "disconnectAndDelete";
+    if (socket->isOpen()) {
+        sendUnavailable();
+        int outBytes = out->streamEnd();
+        counters->increaseCounter(DataCounters::ProtocolBytes, 0, outBytes);
+    }
     disconnect(socket,0,0,0);
     socket->disconnectFromHost();
     finalCleanup();
