@@ -1568,13 +1568,21 @@ ProtocolTreeNode Connection::getMessageNode(const FMessage &message, const Proto
 */
 void Connection::sendMessageReceived(const FMessage &message, const QString &type)
 {
-    AttributeList attrs;
-
     ProtocolTreeNode messageNode("receipt");
-    attrs.clear();
-    QString resource = message.broadcast ? message.remote_resource : message.key.remote_jid;
-    attrs.insert("to",resource);
+    AttributeList attrs;
     attrs.insert("id",message.key.id);
+    if (message.broadcast) {
+        attrs.insert("to", message.remote_resource);
+        if (!message.key.remote_jid.isEmpty()) {
+            attrs.insert("participant", message.key.remote_jid);
+        }
+    }
+    else {
+        attrs.insert("to", message.key.remote_jid);
+        if (!message.remote_resource.isEmpty()) {
+            attrs.insert("participant", message.remote_resource);
+        }
+    }
     if (!type.isEmpty()) {
         attrs.insert("type", type);
     }
