@@ -12,7 +12,7 @@ ShareDialog {
     property string emojiPath: "/usr/share/harbour-mitakuuluu2/emoji/"
 
     property int viewWidth: root.isPortrait ? Screen.width : Screen.width / 2
-    property variant jids: []
+    property var jids: []
 
     property string path: source
 

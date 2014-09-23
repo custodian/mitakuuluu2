@@ -15,7 +15,7 @@ Dialog {
         requiredProperty: PeopleModel.PhoneNumberRequired
     }
 
-    property variant vCardData
+    property var vCardData
     property string displayLabel
 
     canAccept: false

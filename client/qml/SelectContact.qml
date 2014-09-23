@@ -32,7 +32,7 @@ Dialog {
     }
 
     property string jid: ""
-    property variant jids: []
+    property var jids: []
     property bool multiple: false
     property bool noGroups: false
     property bool showMyself: false

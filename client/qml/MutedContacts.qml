@@ -78,7 +78,7 @@ Page {
         id: delegateComponent
         BackgroundItem {
             id: item
-            property variant contactModel: ContactsBaseModel.getModel(model.key)
+            property var contactModel: ContactsBaseModel.getModel(model.key)
             height: Theme.itemSizeMedium
 
             DConfValue {

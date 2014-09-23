@@ -12,7 +12,7 @@ Page {
     objectName: "settings"
     allowedOrientations: globalOrientation
 
-    property variant coverNames: []
+    property var coverNames: []
 
     onStatusChanged: {
         if (status === PageStatus.Inactive) {

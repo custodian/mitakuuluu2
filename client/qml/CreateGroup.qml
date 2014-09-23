@@ -8,7 +8,7 @@ Dialog {
     canAccept: false
     allowedOrientations: globalOrientation
 
-    property variant jids: []
+    property var jids: []
 
     function checkCanAccept() {
         page.canAccept = groupTitle.text.trim().length > 0 && jids.length > 0

@@ -15,9 +15,9 @@ Dialog {
 
     property bool searchEnabled: false
 
-    property variant numbers: []
-    property variant names: []
-    property variant avatars: []
+    property var numbers: []
+    property var names: []
+    property var avatars: []
 
     signal finished
 
@@ -229,7 +229,7 @@ Dialog {
             Repeater {
                 id: internal
                 width: parent.width
-                property variant effectiveIndecies: constructIndecies()
+                property var effectiveIndecies: constructIndecies()
                 function constructIndecies() {
                     var indecies = []
                     var effectiveNumbers = []

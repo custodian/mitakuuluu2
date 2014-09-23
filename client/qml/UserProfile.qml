@@ -28,7 +28,7 @@ Page {
     property string picture: ""
     property bool blocked: false
 
-    property variant conversationModel: null
+    property var conversationModel: null
 
     Connections {
         target: ContactsBaseModel
