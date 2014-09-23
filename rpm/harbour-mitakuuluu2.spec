@@ -6,8 +6,8 @@ Name:       harbour-mitakuuluu2
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Summary:    Mitäkuuluu
-Version:    0.8.6
-Release:    1
+Version:    0.8.8
+Release:    10
 Group:      Qt/Qt
 License:    WTFPL
 Source0:    %{name}-%{version}.tar.bz2
@@ -17,6 +17,7 @@ Requires:   qt5-qtdeclarative-import-sensors qt5-qtsensors-plugin-gestures-senso
 Requires:   qt5-qtdeclarative-import-location qt5-qtdeclarative-import-positioning
 Requires:   libkeepalive
 Requires:   zip
+Requires:   dconf
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
@@ -31,6 +32,7 @@ BuildRequires:  gstreamer-devel
 BuildRequires:  libcontacts-qt5-devel qtcontacts-sqlite-qt5-extensions
 BuildRequires:  libkeepalive-devel
 BuildRequires:  qt5-qttools-linguist
+BuildRequires:  pkgconfig(dconf)
 
 %description
 Mitakuuluu - indie WhatsApp-compatible client for SailfishOS
