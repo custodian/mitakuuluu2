@@ -216,7 +216,7 @@ bool Connection::read()
             }
             Q_EMIT streamError();
         }
-        if (tag == "iq")
+        else if (tag == "iq")
         {
             QString type = node.getAttributeValue("type");
             QString id = node.getAttributeValue("id");
@@ -978,7 +978,8 @@ void Connection::socketError(QAbstractSocket::SocketError error)
 
 void Connection::readNode()
 {
-    while (socket->bytesAvailable() > 0) {
+    //Basil Semuonov 20140923: hotfix for disconnection status
+    while (socket->isOpen() && socket->bytesAvailable() > 0) {
         if (!read())
             qDebug() << "Error reading tree";
     }
