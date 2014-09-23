@@ -66,7 +66,7 @@ FocusScope {
 
     property Item _backgroundItem
     property QtObject _feedbackEffect
-    property variant _appWindow: __silica_applicationwindow_instance
+    property var _appWindow: __silica_applicationwindow_instance
 
     property alias _flickableDirection: flickable.flickableDirection
 
@@ -543,7 +543,7 @@ FocusScope {
         Rectangle {
             id: handleId
             property bool start
-            property variant cursorRect: _editor.positionToRectangle(start ? _editor.selectionStart : _editor.selectionEnd)
+            property var cursorRect: _editor.positionToRectangle(start ? _editor.selectionStart : _editor.selectionEnd)
             property alias showAnimation: showAnimationId
             property int xAnimationLength: Theme.itemSizeExtraLarge
 

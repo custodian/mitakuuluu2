@@ -27,7 +27,7 @@ ApplicationWindow {
         console.log("hide contacts: " + hidden)
     }
 
-    property variant hiddenList: []
+    property var hiddenList: []
     onHiddenListChanged: {
         console.log("hidden contacts: " + JSON.stringify(hiddenList))
     }
@@ -555,7 +555,7 @@ ApplicationWindow {
 
     QtObject {
         id: mediaReceiver
-        property variant mediaFile
+        property var mediaFile
 
         function mediaAccepted() {
             console.log("media accepted")
@@ -859,7 +859,7 @@ ApplicationWindow {
             property alias source: imageEditPreview.source
             property alias target: imageEditPreview.target
             property alias cropping: imageEditPreview.editInProgress
-            property variant selectedContentProperties
+            property var selectedContentProperties
             property alias orientation: imageEditPreview.orientation
 
             property string jid

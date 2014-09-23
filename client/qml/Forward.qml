@@ -8,7 +8,7 @@ Dialog {
     objectName: "forwardMessage"
     allowedOrientations: globalOrientation
 
-    property variant jids: []
+    property var jids: []
 
     property string jid: ""
     property string msgid: ""
@@ -39,7 +39,7 @@ Dialog {
         banner.notify(qsTr("You should select recepients!", "Forward page cant accept feedback"))
     }
 
-    property variant conversationModel
+    property var conversationModel
 
     property bool searchEnabled: false
 
@@ -56,7 +56,7 @@ Dialog {
         page.preview = ""
     }
 
-    property variant messageModel
+    property var messageModel
     onMessageModelChanged: {
         page.msgid = messageModel.msgid
         if (messageModel.watype == 0) {

@@ -38,11 +38,11 @@ Dialog {
     property bool filesystem: false
     property bool canChangeType: true
 
-    property variant selectedFiles: []
+    property var selectedFiles: []
 
-    property variant _imagesFilter: ["*.jpg", "*.jpeg", "*.gif", "*.png", "*.bmp"]
-    property variant _audiosFilter: ["*.mp3", "*.aac", "*.m4a", "*.wav", "*.ogg"]
-    property variant _videosFilter: ["*.avi", "*.mov", "*.mkv", "*.mp4"]
+    property var _imagesFilter: ["*.jpg", "*.jpeg", "*.gif", "*.png", "*.bmp"]
+    property var _audiosFilter: ["*.mp3", "*.aac", "*.m4a", "*.wav", "*.ogg"]
+    property var _videosFilter: ["*.avi", "*.mov", "*.mkv", "*.mp4"]
     property string _mode: "image"
     property int _marqueeIndex: -1
 

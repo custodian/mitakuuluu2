@@ -57,7 +57,7 @@ Page {
         defaultValue: "unset"
     }
 
-    property variant initialModel
+    property var initialModel
     onInitialModelChanged: {
         if (page.status == PageStatus.Inactive) {
             //console.log("should load model")
@@ -838,7 +838,7 @@ Page {
 
     QtObject {
         id: mediaReceiver
-        property variant mediaFiles: []
+        property var mediaFiles: []
 
         function mediaAccepted() {
             pageStack.currentPage.accepted.disconnect(mediaReceiver.mediaAccepted)
@@ -851,7 +851,7 @@ Page {
 
     QtObject {
         id: vcardReceiver
-        property variant vcardData
+        property var vcardData
         property string displayName
 
         function contactAccepted() {

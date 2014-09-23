@@ -24,19 +24,19 @@ MouseArea {
 
     default property alias children: content.data
 
-    property variant menu: componentContextMenu
+    property var menu: componentContextMenu
     property Item _menuItem: null
     property bool menuOpen: _menuItem != null && _menuItem._open
 
-    property variant urlmenu: componentUrlMenu
+    property var urlmenu: componentUrlMenu
     property Item _urlmenuItem: null
     property bool urlmenuOpen: _urlmenuItem != null && _urlmenuItem._open
 
     property Item fakeClipboardObject: null
 
-    property variant messageColor: down ? highlightColor : contactColor
-    property variant contactColor: Theme.rgba(getContactColor(model.author, isGroup), Theme.highlightBackgroundOpacity)
-    property variant highlightColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+    property var messageColor: down ? highlightColor : contactColor
+    property var contactColor: Theme.rgba(getContactColor(model.author, isGroup), Theme.highlightBackgroundOpacity)
+    property var highlightColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
 
     property int maxWidth: parent.width - Theme.itemSizeLarge
     onMaxWidthChanged: {
@@ -600,7 +600,7 @@ MouseArea {
                 id: vidprev
                 anchors.fill: parent
                 asynchronous: true
-                sourceComponent: model.local ? localMediaPreview : thumbMediaPreview
+                sourceComponent: model.local ? localVideoPreview : thumbMediaPreview
             }
 
             Image {
@@ -643,7 +643,7 @@ MouseArea {
     }
 
     Component {
-        id: localMediaPreview
+        id: localVideoPreview
         Thumbnail {
             fillMode: Image.PreserveAspectFit
             source: model.local
@@ -652,6 +652,19 @@ MouseArea {
             clip: true
             smooth: true
             mimeType: model.mime
+        }
+    }
+
+    Component {
+        id: localMediaPreview
+        Image {
+            fillMode: Image.PreserveAspectFit
+            source: "image://nemoThumbnail/" + model.local
+            smooth: true
+            cache: false
+            clip: false
+            sourceSize.width: width
+            sourceSize.height: height
         }
     }
 

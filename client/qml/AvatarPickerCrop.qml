@@ -47,7 +47,7 @@ ImagePickerPage {
             property alias source: imageEditPreview.source
             property alias target: imageEditPreview.target
             property alias cropping: imageEditPreview.editInProgress
-            property variant selectedContentProperties
+            property var selectedContentProperties
             property alias orientation: imageEditPreview.orientation
 
             allowedOrientations: root.allowedOrientations
