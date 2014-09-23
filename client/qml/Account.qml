@@ -16,6 +16,16 @@ Dialog {
     property string kind: "free"
     property string avatar: Mitakuuluu.getAvatarForJid(Mitakuuluu.myJid)
 
+    property var presenceHistory: ["I'm using Mitakuuluu", "Working", "Sleeping", "Away", "Do not disturb"]
+    onPresenceHistoryChanged: {
+        var val = presenceHistory
+        console.log("presenceHistory: " + JSON.stringify(val) + " firstChange: " + historyConfig.firstChange)
+        if (!historyConfig.firstChange) {
+            console.log("saving value to dconf")
+            historyConfig.value = val
+        }
+    }
+
     canAccept: (Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn)
                && (pushnameArea.text.length > 0)
                && (presenceArea.text.length > 0)
@@ -111,6 +121,12 @@ Dialog {
         Mitakuuluu.setMyPresence(presenceArea.text)
         presenceArea.focus = false
         page.forceActiveFocus()
+
+        if (presenceHistory.indexOf(accountConfiguration.presence) < 0) {
+            var arr = presenceHistory
+            arr.splice(0, 0, accountConfiguration.presence)
+            presenceHistory = arr
+        }
     }
 
     ConfigurationGroup {
@@ -133,8 +149,11 @@ Dialog {
     }
 
     SilicaFlickable {
+        id: flick
         anchors.fill: page
         clip: true
+        pressDelay: 0
+        contentHeight: content.height
 
         PullDownMenu {
             MenuItem {
@@ -165,134 +184,208 @@ Dialog {
             }
         }
 
-        DialogHeader {
-            id: header
-            title: qsTr("Account", "Account page title")
-            acceptText: qsTr("Save", "Account page accept button text")
-        }
+        Column {
+            id: content
+            width: parent.width
+            spacing: Theme.paddingSmall
 
-        Label {
-            id: pushnameLabel
-            text: qsTr("Nickname:", "Account page nickname title")
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.paddingMedium
-            anchors.top: pushnameArea.top
-            anchors.topMargin: Theme.paddingSmall
-        }
-
-        TextField {
-            id: pushnameArea
-            anchors.top: header.bottom
-            anchors.left: pushnameLabel.right
-            anchors.right: parent.right
-            text: page.pushname
-            errorHighlight: text.length == 0
-            EnterKey.enabled: false
-            EnterKey.highlighted: EnterKey.enabled
-            onActiveFocusChanged: {
-                if (activeFocus)
-                    selectAll()
+            DialogHeader {
+                id: header
+                title: qsTr("Account", "Account page title")
+                acceptText: qsTr("Save", "Account page accept button text")
             }
-        }
 
-        Label {
-            id: presenceLabel
-            text: qsTr("Status:", "Account page status title")
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.paddingMedium
-            anchors.top: presenceArea.top
-            anchors.topMargin: Theme.paddingSmall
-        }
+            Row {
+                id: infoRow
+                height: Math.max(ava.height, infoColumn.height)
+                spacing: Theme.paddingSmall
 
-        TextField {
-            id: presenceArea
-            anchors.top: pushnameArea.bottom
-            anchors.left: presenceLabel.right
-            anchors.right: parent.right
-            text: page.presence
-            errorHighlight: text.length == 0
-            EnterKey.enabled: false
-            EnterKey.highlighted: EnterKey.enabled
-            onActiveFocusChanged: {
-                if (activeFocus)
-                    selectAll()
-            }
-        }
+                Item { width: Theme.paddingLarge; height: 1 }
 
-        Label {
-            id: labelCreated
-            text: qsTr("Created: %1", "Account page created title").arg(timestampToFullDate(page.creation))
-            anchors.top: presenceArea.bottom
-            anchors.topMargin: Theme.paddingLarge
-            anchors.left: ava.right
-            anchors.leftMargin: Theme.paddingSmall
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingMedium
-            wrapMode: Text.NoWrap
-            horizontalAlignment: Text.AlignRight
-            font.pixelSize: Theme.fontSizeSmall
-        }
+                AvatarHolder {
+                    id: ava
+                    width: 128
+                    height: 128
+                    source: page.avatar
+                    emptySource: "../images/avatar-empty.png"
 
-        Label {
-            id: labelExpired
-            text: qsTr("Expiration: %1", "Account page expiration title").arg(timestampToFullDate(page.expiration))
-            anchors.top: labelCreated.bottom
-            anchors.topMargin: Theme.paddingSmall
-            anchors.left: ava.right
-            anchors.leftMargin: Theme.paddingSmall
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingMedium
-            wrapMode: Text.NoWrap
-            horizontalAlignment: Text.AlignRight
-            font.pixelSize: Theme.fontSizeSmall
-        }
-
-        Label {
-            id: labelActive
-            text: page.active ? qsTr("Account is active", "Account page account active label")
-                              : qsTr("Account is blocked", "Account page account blocked label")
-            anchors.top: labelExpired.bottom
-            anchors.topMargin: Theme.paddingSmall
-            anchors.left: ava.right
-            anchors.leftMargin: Theme.paddingSmall
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingMedium
-            wrapMode: Text.NoWrap
-            horizontalAlignment: Text.AlignRight
-            font.pixelSize: Theme.fontSizeSmall
-        }
-
-        Label {
-            id: labelType
-            text: qsTr("Account type: %1", "Account page account type label").arg(qsTr(page.kind))
-            anchors.top: labelActive.bottom
-            anchors.topMargin: Theme.paddingSmall
-            anchors.left: ava.right
-            anchors.leftMargin: Theme.paddingSmall
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.paddingMedium
-            wrapMode: Text.NoWrap
-            horizontalAlignment: Text.AlignRight
-            font.pixelSize: Theme.fontSizeSmall
-        }
-
-        AvatarHolder {
-            id: ava
-            anchors.top: presenceArea.bottom
-            anchors.topMargin: Theme.paddingLarge
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.paddingMedium
-            width: 128
-            height: 128
-            source: page.avatar
-            emptySource: "../images/avatar-empty.png"
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    var avatarHistory = pageStack.push(Qt.resolvedUrl("AvatarHistory.qml"), {"jid": Mitakuuluu.myJid, "avatar": page.avatar, "owner": true})
-                    avatarHistory.avatarSet.connect(page.avatarSet)
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            var avatarHistory = pageStack.push(Qt.resolvedUrl("AvatarHistory.qml"), {"jid": Mitakuuluu.myJid, "avatar": page.avatar, "owner": true})
+                            avatarHistory.avatarSet.connect(page.avatarSet)
+                        }
+                    }
                 }
+
+                Column {
+                    id: infoColumn
+                    width: content.width - ava.width - parent.spacing - Theme.paddingLarge * 2
+                    spacing: Theme.paddingSmall
+
+                    Label {
+                        id: labelCreated
+                        text: qsTr("Created: %1", "Account page created title").arg(timestampToFullDate(page.creation))
+                        anchors.right: parent.right
+                        wrapMode: Text.NoWrap
+                        horizontalAlignment: Text.AlignRight
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+
+                    Label {
+                        id: labelExpired
+                        text: qsTr("Expiration: %1", "Account page expiration title").arg(timestampToFullDate(page.expiration))
+                        anchors.right: parent.right
+                        wrapMode: Text.NoWrap
+                        horizontalAlignment: Text.AlignRight
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+
+                    Label {
+                        id: labelActive
+                        text: page.active ? qsTr("Account is active", "Account page account active label")
+                                          : qsTr("Account is blocked", "Account page account blocked label")
+                        anchors.right: parent.right
+                        wrapMode: Text.NoWrap
+                        horizontalAlignment: Text.AlignRight
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+
+                    Label {
+                        id: labelType
+                        text: qsTr("Account type: %1", "Account page account type label").arg(qsTr(page.kind))
+                        anchors.right: parent.right
+                        wrapMode: Text.NoWrap
+                        horizontalAlignment: Text.AlignRight
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+                }
+            }
+
+            Row {
+                id: pushnameRow
+                spacing: Theme.paddingSmall
+                height: pushnameLabel.height + Theme.paddingMedium//Math.max(pushnameLabel.height, pushnameArea.height)
+                clip: true
+
+                Item { width: Theme.paddingLarge; height: 1 }
+
+                Label {
+                    id: pushnameLabel
+                    text: qsTr("Nickname:", "Account page nickname title")
+                }
+
+                TextField {
+                    id: pushnameArea
+                    width: content.width - pushnameLabel.width - parent.spacing - Theme.paddingLarge * 2
+                    text: page.pushname
+                    errorHighlight: text.length == 0
+                    EnterKey.enabled: false
+                    EnterKey.highlighted: EnterKey.enabled
+                    onActiveFocusChanged: {
+                        if (activeFocus)
+                            selectAll()
+                    }
+                }
+            }
+
+            Row {
+                id: presenceRow
+                spacing: Theme.paddingSmall
+                height: presenceLabel.height + Theme.paddingMedium//Math.max(presenceLabel.height, presenceArea.height)
+                clip: true
+
+                Item { width: Theme.paddingLarge; height: 1 }
+
+                Label {
+                    id: presenceLabel
+                    text: qsTr("Status:", "Account page status title")
+                }
+
+                TextField {
+                    id: presenceArea
+                    width: content.width - presenceLabel.width - parent.spacing - Theme.paddingLarge * 2
+                    text: page.presence
+                    errorHighlight: text.length == 0
+                    EnterKey.enabled: false
+                    EnterKey.highlighted: EnterKey.enabled
+                    onActiveFocusChanged: {
+                        if (activeFocus)
+                            selectAll()
+                    }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Status history")
+            }
+
+            Repeater {
+                width: parent.width
+                delegate: histDelegate
+                model: presenceHistory
+            }
+        }
+
+        VerticalScrollDecorator {}
+    }
+
+    DConfValue {
+        id: historyConfig
+        key: "/apps/harbour-mitakuuluu2/settings/presenceHistory"
+        property bool firstChange: true
+        Component.onCompleted: {
+            var val = value
+            page.presenceHistory = val
+            firstChange = false
+        }
+    }
+
+    Component {
+        id: histDelegate
+        ListItem {
+            id: item
+            width: content.width
+            menu: contextMenu
+
+            function remove() {
+                remorseAction("Deleting", function() {
+                    var arr = []
+                    var val = page.presenceHistory
+                    arr = arr.concat(val)
+                    arr.splice(index, 1)
+                    console.log("new history: " + JSON.stringify(arr))
+                    page.presenceHistory = arr
+                }, 2000)
+            }
+
+            Component {
+                id: contextMenu
+                ContextMenu {
+                    MenuItem {
+                        text: qsTr("Remove")
+                        onClicked: remove()
+                    }
+                }
+            }
+
+            Label {
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                    verticalCenter: parent.verticalCenter
+                }
+                text: modelData
+                truncationMode: TruncationMode.Fade
+                color: item.highlighted || presence == modelData || presenceArea.text.trim() == modelData ? Theme.highlightColor : Theme.primaryColor
+            }
+
+            onClicked: {
+                pushname = modelData
+                presenceArea.text = modelData
+                flick.scrollToTop()
             }
         }
     }
