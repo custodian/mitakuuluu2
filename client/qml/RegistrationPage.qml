@@ -85,6 +85,13 @@ Page {
             }
 
             MenuItem {
+                text: qsTr("System status")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("StatusFeatures.qml"))
+                }
+            }
+
+            MenuItem {
                 text: qsTr("I have code")
                 enabled: phoneField.text.length > 0 && pushname.text.length > 0 && !busy.running
                 onClicked: {
