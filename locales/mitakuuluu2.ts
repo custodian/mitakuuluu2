@@ -54,85 +54,91 @@
 <context>
     <name>Account</name>
     <message>
-        <location filename="../client/qml/Account.qml" line="51"/>
+        <location filename="../client/qml/Account.qml" line="66"/>
         <source>You should be online!</source>
         <comment>Account page cant accept feedback</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="62"/>
+        <location filename="../client/qml/Account.qml" line="77"/>
         <source>free</source>
         <comment>Account type</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="63"/>
+        <location filename="../client/qml/Account.qml" line="78"/>
         <source>paid</source>
         <comment>Account type</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="64"/>
+        <location filename="../client/qml/Account.qml" line="79"/>
         <source>blocked</source>
         <comment>Account type</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="136"/>
+        <location filename="../client/qml/Account.qml" line="80"/>
+        <source>expired</source>
+        <comment>Account type</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../client/qml/Account.qml" line="161"/>
         <source>Remove account</source>
         <comment>Account page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="137"/>
+        <location filename="../client/qml/Account.qml" line="162"/>
         <source>Remove local data</source>
         <comment>Account page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="148"/>
+        <location filename="../client/qml/Account.qml" line="173"/>
         <source>Renew subscription</source>
         <comment>Account page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="155"/>
+        <location filename="../client/qml/Account.qml" line="180"/>
         <source>Privacy settings</source>
         <comment>Account page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="165"/>
+        <location filename="../client/qml/Account.qml" line="195"/>
         <source>Account</source>
         <comment>Account page title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="166"/>
+        <location filename="../client/qml/Account.qml" line="196"/>
         <source>Save</source>
         <comment>Account page accept button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="171"/>
+        <location filename="../client/qml/Account.qml" line="276"/>
         <source>Nickname:</source>
         <comment>Account page nickname title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="195"/>
+        <location filename="../client/qml/Account.qml" line="303"/>
         <source>Status:</source>
         <comment>Account page status title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="219"/>
+        <location filename="../client/qml/Account.qml" line="229"/>
         <source>Created: %1</source>
         <comment>Account page created title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="233"/>
+        <location filename="../client/qml/Account.qml" line="238"/>
         <source>Expiration: %1</source>
         <comment>Account page expiration title</comment>
         <translation type="unfinished"></translation>
@@ -150,25 +156,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="262"/>
+        <location filename="../client/qml/Account.qml" line="257"/>
         <source>Account type: %1</source>
         <comment>Account page account type label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="305"/>
+        <location filename="../client/qml/Account.qml" line="321"/>
+        <source>Status history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../client/qml/Account.qml" line="367"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../client/qml/Account.qml" line="404"/>
         <source>Remove account</source>
         <comment>Account page remove dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="313"/>
+        <location filename="../client/qml/Account.qml" line="412"/>
         <source>This action will delete your account information from phone and from WhatsApp server.</source>
         <comment>Account page remove dialog description</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/Account.qml" line="319"/>
+        <location filename="../client/qml/Account.qml" line="418"/>
         <source>No, remove only local information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -357,19 +373,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="115"/>
+        <location filename="../client/qml/ChatsPage.qml" line="114"/>
         <source>Create group</source>
         <comment>Contacts page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="123"/>
+        <location filename="../client/qml/ChatsPage.qml" line="122"/>
         <source>Broadcast</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="130"/>
+        <location filename="../client/qml/ChatsPage.qml" line="129"/>
         <source>Settings</source>
         <comment>Main menu item</comment>
         <translation type="unfinished"></translation>
@@ -381,82 +397,82 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="142"/>
+        <location filename="../client/qml/ChatsPage.qml" line="141"/>
         <source>Flick left to access Contacts page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="182"/>
+        <location filename="../client/qml/ChatsPage.qml" line="172"/>
         <source>Clear chat history</source>
         <comment>Delete contact remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="189"/>
+        <location filename="../client/qml/ChatsPage.qml" line="179"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="431"/>
+        <location filename="../client/qml/ChatsPage.qml" line="426"/>
         <source>Clear chat history</source>
         <comment>Contact context menu delete contact item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="175"/>
+        <location filename="../client/qml/ChatsPage.qml" line="165"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="197"/>
+        <location filename="../client/qml/ChatsPage.qml" line="187"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="363"/>
+        <location filename="../client/qml/ChatsPage.qml" line="358"/>
         <source>Typing...</source>
         <comment>Contact status typing text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="364"/>
+        <location filename="../client/qml/ChatsPage.qml" line="359"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="383"/>
+        <location filename="../client/qml/ChatsPage.qml" line="378"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="400"/>
+        <location filename="../client/qml/ChatsPage.qml" line="395"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="406"/>
+        <location filename="../client/qml/ChatsPage.qml" line="401"/>
         <source>Un-hide contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="406"/>
+        <location filename="../client/qml/ChatsPage.qml" line="401"/>
         <source>Hide contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="413"/>
+        <location filename="../client/qml/ChatsPage.qml" line="408"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="422"/>
+        <location filename="../client/qml/ChatsPage.qml" line="417"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation type="unfinished"></translation>
@@ -465,91 +481,91 @@
 <context>
     <name>Client</name>
     <message>
-        <location filename="../server/src/client.cpp" line="466"/>
+        <location filename="../server/src/client.cpp" line="489"/>
         <source>Image</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="467"/>
+        <location filename="../server/src/client.cpp" line="490"/>
         <source>Audio</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="468"/>
+        <location filename="../server/src/client.cpp" line="491"/>
         <source>Video</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="469"/>
+        <location filename="../server/src/client.cpp" line="492"/>
         <source>Contact</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="470"/>
+        <location filename="../server/src/client.cpp" line="493"/>
         <source>Location</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="471"/>
+        <location filename="../server/src/client.cpp" line="494"/>
         <source>Voice</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="472"/>
+        <location filename="../server/src/client.cpp" line="495"/>
         <source>System</source>
         <comment>Notification media name text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="796"/>
+        <location filename="../server/src/client.cpp" line="819"/>
         <source>Connected</source>
         <comment>System connection notification</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1220"/>
+        <location filename="../server/src/client.cpp" line="1350"/>
         <source>Hidden</source>
         <comment>User hidden own status for privacy</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1498"/>
+        <location filename="../server/src/client.cpp" line="1614"/>
         <source>Joined the group</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1501"/>
+        <location filename="../server/src/client.cpp" line="1617"/>
         <source>Left the group</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1504"/>
+        <location filename="../server/src/client.cpp" line="1620"/>
         <source>Subject: %1</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1507"/>
+        <location filename="../server/src/client.cpp" line="1623"/>
         <source>Picture changed</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="992"/>
+        <location filename="../server/src/client.cpp" line="1015"/>
         <source>Disconnected</source>
         <comment>System connection notification</comment>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../server/src/client.cpp" line="3088"/>
+        <location filename="../server/src/client.cpp" line="3204"/>
         <source>%n messages unread</source>
         <comment>Message notification with unread messages count</comment>
         <translation type="unfinished">
@@ -624,43 +640,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="363"/>
+        <location filename="../client/qml/ContactsPage.qml" line="369"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="380"/>
+        <location filename="../client/qml/ContactsPage.qml" line="386"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="398"/>
+        <location filename="../client/qml/ContactsPage.qml" line="404"/>
         <source>Refresh</source>
         <comment>Contact context menu refresh item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="406"/>
+        <location filename="../client/qml/ContactsPage.qml" line="412"/>
         <source>Rename</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="414"/>
+        <location filename="../client/qml/ContactsPage.qml" line="420"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="424"/>
+        <location filename="../client/qml/ContactsPage.qml" line="430"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="425"/>
+        <location filename="../client/qml/ContactsPage.qml" line="431"/>
         <source>Delete</source>
         <comment>Contact context menu delete contact item</comment>
         <translation type="unfinished"></translation>
@@ -699,18 +715,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="97"/>
+        <location filename="../client/qml/ConversationPage.qml" line="99"/>
         <source>Last seen: %1</source>
         <comment>Last seen converstation text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="95"/>
+        <location filename="../client/qml/ConversationPage.qml" line="97"/>
         <source>Contact blocked you</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="96"/>
+        <location filename="../client/qml/ConversationPage.qml" line="98"/>
         <source>Last online: hidden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1174,49 +1190,49 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="758"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="771"/>
         <source>Uploading...</source>
         <comment>Uploading voice record text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="818"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="831"/>
         <source>Resend message</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="827"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="840"/>
         <source>Copy</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="836"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="849"/>
         <source>Forward</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="845"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="858"/>
         <source>Save to Gallery</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="848"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="861"/>
         <source>Media saved as %1</source>
         <comment>Banner text message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="854"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="867"/>
         <source>Delete</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="874"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="887"/>
         <source>Message copied to clipboard</source>
         <comment>Banner item text</comment>
         <translation type="unfinished"></translation>
@@ -1225,25 +1241,25 @@
 <context>
     <name>MutedContacts</name>
     <message>
-        <location filename="../client/qml/MutedContacts.qml" line="30"/>
+        <location filename="../client/qml/MutedContacts.qml" line="24"/>
         <source>You</source>
         <comment>Display You instead of your own nickname</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/MutedContacts.qml" line="56"/>
+        <location filename="../client/qml/MutedContacts.qml" line="63"/>
         <source>Muted contacts</source>
         <comment>Contacts muting title text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/MutedContacts.qml" line="60"/>
+        <location filename="../client/qml/MutedContacts.qml" line="67"/>
         <source>You have no muted contacts</source>
         <comment>Empty muted contacts list placeholder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/MutedContacts.qml" line="110"/>
+        <location filename="../client/qml/MutedContacts.qml" line="124"/>
         <source>Expiration: %1</source>
         <comment>Contacts muting expiration text</comment>
         <translation type="unfinished"></translation>
@@ -1590,17 +1606,22 @@
     </message>
     <message>
         <location filename="../client/qml/RegistrationPage.qml" line="88"/>
+        <source>System status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../client/qml/RegistrationPage.qml" line="95"/>
         <source>I have code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="106"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="113"/>
         <source>Registration</source>
         <comment>Registration page title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="112"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="119"/>
         <source>Welcome to Mitakuuluu v%1!
 
 Native WhatsApp-compatible clent for Sailfish OS.
@@ -1609,169 +1630,169 @@ Before switching to Mitakuuluu from official application please use &lt;Remove a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="118"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="125"/>
         <source>Country</source>
         <comment>Registration country selector label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="134"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="141"/>
         <source>In international format</source>
         <comment>Registration phone number text field label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="160"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="167"/>
         <source>Profile nickname</source>
         <comment>Registration nickname text field label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="161"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="168"/>
         <source>Enter your nickname</source>
         <comment>Registration nickname text field placeholder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="173"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="180"/>
         <source>Protect your registration</source>
         <comment>Registration password field label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="174"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="181"/>
         <source>Random password</source>
         <comment>Registration password field placeolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="190"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="197"/>
         <source>Voice</source>
         <comment>Voice registration button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="199"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="206"/>
         <source>Sms</source>
         <comment>Sms registration button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="216"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="223"/>
         <source>Sms code</source>
         <comment>Registration registration code label</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="220"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="227"/>
         <source>Registering account...</source>
         <comment>Registering account text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="321"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="328"/>
         <source>Checking account...</source>
         <comment>Registration checking account text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="324"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="331"/>
         <source>You should select country first!</source>
         <comment>Registration banner text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="342"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="349"/>
         <source>Code successfully requested.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="348"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
         <source>phone number</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="350"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="357"/>
         <source>secure token</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="353"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="360"/>
         <source>Too frequent attempts to request the code.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="355"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="362"/>
         <source>Too many wrong code guesses.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="357"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="364"/>
         <source>Too many attempts. Try again tomorrow.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="359"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="366"/>
         <source>Protocol version outdated, sorry. Please contact me at coderusinbox@gmail.com or via twitter: @icoderus</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="361"/>
-        <location filename="../client/qml/RegistrationPage.qml" line="364"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="368"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="371"/>
         <source>Registration code expired. You need to request a new one.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="366"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="373"/>
         <source>Missing request param: %1</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="369"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="376"/>
         <source>Invalid registration code entered. Please try again.</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="372"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="379"/>
         <source>Bad parameters passed to code request: %1</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="375"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="382"/>
         <source>No cell routes for %1 caused by your operator. Please try other method [sms/voice]</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="377"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="384"/>
         <source>making call</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="378"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="385"/>
         <source>sending sms</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="379"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="386"/>
         <source>Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="387"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="394"/>
         <source>%n hours</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished">
@@ -1780,7 +1801,7 @@ Before switching to Mitakuuluu from official application please use &lt;Remove a
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../client/qml/RegistrationPage.qml" line="390"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="397"/>
         <source>%n minutes</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished">
@@ -1789,7 +1810,7 @@ Before switching to Mitakuuluu from official application please use &lt;Remove a
         </translation>
     </message>
     <message>
-        <location filename="../client/qml/RegistrationPage.qml" line="392"/>
+        <location filename="../client/qml/RegistrationPage.qml" line="399"/>
         <source>You can retry requesting code after %1</source>
         <comment>Registration information constructor</comment>
         <translation type="unfinished"></translation>
