@@ -180,7 +180,7 @@ void BinTreeNodeReader::readAttributes(AttributeList& attribs, int attribCount,
     }
 }
 
-quint32 BinTreeNodeReader::readListSize(qint32 token, QDataStream& in)
+int BinTreeNodeReader::readListSize(qint32 token, QDataStream& in)
 {
     int size = -1;
     if (token == 0)
