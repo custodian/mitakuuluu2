@@ -77,6 +77,7 @@ Dialog {
         qsTr("free", "Account type")
         qsTr("paid", "Account type")
         qsTr("blocked", "Account type")
+        qsTr("expired", "Account type")
     }
 
     Connections {
