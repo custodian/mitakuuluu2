@@ -45,7 +45,6 @@ TRANSLATIONS += \
     zh_CN.ts \
     zh_HK.ts \
     zh.ts \
-    zh_CN.GB2312.ts \
     $${NULL}
 
 build_translations.target = build_translations
