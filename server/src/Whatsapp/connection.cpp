@@ -916,8 +916,7 @@ void Connection::parseMessageInitialTagAlreadyChecked(ProtocolTreeNode &messageN
             counters->increaseCounter(DataCounters::Messages, 1, 0);
             counters->increaseCounter(DataCounters::MessageBytes, messageNode.getSize(), 0);
         }
-        else {}
-            counters->increaseCounter(DataCounters::ProtocolBytes, messageNode.getSize(), 0);
+        counters->increaseCounter(DataCounters::ProtocolBytes, messageNode.getSize(), 0);
     }
     else if (typeAttribute == "error")
     {
@@ -1181,8 +1180,9 @@ void Connection::parseSuccessNode(const ProtocolTreeNode &node)
         kind = node.getAttributeValue("kind");
 
         if (accountstatus == "expired") {
+            qDebug() << "ACCOUNT EXPIRED!";
             QVariantMap reason;
-            reason["reason"] = QString("Login");
+            reason["reason"] = QString("expired");
             Q_EMIT accountExpired(reason);
             disconnectAndDelete();
             return;

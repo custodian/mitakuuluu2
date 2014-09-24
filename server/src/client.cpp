@@ -1026,7 +1026,7 @@ void Client::disconnected()
         retryLoginTimer->stop();
     }
 
-    if (connectionStatus != Disconnected && connectionStatus != LoginFailure) {
+    if (connectionStatus != Disconnected && connectionStatus != LoginFailure && connectionStatus != AccountExpired) {
         connectionStatus = Disconnected;
         Q_EMIT connectionStatusChanged(connectionStatus);
 
