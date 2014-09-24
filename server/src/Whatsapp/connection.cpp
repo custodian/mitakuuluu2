@@ -984,7 +984,7 @@ void Connection::socketError(QAbstractSocket::SocketError error)
 void Connection::readNode()
 {
     //Basil Semuonov 20140923: hotfix for disconnection status
-    while (socket->isOpen() && socket->bytesAvailable() > 0) {
+    while (socket->state() == QAbstractSocket::ConnectedState && socket->bytesAvailable() > 0) {
         if (!read())
             qDebug() << "Error reading tree";
     }

@@ -119,6 +119,9 @@ bool BinTreeNodeReader::nextTreeInternal(ProtocolTreeNode& node, QDataStream &in
 
     in >> b;
     int size = readListSize(b,in);
+    if (size < 0)
+        return false;
+
     in >> b;
     if (b == 2)
         return false;
@@ -165,11 +168,11 @@ void BinTreeNodeReader::readList(qint32 token,ProtocolTreeNode& node,QDataStream
     }
 }
 
-void BinTreeNodeReader::readAttributes(AttributeList& attribs, quint32 attribCount,
+void BinTreeNodeReader::readAttributes(AttributeList& attribs, int attribCount,
                                        QDataStream& in)
 {
     QByteArray key, value;
-    for (quint32 i=0; i < attribCount; i++)
+    for (int i=0; i < attribCount; i++)
     {
         readString(key, in);
         readString(value, in);
@@ -177,7 +180,7 @@ void BinTreeNodeReader::readAttributes(AttributeList& attribs, quint32 attribCou
     }
 }
 
-quint32 BinTreeNodeReader::readListSize(qint32 token, QDataStream& in)
+int BinTreeNodeReader::readListSize(qint32 token, QDataStream& in)
 {
     int size = -1;
     if (token == 0)
@@ -445,7 +448,7 @@ void BinTreeNodeReader::harakiri()
 {
     QObject::disconnect(socket, 0, 0, 0);
     socket->disconnectFromHost();
-    readBuffer.clear();
+    //readBuffer.clear();
     Q_EMIT socketBroken();
 }
 

@@ -67,13 +67,13 @@ private:
     int getOneToplevelStream();
     void decodeStream(qint8 flags, qint32 offset, qint32 length);
     bool nextTreeInternal(ProtocolTreeNode& node, QDataStream &in);
-    quint32 readListSize(qint32 token, QDataStream& in);
+    int readListSize(qint32 token, QDataStream& in);
     void readList(qint32 token,ProtocolTreeNode& node,QDataStream& in);
     void fillBuffer(quint32 stanzaSize);
     void fillArray(QByteArray& buffer, quint32 len, QDataStream &in);
     void fillArray(QByteArray& buffer, quint32 len);
     bool isListTag(quint32 b);
-    void readAttributes(AttributeList& attribs, quint32 attribCount,
+    void readAttributes(AttributeList& attribs, int attribCount,
                         QDataStream& in);
     bool readString(QByteArray& s, QDataStream& in);
     bool readString(qint32 token, QByteArray& s, QDataStream& in);
