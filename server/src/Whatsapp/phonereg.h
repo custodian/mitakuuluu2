@@ -69,6 +69,8 @@ private:
     QString smscode;
     QString mcc;
     QString mnc;
+    QString lg;
+    QString lc;
 
     SMSListener *listener;
     WARequest *request;

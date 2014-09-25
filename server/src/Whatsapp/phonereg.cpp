@@ -63,6 +63,10 @@ PhoneReg::PhoneReg(const QString& cc, const QString& number, const QString& meth
     QByteArray bytes = digest.digest();
 
     this->id = QString::fromLatin1(bytes.toHex().constData()).left(20);
+
+    QString locale = QLocale::system().name();
+    lg = locale.split("_").first();
+    lc = locale.split("_").length() > 1 ? locale.split("_").last() : "";
 }
 
 void PhoneReg::start()
@@ -79,13 +83,10 @@ void PhoneReg::startCodeRequest()
     //request->addParam("reason", "next-method");
     request->addParam("reason", "self-send-jailbroken");
     request->addParam("method", method);
-    request->addParam("mcc", mcc);
-    request->addParam("mnc", mnc);
-    QString locale = QLocale::system().name();
-    QString lg = locale.split("_").first();
-    QString lc = locale.split("_").length() > 1 ? locale.split("_").last() : "";
-    request->addParam("lg", lc.isEmpty() ? "en" : lg);
-    request->addParam("lc", lc.isEmpty() ? "US" : lc);
+    request->addParam("sim_mcc", mcc);
+    request->addParam("sim_mnc", mnc);
+    request->addParam("lg", lg.isEmpty() ? "en" : lg);
+    request->addParam("lc", lc.isEmpty() ? "zz" : lc);
     request->addParam("token", Utilities::getTokenAndroid(number));
     request->addParam("id", id);
 
@@ -136,6 +137,8 @@ void PhoneReg::startRegRequest()
     request->addParam("in", number);
     request->addParam("id", id);
     request->addParam("code", smscode);
+    request->addParam("lg", lc.isEmpty() ? "en" : lg);
+    request->addParam("lc", lc.isEmpty() ? "zz" : lc);
 
     connect(request,SIGNAL(finished(QVariantMap)),
             this,SLOT(onRegRequestDone(QVariantMap)));
