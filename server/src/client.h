@@ -440,6 +440,7 @@ signals:
     void connectionSendAvailableForChat(bool hide);
     void connectionSendAvailable();
     void connectionSendUnavailable();
+    void connectionSendStreamEnd();
     void connectionSendDeleteAccount();
     void connectionSendMessageReceived(const FMessage &message);
     void connectionDisconnect();
@@ -667,6 +668,7 @@ public slots:
     void syncContacts(const QStringList &numbers, const QStringList &names, const QStringList &avatars);
     void setPresenceAvailable();
     void setPresenceUnavailable();
+    void sendStreamEnd();
     void removeAccountFromServer();
     void forceConnection();
     void openConnectionDialog();

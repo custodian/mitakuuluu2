@@ -978,6 +978,7 @@ void Client::connectToServer()
     QObject::connect(this, SIGNAL(connectionSendUnavailable()), connectionPtr.data(), SLOT(sendUnavailable()));
     QObject::connect(this, SIGNAL(connectionSendDeleteAccount()), connectionPtr.data(), SLOT(sendDeleteAccount()));
     QObject::connect(this, SIGNAL(connectionDisconnect()), connectionPtr.data(), SLOT(disconnectAndDelete()));
+    QObject::connect(this, SIGNAL(connectionSendStreamEnd()), connectionPtr.data(), SLOT(sendStreamEnd()));
     QObject::connect(this, SIGNAL(connectionSendGetServerProperties()), connectionPtr.data(), SLOT(sendGetServerProperties()));
     QObject::connect(this, SIGNAL(connectionSendGetClientConfig()), connectionPtr.data(), SLOT(getClientConfig()));
     QObject::connect(this, SIGNAL(connectionSendComposing(QString,QString)), connectionPtr.data(), SLOT(sendComposing(QString,QString)));
@@ -1972,6 +1973,7 @@ void Client::disconnect()
     qDebug() << "disconnect";
     if (connectionStatus == LoggedIn) {
         setPresenceUnavailable();
+        sendStreamEnd();
     }
     qDebug() << "Freeing up the socket.";
     connectionStatus = Disconnected;
@@ -2941,6 +2943,13 @@ void Client::setPresenceUnavailable()
     qDebug() << "set presence unavailable";
     if (connectionStatus == LoggedIn) {
         Q_EMIT connectionSendUnavailable();
+    }
+}
+
+void Client::sendStreamEnd()
+{
+    if (connectionStatus == LoggedIn) {
+        Q_EMIT connectionSendStreamEnd();
     }
 }
 

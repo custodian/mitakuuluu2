@@ -121,10 +121,6 @@ void Connection::init()
 void Connection::disconnectAndDelete()
 {
     qDebug() << "disconnectAndDelete";
-    if (socket->state() == QAbstractSocket::ConnectedState) {
-        sendUnavailable();
-        sendStreamEnd();
-    }
     disconnect(socket,0,0,0);
     socket->disconnectFromHost();
     finalCleanup();
