@@ -298,6 +298,8 @@ public slots:
     void sendClientConfig(const QString &platform);
     void getClientConfig();
 
+    void sendStreamEnd();
+
 private:
 
     /** ***********************************************************************

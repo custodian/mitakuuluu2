@@ -121,10 +121,9 @@ void Connection::init()
 void Connection::disconnectAndDelete()
 {
     qDebug() << "disconnectAndDelete";
-    if (socket->isOpen()) {
+    if (socket->state() == QAbstractSocket::ConnectedState) {
         sendUnavailable();
-        int outBytes = out->streamEnd();
-        counters->increaseCounter(DataCounters::ProtocolBytes, 0, outBytes);
+        sendStreamEnd();
     }
     disconnect(socket,0,0,0);
     socket->disconnectFromHost();
@@ -2576,6 +2575,12 @@ void Connection::getClientConfig()
 
     int bytes = out->write(iqNode);
     counters->increaseCounter(DataCounters::ProtocolBytes, 0, bytes);
+}
+
+void Connection::sendStreamEnd()
+{
+    int outBytes = out->streamEnd();
+    counters->increaseCounter(DataCounters::ProtocolBytes, 0, outBytes);
 }
 
 void Connection::sendGetServerProperties()
