@@ -66,7 +66,7 @@ PhoneReg::PhoneReg(const QString& cc, const QString& number, const QString& meth
 
     QString locale = QLocale::system().name();
     lg = locale.split("_").first();
-    lc = locale.split("_").length() > 1 ? locale.split("_").last() : "";
+    lc = "zz"; //TESTING HACK.// locale.split("_").length() > 1 ? locale.split("_").last() : "";
 }
 
 void PhoneReg::start()
