@@ -663,8 +663,9 @@ MouseArea {
             smooth: true
             cache: false
             clip: false
-            sourceSize.width: width
-            sourceSize.height: height
+            sourceSize.width: imageRotated ? height : width
+            sourceSize.height: imageRotated ? width : height
+            property bool imageRotated: Mitakuuluu.getExifRotation(model.local) == 90
         }
     }
 
