@@ -359,6 +359,9 @@ void ConversationModel::onMediaFinished(const QString &mjid, const QString &msgI
 void ConversationModel::onMediaFailed(const QString &mjid, const QString &msgId)
 {
     if (mjid == jid) {
+        if (_downloadData.contains(msgId)) {
+            _downloadData.remove(msgId);
+        }
         setPropertyByMsgId(msgId, "mediaprogress", 0);
     }
 }

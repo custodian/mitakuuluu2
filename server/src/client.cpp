@@ -2462,8 +2462,12 @@ void Client::cancelDownload(const QString &msgId, const QString &jid)
 {
     Q_EMIT downloadFailed(jid, msgId);
     if (_mediaDownloadHash.keys().contains(msgId) && _mediaDownloadHash[msgId]) {
-        _mediaDownloadHash[msgId]->deleteLater();
-        _mediaDownloadHash[msgId] = 0;
+        MediaDownload *download = _mediaDownloadHash[msgId];
+        _mediaDownloadHash.remove(msgId);
+        delete download;
+    }
+    if (_mediaProgress.contains(msgId)) {
+        _mediaProgress.remove(msgId);
     }
 }
 
