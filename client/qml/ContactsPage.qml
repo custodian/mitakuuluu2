@@ -21,7 +21,6 @@ Page {
             searchPattern = ""
             contactsModel.filter = ""
             fastScroll.init()
-            listView.recheckMuting()
 
             var firstStartContacts = settings.firstStartContacts
             if (firstStartContacts) {
@@ -33,11 +32,6 @@ Page {
             horizontalHint.visible = firstStartContacts
             hintLabel.visible = firstStartContacts
         }
-    }
-
-    Connections {
-        target: ContactsBaseModel
-        onTotalUnreadChanged: listView.recheckMuting()
     }
 
     SilicaListView {
@@ -67,8 +61,6 @@ Page {
         onCountChanged: {
             fastScroll.init()
         }
-
-        signal recheckMuting
 
         FastScroll {
             id: fastScroll
@@ -221,34 +213,31 @@ Page {
                 })
             }
 
-            Connections {
-                target: listView
-                onRecheckMuting: {
-                    checkMuting()
-                }
+            Loader {
+                id: dconfLoader
+                sourceComponent: dconfComponent
+                asynchronous: true
             }
 
-            DConfValue {
-                id: mutingConfig
-                key: "/apps/harbour-mitakuuluu2/muting/" + model.jid
-                defaultValue: 0
-                onValueChanged: {
-                    checkMuting()
-                }
-            }
-
-            function checkMuting() {
-                var timeNow = new Date().getTime()
-                var mutingInterval = parseInt(mutingConfig.value)
-                if (parseInt(mutingInterval) > timeNow) {
-                    if (!mutingTimer) {
-                        mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
-                    }
-                    muted = true
-                }
-                else {
-                    if (mutingTimer) {
-                        removeMuting()
+            Component {
+                id: dconfComponent
+                DConfValue {
+                    key: "/apps/harbour-mitakuuluu2/muting/" + model.jid
+                    defaultValue: 0
+                    onValueChanged: {
+                        var timeNow = new Date().getTime()
+                        var mutingInterval = parseInt(value)
+                        if (mutingInterval > timeNow) {
+                            if (!mutingTimer) {
+                                mutingTimer = mutingTimerComponent.createObject(null, {"interval": parseInt(mutingInterval) - new Date().getTime(), "running": true})
+                            }
+                            muted = true
+                        }
+                        else {
+                            if (mutingTimer) {
+                                removeMuting()
+                            }
+                        }
                     }
                 }
             }
