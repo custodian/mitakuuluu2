@@ -164,7 +164,7 @@ Dialog {
             width: parent.width
             height: header.height + searchPlaceholder.height
 
-            PageHeader {
+            DialogHeader {
                 id: header
                 title: numbers.length > 0
                        ? ((numbers.length == 1) ? qsTr("Sync contact", "Add contacts page title")
