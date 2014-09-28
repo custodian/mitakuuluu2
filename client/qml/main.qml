@@ -33,15 +33,15 @@ ApplicationWindow {
     }
 
     function updateHidden(hjid) {
-        var toHide = []
-        toHide = hiddenList
+        var toHide = hiddenList
         var index = toHide.indexOf(hjid)
         var secure = index >= 0
         if (secure) {
             toHide.splice(index, 1)
         }
         else {
-            toHide.splice(0, 0, hjid)
+            var val = hjid
+            toHide.splice(index, 0, hjid)
         }
         hiddenList = toHide
 
@@ -943,12 +943,13 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var hiddenContacts = dconfObject.listValues("/apps/harbour-mitakuuluu2/hidden")
+        var hiddenContacts = dconfObject.listValues("/apps/harbour-mitakuuluu2/hidden/")
         var toHide = []
         for (var i = 0; i < hiddenContacts.length; i++) {
-            var val = hiddenContacts[i].value == "true"
-            if (val)
-                toHide.splice(0, 0, hiddenContacts[i].key)
+            if (hiddenContacts[i].value) {
+                var hjid = hiddenContacts[i].key.substr(33)
+                toHide.splice(0, 0, hjid)
+            }
         }
         hiddenList = toHide
         hidden = true
