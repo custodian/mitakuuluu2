@@ -116,10 +116,9 @@ Dialog {
         width: 64
         height: width
         radius: width /2
+        parent: header.extraContent
         anchors {
-            verticalCenter: header.verticalCenter
-            left: page.left
-            leftMargin: pageStack._pageStackIndicator.width //+ Theme.paddingLarge
+            verticalCenter: parent.verticalCenter
         }
         border.color: dArea.down ? Theme.secondaryHighlightColor : Theme.highlightColor
         border.width: 2
