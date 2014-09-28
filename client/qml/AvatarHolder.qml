@@ -4,8 +4,9 @@ import Sailfish.Silica 1.0
 Image {
     id: root
     width: 64
-    sourceSize.width: width
     height: 64
+    sourceSize.width: width
+    sourceSize.height: height
     smooth: true
     fillMode: Image.PreserveAspectCrop
     asynchronous: true
@@ -25,8 +26,9 @@ Image {
         id: empty
         anchors.centerIn: parent
         width: 64
-        sourceSize.width: width
         height: 64
+        sourceSize.width: width
+        sourceSize.height: height
         smooth: true
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
@@ -38,7 +40,7 @@ Image {
     BusyIndicator {
         id: busy
         anchors.centerIn: root
-        size: BusyIndicatorSize.Large
+        size: BusyIndicatorSize.Medium
         running: visible
         visible: root.status == Image.Loading
     }
