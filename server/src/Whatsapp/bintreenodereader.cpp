@@ -43,61 +43,101 @@ BinTreeNodeReader::BinTreeNodeReader(QTcpSocket *socket, QStringList& dictionary
     this->socket = socket;
 }
 
-int BinTreeNodeReader::getOneToplevelStream()
+bool BinTreeNodeReader::getOneToplevelStream()
 {
-    qint32 bufferSize = readInt24();
+    qint32 bufferSize = readRawInt24();
     qint8 flags = (bufferSize & 0xff0000) >> 20;
     bufferSize &= 0xffff;
 
-    fillBuffer(bufferSize);
+    if (!fillRawBuffer(bufferSize)) {
+        return false;
+    }
 
     //qDebug() << "[[ " + readBuffer.toHex();
-    decodeStream(flags, 0, bufferSize);
+    if (decodedStream.isOpen()) {
+        decodedStream.close();
+    }
 
-    return bufferSize + 3;
+    if (decodeRawStream(flags, 0, bufferSize)) {
+        decodedStream.setBuffer(&decodedBuffer);
+        decodedStream.open(QIODevice::ReadOnly);
+    } else {
+        return false;
+    }
+    return true;
 }
 
-void BinTreeNodeReader::decodeStream(qint8 flags, qint32 offset, qint32 length)
+int BinTreeNodeReader::getOneToplevelStreamSize() {
+    return decodedBuffer.size()
+            + 3 //sizeof(Int24) - buffer size
+            + 4; //offset size (encoded length size)
+}
+
+bool BinTreeNodeReader::decodeRawStream(qint8 flags, qint32 offset, qint32 length)
 {
     if ((flags & 8) != 0)
     {
         if (length < 4) {
             qDebug() << "Invalid length 0x" << QString::number(length,16);
             harakiri();
+            return false;
         }
 
         offset += 4;
         length -= 4;
-        if (!inputKey->decodeMessage(readBuffer, offset-4, offset, length)) {
+        if (!inputKey->decodeMessage(rawBuffer, offset-4, offset, length)) {
             qDebug() << "error decoding message";
             harakiri();
+            return false;
         }
 
-        readBuffer = readBuffer.right(length);
-        //qDebug() << "<< " + readBuffer.toHex();
+        decodedBuffer = rawBuffer.right(length);
+        //qDebug() << "<< " + decodedBuffer.toHex();
+    } else {
+        //copy as is
+        decodedBuffer = rawBuffer;
     }
+    rawBuffer.clear();
+    return true;
 }
 
+//TODO: remove return int, make bool
 int BinTreeNodeReader::readStreamStart()
 {
-    int bytes = getOneToplevelStream();
-    QDataStream in(readBuffer);
+    bool result = getOneToplevelStream();
+    //TODO: count real bytes;
+    int bytes = getOneToplevelStreamSize();
 
-    quint8 tag, size;
-    in >> tag;
-    in >> size;
-    in >> tag;
+    if (decodedStream.bytesAvailable() < 3) {
+        //TODO: make bool result. remove int.
+        //return false;
+        return bytes;
+    }
+
+    quint8 tag = 0, size;
+    //TODO: check for bool result
+    readInt8(tag);
+    readInt8(size);
+    readInt8(tag);
     if (tag != 1) {
         qDebug() << "Expecting STREAM_START in readStreamStart.";
         harakiri();
+        //TODO: make bool result. remove int.
+        //return false;
+        return bytes;
     }
 
     int attribCount = (size - 2 + size % 2) / 2;
 
     AttributeList attribs;
+    if (!readAttributes(attribs,attribCount)) {
+        //TODO: make bool result. remove int.
+        //return false;
+        qDebug() << "readStreamStart: failed to read attributes" << attribCount;
+        return bytes;
+    }
 
-    readAttributes(attribs,attribCount,in);
-
+    //TODO: make bool result. remove int.
     return bytes;
 }
 
@@ -105,33 +145,45 @@ bool BinTreeNodeReader::nextTree(ProtocolTreeNode& node)
 {
     bool result;
 
-    node.setSize(getOneToplevelStream());
-    QDataStream in(readBuffer);
+    if (!getOneToplevelStream()) {
+        return false;
+    }
 
-    result = nextTreeInternal(node, in);
-    qDebug() << "read" << node.toString();
+    node.setSize(getOneToplevelStreamSize());
+
+    result = nextTreeInternal(node);
+    qDebug() << "read" << node.toString() << result;
     return result;
 }
 
-bool BinTreeNodeReader::nextTreeInternal(ProtocolTreeNode& node, QDataStream &in)
+bool BinTreeNodeReader::nextTreeInternal(ProtocolTreeNode& node)
 {
     quint8 b;
 
-    in >> b;
-    int size = readListSize(b,in);
+    if (!readInt8(b))
+        return false;
+
+    int size = -1;
+    if (!readListSize(b, size))
+        return false;
     if (size < 0)
         return false;
 
-    in >> b;
+    if (!readInt8(b))
+        return false;
+
     if (b == 2)
         return false;
 
     QByteArray tag;
-    readString(b, tag, in);
+    if (!readString(b, tag))
+        return false;
 
     int attribCount = (size - 2 + size % 2) / 2;
+
     AttributeList attribs;
-    readAttributes(attribs,attribCount,in);
+    if (!readAttributes(attribs,attribCount))
+        return false;
 
     node.setTag(tag);
     node.setAttributes(attribs);
@@ -139,15 +191,18 @@ bool BinTreeNodeReader::nextTreeInternal(ProtocolTreeNode& node, QDataStream &in
     if ((size % 2) == 1)
         return true;
 
-    in >> b;
+    if (!readInt8(b))
+        return false;
+
     if (isListTag(b))
     {
-        readList(b,node,in);
-        return true;
+        return readList(b,node);
     }
 
     QByteArray data;
-    readString(b,data,in);
+    if (!readString(b,data))
+        return false;
+
     node.setData(data);
     return true;
 }
@@ -157,64 +212,77 @@ bool BinTreeNodeReader::isListTag(quint32 b)
     return (b == 248) || (b == 0) || (b == 249);
 }
 
-void BinTreeNodeReader::readList(qint32 token,ProtocolTreeNode& node,QDataStream& in)
+bool BinTreeNodeReader::readList(qint32 token,ProtocolTreeNode& node)
 {
-    int size = readListSize(token,in);
+    int size = 0;
+    if (!readListSize(token, size)) {
+        qDebug() << "failed to read listSize";
+        return false;
+    }
     for (int i=0; i<size; i++)
     {
         ProtocolTreeNode child;
-        nextTreeInternal(child,in);
+        //TODO: check results
+        nextTreeInternal(child);
         node.addChild(child);
     }
+    return true;
 }
 
-void BinTreeNodeReader::readAttributes(AttributeList& attribs, int attribCount,
-                                       QDataStream& in)
+bool BinTreeNodeReader::readAttributes(AttributeList& attribs, int attribCount)
 {
     QByteArray key, value;
     for (int i=0; i < attribCount; i++)
     {
-        readString(key, in);
-        readString(value, in);
-        attribs.insert(QString::fromUtf8(key),QString::fromUtf8(value));
+        if (readString(key) && readString(value)) {
+            attribs.insert(QString::fromUtf8(key),QString::fromUtf8(value));
+        } else {
+            qDebug() << "failed to read attribute key:value";
+            //TODO: return false;
+        }
     }
+    return true;
 }
 
-int BinTreeNodeReader::readListSize(qint32 token, QDataStream& in)
+bool BinTreeNodeReader::readListSize(qint32 token, int& size)
 {
-    int size = -1;
-    if (token == 0)
+    size = -1;
+    if (token == 0) {
         size = 0;
-    else if (token == 0xf8)
-        size = readInt8(in);
-    else if (token == 0xf9)
-        size = readInt16(in);
-    else {
+    } else if (token == 0xf8) {
+        quint8 b;
+        if (!readInt8(b)) {
+            qDebug() << "failed to read 8bit size";
+            return false;
+        }
+        size = b;
+    } else if (token == 0xf9) {
+        qint16 b; //TODO: changed from quint16 to qint16. check if valid
+        if (!readInt16(b)) {
+            qDebug() << "failed to read 16bit size";
+            return false;
+        }
+        size = b;
+    } else {
         qDebug() << "Invalid list size in readListSize: token 0x" << QString::number(token,16);
         harakiri();
+        return false;
     }
-
-    return size;
+    return true;
 }
 
-void BinTreeNodeReader::fillBuffer(quint32 stanzaSize)
+bool BinTreeNodeReader::fillRawBuffer(quint32 stanzaSize)
 {
-    fillArray(readBuffer, stanzaSize);
+    return fillArrayFromRawStream(rawBuffer, stanzaSize);
 }
 
-void BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len, QDataStream &in)
+bool BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len)
 {
-    buffer.clear();
-
-    for (quint32 count=0; count < len; count ++)
-    {
-        quint8 byte;
-        in >> byte;
-        buffer.append(byte);
-    }
+    buffer = decodedStream.read(len);
+    return buffer.size() == len;
 }
 
-void BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len)
+bool BinTreeNodeReader::fillArrayFromRawStream(QByteArray& buffer, quint32 len)
 {
     char data[1025];
 
@@ -233,6 +301,7 @@ void BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len)
     {
         qDebug() << "fillArray() not ready / timed out";
         harakiri();
+        return false;
     }
 
 
@@ -244,7 +313,7 @@ void BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len)
         if (bytesRead < 0) {
             qDebug() << "bytesRead < 0" << socket->errorString();
             harakiri();
-            return;
+            return false;
         }
         if (bytesRead == 0) {
             socket->waitForReadyRead(-1);
@@ -255,51 +324,57 @@ void BinTreeNodeReader::fillArray(QByteArray& buffer, quint32 len)
             buffer.append(data,bytesRead);
         }
     }
+    return true;
 }
 
-bool BinTreeNodeReader::readString(QByteArray& s, QDataStream& in)
+bool BinTreeNodeReader::readString(QByteArray& s)
 {
     quint8 token;
-
-    in >> token;
-    return readString(token,s,in);
+    if (!readInt8(token)) {
+        qDebug() << "failed to read string token";
+        return false;
+    }
+    return readString(token,s);
 }
 
-bool BinTreeNodeReader::readString(int token, QByteArray& s, QDataStream& in)
+bool BinTreeNodeReader::readString(int token, QByteArray& s)
 {
-    int size;
-
     if (token == -1) {
         qDebug() << "-1 token in readString";
         harakiri();
     }
 
     if (token > 2 && token < 0xf5)
-        return getToken(token, s, in);
+        return getToken(token, s);
 
+    //no default value.
     switch (token)
     {
         case 0:
             return false;
 
         case 0xfc:
-            size = readInt8(in);
-            fillArray(s,size,in);
-            return true;
+            quint8 size8;
+            if (!readInt8(size8))
+                return false;
+            return fillArray(s,size8);
 
         case 0xfd:
-            size = readInt24(in);
-            fillArray(s,size,in);
-            return true;
+            qint32 size24;
+            if (!readInt24(size24))
+                return false;
+            return fillArray(s,size24);
 
         case 0xfe:
-            in >> token;
-            return getToken(0xf5 + token, s, in);
+            quint8 token8;
+            if (!readInt8(token8))
+                return false;
+            return getToken(0xf5 + token8, s);
 
         case 0xfa:
             QByteArray user,server;
-            bool usr = readString(user,in);
-            bool srv = readString(server,in);
+            bool usr = readString(user);
+            bool srv = readString(server);
             if (usr & srv)
             {
                 s = user + "@" + server;
@@ -318,14 +393,15 @@ bool BinTreeNodeReader::readString(int token, QByteArray& s, QDataStream& in)
     return false;
 }
 
-bool BinTreeNodeReader::getToken(int token, QByteArray &s, QDataStream& in)
+bool BinTreeNodeReader::getToken(int token, QByteArray &s)
 {
     //qDebug() << "getToken:" << QString::number(token, 16);
     if (token >= 0 && token < dictionary.length())
     {
         if (token == 236) {
             quint8 ext;
-            in >> ext;
+            if (!readInt8(ext))
+                return false;
             token += ext + 1;
             //qDebug() << "extToken:" << QString::number(token, 16);
         }
@@ -338,17 +414,16 @@ bool BinTreeNodeReader::getToken(int token, QByteArray &s, QDataStream& in)
     return false;
 }
 
-quint8 BinTreeNodeReader::readInt8(QDataStream& in)
+bool BinTreeNodeReader::readInt8(quint8 &byte)
 {
-    quint8 result;
-
-    in >> result;
-
-    return(result);
+    if (decodedStream.read(reinterpret_cast<char*>(&byte), 1) != 1) {
+        return false;
+    }
+    return true;
 }
 
 
-qint32 BinTreeNodeReader::readInt16()
+qint32 BinTreeNodeReader::readRawInt16()
 {
     // bool ready = true;
     char buffer[2];
@@ -368,7 +443,7 @@ qint32 BinTreeNodeReader::readInt16()
 
     QByteArray readBytes(buffer,2);
 
-    fillArray(readBytes,2);
+    fillArrayFromRawStream(readBytes,2);
 
     qint32 result = (((quint8)readBytes.at(0)) << 8) + (quint8)readBytes.at(1);
 
@@ -377,7 +452,7 @@ qint32 BinTreeNodeReader::readInt16()
     return (result);
 }
 
-qint32 BinTreeNodeReader::readInt24()
+qint32 BinTreeNodeReader::readRawInt24()
 {
     // bool ready = true;
     char buffer[3];
@@ -398,7 +473,7 @@ qint32 BinTreeNodeReader::readInt24()
 
     QByteArray readBytes(buffer,3);
 
-    fillArray(readBytes,3);
+    fillArrayFromRawStream(readBytes,3);
 
     qint32 result = ((((quint8)readBytes.at(0)) << 16) + ((quint8)readBytes.at(1) << 8) +
                      ((quint8)readBytes.at(2)));
@@ -409,34 +484,34 @@ qint32 BinTreeNodeReader::readInt24()
 }
 
 
-qint16 BinTreeNodeReader::readInt16(QDataStream& in)
+bool BinTreeNodeReader::readInt16(qint16 &val)
 {
     quint8 r1;
     quint8 r2;
-    qint32 result;
 
-    in >> r1;
-    in >> r2;
+    if (!readInt8(r1)
+            || !readInt8(r2)) {
+        return false;
+    }
 
-    result = (r1 << 8) + r2;
-
-    return result;
+    val = (r1 << 8) + r2;
+    return true;
 }
 
-qint32 BinTreeNodeReader::readInt24(QDataStream& in)
+bool BinTreeNodeReader::readInt24(qint32 &val)
 {
     quint8 r1;
     quint8 r2;
     quint8 r3;
-    qint32 result;
 
-    in >> r1;
-    in >> r2;
-    in >> r3;
+    if (!readInt8(r1)
+            || !readInt8(r2)
+            || !readInt8(r3)) {
+        return false;
+    }
 
-    result = (r1 << 16) + (r2 << 8) + r3;
-
-    return result;
+    val = (r1 << 16) + (r2 << 8) + r3;
+    return true;
 }
 
 void BinTreeNodeReader::setInputKey(KeyStream *inputKey)
@@ -448,7 +523,6 @@ void BinTreeNodeReader::harakiri()
 {
     QObject::disconnect(socket, 0, 0, 0);
     socket->disconnectFromHost();
-    //readBuffer.clear();
     Q_EMIT socketBroken();
 }
 
