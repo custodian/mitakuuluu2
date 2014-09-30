@@ -317,7 +317,7 @@ public slots:
     void getParticipants(const QString &jid);
     void getGroupInfo(const QString &jid);
     void regRequest(const QString &cc, const QString &phone, const QString &method, const QString &password, const QString &mcc, const QString &mnc);
-    void enterCode(const QString &cc, const QString &phone, const QString &code);
+    void enterCode(const QString &cc, const QString &phone, const QString &code, const QString &password);
     void setGroupSubject(const QString &gjid, const QString &subject);
     void createGroup(const QString &subject, const QString &picture, const QStringList &participants);
     void groupLeave(const QString &gjid);

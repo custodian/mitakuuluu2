@@ -225,7 +225,7 @@ Page {
                 onTextChanged: {
                     if (acceptableInput) {
                         busy.show(qsTr("Registering account...", "Registering account text"))
-                        Mitakuuluu.enterCode(countriesModel.get(countrySelect.currentIndex).cc, phoneField.text.trim(), codeField.text.trim())
+                        Mitakuuluu.enterCode(countriesModel.get(countrySelect.currentIndex).cc, phoneField.text.trim(), codeField.text.trim(), salt.text.trim())
                     }
                 }
             }

@@ -469,10 +469,10 @@ void Mitakuuluu::regRequest(const QString &cc, const QString &phone, const QStri
         iface->call(QDBus::NoBlock, "regRequest", cc, phone, method, password, mcc, mnc);
 }
 
-void Mitakuuluu::enterCode(const QString &cc, const QString &phone, const QString &code)
+void Mitakuuluu::enterCode(const QString &cc, const QString &phone, const QString &code, const QString &password)
 {
     if (iface)
-        iface->call(QDBus::NoBlock, "enterCode", cc, phone, code);
+        iface->call(QDBus::NoBlock, "enterCode", cc, phone, code, password);
 }
 
 void Mitakuuluu::setGroupSubject(const QString &gjid, const QString &subject)

@@ -1532,7 +1532,7 @@ void Client::setPicture(const QString &jid, const QString &path)
 
             QByteArray thumbnail;
 
-            QImage thumb = img.scaled(96, 96, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+            QImage thumb = img.scaled(128, 128, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
             /*int quality = 80;
             do
@@ -2546,7 +2546,7 @@ void Client::regRequest(const QString &cc, const QString &phone, const QString &
         reg = 0;
     }
 
-    reg = new PhoneReg(cc,phone,method,"",password,mcc,mnc);
+    reg = new PhoneReg(cc,phone,method,"",password,mcc,mnc,this);
 
     connect(reg,SIGNAL(finished(QVariantMap)),
             this,SLOT(registrationFinished(QVariantMap)));
@@ -2572,7 +2572,7 @@ void Client::regRequest(const QString &cc, const QString &phone, const QString &
     }
 }
 
-void Client::enterCode(const QString &cc, const QString &phone, const QString &smscode)
+void Client::enterCode(const QString &cc, const QString &phone, const QString &smscode, const QString &password)
 {
     qDebug() << "reg/register/" + cc + phone + "/" + smscode;
 
@@ -2581,7 +2581,7 @@ void Client::enterCode(const QString &cc, const QString &phone, const QString &s
         reg = 0;
     }
 
-    reg = new PhoneReg(cc,phone,"",smscode);
+    reg = new PhoneReg(cc,phone,"",smscode, password, "", "", this);
 
     connect(reg,SIGNAL(finished(QVariantMap)),
             this,SLOT(registrationFinished(QVariantMap)));
