@@ -997,7 +997,7 @@ void Connection::readNode()
 */
 int Connection::sendFeatures()
 {
-    /*ProtocolTreeNode child("receipt_acks");
+    /*ProtocolTreeNode child("receipt_acks");*/
 
     AttributeList attrs;
 
@@ -1007,12 +1007,15 @@ int Connection::sendFeatures()
 
     attrs.clear();
 
-    ProtocolTreeNode child3("status");*/
+    ProtocolTreeNode child3("status");
+
+    ProtocolTreeNode child4("privacy");
 
     ProtocolTreeNode node("stream:features");
     //node.addChild(child);
-    //node.addChild(child2);
-    //node.addChild(child3);
+    node.addChild(child2);
+    node.addChild(child3);
+    node.addChild(child4);
 
     int bytes = out->write(node,false);
     return bytes;
