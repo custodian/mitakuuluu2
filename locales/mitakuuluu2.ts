@@ -316,163 +316,163 @@
 <context>
     <name>ChatsPage</name>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="31"/>
+        <location filename="../client/qml/ChatsPage.qml" line="30"/>
         <source>Restart engine</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="32"/>
+        <location filename="../client/qml/ChatsPage.qml" line="31"/>
         <source>Force connect</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../client/qml/ChatsPage.qml" line="32"/>
         <location filename="../client/qml/ChatsPage.qml" line="33"/>
         <location filename="../client/qml/ChatsPage.qml" line="34"/>
-        <location filename="../client/qml/ChatsPage.qml" line="35"/>
         <source>Disconnect</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="36"/>
-        <location filename="../client/qml/ChatsPage.qml" line="39"/>
+        <location filename="../client/qml/ChatsPage.qml" line="35"/>
+        <location filename="../client/qml/ChatsPage.qml" line="38"/>
         <source>Register</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="37"/>
+        <location filename="../client/qml/ChatsPage.qml" line="36"/>
         <source>Connect</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="38"/>
+        <location filename="../client/qml/ChatsPage.qml" line="37"/>
         <source>No action</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="87"/>
+        <location filename="../client/qml/ChatsPage.qml" line="79"/>
         <source>Full quit</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="90"/>
+        <location filename="../client/qml/ChatsPage.qml" line="82"/>
         <source>Quit and shutdown engine</source>
         <comment>Full quit remorse popup</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="107"/>
+        <location filename="../client/qml/ChatsPage.qml" line="99"/>
         <source>Muted contacts</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="114"/>
+        <location filename="../client/qml/ChatsPage.qml" line="106"/>
         <source>Create group</source>
         <comment>Contacts page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="122"/>
+        <location filename="../client/qml/ChatsPage.qml" line="114"/>
         <source>Broadcast</source>
         <comment>Main menu action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="129"/>
+        <location filename="../client/qml/ChatsPage.qml" line="121"/>
         <source>Settings</source>
         <comment>Main menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="63"/>
+        <location filename="../client/qml/ChatsPage.qml" line="56"/>
         <source>Chats</source>
         <comment>Contacts page title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="141"/>
+        <location filename="../client/qml/ChatsPage.qml" line="133"/>
         <source>Flick left to access Contacts page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="172"/>
+        <location filename="../client/qml/ChatsPage.qml" line="166"/>
         <source>Clear chat history</source>
         <comment>Delete contact remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="179"/>
+        <location filename="../client/qml/ChatsPage.qml" line="174"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="426"/>
+        <location filename="../client/qml/ChatsPage.qml" line="419"/>
         <source>Clear chat history</source>
         <comment>Contact context menu delete contact item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="165"/>
+        <location filename="../client/qml/ChatsPage.qml" line="158"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="187"/>
+        <location filename="../client/qml/ChatsPage.qml" line="183"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="358"/>
+        <location filename="../client/qml/ChatsPage.qml" line="351"/>
         <source>Typing...</source>
         <comment>Contact status typing text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="359"/>
+        <location filename="../client/qml/ChatsPage.qml" line="352"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="378"/>
+        <location filename="../client/qml/ChatsPage.qml" line="371"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="395"/>
+        <location filename="../client/qml/ChatsPage.qml" line="388"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="401"/>
+        <location filename="../client/qml/ChatsPage.qml" line="394"/>
         <source>Un-hide contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="401"/>
+        <location filename="../client/qml/ChatsPage.qml" line="394"/>
         <source>Hide contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="408"/>
+        <location filename="../client/qml/ChatsPage.qml" line="401"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="417"/>
+        <location filename="../client/qml/ChatsPage.qml" line="410"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation type="unfinished"></translation>
@@ -529,43 +529,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1350"/>
+        <location filename="../server/src/client.cpp" line="1351"/>
         <source>Hidden</source>
         <comment>User hidden own status for privacy</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1614"/>
+        <location filename="../server/src/client.cpp" line="1615"/>
         <source>Joined the group</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1617"/>
+        <location filename="../server/src/client.cpp" line="1618"/>
         <source>Left the group</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1620"/>
+        <location filename="../server/src/client.cpp" line="1621"/>
         <source>Subject: %1</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1623"/>
+        <location filename="../server/src/client.cpp" line="1624"/>
         <source>Picture changed</source>
         <comment>Notification group event text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1015"/>
+        <location filename="../server/src/client.cpp" line="1016"/>
         <source>Disconnected</source>
         <comment>System connection notification</comment>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../server/src/client.cpp" line="3204"/>
+        <location filename="../server/src/client.cpp" line="3217"/>
         <source>%n messages unread</source>
         <comment>Message notification with unread messages count</comment>
         <translation type="unfinished">
@@ -577,106 +577,106 @@
 <context>
     <name>ContactsPage</name>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="88"/>
+        <location filename="../client/qml/ContactsPage.qml" line="80"/>
         <source>Add contact</source>
         <comment>Contacts page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="95"/>
+        <location filename="../client/qml/ContactsPage.qml" line="87"/>
         <source>Settings</source>
         <comment>Contacts page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="121"/>
+        <location filename="../client/qml/ContactsPage.qml" line="113"/>
         <source>Contacts</source>
         <comment>Contacts page title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="141"/>
+        <location filename="../client/qml/ContactsPage.qml" line="133"/>
         <source>Search contacts</source>
         <comment>Contacts page search text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="209"/>
+        <location filename="../client/qml/ContactsPage.qml" line="201"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="202"/>
+        <location filename="../client/qml/ContactsPage.qml" line="194"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="81"/>
+        <location filename="../client/qml/ContactsPage.qml" line="73"/>
         <source>Blacklist</source>
         <comment>Contacts page menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="102"/>
+        <location filename="../client/qml/ContactsPage.qml" line="94"/>
         <source>Hide search field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="103"/>
+        <location filename="../client/qml/ContactsPage.qml" line="95"/>
         <source>Show search field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="170"/>
+        <location filename="../client/qml/ContactsPage.qml" line="162"/>
         <source>Flick right to return to Chats page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="217"/>
+        <location filename="../client/qml/ContactsPage.qml" line="209"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="369"/>
+        <location filename="../client/qml/ContactsPage.qml" line="358"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="386"/>
+        <location filename="../client/qml/ContactsPage.qml" line="375"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="404"/>
+        <location filename="../client/qml/ContactsPage.qml" line="393"/>
         <source>Refresh</source>
         <comment>Contact context menu refresh item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="412"/>
+        <location filename="../client/qml/ContactsPage.qml" line="401"/>
         <source>Rename</source>
         <comment>Contact context menu profile item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="420"/>
+        <location filename="../client/qml/ContactsPage.qml" line="409"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="430"/>
+        <location filename="../client/qml/ContactsPage.qml" line="419"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="431"/>
+        <location filename="../client/qml/ContactsPage.qml" line="420"/>
         <source>Delete</source>
         <comment>Contact context menu delete contact item</comment>
         <translation type="unfinished"></translation>
@@ -1190,49 +1190,49 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="771"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="772"/>
         <source>Uploading...</source>
         <comment>Uploading voice record text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="831"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="832"/>
         <source>Resend message</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="840"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="841"/>
         <source>Copy</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="849"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="850"/>
         <source>Forward</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="858"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="859"/>
         <source>Save to Gallery</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="861"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="862"/>
         <source>Media saved as %1</source>
         <comment>Banner text message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="867"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="868"/>
         <source>Delete</source>
         <comment>Conversation message context menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="887"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="888"/>
         <source>Message copied to clipboard</source>
         <comment>Banner item text</comment>
         <translation type="unfinished"></translation>
