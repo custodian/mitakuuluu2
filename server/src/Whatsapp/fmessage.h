@@ -123,4 +123,6 @@ private:
     void generateID();
 };
 
+Q_DECLARE_METATYPE(FMessage)
+
 #endif // FMESSAGE_H

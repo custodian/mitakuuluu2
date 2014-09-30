@@ -96,7 +96,6 @@
 
 typedef QList<QVariantMap> QVariantMapList;
 Q_DECLARE_METATYPE(QVariantMapList)
-Q_DECLARE_METATYPE(FMessage)
 
 using namespace QtContacts;
 
