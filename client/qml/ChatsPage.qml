@@ -57,14 +57,13 @@ Page {
 
             Label {
                 id: headerText
+                parent: header.extraContent
                 width: Math.min(implicitWidth, parent.width - Theme.paddingLarge)
                 truncationMode: TruncationMode.Fade
                 color: Theme.highlightColor
                 visible: Mitakuuluu.connectionStatus != Mitakuuluu.LoggedIn
                 anchors {
                     verticalCenter: parent.verticalCenter
-                    left: parent.left
-                    leftMargin: pageStack._pageStackIndicator.width
                 }
                 font {
                     pixelSize: Theme.fontSizeLarge
@@ -155,32 +154,36 @@ Page {
             property bool secure: hiddenList.indexOf(model.jid) >= 0
 
             function removeContact() {
+                var chatJid = model.jid
                 remorseAction(qsTr("Delete", "Delete contact remorse action text"),
                 function() {
-                    ContactsBaseModel.deleteContact(model.jid)
+                    ContactsBaseModel.deleteContact(chatJid)
                 })
             }
 
             function clearChat() {
+                var chatJid = model.jid
                 remorseAction(qsTr("Clear chat history", "Delete contact remorse action text"),
                 function() {
-                    ContactsBaseModel.clearChat(model.jid)
+                    ContactsBaseModel.clearChat(chatJid)
                 })
             }
 
             function leaveGroup() {
+                var chatJid = model.jid
                 remorseAction(qsTr("Leave group %1", "Group leave remorse action text").arg(model.nickname),
                 function() {
-                    Mitakuuluu.groupLeave(model.jid)
-                    ContactsBaseModel.deleteContact(model.jid)
+                    Mitakuuluu.groupLeave(chatJid)
+                    ContactsBaseModel.deleteContact(chatJid)
                 })
             }
 
             function removeGroup() {
+                var chatJid = model.jid
                 remorseAction(qsTr("Delete group %1", "Group delete remorse action text").arg(model.nickname),
                 function() {
-                    Mitakuuluu.groupRemove(model.jid)
-                    ContactsBaseModel.deleteContact(model.jid)
+                    Mitakuuluu.groupRemove(chatJid)
+                    ContactsBaseModel.deleteContact(chatJid)
                 })
             }
 
