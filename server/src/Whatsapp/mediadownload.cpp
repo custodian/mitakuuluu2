@@ -6,7 +6,7 @@
 
 #include "src/client.h"
 
-MediaDownload::MediaDownload(FMessage message, QObject *parent) :
+MediaDownload::MediaDownload(const FMessage &message, QObject *parent) :
     HttpRequestv2(parent)
 {
     this->message = message;

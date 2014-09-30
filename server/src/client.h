@@ -96,6 +96,7 @@
 
 typedef QList<QVariantMap> QVariantMapList;
 Q_DECLARE_METATYPE(QVariantMapList)
+Q_DECLARE_METATYPE(FMessage)
 
 using namespace QtContacts;
 
@@ -409,45 +410,6 @@ signals:
     void codeRequestFailed(const QVariantMap &serverReply);
     void registrationComplete();
     void dissectError();
-    void connectionLogin(const QByteArray &nextChallenge);
-    void connectionSendMessage(const FMessage &message);
-    void connectionSendSyncContacts(const QStringList &numbers);
-    void connectionSendQueryLastOnline(const QString &jid);
-    void connectionSendGetStatus(const QStringList &jids);
-    void connectionSendPresenceSubscriptionRequest(const QString &jid);
-    void connectionSendUnsubscribeHim(const QString &jid);
-    void connectionSendUnsubscribeMe(const QString &jid);
-    void connectionSendGetPhoto(const QString &jid, const QString &expectedPhotoId, bool largeFormat);
-    void connectionSendSetPhoto(const QString &jid, const QByteArray &imageBytes, const QByteArray &thumbBytes);
-    void connectionSendGetPhotoIds(const QStringList &jids);
-    void connectionSendVoiceNotePlayed(const FMessage &message);
-    void connectionSendCreateGroupChat(const QString &subject);
-    void connectionSendAddParticipants(const QString &gjid, const QStringList &participants);
-    void connectionSendRemoveParticipants(const QString &gjid, const QStringList &participants);
-    void connectionSendVerbParticipants(const QString &gjid, const QStringList &participants, const QString &id, const QString &innerTag);
-    void connectionSendGetParticipants(const QString &gjid);
-    void connectionSendGetGroupInfo(const QString &gjid);
-    void connectionUpdateGroupChats();
-    void connectionSendSetGroupSubject(const QString &gjid, const QString &subject);
-    void connectionSendLeaveGroup(const QString &gjid);
-    void connectionSendRemoveGroup(const QString &gjid);
-    void connectionSendGetPrivacyList();
-    void connectionSendSetPrivacyBlockedList(const QStringList &jidList);
-    void connectionSendGetPrivacySettings();
-    void connectionSendSetPrivacySettings(const QString &category, const QString &value);
-    void connectionSetNewUserName(const QString &push_name, bool hide);
-    void connectionSetNewStatus(const QString &status);
-    void connectionSendAvailableForChat(bool hide);
-    void connectionSendAvailable();
-    void connectionSendUnavailable();
-    void connectionSendStreamEnd();
-    void connectionSendDeleteAccount();
-    void connectionSendMessageReceived(const FMessage &message);
-    void connectionDisconnect();
-    void connectionSendGetServerProperties();
-    void connectionSendGetClientConfig();
-    void connectionSendComposing(const QString &jid, const QString &media);
-    void connectionSendPaused(const QString &jid, const QString &media);
     void networkUsage(const QVariantList &networkUsage);
     void logfileReady(const QByteArray &data, bool isReady);
     void pong();
@@ -456,6 +418,44 @@ signals:
     void mediaListReceived(const QString &pjid, const QVariantMapList &mediaList);
     void streamError();
     void mediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
+
+    Q_SCRIPTABLE void connectionSendMessage(const FMessage &message);
+    Q_SCRIPTABLE void connectionSendSyncContacts(const QStringList &numbers);
+    Q_SCRIPTABLE void connectionSendQueryLastOnline(const QString &jid);
+    Q_SCRIPTABLE void connectionSendGetStatus(const QStringList &jids);
+    Q_SCRIPTABLE void connectionSendPresenceSubscriptionRequest(const QString &jid);
+    Q_SCRIPTABLE void connectionSendUnsubscribeHim(const QString &jid);
+    Q_SCRIPTABLE void connectionSendUnsubscribeMe(const QString &jid);
+    Q_SCRIPTABLE void connectionSendGetPhoto(const QString &jid, const QString &expectedPhotoId, bool largeFormat);
+    Q_SCRIPTABLE void connectionSendSetPhoto(const QString &jid, const QByteArray &imageBytes, const QByteArray &thumbBytes);
+    Q_SCRIPTABLE void connectionSendGetPhotoIds(const QStringList &jids);
+    Q_SCRIPTABLE void connectionSendVoiceNotePlayed(const FMessage &message);
+    Q_SCRIPTABLE void connectionSendCreateGroupChat(const QString &subject);
+    Q_SCRIPTABLE void connectionSendAddParticipants(const QString &gjid, const QStringList &participants);
+    Q_SCRIPTABLE void connectionSendRemoveParticipants(const QString &gjid, const QStringList &participants);
+    Q_SCRIPTABLE void connectionSendVerbParticipants(const QString &gjid, const QStringList &participants, const QString &id, const QString &innerTag);
+    Q_SCRIPTABLE void connectionSendGetParticipants(const QString &gjid);
+    Q_SCRIPTABLE void connectionSendGetGroupInfo(const QString &gjid);
+    Q_SCRIPTABLE void connectionUpdateGroupChats();
+    Q_SCRIPTABLE void connectionSendSetGroupSubject(const QString &gjid, const QString &subject);
+    Q_SCRIPTABLE void connectionSendLeaveGroup(const QString &gjid);
+    Q_SCRIPTABLE void connectionSendRemoveGroup(const QString &gjid);
+    Q_SCRIPTABLE void connectionSendGetPrivacyList();
+    Q_SCRIPTABLE void connectionSendSetPrivacyBlockedList(const QStringList &jidList);
+    Q_SCRIPTABLE void connectionSendGetPrivacySettings();
+    Q_SCRIPTABLE void connectionSendSetPrivacySettings(const QString &category, const QString &value);
+    Q_SCRIPTABLE void connectionSetNewUserName(const QString &push_name, bool hide);
+    Q_SCRIPTABLE void connectionSetNewStatus(const QString &status);
+    Q_SCRIPTABLE void connectionSendAvailableForChat(bool hide);
+    Q_SCRIPTABLE void connectionSendAvailable();
+    Q_SCRIPTABLE void connectionSendUnavailable();
+    Q_SCRIPTABLE void connectionSendStreamEnd();
+    Q_SCRIPTABLE void connectionSendDeleteAccount();
+    Q_SCRIPTABLE void connectionDisconnect();
+    Q_SCRIPTABLE void connectionSendGetServerProperties();
+    Q_SCRIPTABLE void connectionSendGetClientConfig();
+    Q_SCRIPTABLE void connectionSendComposing(const QString &jid, const QString &media);
+    Q_SCRIPTABLE void connectionSendPaused(const QString &jid, const QString &media);
 
 private:
     QueryExecutor *dbExecutor;

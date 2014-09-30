@@ -209,7 +209,7 @@ Client::Client(QObject *parent) : QObject(parent)
     bool ret =
         QDBusConnection::sessionBus().registerService(SERVICE_NAME) &&
         QDBusConnection::sessionBus().registerObject(OBJECT_NAME, this,
-                                                 QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllSlots);
+                                                 QDBusConnection::ExportNonScriptableSignals | QDBusConnection::ExportNonScriptableSlots);
 
     if (ret)
         qDebug() << "Dbus registered";

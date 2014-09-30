@@ -11,7 +11,7 @@ class MediaDownload : public HttpRequestv2
 {
     Q_OBJECT
 public:
-    explicit MediaDownload(FMessage message, QObject *parent = 0);
+    explicit MediaDownload(const FMessage &message, QObject *parent = 0);
 
 private slots:
     void onSocketError(QAbstractSocket::SocketError error);
