@@ -46,8 +46,8 @@ BinTreeNodeReader::BinTreeNodeReader(QTcpSocket *socket, QStringList& dictionary
 bool BinTreeNodeReader::getOneToplevelStream()
 {
     qint32 bufferSize = readRawInt24();
-    qint8 flags = (bufferSize & 0xff0000) >> 20;
-    bufferSize &= 0xffff;
+    qint8 flags = (bufferSize & 0xf00000) >> 20;
+    bufferSize &= 0x0fffff;
 
     if (!fillRawBuffer(bufferSize)) {
         return false;
