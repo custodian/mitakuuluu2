@@ -117,7 +117,8 @@ Page {
             MenuItem {
                 text: qsTr("Clear chat history", "User profile page menu item")
                 onClicked: {
-                    ContactsBaseModel.clearChat(page.jid)
+                    var rjid = page.jid
+                    remorse.execute(text, function() { ContactsBaseModel.clearChat(rjid) })
                 }
             }
 
@@ -253,6 +254,10 @@ Page {
 
     AvatarView {
         id: avatarView
+    }
+
+    RemorsePopup {
+        id: remorse
     }
 
     ListModel {
