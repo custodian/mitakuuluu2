@@ -314,163 +314,163 @@
 <context>
     <name>ChatsPage</name>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="31"/>
+        <location filename="../client/qml/ChatsPage.qml" line="30"/>
         <source>Restart engine</source>
         <comment>Main menu action</comment>
         <translation>Перезапуск</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="32"/>
+        <location filename="../client/qml/ChatsPage.qml" line="31"/>
         <source>Force connect</source>
         <comment>Main menu action</comment>
         <translation>Подключиться</translation>
     </message>
     <message>
+        <location filename="../client/qml/ChatsPage.qml" line="32"/>
         <location filename="../client/qml/ChatsPage.qml" line="33"/>
         <location filename="../client/qml/ChatsPage.qml" line="34"/>
-        <location filename="../client/qml/ChatsPage.qml" line="35"/>
         <source>Disconnect</source>
         <comment>Main menu action</comment>
         <translation>Отключить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="36"/>
-        <location filename="../client/qml/ChatsPage.qml" line="39"/>
+        <location filename="../client/qml/ChatsPage.qml" line="35"/>
+        <location filename="../client/qml/ChatsPage.qml" line="38"/>
         <source>Register</source>
         <comment>Main menu action</comment>
         <translation>Регистрация</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="37"/>
+        <location filename="../client/qml/ChatsPage.qml" line="36"/>
         <source>Connect</source>
         <comment>Main menu action</comment>
         <translation>Подключить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="38"/>
+        <location filename="../client/qml/ChatsPage.qml" line="37"/>
         <source>No action</source>
         <comment>Main menu action</comment>
         <translation>Нет действия</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="87"/>
+        <location filename="../client/qml/ChatsPage.qml" line="79"/>
         <source>Full quit</source>
         <comment>Main menu action</comment>
         <translation>Завершение работы</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="90"/>
+        <location filename="../client/qml/ChatsPage.qml" line="82"/>
         <source>Quit and shutdown engine</source>
         <comment>Full quit remorse popup</comment>
         <translation>Завершение работы</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="107"/>
+        <location filename="../client/qml/ChatsPage.qml" line="99"/>
         <source>Muted contacts</source>
         <comment>Main menu action</comment>
         <translation>Приглушенные контакты</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="114"/>
+        <location filename="../client/qml/ChatsPage.qml" line="106"/>
         <source>Create group</source>
         <comment>Contacts page menu item</comment>
         <translation>Создать группу</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="122"/>
+        <location filename="../client/qml/ChatsPage.qml" line="114"/>
         <source>Broadcast</source>
         <comment>Main menu action</comment>
         <translation>Рассылка</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="129"/>
+        <location filename="../client/qml/ChatsPage.qml" line="121"/>
         <source>Settings</source>
         <comment>Main menu item</comment>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="63"/>
+        <location filename="../client/qml/ChatsPage.qml" line="56"/>
         <source>Chats</source>
         <comment>Contacts page title</comment>
         <translation>Активные чаты</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="141"/>
+        <location filename="../client/qml/ChatsPage.qml" line="133"/>
         <source>Flick left to access Contacts page</source>
         <translation>Провести влево, чтобы открыть Контакты</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="172"/>
+        <location filename="../client/qml/ChatsPage.qml" line="166"/>
         <source>Clear chat history</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Очистить историю сообщений</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="179"/>
+        <location filename="../client/qml/ChatsPage.qml" line="174"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation>Выход из группы %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="426"/>
+        <location filename="../client/qml/ChatsPage.qml" line="421"/>
         <source>Clear chat history</source>
         <comment>Contact context menu delete contact item</comment>
         <translation>Очистить историю сообщений</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="165"/>
+        <location filename="../client/qml/ChatsPage.qml" line="158"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Удаление</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="187"/>
+        <location filename="../client/qml/ChatsPage.qml" line="183"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation>Удаление группы %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="358"/>
+        <location filename="../client/qml/ChatsPage.qml" line="351"/>
         <source>Typing...</source>
         <comment>Contact status typing text</comment>
         <translation>Печатает...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="359"/>
+        <location filename="../client/qml/ChatsPage.qml" line="352"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation>Групповой чат</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="378"/>
+        <location filename="../client/qml/ChatsPage.qml" line="371"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="395"/>
+        <location filename="../client/qml/ChatsPage.qml" line="389"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation>Приглушить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="401"/>
+        <location filename="../client/qml/ChatsPage.qml" line="396"/>
         <source>Un-hide contact</source>
         <translation>Показать контакт</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="401"/>
+        <location filename="../client/qml/ChatsPage.qml" line="396"/>
         <source>Hide contact</source>
         <translation>Скрыть контакт</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="408"/>
+        <location filename="../client/qml/ChatsPage.qml" line="403"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation>Удалить группу</translation>
     </message>
     <message>
-        <location filename="../client/qml/ChatsPage.qml" line="417"/>
+        <location filename="../client/qml/ChatsPage.qml" line="412"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation>Покинуть группу</translation>
@@ -527,43 +527,43 @@
         <translation>Подключен</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1350"/>
+        <location filename="../server/src/client.cpp" line="1351"/>
         <source>Hidden</source>
         <comment>User hidden own status for privacy</comment>
         <translation>Скрыт</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1614"/>
+        <location filename="../server/src/client.cpp" line="1615"/>
         <source>Joined the group</source>
         <comment>Notification group event text</comment>
         <translation>Присоединился к группе</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1617"/>
+        <location filename="../server/src/client.cpp" line="1618"/>
         <source>Left the group</source>
         <comment>Notification group event text</comment>
         <translation>покинул группу</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1620"/>
+        <location filename="../server/src/client.cpp" line="1621"/>
         <source>Subject: %1</source>
         <comment>Notification group event text</comment>
         <translation>Тема: %1</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1623"/>
+        <location filename="../server/src/client.cpp" line="1624"/>
         <source>Picture changed</source>
         <comment>Notification group event text</comment>
         <translation>Изображение изменено</translation>
     </message>
     <message>
-        <location filename="../server/src/client.cpp" line="1015"/>
+        <location filename="../server/src/client.cpp" line="1016"/>
         <source>Disconnected</source>
         <comment>System connection notification</comment>
         <translation>Отключен</translation>
     </message>
     <message numerus="yes">
-        <location filename="../server/src/client.cpp" line="3204"/>
+        <location filename="../server/src/client.cpp" line="3218"/>
         <source>%n messages unread</source>
         <comment>Message notification with unread messages count</comment>
         <translation><numerusform>%n непрочитанное сообщение</numerusform><numerusform>%n непрочитанных сообщения</numerusform><numerusform>%n непрочитанных сообщений</numerusform></translation>
@@ -572,106 +572,116 @@
 <context>
     <name>ContactsPage</name>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="88"/>
+        <location filename="../client/qml/ContactsPage.qml" line="80"/>
         <source>Add contact</source>
         <comment>Contacts page menu item</comment>
         <translation>Добавить контакт</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="95"/>
+        <location filename="../client/qml/ContactsPage.qml" line="87"/>
         <source>Settings</source>
         <comment>Contacts page menu item</comment>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="121"/>
+        <location filename="../client/qml/ContactsPage.qml" line="113"/>
         <source>Contacts</source>
         <comment>Contacts page title</comment>
         <translation>Контакты</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="141"/>
+        <location filename="../client/qml/ContactsPage.qml" line="133"/>
         <source>Search contacts</source>
         <comment>Contacts page search text</comment>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="209"/>
+        <location filename="../client/qml/ContactsPage.qml" line="202"/>
         <source>Leave group %1</source>
         <comment>Group leave remorse action text</comment>
         <translation>Выход из группы %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="202"/>
+        <location filename="../client/qml/ContactsPage.qml" line="195"/>
         <source>Delete</source>
         <comment>Delete contact remorse action text</comment>
         <translation>Удаление</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="81"/>
+        <location filename="../client/qml/ContactsPage.qml" line="73"/>
         <source>Blacklist</source>
         <comment>Contacts page menu item</comment>
         <translation>Черный список</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="102"/>
+        <location filename="../client/qml/ContactsPage.qml" line="94"/>
         <source>Hide search field</source>
         <translation>Скрыть строку поиска</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="103"/>
+        <location filename="../client/qml/ContactsPage.qml" line="95"/>
         <source>Show search field</source>
         <translation>Показать строку поиска</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="170"/>
+        <location filename="../client/qml/ContactsPage.qml" line="162"/>
         <source>Flick right to return to Chats page</source>
         <translation>Провести вправо, чтобы вернуться в Чаты</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="217"/>
+        <location filename="../client/qml/ContactsPage.qml" line="210"/>
         <source>Delete group %1</source>
         <comment>Group delete remorse action text</comment>
         <translation>Удаление группы %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="369"/>
+        <location filename="../client/qml/ContactsPage.qml" line="380"/>
         <source>Group chat</source>
         <comment>Contacts group page text in status message line</comment>
         <translation>Групповой чат</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="386"/>
+        <location filename="../client/qml/ContactsPage.qml" line="397"/>
         <source>Profile</source>
         <comment>Contact context menu profile item</comment>
         <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="404"/>
+        <location filename="../client/qml/ContactsPage.qml" line="415"/>
         <source>Refresh</source>
         <comment>Contact context menu refresh item</comment>
         <translation>Обновить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="412"/>
+        <location filename="../client/qml/ContactsPage.qml" line="423"/>
+        <source>Un-hide contact</source>
+        <translation>Показать контакт</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="423"/>
+        <source>Hide contact</source>
+        <translation>Скрыть контакт</translation>
+    </message>
+    <message>
+        <location filename="../client/qml/ContactsPage.qml" line="430"/>
         <source>Rename</source>
         <comment>Contact context menu profile item</comment>
         <translation>Переименовать</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="420"/>
+        <location filename="../client/qml/ContactsPage.qml" line="438"/>
         <source>Delete group</source>
         <comment>Contact context menu delete group item</comment>
         <translation>Удалить группу</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="430"/>
+        <location filename="../client/qml/ContactsPage.qml" line="448"/>
         <source>Leave group</source>
         <comment>Contact context menu leave group item</comment>
         <translation>Выйти из группы</translation>
     </message>
     <message>
-        <location filename="../client/qml/ContactsPage.qml" line="431"/>
+        <location filename="../client/qml/ContactsPage.qml" line="449"/>
         <source>Delete</source>
         <comment>Contact context menu delete contact item</comment>
         <translation>Удалить</translation>
@@ -680,31 +690,31 @@
 <context>
     <name>ConversationPage</name>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="233"/>
+        <location filename="../client/qml/ConversationPage.qml" line="242"/>
         <source>Muting</source>
         <comment>Contacts context menu muting item</comment>
         <translation>Приглушить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="247"/>
+        <location filename="../client/qml/ConversationPage.qml" line="256"/>
         <source>Load old conversation</source>
         <comment>Conversation menu item</comment>
         <translation>Загрузить старые сообщения</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="297"/>
+        <location filename="../client/qml/ConversationPage.qml" line="306"/>
         <source>Enable location in settings!</source>
         <comment>Banner text if GPS disabled in settings</comment>
         <translation>Включите GPS в настройках!</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="329"/>
+        <location filename="../client/qml/ConversationPage.qml" line="338"/>
         <source>Hold button for recording, release to send</source>
         <comment>Conversation voice recorder description label</comment>
         <translation>Держите кнопку для записи, отпустите для отправки</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="452"/>
+        <location filename="../client/qml/ConversationPage.qml" line="461"/>
         <source>Typing...</source>
         <comment>Contact typing converstation text</comment>
         <translation>Печатает...</translation>
@@ -726,41 +736,41 @@
         <translation>Предыдущее посещение скрыто</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="240"/>
+        <location filename="../client/qml/ConversationPage.qml" line="249"/>
         <source>Search message</source>
         <translation>Найти сообщение</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="386"/>
+        <location filename="../client/qml/ConversationPage.qml" line="395"/>
         <source>Release to delete</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Отпустите для удаления</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="387"/>
+        <location filename="../client/qml/ConversationPage.qml" line="396"/>
         <source>Release to send</source>
         <comment>Conversation voice recorder delete label</comment>
         <translation>Отпустите для отправки</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="516"/>
+        <location filename="../client/qml/ConversationPage.qml" line="525"/>
         <source>New message</source>
         <comment>Conversation new message indicator</comment>
         <translation>Новое сообщение</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="572"/>
+        <location filename="../client/qml/ConversationPage.qml" line="581"/>
         <source>Tap here to enter message</source>
         <comment>Message composing tet area placeholder</comment>
         <translation>Начните печатать сообщение здесь</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="677"/>
+        <location filename="../client/qml/ConversationPage.qml" line="686"/>
         <source>Flick left to access Contact details</source>
         <translation>Провести влево, чтобы открыть детали Контакта</translation>
     </message>
     <message>
-        <location filename="../client/qml/ConversationPage.qml" line="814"/>
+        <location filename="../client/qml/ConversationPage.qml" line="823"/>
         <source>Waiting for coordinates...</source>
         <comment>Conversation location sending banner text</comment>
         <translation>Получение координат...</translation>
@@ -871,13 +881,13 @@
         <translation>Вы</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="193"/>
+        <location filename="../client/qml/GroupProfile.qml" line="194"/>
         <source>Save chat history</source>
         <comment>Group profile page menu item</comment>
         <translation>Сохранить историю переписки</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="196"/>
+        <location filename="../client/qml/GroupProfile.qml" line="197"/>
         <source>History saved to Documents</source>
         <comment>Banner notification text</comment>
         <translation>История сохранена в Документы</translation>
@@ -905,60 +915,60 @@
         <translation>Очистить историю сообщений</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="203"/>
+        <location filename="../client/qml/GroupProfile.qml" line="204"/>
         <source>Group profile</source>
         <comment>Group profile page title</comment>
         <translation>Профиль группы</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="214"/>
+        <location filename="../client/qml/GroupProfile.qml" line="215"/>
         <source>Subject: </source>
         <comment>Group profile subject label</comment>
         <translation>Тема:</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="273"/>
+        <location filename="../client/qml/GroupProfile.qml" line="274"/>
         <source>Owner: %1</source>
         <comment>Group profile owner label</comment>
         <translation>Владелец: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="287"/>
+        <location filename="../client/qml/GroupProfile.qml" line="288"/>
         <source>Creation: %1</source>
         <comment>Group profile creation label</comment>
         <translation>Создана: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="301"/>
+        <location filename="../client/qml/GroupProfile.qml" line="302"/>
         <source>Subject by: %1</source>
         <comment>Group profile subject owner label</comment>
         <translation>Автор темы: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="315"/>
+        <location filename="../client/qml/GroupProfile.qml" line="316"/>
         <source>Subject set: %1</source>
         <comment>Group profile subject timestamp label</comment>
         <translation>Тема задана: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="342"/>
+        <location filename="../client/qml/GroupProfile.qml" line="343"/>
         <source>Media</source>
         <translation>Медиа</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="398"/>
+        <location filename="../client/qml/GroupProfile.qml" line="399"/>
         <source>Max group participants count reached</source>
         <comment>Group profile maximum participants banner</comment>
         <translation>Достигнуто максимальное количество участников</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="430"/>
+        <location filename="../client/qml/GroupProfile.qml" line="431"/>
         <source>Fetching participants...</source>
         <comment>Group profile loading text</comment>
         <translation>Получение списка участников...</translation>
     </message>
     <message>
-        <location filename="../client/qml/GroupProfile.qml" line="614"/>
+        <location filename="../client/qml/GroupProfile.qml" line="619"/>
         <source>Group media</source>
         <translation>Медиа группы</translation>
     </message>
@@ -1173,49 +1183,49 @@
         <translation>Загрузка отменена.</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="771"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="772"/>
         <source>Uploading...</source>
         <comment>Uploading voice record text</comment>
         <translation>Загружается...</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="831"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="832"/>
         <source>Resend message</source>
         <comment>Conversation message context menu item</comment>
         <translation>Повторить отправку</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="840"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="841"/>
         <source>Copy</source>
         <comment>Conversation message context menu item</comment>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="849"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="850"/>
         <source>Forward</source>
         <comment>Conversation message context menu item</comment>
         <translation>Переслать</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="858"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="859"/>
         <source>Save to Gallery</source>
         <comment>Conversation message context menu item</comment>
         <translation>Сохранить в Галерею</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="861"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="862"/>
         <source>Media saved as %1</source>
         <comment>Banner text message</comment>
         <translation>Файл сохранен в: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="867"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="868"/>
         <source>Delete</source>
         <comment>Conversation message context menu item</comment>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../client/qml/ModernDelegate.qml" line="887"/>
+        <location filename="../client/qml/ModernDelegate.qml" line="888"/>
         <source>Message copied to clipboard</source>
         <comment>Banner item text</comment>
         <translation>Сообщение скопировано в буфер обмена</translation>
@@ -2815,37 +2825,37 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Очистить историю сообщений</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="125"/>
+        <location filename="../client/qml/UserProfile.qml" line="126"/>
         <source>Save chat history</source>
         <comment>User profile page menu item</comment>
         <translation>Сохранить историю переписки</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="128"/>
+        <location filename="../client/qml/UserProfile.qml" line="129"/>
         <source>History saved to Documents</source>
         <comment>User profile page history saved banner</comment>
         <translation>История сохранена в Документы</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="168"/>
+        <location filename="../client/qml/UserProfile.qml" line="169"/>
         <source>Nickname: %1</source>
         <comment>User profile page nickname label</comment>
         <translation>Псевдоним: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="179"/>
+        <location filename="../client/qml/UserProfile.qml" line="180"/>
         <source>Status: %1</source>
         <comment>User profile page status label</comment>
         <translation>Статус: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="191"/>
+        <location filename="../client/qml/UserProfile.qml" line="192"/>
         <source>Status set: %1</source>
         <comment>User profile page status timestamp</comment>
         <translation>Статус установлен: %1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="202"/>
+        <location filename="../client/qml/UserProfile.qml" line="203"/>
         <source>Contact blocked</source>
         <comment>User profile page contact blocked label</comment>
         <translation>Контакт заблокирован</translation>
@@ -2861,17 +2871,17 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <translation>Очистить фон</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="211"/>
+        <location filename="../client/qml/UserProfile.qml" line="212"/>
         <source>Call +%1</source>
         <translation>Позвонить +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="222"/>
+        <location filename="../client/qml/UserProfile.qml" line="223"/>
         <source>Save +%1</source>
         <translation>Сохранить +%1</translation>
     </message>
     <message>
-        <location filename="../client/qml/UserProfile.qml" line="229"/>
+        <location filename="../client/qml/UserProfile.qml" line="230"/>
         <source>Media</source>
         <comment>User profile page media section name</comment>
         <translation>Медиа</translation>
@@ -2880,19 +2890,19 @@ Click Renew to purchase one year of WhatsApp service.</source>
 <context>
     <name>main</name>
     <message>
-        <location filename="../client/qml/main.qml" line="199"/>
+        <location filename="../client/qml/main.qml" line="200"/>
         <source>You</source>
         <comment>Display You instead of your own nickname</comment>
         <translation>Вы</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="634"/>
+        <location filename="../client/qml/main.qml" line="657"/>
         <source>Disconnecting</source>
         <comment>Disconnect remorse popup</comment>
         <translation>Отключение</translation>
     </message>
     <message>
-        <location filename="../client/qml/main.qml" line="930"/>
+        <location filename="../client/qml/main.qml" line="953"/>
         <source>Server experiencing problems with following feature(s): %1</source>
         <translation>В данный момент у сервера проблемы со следующими функциями: %1</translation>
     </message>
