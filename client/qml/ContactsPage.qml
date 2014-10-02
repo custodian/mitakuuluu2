@@ -189,6 +189,7 @@ Page {
             menu: contextMenu
             property bool muted: false
             property Timer mutingTimer
+            property bool secure: hiddenList.indexOf(model.jid) >= 0
 
             function removeContact() {
                 remorseAction(qsTr("Delete", "Delete contact remorse action text"),
@@ -329,6 +330,27 @@ Page {
                         anchors.centerIn: parent
                     }
                 }
+
+                Rectangle {
+                    width: Theme.iconSizeSmall
+                    height: Theme.iconSizeSmall
+                    smooth: true
+                    radius: Theme.iconSizeSmall / 4
+                    border.width: 1
+                    border.color: Theme.highlightColor
+                    color: Theme.secondaryHighlightColor
+                    visible: item.secure
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+
+                    Image {
+                        source: "image://theme/icon-s-secure"
+                        smooth: true
+                        width: Theme.iconSizeSmall
+                        height: Theme.iconSizeSmall
+                        anchors.centerIn: parent
+                    }
+                }
             }
 
             Column {
@@ -398,6 +420,13 @@ Page {
                     }
 
                     MenuItem {
+                        text: item.secure ? qsTr("Un-hide contact") : qsTr("Hide contact")
+                        onClicked: {
+                            updateHidden(model.jid)
+                        }
+                    }
+
+                    MenuItem {
                         text: qsTr("Rename", "Contact context menu profile item")
                         visible: model.jid.indexOf("-") < 0 && model.jid !== Mitakuuluu.myJid
                         onClicked: {
@@ -456,7 +485,7 @@ Page {
         showActive: false
         showUnknown: settings.acceptUnknown
         hideGroups: true
-        filterContacts: settings.showMyJid ? (hidden ? hiddenList : []) : (hidden ? hiddenList.splice(0, 0, Mitakuuluu.MyJid) : [Mitakuuluu.MyJid])
+        filterContacts: checkHiddenList(settings.showMyJid, hidden, hiddenList)
         onContactsModelChanged: {
             fastScroll.init()
         }

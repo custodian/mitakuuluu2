@@ -384,12 +384,14 @@ Page {
                             }
                         }
                     }
+
                     MenuItem {
                         text: qsTr("Muting", "Contacts context menu muting item")
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("MutingSelector.qml"), {"jid": model.jid})
                         }
                     }
+
                     MenuItem {
                         text: item.secure ? qsTr("Un-hide contact") : qsTr("Hide contact")
                         onClicked: {
@@ -451,7 +453,7 @@ Page {
         contactsModel: ContactsBaseModel
         showActive: true
         showUnknown: true
-        filterContacts: hidden ? hiddenList : []
+        filterContacts: checkHiddenList(true, hidden, hiddenList)
         Component.onCompleted: {
             init()
         }

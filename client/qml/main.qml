@@ -43,6 +43,7 @@ ApplicationWindow {
             var val = hjid
             toHide.splice(index, 0, hjid)
         }
+
         hiddenList = toHide
 
         hiddenConfig.key = "/apps/harbour-mitakuuluu2/hidden/" + hjid
@@ -239,6 +240,28 @@ ApplicationWindow {
 
     function checkLocationEnabled() {
         return Mitakuuluu.locationEnabled()
+    }
+
+    function checkHiddenList(showMyJid, hiddenConfig, hiddenJids) {
+        var hiddenValues
+        if (showMyJid) {
+            if (hiddenConfig) {
+                hiddenValues = hiddenJids
+            }
+            else {
+                hiddenValues = []
+            }
+        }
+        else {
+            if (hiddenConfig) {
+                hiddenValues = hiddenJids
+                hiddenValues.splice(0, 0, Mitakuuluu.MyJid)
+            }
+            else {
+                hiddenValues = [Mitakuuluu.MyJid]
+            }
+        }
+        return hiddenValues
     }
 
     property alias settings: configuration

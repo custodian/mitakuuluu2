@@ -32,8 +32,9 @@ bool ContactsFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sou
     QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
     QString jid = sourceModel()->data(index, Qt::UserRole + 1).toString();
     if (!_filterContacts.isEmpty()) {
-        if (_filterContacts.contains(jid))
+        if (_filterContacts.contains(jid)) {
             return false;
+        }
     }
     if (_showActive && !jid.contains("-")) {
         int lastmessage = sourceModel()->data(index, Qt::UserRole + 14).toInt();
@@ -136,6 +137,7 @@ QStringList ContactsFilterModel::filterContacts()
 void ContactsFilterModel::setFilterContacts(const QStringList &value)
 {
     _filterContacts = value;
+    _filterContacts.removeAll("undefined");
     if (_initComplete) {
         changeFilterRole();
     }
