@@ -11,7 +11,7 @@ Dialog {
     property var jids: []
 
     function checkCanAccept() {
-        page.canAccept = groupTitle.text.trim().length > 0 && jids.length > 0
+        page.canAccept = !groupTitle.errorHighlight && groupTitle.text.trim().length > 0 && jids.length > 0
     }
 
     function accept() {
@@ -113,7 +113,7 @@ Dialog {
                 anchors.verticalCenter: avaholder.verticalCenter
                 width: parent.width - avaholder.width - Theme.paddingMedium
                 onTextChanged: checkCanAccept()
-                errorHighlight: text.length == 0
+                errorHighlight: text.length > 25 || text.length == 0
                 placeholderText: qsTr("Write name of new group here", "Create group subject area subtitle")
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
