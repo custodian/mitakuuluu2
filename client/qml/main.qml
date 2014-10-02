@@ -316,7 +316,7 @@ ApplicationWindow {
         property bool automaticDownload: false
         property int automaticDownloadBytes: 524288
         property bool sentLeft: false
-        property bool autoDownloadWlan: false
+        property bool autoDownloadWlan: true
         property bool resizeWlan: false
         property bool systemNotifier: false
         property bool useKeepalive: true
