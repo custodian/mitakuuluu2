@@ -113,7 +113,7 @@ QString MediaDownload::getFileNameForMessage(FMessage message)
             home.mkpath(path);
     }*/
 
-    QString fileName = path + "/" + message.media_name;
+    QString fileName = path + "/" + message.media_url.split("/").last();
     int pos = fileName.lastIndexOf('.');
     if (pos < 0)
         pos = fileName.length();
