@@ -78,6 +78,7 @@ signals:
     void statusChanged(const QString &pjid, const QString &message, int ptimestamp);
     void totalUnreadChanged();
     void deleteEverythingSuccessful();
+    void conversationClean(const QString &pjid);
 
 private slots:
     void pictureUpdated(const QString &jid, const QString &path);

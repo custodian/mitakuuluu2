@@ -80,13 +80,9 @@ void ConversationModel::loadLastConversation(QString newjid)
     jid = newjid;
     table = jid.split("@").first().replace("-", "g");
 
-    QVariantMap query;
-    query["type"] = QueryType::ConversationLoadLast;
-    query["table"] = table;
-    query["uuid"] = uuid;
-    dbExecutor->queueAction(query);
-
     getAllCount();
+
+    reloadConversation();
 }
 
 int ConversationModel::rowCount(const QModelIndex &parent) const
@@ -103,6 +99,15 @@ QVariant ConversationModel::data(const QModelIndex &index, int role) const
     QString msgId = _sortedTimestampMsgidList.at(row)._msgid;
     QVariant value = _modelData[msgId][_roles[role]];
     return value;
+}
+
+void ConversationModel::reloadConversation()
+{
+    QVariantMap query;
+    query["type"] = QueryType::ConversationLoadLast;
+    query["table"] = table;
+    query["uuid"] = uuid;
+    dbExecutor->queueAction(query);
 }
 
 void ConversationModel::setPropertyByMsgId(const QString &msgId, const QString &name, const QVariant &value)

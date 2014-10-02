@@ -135,6 +135,15 @@ Page {
     }
 
     Connections {
+        target: ContactsBaseModel
+        onConversationClean: {
+            if (pjid == page.jid) {
+                conversationModel.reloadConversation()
+            }
+        }
+    }
+
+    Connections {
         target: Mitakuuluu
         onPresenceAvailable: {
             if (mjid == page.jid) {

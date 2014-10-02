@@ -539,6 +539,7 @@ void ContactsBaseModel::dbResults(const QVariant &result)
     }
     case QueryType::ContactsClearConversation: {
         reloadContact(reply["jid"].toString());
+        Q_EMIT conversationClean(reply["jid"].toString());
         break;
     }
     }

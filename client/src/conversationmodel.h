@@ -63,6 +63,7 @@ public:
     QString table;
 
 public slots:
+    void reloadConversation();
     void setPropertyByMsgId(const QString &msgId, const QString &name, const QVariant &value);
     void loadOldConversation(int count = 20);
     void deleteMessage(const QString &msgId, const QString &myJid, bool deleteMediaFiles = false);
