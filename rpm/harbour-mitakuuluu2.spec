@@ -6,7 +6,7 @@ Name:       harbour-mitakuuluu2
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
 Summary:    Mitäkuuluu
-Version:    0.8.11
+Version:    0.8.12
 Release:    1
 Group:      Qt/Qt
 License:    WTFPL
