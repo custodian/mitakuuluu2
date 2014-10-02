@@ -72,8 +72,8 @@
 
 #define SETTINGS_SYNC                       "settings/sync"
 #define SETTINGS_UNKNOWN                    "settings/acceptUnknown"
-#define SETTINGS_AUTOMATIC_DOWNLOAD         "settings/autodownload"
-#define SETTINGS_AUTOMATIC_DOWNLOAD_BYTES   "settings/automaticdownload"
+#define SETTINGS_AUTOMATIC_DOWNLOAD         "settings/automaticDownload"
+#define SETTINGS_AUTOMATIC_DOWNLOAD_BYTES   "settings/automaticDownloadBytes"
 #define SETTINGS_IMPORT_TO_GALLERY          "settings/importmediatogallery"
 #define SETTINGS_LAST_SYNC                  "settings/lastsync"
 #define SETTINGS_SYNC_FREQ                  "settings/syncfreq"

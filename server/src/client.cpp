@@ -3038,9 +3038,10 @@ void Client::onMessageReceived(const FMessage &message)
 
     if (_contacts.contains(fromAttribute) || acceptUnknown) {
         addMessage(message);
-        if (autoDownloadMedia) {
-            if (message.type == FMessage::MediaMessage && message.media_size <= autoBytes
-                    && (activeNetworkType == QNetworkConfiguration::BearerWLAN || !autoDownloadWlan)) {
+        if (message.type == FMessage::MediaMessage) {
+            if (autoDownloadMedia
+                    && message.media_size <= autoBytes
+                    && (activeNetworkType == QNetworkConfiguration::BearerWLAN|| !autoDownloadWlan)) {
                 startDownloadMessage(message);
             }
         }
