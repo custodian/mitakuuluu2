@@ -655,12 +655,12 @@
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
         <source>Un-hide contact</source>
-        <translation type="unfinished"/>
+        <translation>Znovu zobrazovat kontakt</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
         <source>Hide contact</source>
-        <translation type="unfinished"/>
+        <translation>Schovat kontakt</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="430"/>

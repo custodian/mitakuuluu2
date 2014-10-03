@@ -33,7 +33,7 @@
         <location filename="../client/qml/ImageCropDialog.qml" line="41"/>
         <source>Aspect ratio</source>
         <extracomment>Label that is shown for currently selected aspect ratio.</extracomment>
-        <translation>Ansichtsverhältnis</translation>
+        <translation>Seitenverhältnis</translation>
     </message>
 </context>
 <context>

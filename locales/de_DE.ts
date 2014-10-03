@@ -616,12 +616,12 @@
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="94"/>
         <source>Hide search field</source>
-        <translation>Suchfeld verbergen</translation>
+        <translation>Suche ausblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="95"/>
         <source>Show search field</source>
-        <translation>Suchfeld anzeigen</translation>
+        <translation>Suche einblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="162"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="../client/qml/ConversationPage.qml" line="249"/>
         <source>Search message</source>
-        <translation>Nachricht suchen</translation>
+        <translation>Nachrichten suchen</translation>
     </message>
     <message>
         <location filename="../client/qml/ConversationPage.qml" line="395"/>
@@ -852,12 +852,12 @@
     <message>
         <location filename="../client/qml/Forward.qml" line="90"/>
         <source>Hide search field</source>
-        <translation>Suchfeld verbergen</translation>
+        <translation>Suche ausblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/Forward.qml" line="91"/>
         <source>Show search field</source>
-        <translation>Suchfeld anzeigen</translation>
+        <translation>Suche einblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/Forward.qml" line="101"/>
@@ -1858,7 +1858,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
     <message>
         <location filename="../client/qml/SearchConversation.qml" line="21"/>
         <source>Search message</source>
-        <translation>Nachricht suchen</translation>
+        <translation>Nachrichten suchen</translation>
     </message>
     <message>
         <location filename="../client/qml/SearchConversation.qml" line="28"/>
@@ -1922,12 +1922,12 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
     <message>
         <location filename="../client/qml/SelectPhonebook.qml" line="119"/>
         <source>Hide search field</source>
-        <translation>Suchfeld verbergen</translation>
+        <translation>Suche ausblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/SelectPhonebook.qml" line="120"/>
         <source>Show search field</source>
-        <translation>Suchfeld anzeigen</translation>
+        <translation>Suche einblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/SelectPhonebook.qml" line="170"/>
@@ -1951,7 +1951,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
         <location filename="../client/qml/SelectPhonebook.qml" line="192"/>
         <source>Search contacts</source>
         <comment>Contacts page search text</comment>
-        <translation>Kontakte durchsuchen</translation>
+        <translation>Kontakte suchen</translation>
     </message>
     <message>
         <location filename="../client/qml/SelectPhonebook.qml" line="307"/>
@@ -2064,7 +2064,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
         <location filename="../client/qml/Settings.qml" line="109"/>
         <source>Conversation</source>
         <comment>Settings page section name</comment>
-        <translation>Unterhaltung</translation>
+        <translation>Unterhaltungen</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="157"/>
@@ -2183,7 +2183,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
         <location filename="../client/qml/Settings.qml" line="310"/>
         <source>Use system Chat notifier</source>
         <comment>Settings option name</comment>
-        <translation>Benachrichtigungen des Systems verwenden</translation>
+        <translation>Standard-Benachrichtigungen des Systems verwenden</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="477"/>
@@ -2380,7 +2380,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
         <location filename="../client/qml/Settings.qml" line="581"/>
         <source>Autostart</source>
         <comment>Settings option name</comment>
-        <translation>Mitäkuuluu bei Systemstart starten</translation>
+        <translation>Mitäkuuluu bei Systemstart mitstarten</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="589"/>
@@ -2530,7 +2530,7 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
         <location filename="../client/qml/Settings.qml" line="737"/>
         <source>Automatic download bytes</source>
         <comment>Settings option name</comment>
-        <translation>Max. Größe für automatisches Herunterladen</translation>
+        <translation>max. Größe für autom. Herunterladen</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="756"/>
@@ -2568,12 +2568,12 @@ Klicke auf &apos;Verlängern&apos;, um ein Jahresabo des WhatsApp-Dienstes zu ka
     <message>
         <location filename="../client/qml/ShareUI.qml" line="52"/>
         <source>Hide search field</source>
-        <translation>Suchfeld verbergen</translation>
+        <translation>Suche ausblenden</translation>
     </message>
     <message>
         <location filename="../client/qml/ShareUI.qml" line="53"/>
         <source>Show search field</source>
-        <translation>Suchfeld anzeigen</translation>
+        <translation>Suche einblenden</translation>
     </message>
     <message numerus="yes">
         <location filename="../client/qml/ShareUI.qml" line="66"/>
