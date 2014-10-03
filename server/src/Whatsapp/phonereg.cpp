@@ -80,11 +80,15 @@ void PhoneReg::startCodeRequest()
     request = new WARequest(this, "code");
     request->addParam("cc", cc);
     request->addParam("in", number);
-    //request->addParam("reason", "next-method");
-    request->addParam("reason", "self-send-jailbroken");
+    if (method == "voice") {
+        request->addParam("reason", "next-method");
+    }
+    //request->addParam("reason", "self-send-jailbroken");
     request->addParam("method", method);
-    request->addParam("sim_mcc", mcc);
-    request->addParam("sim_mnc", mnc);
+    //request->addParam("sim_mcc", mcc);
+    request->addParam("sim_mcc", 000);
+    //request->addParam("sim_mnc", mnc);
+    request->addParam("sim_mnc", 000);
     request->addParam("lg", lg.isEmpty() ? "en" : lg);
     request->addParam("lc", lc.isEmpty() ? "zz" : lc);
     request->addParam("token", Utilities::getTokenAndroid(number));
