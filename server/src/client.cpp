@@ -983,6 +983,7 @@ void Client::connectToServer()
     QObject::connect(this, SIGNAL(connectionSendGetClientConfig()), connectionPtr.data(), SLOT(getClientConfig()));
     QObject::connect(this, SIGNAL(connectionSendComposing(QString,QString)), connectionPtr.data(), SLOT(sendComposing(QString,QString)));
     QObject::connect(this, SIGNAL(connectionSendPaused(QString,QString)), connectionPtr.data(), SLOT(sendPaused(QString,QString)));
+    QObject::connect(this, SIGNAL(connectionSetRecoveryToken(QString)), connectionPtr.data(), SLOT(setRecoveryToken(QString)));
 
     QObject::connect(connectionPtr.data(), SIGNAL(authSuccess(QString,QString,QString,QString,QByteArray)), this, SLOT(onAuthSuccess(QString,QString,QString,QString,QByteArray)));
     QObject::connect(connectionPtr.data(), SIGNAL(authFailed()), this, SLOT(authFailed()));
@@ -2050,6 +2051,13 @@ void Client::requestContactMedia(const QString &sjid)
     query["table"] = sjid.split("@").first().replace("-", "g");;
     query["uuid"] = uuid;
     dbExecutor->queueAction(query);
+}
+
+void Client::setRecoveryToken(const QString &token)
+{
+    if (connectionStatus == LoggedIn) {
+        Q_EMIT connectionSetRecoveryToken(token);
+    }
 }
 
 void Client::sendText(const QString &jid, const QString &message)

@@ -300,6 +300,8 @@ public slots:
 
     void sendStreamEnd();
 
+    void setRecoveryToken(const QString &token);
+
 private:
 
     /** ***********************************************************************

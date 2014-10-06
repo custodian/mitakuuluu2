@@ -2582,6 +2582,27 @@ void Connection::sendStreamEnd()
     counters->increaseCounter(DataCounters::ProtocolBytes, 0, outBytes);
 }
 
+void Connection::setRecoveryToken(const QString &token)
+{
+    QString id = makeId("settoken_");
+
+    ProtocolTreeNode pin("pin");
+    pin.setData(token.toUtf8());
+
+    ProtocolTreeNode iqNode("iq");
+    AttributeList attrs;
+    attrs.insert("id", id);
+    attrs.insert("type", "set");
+    attrs.insert("to", domain);
+    attrs.insert("xmlns", "w:ch:p");
+
+    iqNode.setAttributes(attrs);
+    iqNode.addChild(pin);
+
+    int bytes = out->write(iqNode);
+    counters->increaseCounter(DataCounters::ProtocolBytes, 0, bytes);
+}
+
 void Connection::sendGetServerProperties()
 {
     QString id = makeId("get_server_properties_");

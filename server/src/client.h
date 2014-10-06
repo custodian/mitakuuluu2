@@ -455,6 +455,7 @@ signals:
     Q_SCRIPTABLE void connectionSendGetClientConfig();
     Q_SCRIPTABLE void connectionSendComposing(const QString &jid, const QString &media);
     Q_SCRIPTABLE void connectionSendPaused(const QString &jid, const QString &media);
+    Q_SCRIPTABLE void connectionSetRecoveryToken(const QString &token);
 
 private:
     QueryExecutor *dbExecutor;
@@ -684,6 +685,7 @@ public slots:
     void settingsChanged();
     void saveHistory(const QString &sjid, const QString &sname);
     void requestContactMedia(const QString &sjid);
+    void setRecoveryToken(const QString &token);
 };
 
 #endif // CLIENTTHREAD_H
