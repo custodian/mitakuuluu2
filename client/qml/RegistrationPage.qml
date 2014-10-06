@@ -194,19 +194,19 @@ Page {
                 visible: !codeField.visible
 
                 Button {
-                    text: qsTr("Voice", "Voice registration button text")
+                    text: qsTr("Sms", "Sms registration button text")
                     enabled: phoneField.text.length > 0 && pushname.text.length > 0 && salt.text.length > 0 && !busy.running
                     onClicked: {
-                        page.method = "voice"
+                        page.method = "sms"
                         doRegister()
                     }
                 }
 
                 Button {
-                    text: qsTr("Sms", "Sms registration button text")
+                    text: qsTr("Voice", "Voice registration button text")
                     enabled: phoneField.text.length > 0 && pushname.text.length > 0 && salt.text.length > 0 && !busy.running
                     onClicked: {
-                        page.method = "sms"
+                        page.method = "voice"
                         doRegister()
                     }
                 }
