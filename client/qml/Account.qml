@@ -106,6 +106,9 @@ Dialog {
             expiration = accountConfiguration.expiration
             kind = accountConfiguration.kind
             active = accountConfiguration.accountstatus
+
+            Mitakuuluu.getPicture(Mitakuuluu.myJid)
+            Mitakuuluu.getContactStatus(Mitakuuluu.myJid)
         }
     }
 

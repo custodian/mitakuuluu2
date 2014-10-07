@@ -187,7 +187,6 @@ private:
 
     QString _pendingGroup;
     QString _pendingAvatar;
-    QStringList _pendingParticipants;
 
     QStringList _locales;
     QStringList _localesNames;
@@ -269,6 +268,7 @@ signals:
     void whatsappStatusReply(const QVariantMap &features);
     void androidReady(const QVariantMap &creds);
     void mediaListReceived(const QString &pjid, const QVariantList &mediaList);
+    void paymentReceived(const QString &sku, const QString &delta, const QString &account);
 
 private slots:
     void onConnectionStatusChanged(int status);
@@ -323,6 +323,8 @@ public slots:
     void groupLeave(const QString &gjid);
     void groupRemove(const QString &gjid);
     void setPicture(const QString &jid, const QString &path);
+    void getPicture(const QString &jid);
+    void getContactStatus(const QString &jid);
     void removeParticipant(const QString &gjid, const QString &jid);
     void addParticipant(const QString &gjid, const QString &jid);
     void addParticipants(const QString &gjid, const QStringList &jids);
@@ -387,6 +389,7 @@ public slots:
     void requestContactMedia(const QString &sjid);
     bool compressLogs();
     void checkWebVersion();
+    void setRecoveryToken(const QString &token);
 
 //Settings
 

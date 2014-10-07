@@ -51,8 +51,8 @@ BinTreeNodeWriter::BinTreeNodeWriter(QTcpSocket *socket, QStringList& dictionary
 
 int BinTreeNodeWriter::streamStart(QString& domain, QString& resource)
 {
-    //qDebug() << domain;
-    //qDebug() << resource;
+    qDebug() << "sending streamStart to" << domain << resource;
+
     startBuffer();
     QDataStream out(&writeBuffer,QIODevice::WriteOnly);
 

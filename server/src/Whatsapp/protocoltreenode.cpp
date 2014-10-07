@@ -132,34 +132,40 @@ QString ProtocolTreeNode::toString(int depth)
 
     out << "\n";
     out << QString("").leftJustified(depth * 4, ' ', false);
-    out << "<" << tag << attributes.toString() << ">";
-
-    if (data.length() > 0) {
-        out << "\n";
-        out << QString("").leftJustified((depth + 1) * 4, ' ', false);
-        out << "data:" +
-               ((tag == "challenge" ||
-                 tag == "response" ||
-                 tag == "success" ||
-                 tag == "auth") ? (data.toHex() + " length: " + QString::number(data.length())) :
-                 ((tag == "picture" ||
-                 tag == "media" )
-                ? ("content length: " + QString::number(data.length()))
-                : data));
-    }
+    out << "<" << tag << attributes.toString();
 
     if (children.size() > 0)
     {
+        out << ">";
+        if (data.length() > 0) {
+            out << "\n";
+            out << QString("").leftJustified((depth + 1) * 4, ' ', false);
+            out << "data:hex:" << data.toHex();
+        }
         ProtocolTreeNodeListIterator i(children);
         while (i.hasNext())
         {
             ProtocolTreeNode node = i.next().value();
             out << node.toString(depth + 1);
         }
+        out << "\n";
+        out << QString("").leftJustified(depth * 4, ' ', false);
+        out << "</" << tag << ">";
     }
-    out << "\n";
-    out << QString("").leftJustified(depth * 4, ' ', false);
-    out << "</" << tag << ">";
+    else {
+        if (data.length() > 0) {
+            out << ">";
+            out << "\n";
+            out << QString("").leftJustified((depth + 1) * 4, ' ', false);
+            out << "data:hex:" << data.toHex();
+            out << "\n";
+            out << QString("").leftJustified((depth + 1) * 4, ' ', false);
+            out << "</" << tag << ">";
+        }
+        else {
+            out << " />";
+        }
+    }
 
     return result;
 }

@@ -725,11 +725,8 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 {
     Q_EMIT authSuccess(this->userName);
 
+    onAccountDataReceived(kind, status, creation, expiration);
     dconf->setValue(SETTINGS_NEXTCHALLENGE, QString::fromUtf8(nextChallenge.toBase64()));
-    dconf->setValue(SETTINGS_CREATION, creation);
-    dconf->setValue(SETTINGS_EXPIRATION, expiration);
-    dconf->setValue(SETTINGS_KIND, kind);
-    dconf->setValue(SETTINGS_ACCOUNTSTATUS, status);
 
     connectionStatus = LoggedIn;
     Q_EMIT connectionStatusChanged(connectionStatus);
@@ -816,6 +813,12 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 
     connect(connectionPtr.data(), SIGNAL(mediaTitleReceived(QString,QString,QString)), this, SLOT(onMediaTitleReceived(QString,QString,QString)));
 
+    connect(connectionPtr.data(), SIGNAL(paymentReceived(QString,QString,QString)), this, SLOT(onPaymentReceived(QString,QString,QString)));
+
+    connect(connectionPtr.data(), SIGNAL(accountDataReceived(QString,QString,QString,QString)), this, SLOT(onAccountDataReceived(QString,QString,QString,QString)));
+
+    connect(connectionPtr.data(), SIGNAL(passwordReceived(QString)), this, SLOT(onPasswordReceived(QString)));
+
     updateNotification(tr("Connected", "System connection notification"));
 
     QVariantMap query;
@@ -826,22 +829,42 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
     pendingMessagesTimer->start(CHECK_QUEUE_INTERVAL);
 
     Q_EMIT connectionSendGetServerProperties();
-    Q_EMIT connectionSendGetClientConfig();
+    //Q_EMIT connectionSendGetClientConfig();
     Q_EMIT connectionSendGetPrivacyList();
-    Q_EMIT connectionSendGetPrivacySettings();
+    //Q_EMIT connectionSendGetPrivacySettings();
 
     this->userName = dconf->value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
     changeUserName(this->userName);
 
-    getPicture(this->myJid);
+    //getPicture(this->myJid);
 
-    getContactStatus(this->myJid);
+    //getContactStatus(this->myJid);
 
     if (useKeepalive) {
         keepalive->wait(BackgroundActivity::TenMinutes);
     }
 
     reconnectInterval = 1;
+}
+
+void Client::onPaymentReceived(const QString &sku, const QString &delta, const QString &author)
+{
+    qDebug() << "Received payment type:" << sku << "for" << delta << "days on account" << author;
+    Q_EMIT paymentReceived(sku, delta, author);
+}
+
+void Client::onAccountDataReceived(const QString &kind, const QString &status, const QString &creation, const QString &expiration)
+{
+    dconf->setValue(SETTINGS_CREATION, creation);
+    dconf->setValue(SETTINGS_EXPIRATION, expiration);
+    dconf->setValue(SETTINGS_KIND, kind);
+    dconf->setValue(SETTINGS_ACCOUNTSTATUS, status);
+}
+
+void Client::onPasswordReceived(const QString &newPassword)
+{
+    password = newPassword;
+    dconf->setValue(SETTINGS_PASSWORD, password);
 }
 
 void Client::authFailed()
@@ -957,13 +980,14 @@ void Client::connectToServer()
     QObject::connect(this, SIGNAL(connectionSendSetPhoto(QString,QByteArray,QByteArray)), connectionPtr.data(), SLOT(sendSetPhoto(QString,QByteArray,QByteArray)));
     QObject::connect(this, SIGNAL(connectionSendGetPhotoIds(QStringList)), connectionPtr.data(), SLOT(sendGetPhotoIds(QStringList)));
     QObject::connect(this, SIGNAL(connectionSendVoiceNotePlayed(FMessage)), connectionPtr.data(), SLOT(sendVoiceNotePlayed(FMessage)));
-    QObject::connect(this, SIGNAL(connectionSendCreateGroupChat(QString)), connectionPtr.data(), SLOT(sendCreateGroupChat(QString)));
+    QObject::connect(this, SIGNAL(connectionSendCreateGroupChat(QString,QStringList)), connectionPtr.data(), SLOT(sendCreateGroupChatV2(QString,QStringList)));
     QObject::connect(this, SIGNAL(connectionSendAddParticipants(QString,QStringList)), connectionPtr.data(), SLOT(sendAddParticipants(QString,QStringList)));
     QObject::connect(this, SIGNAL(connectionSendRemoveParticipants(QString,QStringList)), connectionPtr.data(), SLOT(sendRemoveParticipants(QString,QStringList)));
     QObject::connect(this, SIGNAL(connectionSendVerbParticipants(QString,QStringList,QString,QString)), connectionPtr.data(), SLOT(sendVerbParticipants(QString,QStringList,QString,QString)));
     QObject::connect(this, SIGNAL(connectionSendGetParticipants(QString)), connectionPtr.data(), SLOT(sendGetParticipants(QString)));
-    QObject::connect(this, SIGNAL(connectionSendGetGroupInfo(QString)), connectionPtr.data(), SLOT(sendGetGroupInfo(QString)));
+    QObject::connect(this, SIGNAL(connectionSendGetGroupInfo(QString)), connectionPtr.data(), SLOT(sendGetGroupInfoV2(QString)));
     QObject::connect(this, SIGNAL(connectionUpdateGroupChats()), connectionPtr.data(), SLOT(updateGroupChats()));
+    QObject::connect(this, SIGNAL(connectionGetBroadcasts()), connectionPtr.data(), SLOT(sendGetBroadcasts()));
     QObject::connect(this, SIGNAL(connectionSendSetGroupSubject(QString,QString)), connectionPtr.data(), SLOT(sendSetGroupSubject(QString,QString)));
     QObject::connect(this, SIGNAL(connectionSendLeaveGroup(QString)), connectionPtr.data(), SLOT(sendLeaveGroup(QString)));
     QObject::connect(this, SIGNAL(connectionSendRemoveGroup(QString)), connectionPtr.data(), SLOT(sendRemoveGroup(QString)));
@@ -2482,7 +2506,7 @@ void Client::cancelDownload(const QString &msgId, const QString &jid)
 void Client::requestPresenceSubscription(const QString &jid)
 {
     qDebug() << "requestPresenceSubscription" << jid;
-    if (_blocked.contains(jid))
+    if (_blocked.contains(jid) || jid == myJid)
         return;
     if (connectionStatus == LoggedIn) {
         Q_EMIT connectionSendPresenceSubscriptionRequest(jid);
@@ -2499,12 +2523,12 @@ void Client::requestPresenceUnsubscription(const QString &jid)
     }
 }
 
-void Client::createGroupChat(const QString &subject)
+void Client::createGroupChat(const QString &subject, const QStringList &participants)
 {
     //QString id = "create_group_" + QString::number(seq++);
 
     if (connectionStatus == LoggedIn) {
-        Q_EMIT connectionSendCreateGroupChat(subject);
+        Q_EMIT connectionSendCreateGroupChat(subject, participants);
         //connection->sendCreateGroupChat(subject);
     }
 }
@@ -3355,6 +3379,7 @@ void Client::dbResults(const QVariant &result)
         }
         if (_contacts.isEmpty()) {
             Q_EMIT connectionUpdateGroupChats();
+            Q_EMIT connectionGetBroadcasts();
         }
         break;
     }

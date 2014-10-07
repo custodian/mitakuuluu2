@@ -219,6 +219,9 @@ public slots:
     // Sends a request to create a group
     void sendCreateGroupChat(const QString &subject);
 
+    // Sends a request to create a group V2
+    void sendCreateGroupChatV2(const QString &subject, const QStringList &participants);
+
     // Sends a request to add participants to a group
     void sendAddParticipants(const QString &gjid, const QStringList &participants);
 
@@ -234,6 +237,9 @@ public slots:
 
     // Sends a request to retrieve the info of a group
     void sendGetGroupInfo(const QString &gjid);
+
+    // Sends a request to retrieve the info of a group V2
+    void sendGetGroupInfoV2(const QString &gjid);
 
     // Sends a request to retrieve the participants list of all groups
     void updateGroupChats();
@@ -301,6 +307,10 @@ public slots:
     void sendStreamEnd();
 
     void setRecoveryToken(const QString &token);
+
+    void sendGetBroadcasts();
+
+    void sendDeleteBroadcast(const QString &ijd);
 
 private:
 
@@ -448,7 +458,7 @@ private:
      **/
 
     // Sends a request to all groups
-    void sendGetGroups(const QString &id, const QString &type);
+    void sendGetGroups(const QString &id);
 
 
     /** ***********************************************************************
@@ -456,7 +466,7 @@ private:
      **/
 
     // Sends a ping acknowledge (pong) to the network
-    void sendPong(const QString &id);
+    void sendResult(const QString &id);
 
     // Constructs an id
     QString makeId(const QString &prefix);
@@ -473,6 +483,12 @@ signals:
     void authFailed();
 
     void accountExpired(const QVariantMap &result);
+
+    void paymentReceived(const QString &sku, const QString &delta, const QString &author);
+
+    void accountDataReceived(const QString &kind, const QString &status, const QString &creation, const QString &expiration);
+
+    void passwordReceived(const QString &newPassword);
 
     /** ***********************************************************************
      ** Message handling
@@ -578,6 +594,13 @@ signals:
 
     // Group created by you
     void groupCreated(const QString &jid);
+
+    void groupCreatedV2(const QString &jid, const QString &author,
+                        const QString &newSubject, const QString &creation,
+                        const QString &subjectOwner, const QString &subjectTimestamp,
+                        const QStringList &participants);
+
+    void broadcastList(const QVariantMap &broadcasts);
 
 
     /** ***********************************************************************

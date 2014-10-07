@@ -275,6 +275,12 @@ private slots:
                    const QString &kind, const QString status,
                    const QByteArray &nextChallenge);
 
+    void onPaymentReceived(const QString &sku, const QString &delta, const QString &author);
+
+    void onAccountDataReceived(const QString &kind, const QString &status, const QString &creation, const QString &expiration);
+
+    void onPasswordReceived(const QString &newPassword);
+
     void authFailed();
     void clientDestroyed();
 
@@ -417,6 +423,7 @@ signals:
     void mediaListReceived(const QString &pjid, const QVariantMapList &mediaList);
     void streamError();
     void mediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
+    void paymentReceived(const QString &sku, const QString &delta, const QString &author);
 
     Q_SCRIPTABLE void connectionSendMessage(const FMessage &message);
     Q_SCRIPTABLE void connectionSendSyncContacts(const QStringList &numbers);
@@ -429,13 +436,14 @@ signals:
     Q_SCRIPTABLE void connectionSendSetPhoto(const QString &jid, const QByteArray &imageBytes, const QByteArray &thumbBytes);
     Q_SCRIPTABLE void connectionSendGetPhotoIds(const QStringList &jids);
     Q_SCRIPTABLE void connectionSendVoiceNotePlayed(const FMessage &message);
-    Q_SCRIPTABLE void connectionSendCreateGroupChat(const QString &subject);
+    Q_SCRIPTABLE void connectionSendCreateGroupChat(const QString &subject, const QStringList &participants);
     Q_SCRIPTABLE void connectionSendAddParticipants(const QString &gjid, const QStringList &participants);
     Q_SCRIPTABLE void connectionSendRemoveParticipants(const QString &gjid, const QStringList &participants);
     Q_SCRIPTABLE void connectionSendVerbParticipants(const QString &gjid, const QStringList &participants, const QString &id, const QString &innerTag);
     Q_SCRIPTABLE void connectionSendGetParticipants(const QString &gjid);
     Q_SCRIPTABLE void connectionSendGetGroupInfo(const QString &gjid);
     Q_SCRIPTABLE void connectionUpdateGroupChats();
+    Q_SCRIPTABLE void connectionGetBroadcasts();
     Q_SCRIPTABLE void connectionSendSetGroupSubject(const QString &gjid, const QString &subject);
     Q_SCRIPTABLE void connectionSendLeaveGroup(const QString &gjid);
     Q_SCRIPTABLE void connectionSendRemoveGroup(const QString &gjid);
@@ -634,7 +642,7 @@ public slots:
     void downloadMedia(const QString &msgId, const QString &jid);
     QVariantMap getDownloads();
     void cancelDownload(const QString &msgId, const QString &jid);
-    void createGroupChat(const QString &subject);
+    void createGroupChat(const QString &subject, const QStringList &participants);
     void getParticipants(const QString &gjid);
     void regRequest(const QString &cc, const QString &phone, const QString &method, const QString &password, const QString &mcc, const QString &mnc);
     void enterCode(const QString &cc, const QString &phone, const QString &smscode, const QString &password);

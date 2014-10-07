@@ -19,7 +19,7 @@ Page {
         setGroupInfo(model)
 
         Mitakuuluu.getGroupInfo(jid)
-        Mitakuuluu.getParticipants(jid)
+        //Mitakuuluu.getParticipants(jid)
     }
     property Page conversationPage
 

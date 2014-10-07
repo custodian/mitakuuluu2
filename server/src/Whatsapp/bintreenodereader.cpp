@@ -152,7 +152,7 @@ bool BinTreeNodeReader::nextTree(ProtocolTreeNode& node)
     node.setSize(getOneToplevelStreamSize());
 
     result = nextTreeInternal(node);
-    qDebug() << "read" << node.toString() << result;
+    qDebug() << "read" << node.toString() << "\n" << result;
     return result;
 }
 

@@ -203,6 +203,8 @@ Mitakuuluu::Mitakuuluu(QObject *parent): QObject(parent)
                                               "networkUsage", this, SIGNAL(networkUsage(QVariantList)));
         QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
                                               "mediaListReceived", this, SLOT(onMediaListReceived(QString,QVariantMapList)));
+        QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
+                                              "paymentReceived", this, SIGNAL(paymentReceived(QString,QString,QString)));
         qDebug() << "Start pinging server";
         pingServer = new QTimer(this);
         QObject::connect(pingServer, SIGNAL(timeout()), this, SLOT(doPingServer()));
@@ -485,8 +487,7 @@ void Mitakuuluu::createGroup(const QString &subject, const QString &picture, con
 {
     if (iface) {
         _pendingAvatar = picture;
-        _pendingParticipants = participants;
-        iface->call(QDBus::NoBlock, "createGroupChat", subject);
+        iface->call(QDBus::NoBlock, "createGroupChat", subject, participants);
     }
 }
 
@@ -506,6 +507,18 @@ void Mitakuuluu::setPicture(const QString &jid, const QString &path)
 {
     if (iface)
         iface->call(QDBus::NoBlock, "setPicture", jid, path);
+}
+
+void Mitakuuluu::getPicture(const QString &jid)
+{
+    if (iface)
+        iface->call(QDBus::NoBlock, "getPicture", jid);
+}
+
+void Mitakuuluu::getContactStatus(const QString &jid)
+{
+    if (iface)
+        iface->call(QDBus::NoBlock, "getContactStatus", jid);
 }
 
 void Mitakuuluu::removeParticipant(const QString &gjid, const QString &jid)
@@ -746,12 +759,8 @@ void Mitakuuluu::onGroupInfo(const QVariantMap &data)
         if (!_pendingAvatar.isEmpty()) {
             setPicture(_pendingGroup, _pendingAvatar);
         }
-        if (!_pendingParticipants.isEmpty()) {
-            addParticipants(_pendingGroup, _pendingParticipants);
-        }
         Q_EMIT notificationOpenJid(_pendingGroup);
         _pendingAvatar.clear();
-        _pendingParticipants.clear();
         _pendingGroup.clear();
     }
     Q_EMIT groupInfo(data);
@@ -1457,6 +1466,13 @@ void Mitakuuluu::checkWebVersion()
 {
     connect(nam->get(QNetworkRequest(QUrl("https://coderus.openrepos.net/mitakuuluu.json"))),
             SIGNAL(finished()), this, SLOT(onVersionReceived()));
+}
+
+void Mitakuuluu::setRecoveryToken(const QString &token)
+{
+    if (iface) {
+        iface->call(QDBus::NoBlock, "setRecoveryToken", token);
+    }
 }
 
 QString Mitakuuluu::generateSalt()
