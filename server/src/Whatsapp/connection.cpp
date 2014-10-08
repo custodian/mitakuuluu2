@@ -788,6 +788,13 @@ bool Connection::read()
                             }
                         }
                     }
+                    else if (child.getTag() == "subject")
+                    {
+                        QString subject_o = child.getAttributeValue("s_o");
+                        QString subject_t = child.getAttributeValue("s_t");
+                        QString subject = child.getAttributeValue("subject");
+                        Q_EMIT groupNewSubjectV2(from, participant, notify, subject, subject_t, subject_o, id, offline);
+                    }
                 }
             }
             else if (notificationType == "account") {

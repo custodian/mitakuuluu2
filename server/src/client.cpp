@@ -736,6 +736,9 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
     connect(connectionPtr.data(),SIGNAL(groupNewSubject(QString,QString,QString,QString,QString,QString,bool)),
             this,SLOT(groupNewSubject(QString,QString,QString,QString,QString,QString,bool)));
 
+    connect(connectionPtr.data(),SIGNAL(groupNewSubjectV2(QString,QString,QString,QString,QString,QString,QString,bool)),
+            this,SLOT(groupNewSubjectV2(QString,QString,QString,QString,QString,QString,QString,bool)));
+
     connect(connectionPtr.data(),SIGNAL(groupInfoFromList(QString,QString,QString,QString,
                                                 QString,QString,QString)),
             this,SLOT(groupInfoFromList(QString,QString,QString,QString,
@@ -2560,6 +2563,25 @@ void Client::groupNewSubject(const QString &from, const QString &author, const Q
     updateContactPushname(author, authorName);
 
     groupNotification(from, author, SubjectSet, creation, notificationId, offline, newSubject);
+}
+
+void Client::groupNewSubjectV2(const QString &from, const QString &author, const QString &authorName, const QString &newSubject, const QString &creation, const QString &subjectAuthor, const QString &notificationId, bool offline)
+{    qDebug() << "groupNewSubjectV2:" << newSubject << "from:" << from << "author:" << subjectAuthor << "authorName:" << authorName << "creation:" << creation;
+
+     QVariantMap group;
+     group["jid"] = from;
+     group["subowner"] = subjectAuthor;
+     group["subtimestamp"] = creation;
+     group["message"] = newSubject;
+     Q_EMIT newGroupSubject(group);
+
+     group["type"] = QueryType::ContactsUpdateGroup;
+     group["uuid"] = uuid;
+     dbExecutor->queueAction(group);
+
+     updateContactPushname(author, authorName);
+
+     groupNotification(from, author, SubjectSet, creation, notificationId, offline, newSubject);
 }
 
 void Client::getParticipants(const QString &gjid)

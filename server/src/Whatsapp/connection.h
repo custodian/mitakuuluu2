@@ -575,6 +575,10 @@ signals:
     void groupNewSubject(const QString &from, const QString &author, const QString &authorName,
                          const QString &newSubject, const QString &creation, const QString &notificationId, bool offline = false);
 
+    void groupNewSubjectV2(const QString &from, const QString &author, const QString &authorName,
+                           const QString &newSubject, const QString &creation, const QString &subjectAuthor,
+                           const QString &notificationId, bool offline = false);
+
     // User added to a group
     void groupAddUser(const QString &from, const QString &jid, const QString &timestamp, const QString &notificationId, bool offline = false);
 
