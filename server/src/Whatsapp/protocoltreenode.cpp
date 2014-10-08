@@ -159,7 +159,7 @@ QString ProtocolTreeNode::toString(int depth)
             out << QString("").leftJustified((depth + 1) * 4, ' ', false);
             out << "data:hex:" << data.toHex();
             out << "\n";
-            out << QString("").leftJustified((depth + 1) * 4, ' ', false);
+            out << QString("").leftJustified((depth) * 4, ' ', false);
             out << "</" << tag << ">";
         }
         else {

@@ -1969,9 +1969,6 @@ void Connection::sendDeleteFromRoster(const QString &jid)
 */
 void Connection::sendGetPhoto(const QString &jid, const QString &expectedPhotoId, bool largeFormat)
 {
-    if (jid.isEmpty() || jid.isNull())
-        return;
-
     AttributeList attrs;
 
     QString id = makeId("get_picture_");

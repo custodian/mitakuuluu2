@@ -244,7 +244,7 @@ void QueryExecutor::removeAccountData(QVariantMap &query)
 
 void QueryExecutor::getContactsAll(QVariantMap &query)
 {
-    QSqlQuery sql("SELECT * FROM contacts", db);
+    QSqlQuery sql("SELECT * FROM contacts WHERE jid IS NOT NULL;", db);
     QVariantList contacts;
     while (sql.next()) {
         QVariantMap contact;
