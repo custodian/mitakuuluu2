@@ -71,6 +71,8 @@ ContactsBaseModel::ContactsBaseModel(QObject *parent) :
                                           "contactTyping", this, SIGNAL(contactTyping(QString)));
     QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
                                           "contactPaused", this, SIGNAL(contactPaused(QString)));
+    QDBusConnection::sessionBus().connect(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE,
+                                          "groupRemoved", this, SIGNAL(contactRemoved(QString)));
 
     if (iface) {
         iface->call(QDBus::NoBlock, "getPrivacyList");
@@ -115,10 +117,7 @@ void ContactsBaseModel::setPropertyByJid(const QString &jid, const QString &name
 void ContactsBaseModel::deleteContact(const QString &jid)
 {
     if (_modelData.contains(jid)) {
-        int row = _modelData.keys().indexOf(jid);
-        beginRemoveRows(QModelIndex(), row, row);
-        _modelData.remove(jid);
-        endRemoveRows();
+        contactRemoved(jid);
 
         QVariantMap query;
         query["type"] = QueryType::ContactsRemove;
@@ -487,6 +486,14 @@ void ContactsBaseModel::contactPaused(const QString &jid)
     }
 }
 
+void ContactsBaseModel::contactRemoved(const QString &jid)
+{
+    int row = _modelData.keys().indexOf(jid);
+    beginRemoveRows(QModelIndex(), row, row);
+    _modelData.remove(jid);
+    endRemoveRows();
+}
+
 void ContactsBaseModel::dbResults(const QVariant &result)
 {
     QVariantMap reply = result.toMap();
@@ -540,6 +547,11 @@ void ContactsBaseModel::dbResults(const QVariant &result)
     case QueryType::ContactsClearConversation: {
         reloadContact(reply["jid"].toString());
         Q_EMIT conversationClean(reply["jid"].toString());
+        break;
+    }
+    case QueryType::ContactsCreateBroadcast: {
+        Q_EMIT broadcastCreated(reply["jid"].toString(), reply["jids"].toStringList());
+        reloadContact(reply["jid"].toString());
         break;
     }
     }
@@ -618,4 +630,31 @@ void ContactsBaseModel::clearChat(const QString &jid)
     query["jid"] = jid;
     query["uuid"] = uuid;
     dbExecutor->queueAction(query);
+}
+
+void ContactsBaseModel::createBroadcast(const QStringList &jids)
+{
+    QString jid = QString("%1@broadcast").arg(QDateTime::currentMSecsSinceEpoch());
+
+    QVariantMap query;
+    query["type"] = QueryType::ContactsCreateBroadcast;
+    query["uuid"] = uuid;
+    query["jids"] = jids;
+    query["name"] = QString();
+    query["jid"] = jid;
+    dbExecutor->queueAction(query);
+}
+
+void ContactsBaseModel::renameBroadcast(const QString &jid, const QString &name)
+{
+    if (_modelData.contains(jid)) {
+        setPropertyByJid(jid, "name", name);
+
+        QVariantMap query;
+        query["type"] = QueryType::ContactsCreateBroadcast;
+        query["uuid"] = uuid;
+        query["name"] = name;
+        query["jid"] = jid;
+        dbExecutor->queueAction(query);
+    }
 }

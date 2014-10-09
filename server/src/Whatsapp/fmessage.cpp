@@ -231,6 +231,7 @@ void FMessage::initialize()
     this->offline = false;
     QList<QString> jids;
     this->broadcastJids = jids;
+    this->broadcastName = QString();
 
     this->media_duration_seconds = 0;
     this->media_mime_type = QString();

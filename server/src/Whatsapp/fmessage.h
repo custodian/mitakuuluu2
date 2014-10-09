@@ -101,6 +101,7 @@ public:
     bool broadcast;
     bool offline;
     QStringList broadcastJids;
+    QString broadcastName;
 
     qint32 media_duration_seconds;
     int media_width;

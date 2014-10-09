@@ -377,7 +377,8 @@ Page {
                 Label {
                     id: status
                     width: parent.width
-                    text: model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line") : Utilities.emojify(model.message, emojiPath)
+                    text: model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line")
+                                                     : Utilities.emojify(model.message, emojiPath)
                     wrapMode: Text.NoWrap
                     elide: Text.ElideRight
                     color: item.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor

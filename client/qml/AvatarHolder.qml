@@ -14,12 +14,13 @@ Image {
 
     property alias color: dummy.color
     property alias emptySource: empty.source
+    property bool backgroundVisible: status !== Image.Ready
 
     Rectangle {
         id: dummy
         anchors.fill: root
         color: Theme.rgba(Theme.highlightColor, Theme.highlightBackgroundOpacity)
-        visible: root.status !== Image.Ready
+        visible: root.backgroundVisible
     }
 
     Image {

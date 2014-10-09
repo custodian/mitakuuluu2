@@ -202,6 +202,10 @@ void QueryExecutor::processQuery(const QVariant &msg)
             setMessageUrl(query);
             break;
         }
+        case QueryType::ContactsCreateBroadcast: {
+            createBroadcastContact(query);
+            break;
+        }
         default: {
             break;
         }
@@ -1031,6 +1035,38 @@ void QueryExecutor::setMessageUrl(QVariantMap &query)
     }
     else {
         qWarning() << "Media" << query["msgid"].toString() << "not exists in" << table;
+    }
+
+    Q_EMIT actionDone(query);
+}
+
+void QueryExecutor::createBroadcastContact(QVariantMap &query)
+{
+    QSqlQuery uc;
+    uc.prepare("UPDATE contacts SET name=(:name) WHERE jid=(:jid);");
+    uc.bindValue(":name", query["name"]);
+    uc.bindValue(":jid", query["jid"]);
+    uc.exec();
+
+    if (uc.lastError().type() != QSqlError::NoError)
+        qDebug() << "[broadcast] Update name result:" << uc.lastError();
+
+    if (uc.numRowsAffected() == 0) {
+        QSqlQuery ic;
+        ic.prepare("INSERT INTO contacts VALUES (:jid, :pushname, :name, :message, :contacttype, :owner, :subowner, :timestamp, :subtimestamp, :avatar, :unread, :lastmessage);");
+        ic.bindValue(":jid", query["jid"]);
+        ic.bindValue(":pushname", QString());
+        ic.bindValue(":name", query["name"]);
+        ic.bindValue(":message", QString());
+        ic.bindValue(":contacttype", 1);
+        ic.bindValue(":owner", "/usr/share/harbour-mitakuuluu2/images/avatar-broadcast.png");
+        ic.bindValue(":subowner", query["jids"].toStringList().join(";"));
+        ic.bindValue(":timestamp", 0);
+        ic.bindValue(":subtimestamp", 0);
+        ic.bindValue(":avatar", "/usr/share/harbour-mitakuuluu2/images/avatar-broadcast.png");
+        ic.bindValue(":unread", 0);
+        ic.bindValue(":lastmessage", 0);
+        ic.exec();
     }
 
     Q_EMIT actionDone(query);

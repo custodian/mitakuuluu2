@@ -395,8 +395,9 @@ QStringList Client::getPhoneInfo(const QString &phone)
 void Client::addMessage(const FMessage &message)
 {
     QStringList jids;
-    if (message.broadcastJids.size() > 0) {
+    if (!message.broadcastJids.isEmpty()) {
         jids = message.broadcastJids;
+        jids << message.key.remote_jid;
     }
     else {
         jids << message.key.remote_jid;
@@ -806,7 +807,9 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 
     connect(connectionPtr.data(), SIGNAL(groupCreated(QString)), this, SIGNAL(groupCreated(QString)));
 
-    connect(connectionPtr.data(),SIGNAL(contactsStatus(QVariantList)), this, SLOT(syncContactsAvailable(QVariantList)));
+    connect(connectionPtr.data(), SIGNAL(groupRemoved(QString)), this, SLOT(onGroupRemoved(QString)));
+
+    connect(connectionPtr.data(),SIGNAL(contactsStatus(QVariantList)), this, SLOT(syncContactsAvailble(QVariantList)));
 
     connect(connectionPtr.data(),SIGNAL(contactsSynced(QVariantList)), this, SLOT(syncResultsAvailable(QVariantList)));
 
@@ -821,6 +824,8 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
     connect(connectionPtr.data(), SIGNAL(accountDataReceived(QString,QString,QString,QString)), this, SLOT(onAccountDataReceived(QString,QString,QString,QString)));
 
     connect(connectionPtr.data(), SIGNAL(passwordReceived(QString)), this, SLOT(onPasswordReceived(QString)));
+
+    connect(connectionPtr.data(), SIGNAL(broadcastList(QVariantList)), this, SLOT(onBroadcastList(QVariantList)));
 
     updateNotification(tr("Connected", "System connection notification"));
 
@@ -838,6 +843,7 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 
     this->userName = dconf->value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
     changeUserName(this->userName);
+    Q_EMIT connectionGetBroadcasts();
 
     //getPicture(this->myJid);
 
@@ -991,6 +997,7 @@ void Client::connectToServer()
     QObject::connect(this, SIGNAL(connectionSendGetGroupInfo(QString)), connectionPtr.data(), SLOT(sendGetGroupInfoV2(QString)));
     QObject::connect(this, SIGNAL(connectionUpdateGroupChats()), connectionPtr.data(), SLOT(updateGroupChats()));
     QObject::connect(this, SIGNAL(connectionGetBroadcasts()), connectionPtr.data(), SLOT(sendGetBroadcasts()));
+    QObject::connect(this, SIGNAL(connectionSendDeleteBroadcast(QString)), connectionPtr.data(), SLOT(sendDeleteBroadcast(QString)));
     QObject::connect(this, SIGNAL(connectionSendSetGroupSubject(QString,QString)), connectionPtr.data(), SLOT(sendSetGroupSubject(QString,QString)));
     QObject::connect(this, SIGNAL(connectionSendLeaveGroup(QString)), connectionPtr.data(), SLOT(sendLeaveGroup(QString)));
     QObject::connect(this, SIGNAL(connectionSendRemoveGroup(QString)), connectionPtr.data(), SLOT(sendRemoveGroup(QString)));
@@ -1272,6 +1279,22 @@ void Client::onSettingsChanged(const QString &key)
     }
     else if (key == "settings/notificationsDelay") {
         this->notificationsDelay = dconf->value(key).toInt();
+    }
+}
+
+void Client::onBroadcastList(const QVariantList &broadcasts)
+{
+    foreach (const QVariant &broadcast, broadcasts) {
+        QVariantMap broadcastMap = broadcast.toMap();
+        if (!broadcastMap.isEmpty()) {
+            QVariantMap query;
+            query["type"] = QueryType::ContactsCreateBroadcast;
+            query["uuid"] = uuid;
+            query["jids"] = broadcastMap["contacts"];
+            query["jid"] = broadcastMap["jid"];
+            query["name"] = broadcastMap["name"];
+            dbExecutor->queueAction(query);
+        }
     }
 }
 
@@ -1760,10 +1783,10 @@ void Client::saveCredentials(const QVariantMap &data)
 }
 
 void Client::sendLocationRequest(const QByteArray &mapData, const QString &latitude, const QString &longitude,
-                                 const QStringList &jids, MapRequest* sender)
+                                 const QStringList &jids, const QStringList &participants, const QString &broadcastName, MapRequest* sender)
 {
     qDebug() << "Location request finished";
-    QString jid = jids.size() > 1 ? "broadcast" : jids.first();
+    QString jid = jids.size() > 1 ? "@broadcast" : jids.first();
     FMessage msg(jid, true);
     msg.status = FMessage::Unsent;
     msg.type = FMessage::MediaMessage;
@@ -1787,9 +1810,10 @@ void Client::sendLocationRequest(const QByteArray &mapData, const QString &latit
     img.save(&buffer, "JPG", 100);
 
     msg.setData(data.toBase64());
-    if (jids.size() > 1) {
+    if (!participants.isEmpty()) {
         msg.broadcast = true;
-        msg.broadcastJids = jids;
+        msg.broadcastJids = participants;
+        msg.broadcastName = broadcastName;
     }
     queueMessage(msg);
     addMessage(msg);
@@ -2087,17 +2111,29 @@ void Client::setRecoveryToken(const QString &token)
     }
 }
 
-void Client::sendText(const QString &jid, const QString &message)
+void Client::deleteBroadcast(const QString &jid)
+{
+    if (connectionStatus == LoggedIn) {
+        Q_EMIT connectionSendDeleteBroadcast(jid);
+    }
+}
+
+void Client::sendText(const QString &jid, const QString &message, const QStringList &participants, const QString &broadcastName)
 {
     FMessage msg(jid, true);
     msg.remote_resource = myJid;
     msg.type = FMessage::BodyMessage;
+    if (!participants.isEmpty()) {
+        msg.broadcast = true;
+        msg.broadcastJids = participants;
+        msg.broadcastName = broadcastName;
+    }
     msg.setData(message);
     queueMessage(msg);
     addMessage(msg);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title, const QStringList &participants, const QString &broadcastName)
 {
     FMessage msg(JID_DOMAIN, true);
 
@@ -2188,10 +2224,11 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, int waT
     msg.media_size = mfile.size();
     msg.media_wa_type = waType;
     msg.media_name = title;
-    if (jids.size() > 1) {
+    if (!participants.isEmpty()) {
         msg.broadcast = true;
-        msg.broadcastJids = jids;
-        msg.remote_resource = "broadcast";
+        msg.broadcastJids = participants;
+        msg.broadcastName = broadcastName;
+        msg.remote_resource = jids.first();
     }
     else {
         msg.remote_resource = jids.first();
@@ -2220,7 +2257,7 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, int waT
     queueMessage(msg);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title, const QStringList &participants, const QString &broadcastName)
 {
     FMessage::MediaWAType waType = FMessage::Text;
     if (mediaType == "image")
@@ -2229,44 +2266,45 @@ void Client::sendMedia(const QStringList &jids, const QString &fileName, const Q
         waType = FMessage::Audio;
     else if (mediaType == "video")
         waType = FMessage::Video;
-    sendMedia(jids, fileName, waType, title);
+    sendMedia(jids, fileName, waType, title, participants, broadcastName);
 }
 
-void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &title)
+void Client::sendMedia(const QStringList &jids, const QString &fileName, const QString &title, const QStringList &participants, const QString &broadcastName)
 {
     QString type = Utilities::guessMimeType(fileName).split("/").first();
-    sendMedia(jids, fileName, type, title.isEmpty() ? fileName.split("/").last() : title);
+    sendMedia(jids, fileName, type, title.isEmpty() ? fileName.split("/").last() : title, participants, broadcastName);
 }
 
-void Client::sendVCard(const QStringList &jids, const QString &name, const QString &vcardData)
+void Client::sendVCard(const QStringList &jids, const QString &name, const QString &vcardData, const QStringList &participants, const QString &broadcastName)
 {
     if (vcardData.isEmpty())
         return;
-    QString jid = jids.size() > 1 ? "broadcast" : jids.first();
+    QString jid = jids.size() > 1 ? "@broadcast" : jids.first();
     FMessage msg(jid, true);
     msg.status = FMessage::Unsent;
     msg.type = FMessage::MediaMessage;
     msg.media_wa_type = FMessage::Contact;
     msg.setData(vcardData);
     msg.media_name = name;
-    if (jids.size() > 1) {
+    if (!participants.isEmpty()) {
         msg.broadcast = true;
-        msg.broadcastJids = jids;
+        msg.broadcastJids = participants;
+        msg.broadcastName = broadcastName;
     }
     queueMessage(msg);
     addMessage(msg);
 }
 
-void Client::sendLocation(const QStringList &jids, const QString &latitude, const QString &longitude, int zoom, const QString &source)
+void Client::sendLocation(const QStringList &jids, const QString &latitude, const QString &longitude, int zoom, const QString &source, const QStringList &participants, const QString &broadcastName)
 {
     if (nam && isOnline) {
         qDebug() << "sendLocation" << latitude << longitude;
         int w = 128;
         int h = 128;
 
-        MapRequest *mapRequest = new MapRequest(source, latitude, longitude, zoom, w, h, jids);
-        QObject::connect(mapRequest, SIGNAL(mapAvailable(QByteArray,QString,QString,QStringList,MapRequest*)),
-                         this, SLOT(sendLocationRequest(QByteArray,QString,QString,QStringList,MapRequest*)));
+        MapRequest *mapRequest = new MapRequest(source, latitude, longitude, zoom, w, h, jids, participants, broadcastName);
+        QObject::connect(mapRequest, SIGNAL(mapAvailable(QByteArray,QString,QString,QStringList,QStringList,QString,MapRequest*)),
+                         this, SLOT(sendLocationRequest(QByteArray,QString,QString,QStringList,QStringList,QString,MapRequest*)));
         QObject::connect(mapRequest, SIGNAL(requestError(MapRequest*)), this, SLOT(mapError(MapRequest*)));
 
         QThread *thread = new QThread(this);
@@ -2402,10 +2440,10 @@ void Client::startSharing(const QStringList &jids, const QString &name, const QS
         qDebug() << "Sharing" << media;
         _mediaStatusHash[media] = true;
         _mediaNameHash[media] = media.split("/").last();
-        sendMedia(jids, media);
+        sendMedia(jids, media, "", QStringList(), QString());
     }
     else {
-        sendVCard(jids, name, data);
+        sendVCard(jids, name, data, QStringList(), QString());
     }
 }
 
@@ -2581,7 +2619,18 @@ void Client::groupNewSubjectV2(const QString &from, const QString &author, const
 
      updateContactPushname(author, authorName);
 
-     groupNotification(from, author, SubjectSet, creation, notificationId, offline, newSubject);
+      groupNotification(from, author, SubjectSet, creation, notificationId, offline, newSubject);
+}
+
+void Client::onGroupRemoved(const QString &jid)
+{
+    QVariantMap query;
+    query["type"] = QueryType::ContactsRemove;
+    query["jid"]  = jid;
+    query["uuid"] = uuid;
+    dbExecutor->queueAction(query);
+
+    Q_EMIT groupRemoved(jid);
 }
 
 void Client::getParticipants(const QString &gjid)
@@ -2789,7 +2838,7 @@ void Client::forwardMessage(const QStringList &jids, const QVariantMap &model)
             broadcastSend(jids, model["data"].toString());
         }
         else {
-            sendText(jids.at(0), model["data"].toString());
+            sendText(jids.at(0), model["data"].toString(), QStringList(), QString());
         }
     }
     else {

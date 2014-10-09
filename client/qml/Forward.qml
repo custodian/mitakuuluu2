@@ -216,7 +216,7 @@ Dialog {
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
                 font.pixelSize: Theme.fontSizeMedium
-                text: Theme.highlightText(Utilities.emojify(model.nickname, emojiPath), searchField.text, Theme.highlightColor)
+                text: Theme.highlightText(getNickname(model.jid, model.nickname, model.subowner), searchField.text, Theme.highlightColor)
                 //text: Utilities.emojify(model.nickname, emojiPath)
                 color: item.highlighted ? Theme.highlightColor : Theme.primaryColor
                 truncationMode: TruncationMode.Fade

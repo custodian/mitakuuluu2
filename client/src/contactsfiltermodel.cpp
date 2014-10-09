@@ -36,7 +36,7 @@ bool ContactsFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sou
             return false;
         }
     }
-    if (_showActive && !jid.contains("-")) {
+    if (_showActive && (!jid.contains("-") && !jid.contains("@broadcast"))) {
         int lastmessage = sourceModel()->data(index, Qt::UserRole + 14).toInt();
         if (lastmessage == 0)
             return false;
@@ -47,7 +47,7 @@ bool ContactsFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sou
             return false;
     }
     if (_hideGroups) {
-        if (jid.contains("-"))
+        if (jid.contains("-") || jid.contains("@broadcast"))
             return false;
     }
 

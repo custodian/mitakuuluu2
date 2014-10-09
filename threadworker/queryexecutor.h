@@ -32,6 +32,7 @@ namespace QueryType {
         ContactsGetMuted,
         ContactsGroupParticipants,
         ContactsClearConversation,
+        ContactsCreateBroadcast,
         ConversationLoadLast = 100,
         ConversationLoadNext,
         ConversationGetMessage,
@@ -111,6 +112,7 @@ private:
     void clearConversation(QVariantMap &query);
     void setMediaTitle(QVariantMap &query);
     void setMessageUrl(QVariantMap &query);
+    void createBroadcastContact(QVariantMap &query);
 
 private:
     ThreadWorker m_worker;

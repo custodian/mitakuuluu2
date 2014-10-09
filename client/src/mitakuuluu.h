@@ -303,7 +303,7 @@ public slots:
     void disconnect();
     void sendMessage(const QString &jid, const QString &message, const QString &media, const QString &mediaData);
     void sendBroadcast(const QStringList &jids, const QString &message);
-    void sendText(const QString &jid, const QString &message);
+    void sendText(const QString &jid, const QString &message, const QStringList &participants = QStringList(), const QString &broadcastName = QString());
     void syncContactList();
     void setActiveJid(const QString &jid);
     QString shouldOpenJid();
@@ -347,8 +347,8 @@ public slots:
     void isCrashed();
     void requestLastOnline(const QString &jid);
     void addPhoneNumber(const QString &name, const QString &phone);
-    void sendMedia(const QStringList &jids, const QString &path, const QString &title = QString());
-    void sendVCard(const QStringList &jids, const QString &name, const QString& data);
+    void sendMedia(const QStringList &jids, const QString &path, const QString &title = QString(), const QStringList &participants = QStringList(), const QString &broadcastName = QString());
+    void sendVCard(const QStringList &jids, const QString &name, const QString& data, const QStringList &participants = QStringList(), const QString &broadcastName = QString());
     QString rotateImage(const QString &path, int rotation);
     QString saveVoice(const QString &path);
     QString saveImage(const QString &path);
@@ -369,7 +369,7 @@ public slots:
     bool checkLogfile();
     bool checkAutostart();
     void setAutostart(bool enabled);
-    void sendLocation(const QStringList &jids, double latitude, double longitude, int zoom, const QString &source);
+    void sendLocation(const QStringList &jids, double latitude, double longitude, int zoom, const QString &source, const QStringList &participants = QStringList(), const QString &broadcastName = QString());
     void renewAccount(const QString &method, int years);
     QString checkIfExists(const QString &path);
     void unsubscribe(const QString &jid);
@@ -390,7 +390,7 @@ public slots:
     bool compressLogs();
     void checkWebVersion();
     void setRecoveryToken(const QString &token);
-
+    void deleteBroadcast(const QString &jid);
 //Settings
 
 public slots:

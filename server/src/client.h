@@ -322,6 +322,7 @@ private slots:
     void groupNewSubjectV2(const QString &from, const QString &author, const QString &authorName,
                            const QString &newSubject, const QString &creation, const QString &subjectAuthor,
                            const QString &notificationId, bool offline);
+    void onGroupRemoved(const QString &jid);
     void photoDeleted(const QString &jid, const QString &alias, const QString &author, const QString &timestamp, const QString &notificationId);
     void photoIdReceived(const QString &jid, const QString &name, const QString &author, const QString &timestamp, const QString &pictureId, const QString &notificationId, bool offline);
     void photoReceived(const QString &from, const QByteArray &data,
@@ -329,7 +330,7 @@ private slots:
     void privacyListReceived(const QStringList &list);
     void privacySettingsReceived(const QVariantMap &values);
 
-    void sendLocationRequest(const QByteArray &mapData, const QString &latitude, const QString &longitude, const QStringList &jids, MapRequest* sender);
+    void sendLocationRequest(const QByteArray &mapData, const QString &latitude, const QString &longitude, const QStringList &jids, const QStringList &participants, const QString &broadcastName, MapRequest* sender);
     void mapError(MapRequest* sender);
 
     void mediaUploadAccepted(const FMessage &message);
@@ -365,6 +366,8 @@ private slots:
     void onMediaTitleReceived(const QString &msgid, const QString &title, const QString &jid);
 
     void onSettingsChanged(const QString &key);
+
+    void onBroadcastList(const QVariantList &broadcasts);
 
 signals:
     void authFail(const QString &username, const QString &reason);
@@ -406,6 +409,7 @@ signals:
     void groupParticipantRemoved(const QString &jid, const QString &participant);
     void groupInfo(const QVariantMap &group);
     void groupCreated(const QString &jid);
+    void groupRemoved(const QString &jid);
     void contactsBlocked(const QStringList &jids);
     void privacySettings(const QVariantMap &values);
     void contactsMuted(const QVariantMap &jids);
@@ -448,6 +452,7 @@ signals:
     Q_SCRIPTABLE void connectionSendGetGroupInfo(const QString &gjid);
     Q_SCRIPTABLE void connectionUpdateGroupChats();
     Q_SCRIPTABLE void connectionGetBroadcasts();
+    Q_SCRIPTABLE void connectionSendDeleteBroadcast(const QString &jid);
     Q_SCRIPTABLE void connectionSendSetGroupSubject(const QString &gjid, const QString &subject);
     Q_SCRIPTABLE void connectionSendLeaveGroup(const QString &gjid);
     Q_SCRIPTABLE void connectionSendRemoveGroup(const QString &gjid);
@@ -621,12 +626,12 @@ public slots:
     bool isNetworkAvailable();
     bool isAccountValid();
     void recheckAccountAndConnect();
-    void sendText(const QString &jid, const QString &message);
-    void sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title);
-    void sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title);
-    void sendMedia(const QStringList &jids, const QString &fileName, const QString &title = QString());
-    void sendVCard(const QStringList &jids, const QString &name, const QString &vcardData);
-    void sendLocation(const QStringList &jids, const QString &latitude, const QString &longitude, int zoom, const QString &source);
+    void sendText(const QString &jid, const QString &message, const QStringList &participants, const QString &broadcastName);
+    void sendMedia(const QStringList &jids, const QString &fileName, int waType, const QString &title, const QStringList &participants, const QString &broadcastName);
+    void sendMedia(const QStringList &jids, const QString &fileName, const QString &mediaType, const QString &title, const QStringList &participants, const QString &broadcastName);
+    void sendMedia(const QStringList &jids, const QString &fileName, const QString &title, const QStringList &participants, const QString &broadcastName);
+    void sendVCard(const QStringList &jids, const QString &name, const QString &vcardData, const QStringList &participants, const QString &broadcastName);
+    void sendLocation(const QStringList &jids, const QString &latitude, const QString &longitude, int zoom, const QString &source, const QStringList &participants, const QString &broadcastName);
     void getGroupInfo(const QString &jid);
     void getPicture(const QString &jid);
     void setPhoto(const QString &jid, const QString &path);
@@ -698,6 +703,7 @@ public slots:
     void saveHistory(const QString &sjid, const QString &sname);
     void requestContactMedia(const QString &sjid);
     void setRecoveryToken(const QString &token);
+    void deleteBroadcast(const QString &jid);
 };
 
 #endif // CLIENTTHREAD_H

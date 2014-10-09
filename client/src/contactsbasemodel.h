@@ -42,6 +42,8 @@ public slots:
     void renameContact(const QString &jid, const QString &name);
     void requestAvatar(const QString &jid);
     void clearChat(const QString &jid);
+    void createBroadcast(const QStringList &jids);
+    void renameBroadcast(const QString &jid, const QString &name);
 
     void clear();
     void contactsChanged();
@@ -79,6 +81,7 @@ signals:
     void totalUnreadChanged();
     void deleteEverythingSuccessful();
     void conversationClean(const QString &pjid);
+    void broadcastCreated(const QString &bjid, const QStringList &bjids);
 
 private slots:
     void pictureUpdated(const QString &jid, const QString &path);
@@ -98,6 +101,7 @@ private slots:
     void contactsAvailable(const QStringList &jids);
     void contactTyping(const QString &jid);
     void contactPaused(const QString &jid);
+    void contactRemoved(const QString &jid);
 };
 
 #endif // CONTACTSBASEMODEL_H

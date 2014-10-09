@@ -27,6 +27,9 @@ Page {
                 if (isGroup) {
                     pageStack.pushAttached(Qt.resolvedUrl("GroupProfile.qml"), {"conversationModel": conversationModel, "jid": jid, "conversationPage": page})
                 }
+                else if (isBroadcast) {
+                    pageStack.pushAttached(Qt.resolvedUrl("BroadcastProfile.qml"), {"subject": initialModel.name, "initialParticipants": initialParticipants, "conversationModel": conversationModel, "jid": jid, "conversationPage": page})
+                }
                 else {
                     pageStack.pushAttached(Qt.resolvedUrl("UserProfile.qml"), {"conversationModel": conversationModel, "jid": jid})
                 }
@@ -60,18 +63,22 @@ Page {
     property var initialModel
     onInitialModelChanged: {
         if (page.status == PageStatus.Inactive) {
-            //console.log("should load model")
-            //console.log("jid: " + initialModel.jid)
             jid = initialModel.jid
-            //console.log("name: " + initialModel.name)
-            name = initialModel.nickname
-            //console.log("available: " + initialModel.available)
+            if (jid.indexOf("@broadcast") < 0) {
+                name = initialModel.nickname
+            }
+            else {
+                if (initialModel.name.length == 0) {
+                    name = qsTr("Broadcast")
+                }
+                else {
+                    name = Utilities.emojify(initialModel.name, emojiPath)
+                }
+                lastseen = getNickname(initialModel.jid, initialModel.jid.split("@")[0], initialModel.subowner)
+            }
+
             available = initialModel.available
-            //console.log("blocked: " + initialModel.blocked)
             blocked = initialModel.blocked
-            //console.log("muted: " + initialModel.muted)
-            //muted = initialModel.muted
-            //console.log("avatar: " + initialModel.avatar)
             avatar = settings.usePhonebookAvatars || (jid.indexOf("-") > 0)
                     ? (initialModel.avatar == "undefined" ? "" : (initialModel.avatar))
                     : (initialModel.owner == "undefined" ? "" : (initialModel.owner.length > 0 ? initialModel.owner : initialModel.avatar))
@@ -81,13 +88,16 @@ Page {
             conversationModel.jid = jid
 
             Mitakuuluu.setActiveJid(jid)
-            if (!available) {
+            if (!available && jid.indexOf("@broadcast") < 0 && jid.indexOf("-") < 0) {
                 Mitakuuluu.requestLastOnline(jid)
             }
         }
     }
 
+    property var initialParticipants: isBroadcast ? initialModel.subowner.split(";") : []
+
     property bool isGroup: jid.indexOf("-") > 0
+    property bool isBroadcast: jid.indexOf("@broadcast") >= 0
     property int muted: 0
     property bool blocked: false
     property bool available: false
@@ -352,7 +362,7 @@ Page {
                             audioRecorder.stop()
                             if (containsMouse) {
                                 var voiceMedia = Mitakuuluu.saveVoice(audioRecorder.path)
-                                Mitakuuluu.sendMedia([page.jid], voiceMedia)
+                                Mitakuuluu.sendMedia([page.jid], voiceMedia, "", initialParticipants, page.name)
                             }
                             Mitakuuluu.rejectMediaCapture(audioRecorder.path)
                             audioRecorder.destroy()
@@ -613,8 +623,10 @@ Page {
             }
             onTextChanged: {
                 if (!typingTimer.running) {
-                    Mitakuuluu.startTyping(page.jid)
-                    typingTimer.start()
+                    if (page.jid.indexOf("@broadcast") < 0) {
+                        Mitakuuluu.startTyping(page.jid)
+                        typingTimer.start()
+                    }
                 }
                 else
                     typingTimer.restart()
@@ -622,7 +634,7 @@ Page {
             function send() {
                 deselect()
                 console.log("send: " + sendBox.text.trim())
-                Mitakuuluu.sendText(page.jid, sendBox.text.trim())
+                Mitakuuluu.sendText(page.jid, sendBox.text.trim(), initialParticipants, page.name)
                 sendBox.text = ""
                 if (settings.hideKeyboard)
                     focus = false
@@ -813,7 +825,9 @@ Page {
                                             positionSource.position.coordinate.latitude,
                                             positionSource.position.coordinate.longitude,
                                             16,
-                                            settings.mapSource)
+                                            settings.mapSource,
+                                            initialParticipants,
+                                            page.name)
                     positionSource.active = false
                     positionSource.destroy()
                 }
@@ -841,7 +855,7 @@ Page {
         function captureAccepted() {
             pageStack.currentPage.captured.disconnect(captureReceiver.captureAccepted)
             imagePath = pageStack.currentPage.imagePath
-            Mitakuuluu.sendMedia([page.jid], imagePath)
+            Mitakuuluu.sendMedia([page.jid], imagePath, "", initialParticipants, page.name)
         }
     }
 
@@ -853,7 +867,7 @@ Page {
             pageStack.currentPage.accepted.disconnect(mediaReceiver.mediaAccepted)
             mediaFiles = pageStack.currentPage.selectedFiles
             for (var i = 0; i < mediaFiles.length; i++) {
-                Mitakuuluu.sendMedia([page.jid], mediaFiles[i])
+                Mitakuuluu.sendMedia([page.jid], mediaFiles[i], "", initialParticipants, page.name)
             }
         }
     }
@@ -867,7 +881,7 @@ Page {
             pageStack.currentPage.accepted.disconnect(vcardReceiver.contactAccepted)
             vcardData = pageStack.currentPage.vCardData
             displayName = pageStack.currentPage.displayLabel
-            Mitakuuluu.sendVCard([page.jid], displayName, vcardData)
+            Mitakuuluu.sendVCard([page.jid], displayName, vcardData, initialParticipants, page.name)
         }
     }
 }

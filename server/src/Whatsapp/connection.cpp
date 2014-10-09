@@ -457,6 +457,39 @@ bool Connection::read()
                         }
                         Q_EMIT contactsStatus(contacts);
                     }
+
+                    else if (child.getTag() == "lists" && id.startsWith("get_broadcasts_")) {
+                        QVariantList broadcasts;
+                        ProtocolTreeNodeListIterator j(child.getChildren());
+                        while (j.hasNext())
+                        {
+                            ProtocolTreeNode list = j.next().value();
+                            if (list.getTag() == "list")
+                            {
+                                QVariantMap broadcast;
+                                broadcast["jid"] = list.getAttributeValue("id");
+                                broadcast["name"] = list.getAttributeValue("name");
+                                qDebug() << "received broadcast list:" << broadcast["jid"].toString() << "name:" << broadcast["name"].toString();
+
+                                QStringList contacts;
+
+                                ProtocolTreeNodeListIterator k(list.getChildren());
+                                while (k.hasNext())
+                                {
+                                    ProtocolTreeNode recipient = k.next().value();
+                                    if (recipient.getTag() == "recipient") {
+                                        contacts.append(recipient.getAttributeValue("jid"));
+                                    }
+                                }
+                                qDebug() << "recipients:" << contacts;
+
+                                broadcast["contacts"] = contacts;
+
+                                broadcasts.append(broadcast);
+                            }
+                        }
+                        Q_EMIT broadcastList(broadcasts);
+                    }
                 }
 
                 if (id.startsWith("privacy_")) {
@@ -795,6 +828,10 @@ bool Connection::read()
                         QString subject = child.getAttributeValue("subject");
                         Q_EMIT groupNewSubjectV2(from, participant, notify, subject, subject_t, subject_o, id, offline);
                     }
+                    else if (child.getTag() == "delete")
+                    {
+                        Q_EMIT groupRemoved(from);
+                    }
                 }
             }
             else if (notificationType == "account") {
@@ -827,7 +864,6 @@ bool Connection::read()
                 }
             }
         }
-
         else if (tag == "message")
             parseMessageInitialTagAlreadyChecked(node);
 
@@ -945,6 +981,10 @@ void Connection::parseMessageInitialTagAlreadyChecked(ProtocolTreeNode &messageN
                         message.media_wa_type == FMessage::Video) {
                         message.media_width = child.getAttributeValue("width").toInt();
                         message.media_height = child.getAttributeValue("height").toInt();
+                        QString caption = child.getAttributeValue("caption");
+                        if (!caption.isEmpty()) {
+                            message.media_name = caption;
+                        }
                     }
 
                     message.live = (child.getAttributeValue("origin") == "live");
@@ -1658,26 +1698,22 @@ void Connection::sendMessageWithMedia(const FMessage& message)
 */
 ProtocolTreeNode Connection::getMessageNode(const FMessage &message, const ProtocolTreeNode &child)
 {
-    ProtocolTreeNode serverNode("server");
-
-    ProtocolTreeNode xNode("x");
-    AttributeList attrs;
-    attrs.insert("xmlns","jabber:x:event");
-    xNode.setAttributes(attrs);
-    xNode.addChild(serverNode);
-
-    attrs.clear();
-    attrs.insert("id",message.key.id);
-    attrs.insert("type",child.getTag() == "body" ? "text" : "media");
-    attrs.insert("to",message.key.remote_jid);
 
     qDebug() << "Message ID" << message.key.id;
 
     ProtocolTreeNode messageNode("message");
-
+    AttributeList attrs;
+    attrs.insert("id",message.key.id);
+    attrs.insert("type",child.getTag() == "body" ? "text" : "media");
+    attrs.insert("to",message.key.remote_jid);
     messageNode.setAttributes(attrs);
-    if (message.key.remote_jid == "broadcast") {
+    if (!message.broadcastJids.isEmpty()) {
         ProtocolTreeNode broadcast("broadcast");
+        if (!message.broadcastName.isEmpty()) {
+            attrs.clear();
+            attrs.insert("name", message.broadcastName);
+            broadcast.setAttributes(attrs);
+        }
         foreach (QString jid, message.broadcastJids) {
             ProtocolTreeNode broadcastChild("to");
             AttributeList to;
@@ -1688,7 +1724,6 @@ ProtocolTreeNode Connection::getMessageNode(const FMessage &message, const Proto
         messageNode.addChild(broadcast);
     }
     messageNode.addChild(child);
-    messageNode.addChild(xNode);
 
     return messageNode;
 }
@@ -2420,7 +2455,6 @@ void Connection::sendGetGroups(const QString &id)
 void Connection::sendSetGroupSubject(const QString &gjid, const QString &subject)
 {
     QString id = makeId("set_group_subject_");
-
 
     ProtocolTreeNode subjectNode("subject");
     subjectNode.setData(subject.toUtf8());

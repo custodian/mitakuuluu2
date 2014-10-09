@@ -111,10 +111,10 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("Broadcast", "Main menu action")
+                text: qsTr("Create broadcast list", "Main menu action")
                 enabled: Mitakuuluu.connectionStatus == Mitakuuluu.LoggedIn
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("Broadcast.qml"))
+                    createBroadcast()
                 }
             }
             MenuItem {
@@ -183,6 +183,15 @@ Page {
                 remorseAction(qsTr("Delete group %1", "Group delete remorse action text").arg(model.nickname),
                 function() {
                     Mitakuuluu.groupRemove(chatJid)
+                    ContactsBaseModel.deleteContact(chatJid)
+                })
+            }
+
+            function removeBroadcast() {
+                var chatJid = model.jid
+                remorseAction(qsTr("Delete broadcast %1", "Broadcast delete remorse action text").arg(model.nickname),
+                function() {
+                    Mitakuuluu.deleteBroadcast(chatJid)
                     ContactsBaseModel.deleteContact(chatJid)
                 })
             }
@@ -260,6 +269,7 @@ Page {
                 anchors.topMargin: Theme.paddingSmall / 2
                 width: Theme.iconSizeLarge
                 height: Theme.iconSizeLarge
+                backgroundVisible: (status !== Image.Ready) || (model.jid.indexOf("@broadcast") >= 0)
 
                 Rectangle {
                     id: unreadCount
@@ -338,7 +348,7 @@ Page {
                     id: nickname
                     font.pixelSize: Theme.fontSizeMedium
                     width: parent.width
-                    text: Utilities.emojify(model.nickname, emojiPath)
+                    text: getNickname(model.jid, model.nickname, model.subowner)
                     wrapMode: Text.NoWrap
                     elide: Text.ElideRight
                     color: item.highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -349,7 +359,9 @@ Page {
                     id: status
                     width: parent.width
                     text: model.typing ? qsTr("Typing...", "Contact status typing text")
-                                       : (model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line") : Utilities.emojify(model.message, emojiPath))
+                                       : (model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line")
+                                                                     : (model.jid.indexOf("@broadcast") >= 0 ? qsTr("Broadcast list", "Contacts group page text in status message line")
+                                                                                                             : Utilities.emojify(model.message, emojiPath)))
                     wrapMode: Text.NoWrap
                     elide: Text.ElideRight
                     color: model.typing ? (item.highlighted ? Theme.highlightColor : Theme.primaryColor)
@@ -405,6 +417,15 @@ Page {
                         visible: model.owner === Mitakuuluu.myJid
                         onClicked: {
                             removeGroup()
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Delete broadcast", "Contact context menu delete group item")
+                        enabled: Mitakuuluu.connectionStatus === Mitakuuluu.LoggedIn
+                        visible: model.jid.indexOf("@broadcast") >= 0
+                        onClicked: {
+                            removeBroadcast()
                         }
                     }
 

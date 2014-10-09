@@ -379,10 +379,10 @@ void Mitakuuluu::sendBroadcast(const QStringList &jids, const QString &message)
         iface->call(QDBus::NoBlock, "broadcastSend", jids, message);
 }
 
-void Mitakuuluu::sendText(const QString &jid, const QString &message)
+void Mitakuuluu::sendText(const QString &jid, const QString &message, const QStringList &participants, const QString &broadcastName)
 {
     if (iface)
-        iface->call(QDBus::NoBlock, "sendText", jid, message);
+        iface->call(QDBus::NoBlock, "sendText", jid, message, participants, broadcastName);
 }
 
 void Mitakuuluu::syncContactList()
@@ -856,17 +856,17 @@ void Mitakuuluu::notificationCallback(const QString &jid)
     Q_EMIT notificationOpenJid(jid);
 }
 
-void Mitakuuluu::sendMedia(const QStringList &jids, const QString &path, const QString &title)
+void Mitakuuluu::sendMedia(const QStringList &jids, const QString &path, const QString &title, const QStringList &participants, const QString &broadcastName)
 {
     if (iface) {
-        iface->call(QDBus::NoBlock, "sendMedia", jids, path, title.isEmpty() ? path.split("/").last() : title);
+        iface->call(QDBus::NoBlock, "sendMedia", jids, path, title.isEmpty() ? path.split("/").last() : title, participants, broadcastName);
     }
 }
 
-void Mitakuuluu::sendVCard(const QStringList &jids, const QString &name, const QString &data)
+void Mitakuuluu::sendVCard(const QStringList &jids, const QString &name, const QString &data, const QStringList &participants, const QString &broadcastName)
 {
     if (iface) {
-        iface->call(QDBus::NoBlock, "sendVCard", jids, name, data);
+        iface->call(QDBus::NoBlock, "sendVCard", jids, name, data, participants, broadcastName);
     }
 }
 
@@ -1160,11 +1160,11 @@ void Mitakuuluu::setAutostart(bool enabled)
     }
 }
 
-void Mitakuuluu::sendLocation(const QStringList &jids, double latitude, double longitude, int zoom, const QString &source)
+void Mitakuuluu::sendLocation(const QStringList &jids, double latitude, double longitude, int zoom, const QString &source, const QStringList &participants, const QString &broadcastName)
 {
     if (iface) {
         qDebug() << "sendLocation" << latitude << longitude;
-        iface->call(QDBus::NoBlock, "sendLocation", jids, QString::number(latitude), QString::number(longitude), zoom, source);
+        iface->call(QDBus::NoBlock, "sendLocation", jids, QString::number(latitude), QString::number(longitude), zoom, source, participants, broadcastName);
     }
 }
 
@@ -1472,6 +1472,13 @@ void Mitakuuluu::setRecoveryToken(const QString &token)
 {
     if (iface) {
         iface->call(QDBus::NoBlock, "setRecoveryToken", token);
+    }
+}
+
+void Mitakuuluu::deleteBroadcast(const QString &jid)
+{
+    if (iface) {
+        iface->call(QDBus::NoBlock, "deleteBroadcast", jid);
     }
 }
 

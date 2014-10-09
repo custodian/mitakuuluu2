@@ -5,6 +5,7 @@ import harbour.mitakuuluu2.client 1.0
 import Sailfish.Gallery.private 1.0
 import org.nemomobile.configuration 1.0
 import QtSensors 5.1
+import "Utilities.js" as Utilities
 
 ApplicationWindow {
     id: appWindow
@@ -485,7 +486,12 @@ ApplicationWindow {
 
         function contactsSelected() {
             contactsUnbind()
-            Mitakuuluu.sendMedia(pageStack.currentPage.jids, captureReceiver.imagePath, captureReceiver.mediaTitle)
+            if (pageStack.currentPage.jids.length > 0) {
+                Mitakuuluu.sendMedia(["@broadcast"], captureReceiver.imagePath, captureReceiver.mediaTitle, pageStack.currentPage.jids)
+            }
+            else {
+                Mitakuuluu.sendMedia(pageStack.currentPage.jids, captureReceiver.imagePath, captureReceiver.mediaTitle)
+            }
         }
     }
 
@@ -567,7 +573,12 @@ ApplicationWindow {
 
         function contactsSelected() {
             contactsUnbind()
-            Mitakuuluu.sendMedia(pageStack.currentPage.jids, recorderReceiver.voicePath)
+            if (pageStack.currentPage.jids.length > 1) {
+                Mitakuuluu.sendMedia(["@broadcast"], recorderReceiver.voicePath, "", pageStack.currentPage.jids)
+            }
+            else {
+                Mitakuuluu.sendMedia(pageStack.currentPage.jids, recorderReceiver.voicePath)
+            }
         }
     }
 
@@ -604,7 +615,39 @@ ApplicationWindow {
 
         function contactsSelected() {
             contactsRejected()
-            Mitakuuluu.sendMedia(pageStack.currentPage.jids, mediaReceiver.mediaFile)
+            if (pageStack.currentPage.jids.length > 1) {
+                Mitakuuluu.sendMedia(["@broadcast"], mediaReceiver.mediaFile, "", pageStack.currentPage.jids)
+            }
+            else {
+                Mitakuuluu.sendMedia(pageStack.currentPage.jids, mediaReceiver.mediaFile)
+            }
+        }
+    }
+
+    function createBroadcast() {
+        pageStack.push(Qt.resolvedUrl("SelectContact.qml"), {"multiple": true, "noGroups": true})
+        pageStack.currentPage.accepted.connect(broadcastReceiver.contactsSelected)
+        pageStack.currentPage.rejected.connect(broadcastReceiver.contactsRejected)
+    }
+
+    QtObject {
+        id: broadcastReceiver
+
+        function transitionDone() {
+            if (!pageStack.busy) {
+                pageStack.busyChanged.disconnect(broadcastReceiver.transitionDone)
+                ContactsBaseModel.createBroadcast(pageStack.currentPage.jids)
+            }
+        }
+
+        function contactsRejected() {
+            pageStack.currentPage.accepted.disconnect(broadcastReceiver.contactsSelected)
+            pageStack.currentPage.rejected.disconnect(broadcastReceiver.contactsRejected)
+        }
+
+        function contactsSelected() {
+            pageStack.busyChanged.connect(broadcastReceiver.transitionDone)
+            contactsRejected()
         }
     }
 
@@ -823,6 +866,30 @@ ApplicationWindow {
         Qt.quit()
     }
 
+    function getNickname(cjid, cnick, cjids) {
+        if (cjid.indexOf("@broadcast") < 0 || cnick != cjid.split("@")[0]) {
+            return Utilities.emojify(cnick, emojiPath)
+        }
+        else {
+            var nick
+            var list = cjids
+            var jids = list.split(";")
+            var names = []
+
+            for (var i = 0; i < jids.length; i++) {
+                var model = ContactsBaseModel.getModel(jids[i])
+                if (model && model.nickname) {
+                    names.splice(names.length, 0, Utilities.emojify(model.nickname, emojiPath))
+                }
+                else {
+                    var name = jids[i].split("@")[0]
+                    names.splice(names.length, 0, name)
+                }
+            }
+            return names.join(", ")
+        }
+    }
+
     onCurrentOrientationChanged: {
         if (Qt.inputMethod.visible) {
             Qt.inputMethod.hide()
@@ -923,6 +990,19 @@ ApplicationWindow {
         target: pageStack
         onCurrentPageChanged: {
             console.log("[PageStack] " + pageStack.currentPage.objectName)
+        }
+    }
+
+    Connections {
+        target: ContactsBaseModel
+        onBroadcastCreated: {
+            if (bjid.length > 0) {
+                console.log("should open " + bjid)
+                while (pageStack.depth > 1) {
+                    pageStack.navigateBack(PageStackAction.Immediate)
+                }
+                pageStack.push(Qt.resolvedUrl("ConversationPage.qml"), {"initialParticipants": bjids, "initialModel": ContactsBaseModel.getModel(bjid)}, PageStackAction.Immediate)
+            }
         }
     }
 

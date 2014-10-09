@@ -143,12 +143,13 @@ Dialog {
                 anchors.left: parent.left
                 anchors.leftMargin: Theme.paddingLarge
                 anchors.verticalCenter: parent.verticalCenter
+                backgroundVisible: (status !== Image.Ready) || (model.jid.indexOf("@broadcast") >= 0)
             }
 
             Label {
                 id: nickname
                 font.pixelSize: Theme.fontSizeMedium
-                text: Utilities.emojify(model.nickname, emojiPath)
+                text: getNickname(model.jid, model.nickname, model.subowner)
                 anchors.left: ava.right
                 anchors.leftMargin: 16
                 anchors.top: parent.top
@@ -163,7 +164,9 @@ Dialog {
             Label {
                 id: status
                 font.pixelSize: Theme.fontSizeSmall
-                text: model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line") : Utilities.emojify(model.message, emojiPath)
+                text: model.jid.indexOf("-") > 0 ? qsTr("Group chat", "Contacts group page text in status message line")
+                                                 : ((model.jid.indexOf("@broadcast") >= 0 ? qsTr("Broadcast list", "Contacts group page text in status message line")
+                                                                                          : Utilities.emojify(model.message, emojiPath)))
                 anchors.left: ava.right
                 anchors.leftMargin: Theme.paddingLarge
                 anchors.bottom: parent.bottom

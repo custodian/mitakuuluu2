@@ -2,9 +2,12 @@
 #include "client.h"
 
 MapRequest::MapRequest(const QString &source, const QString &latitude, const QString &longitude,
-                       int zoom, int width, int height, const QStringList &jids, QObject *parent) :
+                       int zoom, int width, int height, const QStringList &jids, const QStringList &participants, const QString &broadcastName,
+                       QObject *parent) :
     QObject(parent),
     _jids(jids),
+    _participants(participants),
+    _broadcastName(broadcastName),
     _latitude(latitude),
     _longitude(longitude)
 {
@@ -118,7 +121,7 @@ void MapRequest::requestComplete()
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
     if (reply && reply->error() == QNetworkReply::NoError) {
-        Q_EMIT mapAvailable(reply->readAll(), _latitude, _longitude, _jids, this);
+        Q_EMIT mapAvailable(reply->readAll(), _latitude, _longitude, _jids, _participants, _broadcastName, this);
     }
     else {
         Q_EMIT requestError(this);

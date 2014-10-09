@@ -604,7 +604,9 @@ signals:
                         const QString &subjectOwner, const QString &subjectTimestamp,
                         const QStringList &participants);
 
-    void broadcastList(const QVariantMap &broadcasts);
+    void groupRemoved(const QString &jid);
+
+    void broadcastList(const QVariantList &broadcasts);
 
 
     /** ***********************************************************************
