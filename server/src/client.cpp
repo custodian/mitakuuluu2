@@ -397,7 +397,9 @@ void Client::addMessage(const FMessage &message)
     QStringList jids;
     if (!message.broadcastJids.isEmpty()) {
         jids = message.broadcastJids;
-        jids << message.key.remote_jid;
+        if (message.key.remote_jid.indexOf("@broadcast") > 0) {
+            jids << message.key.remote_jid;
+        }
     }
     else {
         jids << message.key.remote_jid;
@@ -843,7 +845,6 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
 
     this->userName = dconf->value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
     changeUserName(this->userName);
-    Q_EMIT connectionGetBroadcasts();
 
     //getPicture(this->myJid);
 
