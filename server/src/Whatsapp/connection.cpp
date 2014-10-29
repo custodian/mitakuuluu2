@@ -564,7 +564,7 @@ bool Connection::read()
                     emit available(from, false);
                 QString last = node.getAttributeValue("last");
                 if (!last.isEmpty() && !from.contains("-")) {
-                    qint64 timestamp = QDateTime::currentDateTime().toTime_t() - last.toLongLong();
+                    qint64 timestamp = last.toLongLong();
                     emit lastOnline(from, timestamp);
                 }
             }

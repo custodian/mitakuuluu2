@@ -536,7 +536,7 @@ void ContactsBaseModel::dbResults(const QVariant &result)
                 _modelData[jid] = data;
                 if (!_colors.keys().contains(jid))
                     _colors[jid] = generateColor();
-                if (data["owner"].toString().isEmpty())
+                if (data["avatar"].toString().isEmpty())
                     requestAvatar(jid);
             }
             endResetModel();

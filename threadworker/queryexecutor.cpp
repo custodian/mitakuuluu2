@@ -309,6 +309,9 @@ void QueryExecutor::messageNotify(QVariantMap &query)
         }
         else {
             query["avatar"] = sql.value(5);
+            if (query["avatar"].isNull()) {
+                query["avatar"] = sql.value(2);
+            }
         }
         QString nickname = pushName;
         if (jid.contains("-"))

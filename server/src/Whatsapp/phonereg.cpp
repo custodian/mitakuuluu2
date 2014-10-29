@@ -66,7 +66,7 @@ PhoneReg::PhoneReg(const QString& cc, const QString& number, const QString& meth
 
     QString locale = QLocale::system().name();
     lg = locale.split("_").first();
-    lc = "zz"; //TESTING HACK.// locale.split("_").length() > 1 ? locale.split("_").last() : "";
+    lc = locale.split("_").length() > 1 ? locale.split("_").last().toLower() : "zz";
 }
 
 void PhoneReg::start()
@@ -85,10 +85,10 @@ void PhoneReg::startCodeRequest()
     }
     //request->addParam("reason", "self-send-jailbroken");
     request->addParam("method", method);
-    //request->addParam("sim_mcc", mcc);
-    request->addParam("sim_mcc", "000");
-    //request->addParam("sim_mnc", mnc);
-    request->addParam("sim_mnc", "000");
+    request->addParam("sim_mcc", mcc);
+    //request->addParam("sim_mcc", "214");
+    request->addParam("sim_mnc", mnc);
+    //request->addParam("sim_mnc", "007");
     request->addParam("lg", lg.isEmpty() ? "en" : lg);
     request->addParam("lc", lc.isEmpty() ? "zz" : lc);
     request->addParam("token", Utilities::getTokenAndroid(number));

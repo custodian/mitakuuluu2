@@ -844,7 +844,10 @@ void Client::onAuthSuccess(const QString &creation, const QString &expiration, c
     //Q_EMIT connectionSendGetPrivacySettings();
 
     this->userName = dconf->value(SETTINGS_USERNAME, this->myJid.split("@").first()).toString();
-    changeUserName(this->userName);
+    if (this->alwaysOffline)
+        Q_EMIT connectionSendUnavailable();
+    else
+        changeUserName(this->userName);
 
     //getPicture(this->myJid);
 
@@ -1406,7 +1409,7 @@ void Client::syncContactsAvailable(const QVariantList &results)
 
             if (jid == myJid) {
                 myStatus = message;
-                dconf->setValue(SETTINGS_STATUS,myStatus);
+                dconf->setValue(SETTINGS_PRESENCE,myStatus);
             }
             Q_EMIT contactStatus(jid, message, contact["timestamp"].toInt());
 
@@ -2349,7 +2352,7 @@ void Client::userStatusUpdated(const QString &jid, const QString &message, int t
     }
     if (jid == myJid) {
         myStatus = message;
-        dconf->setValue(SETTINGS_STATUS,myStatus);
+        dconf->setValue(SETTINGS_PRESENCE,myStatus);
     }
 }
 
