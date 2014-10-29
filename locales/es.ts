@@ -1039,7 +1039,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
         <source>Images selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Imagen selec.: %n</numerusform><numerusform>Imágenes selec.: %n</numerusform></translation>
+        <translation><numerusform>Imagen seleccionada: %n</numerusform><numerusform>Imágenes seleccionadas: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
@@ -1051,7 +1051,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
         <source>Audio selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Audio selec.: %n</numerusform><numerusform>Audios selec.: %n</numerusform></translation>
+        <translation><numerusform>Audio seleccionado: %n</numerusform><numerusform>Audios seleccionados: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
@@ -1063,7 +1063,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
         <source>Video selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation><numerusform>Vídeo selec.: %n</numerusform><numerusform>Vídeos selec.: %n</numerusform></translation>
+        <translation><numerusform>Vídeo seleccionado: %n</numerusform><numerusform>Vídeos seleccionados: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
@@ -1884,7 +1884,7 @@ Haz click en &quot;Renovar&quot; para comprar un año de servicio.</translation>
         <location filename="../client/qml/SelectContact.qml" line="70"/>
         <source>Selected %n contacts</source>
         <comment>Select contact page title</comment>
-        <translation><numerusform>%n contacto selec.</numerusform><numerusform>%n contactos selec.</numerusform></translation>
+        <translation><numerusform>%n contacto seleccionado</numerusform><numerusform>%n contactos seleccionados</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/SelectContact.qml" line="77"/>

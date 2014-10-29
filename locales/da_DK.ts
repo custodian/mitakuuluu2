@@ -621,7 +621,7 @@
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="95"/>
         <source>Show search field</source>
-        <translation type="unfinished"/>
+        <translation>Vis søgefelt</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="162"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
         <source>Un-hide contact</source>
-        <translation type="unfinished"/>
+        <translation>Synliggør kontakt</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
@@ -1986,7 +1986,7 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/Settings.qml" line="30"/>
         <source>Change presence</source>
         <comment>Settings cover action name text</comment>
-        <translation type="unfinished"/>
+        <translation>Ændre udseende</translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="31"/>
@@ -2183,7 +2183,7 @@ Click Renew to purchase one year of WhatsApp service.</source>
         <location filename="../client/qml/Settings.qml" line="477"/>
         <source>Notifications delay</source>
         <comment>Settings option name</comment>
-        <translation type="unfinished"/>
+        <translation>Forsinkelse på påmindelse</translation>
     </message>
     <message numerus="yes">
         <location filename="../client/qml/Settings.qml" line="479"/>

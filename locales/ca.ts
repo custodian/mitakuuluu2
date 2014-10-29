@@ -79,7 +79,7 @@
         <location filename="../client/qml/Account.qml" line="80"/>
         <source>expired</source>
         <comment>Account type</comment>
-        <translation type="unfinished"/>
+        <translation>vençut</translation>
     </message>
     <message>
         <location filename="../client/qml/Account.qml" line="161"/>
@@ -162,12 +162,12 @@
     <message>
         <location filename="../client/qml/Account.qml" line="321"/>
         <source>Status history</source>
-        <translation type="unfinished"/>
+        <translation>Historial d&apos;estats</translation>
     </message>
     <message>
         <location filename="../client/qml/Account.qml" line="367"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../client/qml/Account.qml" line="404"/>
@@ -566,7 +566,7 @@
         <location filename="../server/src/client.cpp" line="3218"/>
         <source>%n messages unread</source>
         <comment>Message notification with unread messages count</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n missatge sense llegir</numerusform><numerusform>%n missatges sense llegir</numerusform></translation>
     </message>
 </context>
 <context>
@@ -655,12 +655,12 @@
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
         <source>Un-hide contact</source>
-        <translation type="unfinished"/>
+        <translation>Reestableix el contacte</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="423"/>
         <source>Hide contact</source>
-        <translation type="unfinished"/>
+        <translation>Amaga el contacte</translation>
     </message>
     <message>
         <location filename="../client/qml/ContactsPage.qml" line="430"/>
@@ -787,7 +787,7 @@
     <message numerus="yes">
         <location filename="../client/qml/CoverPage.qml" line="33"/>
         <source>Unread messages: %n</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Missatge sense llegir: %n</numerusform><numerusform>Missatges sense llegir: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/CoverPage.qml" line="35"/>
@@ -1014,17 +1014,17 @@
     <message>
         <location filename="../client/qml/MediaPreview.qml" line="48"/>
         <source>Send capture</source>
-        <translation type="unfinished"/>
+        <translation>Envia la captura</translation>
     </message>
     <message>
         <location filename="../client/qml/MediaPreview.qml" line="48"/>
         <source>Send media</source>
-        <translation type="unfinished"/>
+        <translation>Envia multimèdia</translation>
     </message>
     <message>
         <location filename="../client/qml/MediaPreview.qml" line="61"/>
         <source>Add a caption</source>
-        <translation type="unfinished"/>
+        <translation>Afegeix una captura</translation>
     </message>
 </context>
 <context>
@@ -1039,7 +1039,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
         <source>Images selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Imatge seleccionada: %n</numerusform><numerusform>Imatges seleccionades: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="107"/>
@@ -1051,7 +1051,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
         <source>Audio selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Àudio seleccionat: %n</numerusform><numerusform>Àudios seleccionats: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="108"/>
@@ -1063,7 +1063,7 @@
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
         <source>Video selected: %n</source>
         <comment>Media selection page title text</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Vídeo seleccionat: %n</numerusform><numerusform>Vídeos seleccionats: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/MediaSelector.qml" line="109"/>
@@ -1607,7 +1607,7 @@
     <message>
         <location filename="../client/qml/RegistrationPage.qml" line="88"/>
         <source>System status</source>
-        <translation type="unfinished"/>
+        <translation>Estat del sistema</translation>
     </message>
     <message>
         <location filename="../client/qml/RegistrationPage.qml" line="95"/>
@@ -1798,13 +1798,13 @@ Si utilitzeu alguna aplicació oficial de WhatsApp, o una versió antiga de Mita
         <location filename="../client/qml/RegistrationPage.qml" line="394"/>
         <source>%n hours</source>
         <comment>Registration information constructor</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n hora</numerusform><numerusform>%n hores</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../client/qml/RegistrationPage.qml" line="397"/>
         <source>%n minutes</source>
         <comment>Registration information constructor</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n minut</numerusform><numerusform>%n minuts</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/RegistrationPage.qml" line="399"/>
@@ -1885,7 +1885,7 @@ Cal que cliqueu &apos;Renova&apos; per adquirir un any de servei de WhatsApp.</t
         <location filename="../client/qml/SelectContact.qml" line="70"/>
         <source>Selected %n contacts</source>
         <comment>Select contact page title</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n contacte seleccionat</numerusform><numerusform>%n contactes seleccionats</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/SelectContact.qml" line="77"/>
@@ -1940,7 +1940,7 @@ Cal que cliqueu &apos;Renova&apos; per adquirir un any de servei de WhatsApp.</t
         <location filename="../client/qml/SelectPhonebook.qml" line="171"/>
         <source>Sync %n contacts</source>
         <comment>Add contacts page title</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sincronitza %n contacte</numerusform><numerusform>Sincronitza %n contactes</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/SelectPhonebook.qml" line="172"/>
@@ -2196,13 +2196,13 @@ Cal que cliqueu &apos;Renova&apos; per adquirir un any de servei de WhatsApp.</t
         <location filename="../client/qml/Settings.qml" line="479"/>
         <source>%n seconds</source>
         <comment>Settings option value label</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n segon</numerusform><numerusform>%n segons</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../client/qml/Settings.qml" line="561"/>
         <source>%n minutes</source>
         <comment>Settings option value label</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n minut</numerusform><numerusform>%n minuts</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="600"/>
@@ -2268,7 +2268,7 @@ Cal que cliqueu &apos;Renova&apos; per adquirir un any de servei de WhatsApp.</t
         <location filename="../client/qml/Settings.qml" line="573"/>
         <source>%n reconnections</source>
         <comment>Settings option value label</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n reconnexió</numerusform><numerusform>%n reconnexions</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/Settings.qml" line="619"/>
@@ -2580,7 +2580,7 @@ Cal que cliqueu &apos;Renova&apos; per adquirir un any de servei de WhatsApp.</t
         <location filename="../client/qml/ShareUI.qml" line="66"/>
         <source>Selected: %n</source>
         <comment>Sharing menu title text</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Seleccionat: %n</numerusform><numerusform>Seleccionats: %n</numerusform></translation>
     </message>
     <message>
         <location filename="../client/qml/ShareUI.qml" line="166"/>
