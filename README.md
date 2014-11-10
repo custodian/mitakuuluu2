@@ -1,7 +1,7 @@
 Mitakuuluu - Project closed
 ==========
 
-Mitakuuluu project closed. No further development for current codebase. New client will be written and released in new year.
+Mitakuuluu project closed. No further development for current codebase. No answers on your questions. No ETA.
 Do not use current codebase, or your whatsapp account will be banned.
 
 Old info
