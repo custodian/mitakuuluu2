@@ -1,4 +1,10 @@
-Mitakuuluu - Reborn
+Mitakuuluu - Project closed
+==========
+
+Mitakuuluu project closed. No further development for current codebase. New client will be written and released in new year.
+Do not use current codebase, or your whatsapp account will be banned.
+
+Old info
 ==========
 
 Mitakuuluu - indie WhatsApp-compatible client for SailfishOS. Written in Qt5, Mitakuuluu based on Persecute client for Harmattan Qt4 project, which is based on Yappari client for Maemo5.
