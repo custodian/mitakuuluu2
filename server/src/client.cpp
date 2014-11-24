@@ -314,8 +314,8 @@ void Client::readSettings()
     this->whatsappevil = dconf->value(SETTINGS_EVIL, false).toBool();
 
     this->waversion = dconf->value(SETTINGS_WAVERSION, USER_AGENT_VERSION).toString();
-    this->waresource = QString("Android-%1-443").arg(this->waversion);
-    this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
+    this->waresource = QString("WP7-%1-443").arg(this->waversion);
+    this->wauseragent = QString("WhatsApp/%1 WP7/8.10.12393.0 Device/NOKIA-RM-491_eu_belarus_russia_215-H3.0.0.0").arg(this->waversion);
     //qDebug() << "UA:" << this->wauseragent;
 
     this->acceptUnknown = dconf->value(SETTINGS_UNKNOWN, true).toBool();
@@ -1200,8 +1200,8 @@ void Client::onSettingsChanged(const QString &key)
     }
     else if (key == SETTINGS_WAVERSION) {
         this->waversion = dconf->value(key).toString();
-        this->waresource = QString("Android-%1-443").arg(this->waversion);
-        this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
+        this->waresource = QString("WP7-%1-443").arg(this->waversion);
+        this->wauseragent = QString("WhatsApp/%1 WP7/8.10.12393.0 Device/NOKIA-RM-491_eu_belarus_russia_215-H3.0.0.0").arg(this->waversion);
     }
     else if (key == SETTINGS_UNKNOWN) {
         this->acceptUnknown = dconf->value(key).toBool();
@@ -1646,7 +1646,7 @@ void Client::getTokenScratch()
     if (nam) {
         qDebug() << "getToken";
         QNetworkRequest req;
-        QUrl request("https://coderus.openrepos.net/whitesoft/whatsapp_scratch");
+        QUrl request("https://coderus.openrepos.net/whitesoft/whatsapp_legacy");
         req.setUrl(request);
         connect(nam->get(req), SIGNAL(finished()), this, SLOT(scratchRequestFinished()));
     }
@@ -3593,9 +3593,9 @@ void Client::scratchRequestFinished()
             this->wandroidscratch1 = mapResult["a"].toString();
             this->wanokiascratch1 = mapResult["b"].toString();
             this->wanokiascratch2 = mapResult["c"].toString();
-            this->waversion = mapResult["d"].toString();
-            this->waresource = QString("Android-%1-443").arg(this->waversion);
-            this->wauseragent = QString("WhatsApp/%1 Android/4.2.1 Device/GalaxyS3").arg(this->waversion);
+            this->waversion = mapResult["f"].toString();
+            this->waresource = QString("WP7-%1-443").arg(this->waversion);
+            this->wauseragent = QString("WhatsApp/%1 WP7/8.10.12393.0 Device/NOKIA-RM-491_eu_belarus_russia_215-H3.0.0.0").arg(this->waversion);
             dconf->setValue(SETTINGS_SCRATCH1, wanokiascratch1);
             dconf->setValue(SETTINGS_SCRATCH2, wanokiascratch2);
             dconf->setValue(SETTINGS_SCRATCH3, wandroidscratch1);

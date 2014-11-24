@@ -37,7 +37,7 @@
 #define USER_AGENT_NOKIA    "WhatsApp/"USER_AGENT_VERSION_NOKIA" S40Version/gadCEX3.60 Device/Nokia302"
 #define RESOURCE_NOKIA      "S40-"USER_AGENT_VERSION_NOKIA"-443"
 
-#define USER_AGENT_VERSION  "2.11.407"
+#define USER_AGENT_VERSION  "2.11.596"
 #define USER_AGENT          "WhatsApp/"USER_AGENT_VERSION" Android/4.2.1 Device/GalaxyS3"
 #define RESOURCE            "Android-"USER_AGENT_VERSION"-443"
 
